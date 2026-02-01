@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+.swiper-pagination {
+  @apply flex items-center gap-3 justify-center mt-4;
+}
+
+/* normal dots */
+.swiper-pagination-bullet {
+  @apply relative w-2 h-2 bg-gray-300 rounded-full overflow-hidden transition-all duration-300;
+}
+
+/* active dot expands */
+.swiper-pagination-bullet-active {
+  @apply w-12! rounded-sm!;
+}
+
+/* progress fill */
+.swiper-pagination-bullet::after {
+  content: "";
+  @apply absolute left-0 top-0 h-full w-0 bg-orange-500;
+}
+
+/* animate fill only for active */
+.swiper-pagination-bullet-active::after {
+  animation: fillProgress 5s linear forwards;
+}
+
+@keyframes fillProgress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+
