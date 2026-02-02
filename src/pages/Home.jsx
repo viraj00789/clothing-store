@@ -93,13 +93,13 @@ const Home = () => {
           <HomePageSlider />
 
           {/* Trending Now Section */}
-          <div className="p-12.5 space-y-[27px]">
-            <h3 className="text-light-black font-bold text-4xl">
+          <div className="px-3.75 lg:p-12.5 space-y-3 lg:space-y-[27px] mt-3 lg:mt-20">
+            <h3 className="text-light-black font-bold text-xl md:text-2xl lg:text-4xl">
               Trending Now
             </h3>
 
             {/* Horizontal scroll container */}
-            <div className="flex gap-4 overflow-x-auto trending-scroll py-4">
+            <div className="flex gap-4 lg:gap-10 overflow-x-auto trending-scroll py-4">
               {products.map((product) => (
                 <div
                   key={product.id}
