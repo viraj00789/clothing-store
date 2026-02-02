@@ -1,37 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&display=swap');
+
 @import "tailwindcss";
 
-.swiper-pagination {
-  @apply flex items-center gap-3 justify-center mt-4;
+:root {
+  --light-gray: #F0F0F0;
+  --light-gray-1: #F9FAFF;
+  --mid-gray: #565656;
+  --mid-dark-gray: #646464;
+  --dark-gray: #848484;
+  --dark-blue: #00398F;
+  --light-black: #272727;
+  --green: #0A8200;
+  --font-baskerville: 'Libre Baskerville', serif;
 }
 
-/* normal dots */
-.swiper-pagination-bullet {
-  @apply relative w-2 h-2 bg-gray-300 rounded-full overflow-hidden transition-all duration-300;
+@theme inline {
+  --color-light-gray: var(--light-gray);
+  --color-light-gray-1: var(--light-gray-1);
+  --colot-mid-gray: var(--mid-gray);
+  --color-mid-dark-gray: var(--mid-dark-gray);
+  --color-dark-blue: var(--dark-blue);
+  --color-dark-gray: var(--dark-gray);
+  --color-light-black: var(--light-black);
+  --color-green: var(--green);
 }
 
-/* active dot expands */
-.swiper-pagination-bullet-active {
-  @apply w-12! rounded-sm!;
+body {
+  font-family: var(--font-baskerville)
 }
 
-/* progress fill */
-.swiper-pagination-bullet::after {
-  content: "";
-  @apply absolute left-0 top-0 h-full w-0 bg-orange-500;
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  display: none;
 }
 
-/* animate fill only for active */
-.swiper-pagination-bullet-active::after {
-  animation: fillProgress 5s linear forwards;
+input[type="search"]::-ms-clear {
+  display: none;
 }
 
-@keyframes fillProgress {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
+.trending-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
-
-

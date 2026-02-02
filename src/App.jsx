@@ -7,13 +7,13 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<MainLayout />}>
-          {publicRoutes?.map((route, i) => (
+        <Route path="/" element={<MainLayout />}>
+          {publicRoutes.map((route, i) => (
             <Route key={i} path={route.path} element={route.element} />
           ))}
 
           <Route element={<ProtectedRoute />}>
-            {protectedRoutes?.map((route, i) => (
+            {protectedRoutes.map((route, i) => (
               <Route key={i} path={route.path} element={route.element} />
             ))}
           </Route>

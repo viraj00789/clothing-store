@@ -4,10 +4,10 @@ import Footer from "../pages/Footer";
 
 export default function MainLayout() {
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-screen">
       <Navbar />
 
-      <main className="p-4">
+      <main>
         <Outlet />
       </main>
 

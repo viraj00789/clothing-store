@@ -1,0 +1,28 @@
+
+
+.custom-bullet {
+    width: 10px;
+    height: 10px;
+    background: #c4c4c4;
+    opacity: 0.7;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.custom-bullet-active {
+    background: #002482;
+    opacity: 1;
+    transform: scale(1.4);
+}
+
+@media (max-width: 768px) {
+    .custom-pagination {
+        padding: 12px 0;
+    }
+
+    .custom-bullet {
+        width: 10px;
+        height: 10px;
+    }
+}
