@@ -11,6 +11,7 @@
   --dark-blue: #00398F;
   --light-black: #272727;
   --green: #0A8200;
+  --dark-green: #1A4242;
   --font-baskerville: 'Libre Baskerville', serif;
 }
 
@@ -23,6 +24,7 @@
   --color-dark-gray: var(--dark-gray);
   --color-light-black: var(--light-black);
   --color-green: var(--green);
+  --color-dark-green: var(--dark-green);
 }
 
 body {
@@ -39,5 +41,6 @@ input[type="search"]::-ms-clear {
 }
 
 .trending-scroll::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge */
+  display: none;
+  /* Chrome, Safari, Edge */
 }

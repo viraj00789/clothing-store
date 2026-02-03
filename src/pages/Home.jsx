@@ -6,6 +6,8 @@ import ContainerLayout from "../layout/ContainerLayout";
 import TrendingSection from "../components/ui/home/TrendingSection";
 import DealsForDays from "../components/ui/home/DealsForDays";
 import OfferSlider from "../components/ui/home/OffersSlider/Offers";
+import FashionSlider from "../components/ui/home/FashionSlider/FashionSlider";
+import Categories from "../components/ui/home/Categories";
 
 const Home = () => {
   const [open, setOpen] = useState(true);
@@ -45,6 +47,12 @@ const Home = () => {
 
           {/* Trending Offers */}
           <OfferSlider />
+
+          {/* Fashion Slider */}
+          <FashionSlider />
+
+          {/* Categorie Section */}
+          <Categories />
         </div>
       </ContainerLayout>
     </>

@@ -1,0 +1,45 @@
+/* Position pagination */
+.fashion-slider .swiper-pagination {
+    bottom: 25px !important;
+}
+
+/* Each bullet = bar background */
+.fashion-slider .swiper-pagination-bullet {
+    width: 30.64px;
+    /* bar width */
+    height: 8px;
+    /* bar height */
+    border-radius: 999px;
+    background: #D0D0D0;
+    /* inactive track */
+    opacity: 1;
+    margin: 0 6px !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* The filling part (pseudo-element) */
+.fashion-slider .swiper-pagination-bullet::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 0%;
+    background: #000;
+    border-radius: 999px;
+}
+
+/* Active bullet animates like progress */
+.fashion-slider .swiper-pagination-bullet-active::before {
+    animation: bulletProgress 3s linear forwards;
+}
+
+/* Keyframes for fill animation */
+@keyframes bulletProgress {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
