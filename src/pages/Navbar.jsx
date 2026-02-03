@@ -53,12 +53,12 @@ const Navbar = () => {
         <div className="flex w-full items-center justify-between gap-0 xl:gap-2">
           {/* Logo + desktop links */}
           <div className="flex items-center gap-4 2xl:gap-[161px]">
-            <Link to="/">
+            <Link to="/" className="w-8 h-8 2xl:w-[57px] 2xl:h-[48px]">
               <img
                 src={ClothingLogo}
                 alt="logo"
                 loading="lazy"
-                className="w-10 h-10 2xl:w-[57px] 2xl:h-[48px] cursor-pointer object-contain"
+                className="w-8 h-8 2xl:w-[57px] 2xl:h-[48px] cursor-pointer object-contain"
               />
             </Link>
             <ul className="hidden lg:flex gap-4 xl:gap-10">
@@ -66,7 +66,7 @@ const Navbar = () => {
                 <li key={link.to}>
                   <Link
                     to={link.to}
-                    className="text-gray-700 hover:text-gray-900 font-normal text-lg whitespace-nowrap"
+                    className="text-gray-700 hover:text-gray-900 font-normal text-lg truncate"
                   >
                     {link.label}
                   </Link>
@@ -76,7 +76,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop right section */}
-          <div className="hidden lg:flex items-center gap-4 2xl:gap-[60px]">
+          <div className="hidden lg:flex items-center gap-4 2xl:gap-15">
             <div className="relative">
               <div className="relative w-full xl:w-133">
                 <input
@@ -126,7 +126,7 @@ const Navbar = () => {
                   loading="lazy"
                   className="w-[29px] h-[29px]"
                 />
-                <p className="font-normal text-lg whitespace-nowrap">
+                <p className="font-normal text-lg truncate">
                   Anna Doe
                 </p>
               </div>

@@ -8,7 +8,6 @@ import background1 from "../../../../assets/HomeSliderImages/background1.svg";
 import prada from "../../../../assets/HomeSliderImages/prada1.svg";
 import "./HomeSlider.css";
 
-// Slides data (same images, just wrapped in objects with text)
 const slides = [
   {
     image:
@@ -63,13 +62,14 @@ const HomePageSlider = () => {
           bulletClass: "custom-bullet",
           bulletActiveClass: "custom-bullet-active",
         }}
+        speed={1000}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
         loop={true}
-        className="w-full h-[796px] home-slider"
+        className="w-full h-[800px] home-slider"
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="flex w-full h-[796px] cursor-grab">
+            <div className="flex w-full h-[800px] cursor-grab">
               {/* Left image */}
               <div className="hidden lg:inline w-1/2 h-full">
                 <img
@@ -87,7 +87,12 @@ const HomePageSlider = () => {
               >
                 <div className="flex flex-col items-center gap-8.5">
                   <div>
-                    <img src={slide.brand} loading="lazy" alt="brand logo"  className="w-xs h-xs d:h-full md:w-full"/>
+                    <img
+                      src={slide.brand}
+                      loading="lazy"
+                      alt="brand logo"
+                      className="w-xs h-xs d:h-full md:w-full"
+                    />
                   </div>
                   <div className="text-center flex flex-col gap-5.5">
                     <p className="text-2xl lg:text-5xl font-bold text-mid-dark-gray">
