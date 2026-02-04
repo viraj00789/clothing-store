@@ -12,6 +12,7 @@
   --light-black: #272727;
   --green: #0A8200;
   --dark-green: #1A4242;
+  --dark-cyan: #27363B;
   --font-baskerville: 'Libre Baskerville', serif;
 }
 
@@ -25,6 +26,7 @@
   --color-light-black: var(--light-black);
   --color-green: var(--green);
   --color-dark-green: var(--dark-green);
+  --color-dark-cyan: var(--dark-cyan);
 }
 
 body {

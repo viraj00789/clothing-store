@@ -1,0 +1,67 @@
+ .customer-say .swiper-button-prev,
+ .customer-say .swiper-button-next {
+     width: 54px;
+     height: 54px;
+     background: black;
+     opacity: 60%;
+     border-radius: 50%;
+     color: white;
+     /* arrow color */
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+     transition: all 0.3s ease;
+     padding: 15px;
+     cursor: pointer;
+ }
+
+ .customer-say .swiper-button-prev.swiper-button-disabled,
+ .customer-say .swiper-button-next.swiper-button-disabled {
+
+     display: none;
+ }
+
+
+
+
+ /* Change arrow size */
+ .customer-say .swiper-button-prev::after,
+ .customer-say .swiper-button-next::after {
+     display: none;
+
+ }
+
+ .customer-say .swiper-button-prev {
+     width: 52px;
+     height: 52px;
+     background: url("../../../../assets/HomeSliderImages/left.svg") center / 24px 24px no-repeat;
+     background-color: black;
+     border-radius: 50%;
+     cursor: pointer;
+     margin-left: 10px;
+ }
+
+ .customer-say .swiper-button-next {
+     width: 52px;
+     height: 52px;
+     background: url("../../../../assets/HomeSliderImages/right.svg") center / 24px 24px no-repeat;
+     background-color: black;
+     border-radius: 50%;
+     cursor: pointer;
+     margin-right: 10px;
+ }
+
+
+ @media screen and (max-width: 768px) {
+
+     .customer-say .swiper-button-prev,
+     .customer-say .swiper-button-next {
+         display: inline;
+     }
+ }
+
+ @media screen and (max-width: 1023px) {
+
+     .customer-say .swiper-button-prev,
+     .customer-say .swiper-button-next {
+         display: none;
+     }
+ }

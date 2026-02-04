@@ -8,6 +8,8 @@ import DealsForDays from "../components/ui/home/DealsForDays";
 import OfferSlider from "../components/ui/home/OffersSlider/Offers";
 import FashionSlider from "../components/ui/home/FashionSlider/FashionSlider";
 import Categories from "../components/ui/home/Categories";
+import CustomerSay from "../components/ui/home/CustomerSay/CustomerSay";
+import FeaturedBlog from "../components/ui/home/FeaturedBlog";
 
 const Home = () => {
   const [open, setOpen] = useState(true);
@@ -53,6 +55,12 @@ const Home = () => {
 
           {/* Categorie Section */}
           <Categories />
+
+          {/* Customer Say */}
+          <CustomerSay />
+
+          {/* Featured Blogs */}
+          <FeaturedBlog />
         </div>
       </ContainerLayout>
     </>
