@@ -8,11 +8,13 @@
   --mid-gray: #565656;
   --mid-dark-gray: #646464;
   --dark-gray: #848484;
+  --footer-input: #ABABAB;
   --dark-blue: #00398F;
   --light-black: #272727;
   --green: #0A8200;
   --dark-green: #1A4242;
   --dark-cyan: #27363B;
+  --dark-footer: #00071B;
   --font-baskerville: 'Libre Baskerville', serif;
 }
 
@@ -27,6 +29,8 @@
   --color-green: var(--green);
   --color-dark-green: var(--dark-green);
   --color-dark-cyan: var(--dark-cyan);
+  --color-dark-footer: var(--dark-footer);
+  --color-footer-input: var(--footer-input);
 }
 
 body {
@@ -44,5 +48,12 @@ input[type="search"]::-ms-clear {
 
 .trending-scroll::-webkit-scrollbar {
   display: none;
-  /* Chrome, Safari, Edge */
+}
+
+.text-respo {
+  @apply font-bold text-xl md:text-3xl lg:text-4xl
+}
+
+.text-respo-24 {
+  @apply font-bold text-lg lg:text-2xl
 }

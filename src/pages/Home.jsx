@@ -11,6 +11,7 @@ import Categories from "../components/ui/home/Categories";
 import CustomerSay from "../components/ui/home/CustomerSay/CustomerSay";
 import FeaturedBlog from "../components/ui/home/FeaturedBlog";
 import Services from "../components/ui/home/Services";
+import AboutUs from "../components/ui/home/AboutUs";
 
 const Home = () => {
   const [open, setOpen] = useState(true);
@@ -65,6 +66,9 @@ const Home = () => {
 
           {/* Services */}
           <Services />
+
+          {/* AboutUs */}
+          <AboutUs />
         </div>
       </ContainerLayout>
     </>

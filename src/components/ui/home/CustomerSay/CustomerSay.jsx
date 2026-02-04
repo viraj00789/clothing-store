@@ -26,7 +26,7 @@ const CustomerSay = () => {
         navigation
         onSwiper={(swiper) => {
           setTimeout(() => {
-            swiper.autoplay.start();
+            swiper.autoplay?.start();
           }, 1000);
         }}
         className="customer-say"

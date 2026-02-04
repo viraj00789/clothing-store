@@ -44,7 +44,10 @@ export default function Services() {
     trending-scroll "
     >
       {ServiceesArray.map((item) => (
-        <div className="bg-light-gray flex flex-col items-center justify-center min-w-[318px] lg:w-[318px] rounded-[10px] p-5 space-y-2.5 h-[250px] lg:h-[202px]">
+        <div
+          className="bg-light-gray flex flex-col items-center justify-center min-w-[318px] lg:w-[318px] rounded-[10px] p-5 space-y-2.5 h-[250px] lg:h-[202px]"
+          key={item.id}
+        >
           <div className="h-12.5 w-12.5">
             <img src={item.image} />
           </div>
