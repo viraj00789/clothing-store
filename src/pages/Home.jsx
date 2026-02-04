@@ -10,6 +10,7 @@ import FashionSlider from "../components/ui/home/FashionSlider/FashionSlider";
 import Categories from "../components/ui/home/Categories";
 import CustomerSay from "../components/ui/home/CustomerSay/CustomerSay";
 import FeaturedBlog from "../components/ui/home/FeaturedBlog";
+import Services from "../components/ui/home/Services";
 
 const Home = () => {
   const [open, setOpen] = useState(true);
@@ -61,6 +62,9 @@ const Home = () => {
 
           {/* Featured Blogs */}
           <FeaturedBlog />
+
+          {/* Services */}
+          <Services />
         </div>
       </ContainerLayout>
     </>
