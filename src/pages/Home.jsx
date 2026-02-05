@@ -15,14 +15,28 @@ import AboutUs from "../components/ui/home/AboutUs";
 
 const Home = () => {
   const [open, setOpen] = useState(true);
+  const [closing, setClosing] = useState(false);
 
   return (
     <>
       <ContainerLayout>
         <div className="mt-16 lg:mt-20">
           {open && (
-            <div className="w-full p-3.75 bg-light-gray-1 flex items-start md:items-center justify-between">
+            <div
+              className={`
+      w-full p-3.75 bg-light-gray-1 flex items-start md:items-center justify-between
+      transition-all duration-500 ease-in-out
+      ${closing ? "opacity-0 max-h-0 overflow-hidden" : "opacity-100 max-h-40"}
+    `}
+              onTransitionEnd={() => {
+                if (closing) {
+                  setOpen(false); // finally remove from DOM after animation
+                  setClosing(false);
+                }
+              }}
+            >
               <div />
+
               <div className="flex flex-col lg:flex-row items-center justify-center gap-[15px]">
                 <p className="text-sm lg:text-lg font-normal text-center text-light-black">
                   Invite Friends and get 50% off on your next purchase
@@ -31,18 +45,21 @@ const Home = () => {
                   Invite Now
                 </Link>
               </div>
+
               <div className="mt-0.5 md:mt-0">
                 <RxCross2
                   size={17.11}
                   className="cursor-pointer text-dark-gray"
-                  onClick={() => setOpen(false)}
+                  onClick={() => setClosing(true)}
                 />
               </div>
             </div>
           )}
 
           {/* Main slider */}
-          <HomePageSlider />
+          <div className="transition-all duration-500 ease">
+            <HomePageSlider />
+          </div>
 
           {/* Trending section */}
           <TrendingSection />

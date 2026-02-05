@@ -40,7 +40,7 @@ const ServiceesArray = [
 export default function Services() {
   return (
     <div
-      className="px-3.75 lg:px-12.5 pb-2 mt-6 lg:mt-[85px] lg:py-5 flex items-center justify-between gap-3 overflow-auto
+      className="px-3.75 xl:px-12.5 pb-2 mt-6 lg:mt-[85px] lg:py-5 flex items-center justify-between gap-3 overflow-auto
     trending-scroll "
     >
       {ServiceesArray.map((item) => (

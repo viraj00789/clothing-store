@@ -126,7 +126,7 @@ const Navbar = () => {
                   loading="lazy"
                   className="w-[29px] h-[29px]"
                 />
-                <p className="font-normal text-lg truncate text-mid-dark-gray">
+                <p className="font-normal text-lg truncate text-mid-dark-gray hidden xl:block">
                   Anna Doe
                 </p>
               </div>

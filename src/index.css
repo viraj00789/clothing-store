@@ -16,6 +16,8 @@
   --dark-cyan: #27363B;
   --dark-footer: #00071B;
   --font-baskerville: 'Libre Baskerville', serif;
+  --font-sf: 'SF Pro Display', system-ui, sans-serif;
+
 }
 
 @theme inline {
@@ -33,9 +35,41 @@
   --color-footer-input: var(--footer-input);
 }
 
-body {
-  font-family: var(--font-baskerville)
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/src/assets/fonts/SFPRODISPLAYREGULAR.OTF") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/src/assets/fonts/SFPRODISPLAYMEDIUM.OTF") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/src/assets/fonts/SFPRODISPLAYBOLD.OTF") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: var(--font-sf);
+}
+
+
+@media (min-width: 768px) {
+  body {
+    font-family: var(--font-baskerville);
+  }
+}
+
 
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
@@ -58,7 +92,6 @@ input[type="search"]::-ms-clear {
   @apply font-bold text-lg lg:text-2xl
 }
 
-.rounded-10
-{
+.rounded-10 {
   @apply rounded-[10px]
 }

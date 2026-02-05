@@ -66,18 +66,18 @@ const products = [
 const TrendingSection = () => {
   const width = useWindow();
   return (
-    <div className="px-3.75 lg:px-12.5 space-y-3 lg:space-y-[27px] mt-3 lg:mt-[80px]">
+    <div className="px-3.75 xl:px-12.5 space-y-3 lg:space-y-[27px] mt-3 lg:mt-[80px]">
       <h3 className="text-light-black font-bold text-xl md:text-2xl lg:text-4xl">
         Trending Now
       </h3>
 
-      <Swiper spaceBetween={width > 768 ? 38 : 12} slidesPerView="auto">
+      <Swiper spaceBetween={width > 1025 ? 38 : 12} slidesPerView="auto">
         {products.map((product) => (
           <SwiperSlide
             key={product.id}
             className="!w-80 lg:!w-[414px] pb-px px-px cursor-grab"
           >
-            <div className=" shadow-sm bg-white">
+            <div className="shadow-sm bg-white">
               <img
                 className="h-[301px] w-full object-cover rounded-t-[10px]"
                 src={product.image}

@@ -11,7 +11,7 @@ const images = [
 ];
 const FeaturedBlog = () => {
   return (
-    <div className="px-3.75 lg:px-12.5 pb-2 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[85px]">
+    <div className="px-3.75 xl:px-12.5 pb-2 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[85px]">
       <h3 className="text-light-black font-bold text-xl md:text-2xl lg:text-4xl">
         Featured Blogs
       </h3>

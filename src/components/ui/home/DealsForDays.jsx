@@ -50,12 +50,12 @@ const products = [
 const DealsForDays = () => {
   const width = useWindow();
   return (
-    <div className="px-3.75 lg:px-12.5 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[85px] rounded-[10px]">
+    <div className="px-3.75 xl:px-12.5 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[85px] rounded-[10px]">
       <h3 className="text-light-black font-bold text-xl md:text-2xl lg:text-4xl">
         Deals of the Day
       </h3>
 
-      <Swiper spaceBetween={width > 768 ? 71 : 18} slidesPerView="auto">
+      <Swiper spaceBetween={width > 1025 ? 71 : 18} slidesPerView="auto">
         {products.map((product) => (
           <SwiperSlide
             key={product.id}
@@ -69,7 +69,7 @@ const DealsForDays = () => {
                 loading="lazy"
               />
 
-              <div className="py-7.5 flex flex-col items-center space-y-10.75">
+              <div className="py-5 xl:py-7.5 flex flex-col items-center space-y-5 xl:space-y-10.75">
                 <img
                   className="max-w-[151.26px] w-full object-cover"
                   src={levis}

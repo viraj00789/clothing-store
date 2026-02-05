@@ -75,17 +75,17 @@ const FashionSlider = () => {
               <div
                 className={`w-full lg:w-[47%] h-full bg-cover bg-center flex items-center justify-center ${slide.backColor}`}
               >
-                <div className="flex flex-col items-center gap-9 lg:gap-[91px] lg:px-4">
+                <div className="flex flex-col items-center gap-6 xl:gap-[91px] lg:px-4">
                   <div>
                     <img
                       src={slide.brand}
                       loading="lazy"
                       alt="brand logo"
-                      className="w-xs h-xs md:h-full md:w-full"
+                      className="w-sm h-sm xl:h-full xl:w-full"
                     />
                   </div>
-                  <div className="flex flex-col items-center justify-center gap-6 lg:gap-[75px]">
-                    <div className="text-center flex flex-col gap-5 lg:gap-9">
+                  <div className="flex flex-col items-center justify-center gap-6 xl:gap-[75px]">
+                    <div className="text-center flex flex-col gap-6 xl:gap-9">
                       <p className="text-3xl xl:text-5xl font-bold text-white">
                         {slide.title1}
                       </p>

@@ -2,13 +2,13 @@ import catArrow from "../../../assets/cat-arrow.svg";
 
 const Categories = () => {
   return (
-    <div className="px-3 md:px-4 lg:px-8 xl:px-12.5 pb-0 lg:pb-2 space-y-[27px] mt-6 lg:mt-[83px]">
+    <div className="px-3.75 xl:px-12.5 pb-0 lg:pb-2 space-y-[27px] mt-6 lg:mt-[83px]">
       <h3 className="text-light-black font-bold text-xl md:text-2xl lg:text-4xl">
         Shop by Categories
       </h3>
 
       {/* MAIN FLEX WRAPPER */}
-      <div className="flex flex-col lg:flex-row gap-3 lg:gap-[25px] h-full 2xl:max-h-[686px]">
+      <div className="flex flex-col lg:flex-row gap-3 xl:gap-[25px] h-full 2xl:max-h-[686px]">
         {/* LEFT BIG ITEM */}
         <div className="relative overflow-hidden rounded-[10px] group cursor-pointer w-full lg:max-w-147.5">
           <img
