@@ -5,7 +5,6 @@ import levis from "../../../../assets/HomeSliderImages/levis.svg";
 import "swiper/css";
 import "swiper/css/navigation";
 import "./Offers.css";
-
 const slides = [
   {
     image:
@@ -29,31 +28,44 @@ const slides = [
 
 const OfferSlider = () => {
   return (
-    <div className="px-3.75 lg:px-12.5 pb-2 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[85px]">
-      <h3 className="text-light-black font-bold text-xl md:text-2xl lg:text-4xl">
+    <div className="px-3.75 2xl:px-0  pb-2 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[85px]">
+      <h3 className=" lg:px-12.5 text-light-black font-bold text-xl md:text-2xl lg:text-4xl">
         Trending Offers
       </h3>
 
       <Swiper
         modules={[Navigation]}
-        slidesPerView={1.5}
-        centeredSlides={true}
+        slidesPerView={1}
+        centeredSlides={false}
         speed={800}
         navigation
         autoplay={{
           delay: 4000,
           disableOnInteraction: false,
         }}
+        breakpoints={{
+          1200: {
+            slidesPerView: 1,
+            centeredSlides: false,
+          },
+          1450: {
+            slidesPerView: 1.888,
+            centeredSlides: true,
+          },
+        }}
         className="offer-triple-slider"
       >
         {slides.map((slide, index) => (
-          <SwiperSlide key={index}>
-            <div className="flex shadow-[0_0_12px_0_rgba(0,0,0,0.1)] h-100 lg:h-[587px] w-full  items-center justify-center rounded-[10px] overflow-hidden bg-white">
+          <SwiperSlide
+            key={index}
+            className=" flex items-center justify-center flex-col"
+          >
+            <div className="flex shadow-[0_0_12px_0_rgba(0,0,0,0.1)] h-100 lg:h-[587px] w-full items-center justify-between rounded-[10px] overflow-hidden bg-white">
               {/* LEFT CONTENT */}
-              <div className="flex items-center justify-center flex-col min-w-[542px] space-y-16.5">
+              <div className="flex items-center justify-center flex-col w-full lg:min-w-[542px] space-y-5 xl:space-y-[65.27px]">
                 <img src={slide.brand} alt="brand" className="w-[175px]" />
-                <div className="flex justify-center flex-col items-center gap-10">
-                  <p className="font-bold text-lg md:text-2xl lg:text-5xl">
+                <div className="flex justify-center flex-col items-center gap-5 lg:gap-10">
+                  <p className="font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl">
                     {slide.subtitle}
                   </p>
                   <button className="border border-mid-gray py-1 px-9 rounded-[10px] cursor-pointer font-normal text-xl lg:text-2xl hover:bg-black hover:text-white transition ease-in-out duration-300 max-w-[172px]">
@@ -66,7 +78,7 @@ const OfferSlider = () => {
               <img
                 src={slide.image}
                 alt="offer"
-                className="hidden lg:inline min-w-[604px] h-full object-cover"
+                className="hidden lg:inline xl:max-w-[calc(100vw-600px)] 2xl:min-w-[604px] h-full object-cover"
                 loading="lazy"
               />
             </div>

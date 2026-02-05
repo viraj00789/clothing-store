@@ -1,4 +1,9 @@
 import levis from "../../../assets/HomeSliderImages/levis.svg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useWindow } from "../../../hooks/useWidth";
+
+import "swiper/css";
+import "swiper/css/navigation";
 
 const products = [
   {
@@ -43,40 +48,46 @@ const products = [
   },
 ];
 const DealsForDays = () => {
+  const width = useWindow();
   return (
     <div className="px-3.75 lg:px-12.5 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[85px] rounded-[10px]">
       <h3 className="text-light-black font-bold text-xl md:text-2xl lg:text-4xl">
         Deals of the Day
       </h3>
 
-      {/* Horizontal scroll container */}
-      <div className="flex gap-4 lg:gap-18 overflow-x-auto trending-scroll pb-0.5">
+      <Swiper spaceBetween={width > 768 ? 71 : 18} slidesPerView="auto">
         {products.map((product) => (
-          <div
+          <SwiperSlide
             key={product.id}
-            className="w-80 lg:w-[489px] rounded overflow-hidden shadow-sm flex-shrink-0 bg-white cursor-pointer"
+            className="!w-80 lg:!w-[490px] pl-px pb-px cursor-grab rouneded-10"
           >
-            <img
-              className="h-[298px] w-full object-cover"
-              src={product.image}
-              alt={product.title}
-              loading="lazy"
-            />
-            <div className="py-7.5 flex flex-col items-center space-y-10.75">
+            <div className="rounded overflow-hidden shadow-sm bg-white">
               <img
-                className="max-w-[151.26px] w-full object-cover"
-                src={levis}
+                className="h-[298px] w-full object-cover rounded-t-[10px]"
+                src={product.image}
                 alt={product.title}
                 loading="lazy"
               />
-              <div className="space-y-5.75 text-light-black text-center">
-                <p className="font-bold text-xl lg:text-4xl">Best of Styles</p>
-                <p className="font-bold text-lg lg:text-2xl">Under Rs. 700</p>
+
+              <div className="py-7.5 flex flex-col items-center space-y-10.75">
+                <img
+                  className="max-w-[151.26px] w-full object-cover"
+                  src={levis}
+                  alt={product.title}
+                  loading="lazy"
+                />
+
+                <div className="space-y-5.75 text-light-black text-center">
+                  <p className="font-bold text-xl lg:text-4xl">
+                    Best of Styles
+                  </p>
+                  <p className="font-bold text-lg lg:text-2xl">Under Rs. 700</p>
+                </div>
               </div>
             </div>
-          </div>
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
     </div>
   );
 };

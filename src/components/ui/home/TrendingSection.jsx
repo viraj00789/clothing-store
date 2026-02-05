@@ -1,4 +1,9 @@
 import star from "../../../assets/star.svg";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import { useWindow } from "../../../hooks/useWidth";
 
 const products = [
   {
@@ -59,51 +64,56 @@ const products = [
 ];
 
 const TrendingSection = () => {
+  const width = useWindow();
   return (
-    <div className="px-3.75 lg:px-12.5 space-y-3 lg:space-y-[27px] mt-3 lg:mt-[85px]">
+    <div className="px-3.75 lg:px-12.5 space-y-3 lg:space-y-[27px] mt-3 lg:mt-[80px]">
       <h3 className="text-light-black font-bold text-xl md:text-2xl lg:text-4xl">
         Trending Now
       </h3>
 
-      {/* Horizontal scroll container */}
-      <div className="flex gap-4 lg:gap-10.5 overflow-x-auto trending-scroll pb-0.5">
+      <Swiper spaceBetween={width > 768 ? 38 : 12} slidesPerView="auto">
         {products.map((product) => (
-          <div
+          <SwiperSlide
             key={product.id}
-            className="w-80 lg:w-[410px] rounded overflow-hidden shadow-sm flex-shrink-0 bg-white cursor-pointer"
+            className="!w-80 lg:!w-[414px] pb-px px-px cursor-grab"
           >
-            <img
-              className="h-[301px] w-full object-cover"
-              src={product.image}
-              alt={product.title}
-              loading="lazy"
-            />
-            <div className="px-5 py-2.5 space-y-1">
-              <div className="font-bold text-xl lg:text-[24px]">
-                {product.title}
-              </div>
-              <div className="flex gap-7.5 items-center">
-                <p className="text-lg font-normal text-light-black">
-                  {product.brand}
-                </p>
-                <div className="flex items-center gap-2">
-                  <p className="text-dark-gray">{product.rating}</p>
-                  <img src={star} alt="" className="w-4 h-4" />
+            <div className=" shadow-sm bg-white">
+              <img
+                className="h-[301px] w-full object-cover rounded-t-[10px]"
+                src={product.image}
+                alt={product.title}
+                loading="lazy"
+              />
+
+              <div className="px-5 py-2.5 space-y-1 rounded-b-[10px]">
+                <div className="font-bold text-xl lg:text-[24px] text-light-black">
+                  {product.title}
+                </div>
+
+                <div className="flex gap-7.5 items-center">
+                  <p className="text-lg font-normal text-light-black">
+                    {product.brand}
+                  </p>
+                  <div className="flex items-center justify-center gap-2">
+                    <p className="text-dark-gray text-lg">{product.rating}</p>
+                    <img src={star} alt="" className="w-[18px] h-[17px]" />
+                  </div>
+                </div>
+
+                <div className="flex gap-3 truncate">
+                  <p className="font-bold text-lg lg:text-2xl whitespace-nowrap text-light-black">
+                    Rs. {product.price}
+                  </p>
+                  <p className="text-dark-gray line-through text-lg font-normal">
+                    Rs. {product.oldPrice}
+                  </p>
+                  <p className="text-green text-lg">({product.discount})</p>
                 </div>
               </div>
-              <div className="flex gap-3 truncate">
-                <p className="font-bold text-lg lg:text-2xl whitespace-nowrap">
-                  Rs. {product.price}
-                </p>
-                <p className="text-dark-gray line-through text-lg font-normal">
-                  Rs. {product.oldPrice}
-                </p>
-                <p className="text-green text-lg">({product.discount})</p>
-              </div>
             </div>
-          </div>
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
     </div>
   );
 };

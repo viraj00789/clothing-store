@@ -12,16 +12,16 @@ import { useWindow } from "../../../../hooks/useWidth";
 const CustomerSay = () => {
   const width = useWindow();
   return (
-    <div className="space-y-6 mt-6 lg:mt-[85px] px-3.5 lg:px-0">
-      <h3 className="px-0 md:px-4 lg:px-8 xl:px-12.5 text-light-black font-bold text-xl md:text-2xl lg:text-4xl mb-0">
+    <div className="space-y-[27px] mt-6 lg:mt-[85px] px-3.5 lg:px-0">
+      <h3 className="px-0 lg:px-8 xl:px-12.5 text-light-black font-bold text-xl md:text-2xl lg:text-4xl lg:mb-0">
         What Our Customer Says
       </h3>
 
       <Swiper
         modules={[Navigation, Autoplay]}
-        slidesPerView={width > 768 ? 1.888 : 1}
+        slidesPerView={width > 768 ? 1.889 : 1}
         centeredSlides={width > 1024}
-        spaceBetween={width > 1629 ? 0 : 13}
+        spaceBetween={width > 1629 ? 0 : 15}
         speed={800}
         navigation
         onSwiper={(swiper) => {
@@ -34,7 +34,7 @@ const CustomerSay = () => {
         {[...Array(3)].map((_, i) => (
           <SwiperSlide key={i}>
             {/* YOUR CARD (unchanged) */}
-            <div className="flex justify-start lg:justify-center px-1 md:px-0 py-5 lg:py-[27px] gap-5">
+            <div className="flex justify-start lg:justify-center px-1 md:px-0 py-0.5 lg:py-5 lg:py-[27px] gap-5">
               <div className="w-full lg:w-236.5 h-full xl:h-[476px] flex flex-col items-center justify-center shadow-[0_0_10px_0_rgba(0,0,0,0.1)] py-5 lg:py-[57.5px] px-4 lg:px-8 bg-white cursor-grab">
                 <div className="w-37.5 h-37.5">
                   <img

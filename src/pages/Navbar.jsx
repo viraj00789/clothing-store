@@ -126,7 +126,7 @@ const Navbar = () => {
                   loading="lazy"
                   className="w-[29px] h-[29px]"
                 />
-                <p className="font-normal text-lg truncate">
+                <p className="font-normal text-lg truncate text-mid-dark-gray">
                   Anna Doe
                 </p>
               </div>
@@ -135,8 +135,8 @@ const Navbar = () => {
 
           {/* Mobile hamburger */}
           <div className="lg:hidden flex items-center gap-3">
-            <img src={Heart} alt="logo" className="w-[29px] h-[29px]" />
-            <img src={Cart} alt="logo" className="w-[29px] h-[29px]" />
+            <img src={Heart} alt="logo" className="w-[29px] h-[29px] cursor-pointer" />
+            <img src={Cart} alt="logo" className="w-[29px] h-[29px] cursor-pointer" />
             {open ? (
               <RxCross2
                 className="w-[29px] h-[29px] cursor-pointer"

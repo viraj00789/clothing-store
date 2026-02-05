@@ -54,25 +54,25 @@ const Footer = () => {
   const [open, setOpen] = useState(null);
 
   const toggle = (i) => {
-    setOpen(open === i ? null : i); // only one open at a time
+    setOpen(open === i ? null : i);
   };
 
   return (
     <ContainerLayout>
-      <div className="bg-dark-footer text-white mt-29">
+      <div className="bg-dark-footer text-white mt-6 lg:mt-29">
         <div className="px-3 md:px-6 lg:px-12.5 pt-9 mb-0 lg:mb-10 lg:mb-20">
           <div className="flex flex-col sm:flex-row items-center font-bold gap-4 sm:gap-7.5 text-center sm:text-left">
             <img src={footerLogo} alt="footer logo" />
             <p className="font-bold text-[40px] sm:text-[64px]">Globex</p>
           </div>
 
-          <div className="flex flex-col lg:flex-row flex-wrap justify-between 2xl:justify-center gap-10 lg:gap-15 2xl:gap-27.5 mt-5 lg:mt-[83px]">
+          <div className="flex flex-col lg:flex-row flex-wrap justify-between 2xl:justify-center gap-4 lg:gap-15 2xl:gap-27.5 mt-5 lg:mt-[83px]">
             {sections.map((sec, i) => (
               <div key={i} className="flex flex-col w-full lg:w-auto">
                 {/* Header */}
                 <button
                   onClick={() => toggle(i)}
-                  className={`text-respo-24 text-left flex justify-between items-center py-2 lg:py-0 lg:pointer-events-none transition-colors cursor-pointer border-b lg:border-none ${
+                  className={`text-respo-24 text-left flex justify-between items-center py-2 lg:py-0 lg:pointer-events-none transition-colors cursor-pointer hover:bg-gray-900 p-2 md:p-0 rounded-lg ${
                     open === i ? "text-white" : ""
                   }`}
                 >
@@ -89,13 +89,16 @@ const Footer = () => {
 
                 {/* Content */}
                 <div
-                  className={`overflow-hidden transition-all duration-300 ease-in-out lg:block ${
+                  className={`overflow-hidden transition-all duration-300 ease-in-out lg:block border-t lg:border-none ${
                     open === i ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                   } lg:max-h-none lg:opacity-100`}
                 >
-                  <div className="flex flex-col gap-3 mt-2 lg:mt-4.75">
+                  <div className="flex flex-col gap-3 mt-2 lg:mt-4.75 p-2 md:p-0">
                     {sec.items.map((item, idx) => (
-                      <p key={idx} className="font-normal text-lg">
+                      <p
+                        key={idx}
+                        className="font-normal text-lg cursor-pointer"
+                      >
                         {item}
                       </p>
                     ))}

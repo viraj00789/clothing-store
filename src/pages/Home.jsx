@@ -19,12 +19,12 @@ const Home = () => {
   return (
     <>
       <ContainerLayout>
-        <div className="mt-20">
+        <div className="mt-16 lg:mt-20">
           {open && (
             <div className="w-full p-3.75 bg-light-gray-1 flex items-start md:items-center justify-between">
               <div />
-              <div className="flex flex-col lg:flex-row items-center justify-center gap-3.75">
-                <p className="text-sm lg:text-lg font-normal text-center">
+              <div className="flex flex-col lg:flex-row items-center justify-center gap-[15px]">
+                <p className="text-sm lg:text-lg font-normal text-center text-light-black">
                   Invite Friends and get 50% off on your next purchase
                 </p>
                 <Link to="/" className="text-dark-blue">
@@ -33,7 +33,8 @@ const Home = () => {
               </div>
               <div className="mt-0.5 md:mt-0">
                 <RxCross2
-                  className="cursor-pointer"
+                  size={17.11}
+                  className="cursor-pointer text-dark-gray"
                   onClick={() => setOpen(false)}
                 />
               </div>

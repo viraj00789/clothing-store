@@ -57,3 +57,8 @@ input[type="search"]::-ms-clear {
 .text-respo-24 {
   @apply font-bold text-lg lg:text-2xl
 }
+
+.rounded-10
+{
+  @apply rounded-[10px]
+}

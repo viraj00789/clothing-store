@@ -59,10 +59,10 @@ const FashionSlider = () => {
         pagination={{ clickable: true }}
       >
         {slides.map((slide, index) => (
-          <SwiperSlide key={index} className="pt-[67px]">
+          <SwiperSlide key={index} className="pt-6 lg:pt-[67px]">
             <div className="flex w-full h-[800px] cursor-grab">
               {/* Left image */}
-              <div className="hidden lg:inline w-1/2 h-full">
+              <div className="hidden lg:inline w-[53%] h-full">
                 <img
                   src={slide.image}
                   alt={`${slide.title1} collection`}
@@ -73,7 +73,7 @@ const FashionSlider = () => {
 
               {/* Right side content */}
               <div
-                className={`w-full lg:w-1/2 h-full bg-cover bg-center flex items-center justify-center ${slide.backColor}`}
+                className={`w-full lg:w-[47%] h-full bg-cover bg-center flex items-center justify-center ${slide.backColor}`}
               >
                 <div className="flex flex-col items-center gap-9 lg:gap-[91px] lg:px-4">
                   <div>
@@ -84,7 +84,7 @@ const FashionSlider = () => {
                       className="w-xs h-xs md:h-full md:w-full"
                     />
                   </div>
-                  <div className="flex flex-col items-center justify-center gap-6 lg:gap-18.75">
+                  <div className="flex flex-col items-center justify-center gap-6 lg:gap-[75px]">
                     <div className="text-center flex flex-col gap-5 lg:gap-9">
                       <p className="text-3xl xl:text-5xl font-bold text-white">
                         {slide.title1}
