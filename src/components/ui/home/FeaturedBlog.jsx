@@ -12,7 +12,7 @@ const images = [
 const FeaturedBlog = () => {
   return (
     <div className="px-3.75 xl:px-12.5 pb-2 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[85px]">
-      <h3 className="text-light-black font-bold text-xl md:text-2xl lg:text-4xl">
+      <h3 className="text-light-black font-bold text-2xl lg:text-4xl">
         Featured Blogs
       </h3>
       <div className="overflow-hidden trending-scroll">
@@ -27,7 +27,7 @@ const FeaturedBlog = () => {
           }}
         >
           {images.map((src, index) => (
-            <SwiperSlide key={index} className="!w-auto p-px">
+            <SwiperSlide key={index} className="!w-auto pb-px px-px">
               <div className="max-w-[300px] md:max-w-[400px] lg:max-w-[760px] h-full flex flex-col lg:flex-row py-0.5 ">
                 <div className="min-w-[300px] lg:min-w-[461px]">
                   <img

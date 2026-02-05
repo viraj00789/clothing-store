@@ -51,7 +51,7 @@ const DealsForDays = () => {
   const width = useWindow();
   return (
     <div className="px-3.75 xl:px-12.5 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[85px] rounded-[10px]">
-      <h3 className="text-light-black font-bold text-xl md:text-2xl lg:text-4xl">
+      <h3 className="text-light-black font-bold text-2xl lg:text-4xl">
         Deals of the Day
       </h3>
 
@@ -61,7 +61,7 @@ const DealsForDays = () => {
             key={product.id}
             className="!w-80 lg:!w-[490px] pl-px pb-px cursor-grab rouneded-10"
           >
-            <div className="rounded overflow-hidden shadow-sm bg-white">
+            <div className="rounded-b-[10px] overflow-hidden shadow-sm bg-white">
               <img
                 className="h-[298px] w-full object-cover rounded-t-[10px]"
                 src={product.image}

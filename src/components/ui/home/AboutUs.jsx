@@ -1,7 +1,7 @@
 const AboutUs = () => {
   return (
     <div className="px-3.75 xl:px-12.5 space-y-3 lg:space-y-[27px] my-6 lg:mt-[85px] rounded-[10px]">
-      <h3 className="text-light-black font-normal text-xl md:text-2xl lg:text-4xl">
+      <h3 className="text-light-black font-normal text-2xl lg:text-4xl">
         About Us
       </h3>
       <div className="flex gap-0 lg:gap-7">

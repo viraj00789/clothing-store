@@ -40,18 +40,18 @@ const ServiceesArray = [
 export default function Services() {
   return (
     <div
-      className="px-3.75 xl:px-12.5 pb-2 mt-6 lg:mt-[85px] lg:py-5 flex items-center justify-between gap-3 overflow-auto
+      className="px-3.75 xl:px-12.5 pb-2 mt-3 md:mt-6 lg:mt-[85px] lg:py-5 flex items-center justify-between gap-3 overflow-auto
     trending-scroll "
     >
       {ServiceesArray.map((item) => (
         <div
-          className="bg-light-gray flex flex-col items-center justify-center min-w-[318px] lg:w-[318px] rounded-[10px] p-5 space-y-2.5 h-[250px] lg:h-[202px]"
+          className="bg-light-gray flex flex-col items-center justify-center min-w-[318px] lg:w-[318px] rounded-[10px] p-5 space-y-2.5 h-[250px] lg:h-[202px] gap-2 lg:gap-0"
           key={item.id}
         >
           <div className="h-12.5 w-12.5">
             <img src={item.image} />
           </div>
-          <div className="text-center space-y-4">
+          <div className="text-center space-y-3 lg:space-y-4">
             <p className="font-bold text-xl lg:text-2xl">{item.label}</p>
             <p>{item.desc}</p>
           </div>

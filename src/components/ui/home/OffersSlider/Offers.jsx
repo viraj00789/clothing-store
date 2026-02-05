@@ -29,7 +29,7 @@ const slides = [
 const OfferSlider = () => {
   return (
     <div className="px-3.75 2xl:px-0  pb-2 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[85px]">
-      <h3 className="px-3.75 xl:px-12.5 text-light-black font-bold text-xl md:text-2xl lg:text-4xl">
+      <h3 className="xl:px-12.5 text-light-black font-bold text-2xl lg:text-4xl">
         Trending Offers
       </h3>
 

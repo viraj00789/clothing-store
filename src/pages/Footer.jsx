@@ -61,12 +61,12 @@ const Footer = () => {
     <ContainerLayout>
       <div className="bg-dark-footer text-white mt-6 lg:mt-29">
         <div className="px-3 md:px-6 xl:px-12.5 pt-9 mb-0 lg:mb-10 xl:mb-20">
-          <div className="flex flex-col sm:flex-row items-center font-bold gap-4 xl:gap-7.5 text-center sm:text-left">
-            <img src={footerLogo} alt="footer logo" className="w-5 h-5 xl:w-[76px] xl:h-[64px]" />
+          <div className="flex flex-col sm:flex-row items-center font-bold gap-4 xl:gap-7.5 text-center sm:text-left px-2 md:px-0">
+            <img src={footerLogo} alt="footer logo" className="w-10 h-10 xl:w-[76px] xl:h-[64px]" />
             <p className="font-bold text-2xl lg:text-3xl xl:text-[79px]">Globex</p>
           </div>
 
-          <div className="flex flex-col lg:flex-row flex-wrap justify-between 2xl:justify-center gap-4 lg:gap-10 xl:gap-15 2xl:gap-27.5 mt-4 xl:mt-10 xl:mt-[83px]">
+          <div className="flex flex-col lg:flex-row flex-wrap justify-between 2xl:justify-center gap-4 lg:gap-10 xl:gap-15 2xl:gap-27.5 mt-4 lg:mt-10 xl:mt-[83px]">
             {sections.map((sec, i) => (
               <div key={i} className="flex flex-col w-full lg:w-auto">
                 {/* Header */}

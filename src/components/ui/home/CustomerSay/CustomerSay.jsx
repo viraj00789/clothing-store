@@ -12,8 +12,8 @@ import { useWindow } from "../../../../hooks/useWidth";
 const CustomerSay = () => {
   const width = useWindow();
   return (
-    <div className="space-y-[27px] mt-6 lg:mt-[85px] px-3.5 lg:px-0">
-      <h3 className="xl:px-12.5 text-light-black font-bold text-xl md:text-2xl lg:text-4xl lg:mb-0">
+    <div className="space-y-3 xl:space-y-[27px] mt-6 lg:mt-[85px] px-3.5 lg:px-0">
+      <h3 className="xl:px-12.5 text-light-black font-bold text-2xl lg:text-4xl lg:mb-0">
         What Our Customer Says
       </h3>
 
