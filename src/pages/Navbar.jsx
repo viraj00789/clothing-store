@@ -8,6 +8,16 @@ import Girl from "../assets/logged-girl.svg";
 import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 import { useEffect, useEffectEvent, useState } from "react";
 import { IoClose } from "react-icons/io5";
+import BlueHome from "../assets/Icons/Home/BlueIcons/home.svg";
+import BlueSearch from "../assets/Icons/Home/BlueIcons/search.svg";
+import BlueHeart from "../assets/Icons/Home/BlueIcons/heart.svg";
+import BlueCart from "../assets/Icons/Home/BlueIcons/cart.svg";
+import BlueUser from "../assets/Icons/Home/BlueIcons/user.svg";
+import GrayHome from "../assets/Icons/Home/GrayIcons/home-gray.svg";
+import GraySearch from "../assets/Icons/Home/GrayIcons/home-search.svg";
+import GrayHeart from "../assets/Icons/Home/GrayIcons/home-heart.svg";
+import GrayCart from "../assets/Icons/Home/GrayIcons/home-cart.svg";
+import GrayUser from "../assets/Icons/Home/GrayIcons/home-user.svg";
 
 const navLinks = [
   { to: "/men", label: "Men" },
@@ -17,9 +27,24 @@ const navLinks = [
   { to: "/contact-us", label: "Contact us" },
 ];
 
+const navItems = [
+  { id: "home", href: "/", blue: BlueHome, gray: GrayHome, label: "Home" },
+  {
+    id: "search",
+    href: "/",
+    blue: BlueSearch,
+    gray: GraySearch,
+    label: "Search",
+  },
+  { id: "heart", href: "/", blue: BlueHeart, gray: GrayHeart, label: "Heart" },
+  { id: "cart", href: "/", blue: BlueCart, gray: GrayCart, label: "Cart" },
+  { id: "user", href: "/", blue: BlueUser, gray: GrayUser, label: "Profile" },
+];
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
+  const [active, setActive] = useState("home"); // Home is blue by default
 
   const closeSlider = useEffectEvent(() => {
     setOpen(false);
@@ -48,12 +73,25 @@ const Navbar = () => {
   return (
     <ContainerLayout>
       {/* Sticky navbar */}
-      <div className="shadow-md max-w-480 w-full p-4 2xl:px-4 fixed top-0 z-50 bg-white mb-10">
+      <div className="shadow-md max-w-480 w-full z-10 p-4 2xl:px-4 fixed top-0 bg-white mb-10">
         {/* Top bar */}
-        <div className="flex w-full items-center justify-between gap-0 xl:gap-2">
+        <div className="flex w-full max-w-480 items-center justify-between gap-0 xl:gap-2">
           {/* Logo + desktop links */}
+          <Link to="/" className="flex lg:hidden">
+            <div className="flex items-center gap-[13px]">
+              <img
+                src={Girl}
+                alt="logo"
+                loading="lazy"
+                className="w-[29px] h-[29px]"
+              />
+              <p className="font-medium text-xl truncate text-black">
+                Anna Doe
+              </p>
+            </div>
+          </Link>
           <div className="flex items-center gap-4 2xl:gap-[161px]">
-            <Link to="/" className="w-8 h-8 2xl:w-[57px] 2xl:h-[48px]">
+            <Link to="/" className="w-8 h-8 2xl:w-[57px] 2xl:h-[48px] hidden lg:flex">
               <img
                 src={ClothingLogo}
                 alt="logo"
@@ -135,9 +173,13 @@ const Navbar = () => {
 
           {/* Mobile hamburger */}
           <div className="lg:hidden flex items-center gap-3">
-            <img src={Heart} alt="logo" className="w-[29px] h-[29px] cursor-pointer" />
-            <img src={Cart} alt="logo" className="w-[29px] h-[29px] cursor-pointer" />
-            {open ? (
+            <img
+              src={Search}
+              alt="logo"
+              className="w-[20px] h-[20px] cursor-pointer"
+            />
+            {/* Needed For Future */}
+            {/* {open ? (
               <RxCross2
                 className="w-[29px] h-[29px] cursor-pointer"
                 onClick={() => setOpen(false)}
@@ -147,7 +189,7 @@ const Navbar = () => {
                 className="w-[29px] h-[29px] cursor-pointer"
                 onClick={() => setOpen(true)}
               />
-            )}
+            )} */}
           </div>
         </div>
 
@@ -214,6 +256,26 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+      </div>
+      {/* Bottom Navigation */}
+      <div
+        className="fixed bottom-0 left-0 right-0 h-[65px] bg-white border-t border-gray-200 flex lg:hidden justify-center items-center gap-10 xxs:gap-10 xs:gap-15 z-20 w-full shadow-[0_-1px_6px_rgba(0,0,0,0.06)]
+"
+      >
+        {navItems.map((item) => (
+          <Link to={item.href} key={item.id}>
+            <button
+              onClick={() => setActive(item.id)}
+              className="flex flex-col items-center justify-center cursor-pointer"
+            >
+              <img
+                src={active === item.id ? item.blue : item.gray}
+                alt={item.label}
+                className="w-6 h-6"
+              />
+            </button>
+          </Link>
+        ))}
       </div>
     </ContainerLayout>
   );

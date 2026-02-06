@@ -13,7 +13,7 @@ const CustomerSay = () => {
   const width = useWindow();
   return (
     <div className="space-y-3 xl:space-y-[27px] mt-6 lg:mt-[85px] px-3.5 lg:px-0">
-      <h3 className="xl:px-12.5 text-light-black font-bold text-2xl lg:text-4xl lg:mb-0">
+      <h3 className="lg:px-3.75 xl:px-12.5 text-light-black font-bold text-2xl lg:text-4xl lg:mb-0">
         What Our Customer Says
       </h3>
 
@@ -34,7 +34,7 @@ const CustomerSay = () => {
         {[...Array(3)].map((_, i) => (
           <SwiperSlide key={i}>
             {/* YOUR CARD (unchanged) */}
-            <div className="flex justify-start lg:justify-center px-1 md:px-0 py-0.5 lg:py-5 lg:py-[27px] gap-5">
+            <div className="flex justify-start lg:justify-center px-px lg:px-0 py-0.5 lg:py-5 lg:py-[27px] gap-5">
               <div className="w-full lg:w-236.5 h-full xl:h-[476px] flex flex-col items-center justify-center shadow-[0_0_10px_0_rgba(0,0,0,0.1)] py-5 lg:py-[57.5px] px-4 lg:px-8 bg-white cursor-grab">
                 <div className="w-37.5 h-37.5">
                   <img
@@ -59,7 +59,7 @@ const CustomerSay = () => {
                   <p className="font-normal text-lg">4.4</p>
                 </div>
 
-                <p className="font-normal text-base lg:text-2xl text-center pt-3 lg:pt-6">
+                <p className="font-normal text-base xl:text-2xl text-center pt-3 lg:pt-6">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui
                   vel morbi cursus sed sodales molestie proin dictum gravida.
                   Porttitor maecenas tincidunt ipsum semper malesuada. In sapien

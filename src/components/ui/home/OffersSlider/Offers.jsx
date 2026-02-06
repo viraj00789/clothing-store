@@ -64,7 +64,7 @@ const OfferSlider = () => {
               {/* LEFT CONTENT */}
               <div className="flex items-center justify-center flex-col w-full lg:min-w-[542px] space-y-5 xl:space-y-[65.27px]">
                 <img src={slide.brand} alt="brand" className="w-[175px]" />
-                <div className="flex justify-center flex-col items-center gap-5 lg:gap-10">
+                <div className="flex justify-center flex-col items-center gap-4 xl:gap-10">
                   <p className="font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl">
                     {slide.subtitle}
                   </p>

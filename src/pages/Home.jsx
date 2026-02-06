@@ -12,6 +12,10 @@ import CustomerSay from "../components/ui/home/CustomerSay/CustomerSay";
 import FeaturedBlog from "../components/ui/home/FeaturedBlog";
 import Services from "../components/ui/home/Services";
 import AboutUs from "../components/ui/home/AboutUs";
+import CategoryRow from "../components/CategoryRow";
+import OurCollection from "../components/OurCollection";
+import { dealsForDayProducts } from "../../data/productsDealsForDay";
+import MobileDealsForDay from "../components/ui/home/MobileDealsForDay/MobileDealsForDay";
 
 const Home = () => {
   const [open, setOpen] = useState(true);
@@ -24,8 +28,8 @@ const Home = () => {
           {open && (
             <div
               className={`
-      w-full p-3.75 bg-light-gray-1 flex items-start md:items-center justify-between
-      transition-all duration-500 ease-in-out
+      w-full p-3.75 bg-light-gray-1 hidden-md-flex items-start md:items-center justify-between
+      transition-all duration-500 ease-in-out 
       ${closing ? "opacity-0 max-h-0 overflow-hidden" : "opacity-100 max-h-40"}
     `}
               onTransitionEnd={() => {
@@ -56,6 +60,14 @@ const Home = () => {
             </div>
           )}
 
+          <div className="flex-md-hidden">
+            <CategoryRow />
+          </div>
+
+          <div className="flex-md-hidden pb-7.5">
+            <FashionSlider />
+          </div>
+
           {/* Main slider */}
           <div className="transition-all duration-500 ease">
             <HomePageSlider />
@@ -63,6 +75,14 @@ const Home = () => {
 
           {/* Trending section */}
           <TrendingSection />
+
+          <div className="flex-md-hidden">
+            <OurCollection />
+          </div>
+
+          <div clasnsName="flex-md-hidden">
+            <MobileDealsForDay />
+          </div>
 
           {/* Deals for Days*/}
           <DealsForDays />

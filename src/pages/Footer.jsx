@@ -61,7 +61,7 @@ const Footer = () => {
     <ContainerLayout>
       <div className="bg-dark-footer text-white mt-6 lg:mt-29">
         <div className="px-3 md:px-6 xl:px-12.5 pt-9 mb-0 lg:mb-10 xl:mb-20">
-          <div className="flex flex-col sm:flex-row items-center font-bold gap-4 xl:gap-7.5 text-center sm:text-left px-2 md:px-0">
+          <div className="flex flex-col sm:flex-row items-center p font-bold gap-4 xl:gap-7.5 text-center sm:text-left px-2 md:px-0">
             <img src={footerLogo} alt="footer logo" className="w-10 h-10 xl:w-[76px] xl:h-[64px]" />
             <p className="font-bold text-2xl lg:text-3xl xl:text-[79px]">Globex</p>
           </div>
@@ -132,7 +132,7 @@ const Footer = () => {
 
         <div className="lg:border"></div>
 
-        <div className="py-[39px] flex flex-col flex-wrap md:flex-row items-center justify-center gap-6 lg:gap-50 text-center">
+        <div className="pt-[39px] flex flex-col flex-wrap md:flex-row items-center justify-center gap-6 lg:gap-50 text-center pb-[100px] md:pb-[39px]">
           <p className="cursor-pointer">Terms and Conditions</p>
           <p className="cursor-pointer">Privacy Policy</p>
           <div className="flex justify-center gap-8.5">
