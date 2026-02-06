@@ -14,7 +14,6 @@ import Services from "../components/ui/home/Services";
 import AboutUs from "../components/ui/home/AboutUs";
 import CategoryRow from "../components/CategoryRow";
 import OurCollection from "../components/OurCollection";
-import { dealsForDayProducts } from "../../data/productsDealsForDay";
 import MobileDealsForDay from "../components/ui/home/MobileDealsForDay/MobileDealsForDay";
 
 const Home = () => {
