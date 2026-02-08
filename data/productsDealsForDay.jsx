@@ -23,10 +23,10 @@ export const dealsForDayProducts = [
     image:
       "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=800&auto=format&fit=crop&q=60",
   },
-  {
-    id: 5,
-    title: "Classic T-Shirt",
-    image:
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&auto=format&fit=crop&q=60",
-  },
+  // {
+  //   id: 5,
+  //   title: "Classic T-Shirt",
+  //   image:
+  //     "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&auto=format&fit=crop&q=60",
+  // },
 ];

@@ -59,11 +59,11 @@ const DealsForDays = () => {
         {products.map((product) => (
           <SwiperSlide
             key={product.id}
-            className="!w-80 lg:!w-[490px] pl-px pb-px cursor-grab rouneded-10"
+            className="!w-[215px] md:!w-[490px] pl-px pb-px cursor-grab rouneded-10"
           >
             <div className="rounded-b-[10px] overflow-hidden shadow-sm bg-white">
               <img
-                className="h-[298px] w-full object-cover rounded-t-[10px]"
+                className="h-[227px] md:h-[298px] w-full object-cover rounded-t-[10px]"
                 src={product.image}
                 alt={product.title}
                 loading="lazy"
@@ -71,7 +71,7 @@ const DealsForDays = () => {
 
               <div className="py-5 xl:py-7.5 flex flex-col items-center space-y-4 xl:space-y-10.75">
                 <img
-                  className="max-w-[151.26px] w-full object-cover"
+                  className="max-w-[151.26px] w-full object-cover hidden-md-flex"
                   src={levis}
                   alt={product.title}
                   loading="lazy"

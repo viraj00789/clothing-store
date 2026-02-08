@@ -82,7 +82,7 @@ const OurCollection = () => {
             <p className="font-normal text-xl whitespace-nowrap text-light-black">
               Rs. 777
             </p>
-            <p className="text-green text-lg text-green-off">(20% off)</p>
+            <p className="text-lg text-green-off">(20% off)</p>
           </div>
         </div>
         <div className="flex justify-between w-full gap-[13px]">

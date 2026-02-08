@@ -78,6 +78,12 @@ const Home = () => {
           <div className="flex-md-hidden">
             <OurCollection />
           </div>
+          <div className="flex-md-hidden">
+            <OurCollection />
+          </div>
+          <div className="flex-md-hidden">
+            <OurCollection />
+          </div>
 
           <div clasnsName="flex-md-hidden">
             <MobileDealsForDay />
