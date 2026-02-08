@@ -1,6 +1,7 @@
 import catArrow from "../../../assets/cat-arrow.svg";
 
 const Categories = () => {
+  console.log("On the footer")
   return (
     <div className="px-3.75 xl:px-12.5 pb-0 lg:pb-2 space-y-3 xl:space-y-[27px] mt-6 lg:mt-[83px]">
       <h3 className="text-light-black font-bold text-2xl lg:text-4xl">
