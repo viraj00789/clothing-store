@@ -116,7 +116,7 @@ const Navbar = () => {
           {/* Desktop right section */}
           <div className="hidden lg:flex items-center gap-4 2xl:gap-15">
             <div className="relative">
-              <div className="relative w-full xl:w-133">
+              <div className="relative w-full 3xl:w-133">
                 <input
                   type="search"
                   placeholder="Search"
@@ -173,13 +173,13 @@ const Navbar = () => {
 
           {/* Mobile hamburger */}
           <div className="lg:hidden flex items-center gap-3">
-            <img
+            {/* <img
               src={Search}
               alt="logo"
               className="w-[20px] h-[20px] cursor-pointer"
-            />
+            /> */}
             {/* Needed For Future */}
-            {/* {open ? (
+            {open ? (
               <RxCross2
                 className="w-[29px] h-[29px] cursor-pointer"
                 onClick={() => setOpen(false)}
@@ -189,7 +189,7 @@ const Navbar = () => {
                 className="w-[29px] h-[29px] cursor-pointer"
                 onClick={() => setOpen(true)}
               />
-            )} */}
+            )}
           </div>
         </div>
 
@@ -209,7 +209,7 @@ const Navbar = () => {
                   placeholder="Search"
                   value={value}
                   onChange={(e) => setValue(e.target.value)}
-                  className="w-full h-12 bg-light-gray focus:outline-none rounded-lg px-9 pr-12 appearance-none
+                  className="w-full h-12 bg-light-gray focus:outline-none rounded-lg px-3 pr-12 appearance-none
                    [&::-webkit-search-cancel-button]:hidden
                    [&::-webkit-search-decoration]:hidden
                    [&::-ms-clear]:hidden"
@@ -233,7 +233,7 @@ const Navbar = () => {
             </div>
 
             {/* Mobile links */}
-            <ul className="flex flex-col gap-4 mx-2">
+            <ul className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <li key={link.to}>
                   <Link
@@ -248,12 +248,12 @@ const Navbar = () => {
             </ul>
 
             {/* Mobile user info */}
-            <div className="flex items-center gap-4 mx-2">
+            {/* <div className="flex items-center gap-4 mx-2">
               <div className="flex items-center gap-[13px]">
                 <img src={Girl} alt="logo" className="w-[29px] h-[29px]" />
                 <p className="text-lg">Anna Doe</p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

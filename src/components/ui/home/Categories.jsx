@@ -18,7 +18,10 @@ const Categories = () => {
           />
           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           <div className="absolute top-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <p className="font-bold text-lg xl:text-2xl truncate">
+            <p
+              className="font-bold text-lg xl:text-2xl truncate"
+              title="Women Pants"
+            >
               Women Pants
             </p>
             <div className="flex items-center gap-2 mt-1">
@@ -53,7 +56,12 @@ const Categories = () => {
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute top-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="font-bold text-lg xl:text-2xl">{item.label}</p>
+                  <p
+                    className="font-bold text-lg xl:text-2xl"
+                    title={item.label}
+                  >
+                    {item.label}
+                  </p>
                   <div className="flex items-center gap-2 mt-1">
                     <p className="font-bold text-xl">Explore</p>
                     <img src={catArrow} alt="catArrow" />
@@ -74,7 +82,10 @@ const Categories = () => {
               />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute top-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="font-bold text-lg xl:text-2xl truncate">
+                <p
+                  className="font-bold text-lg xl:text-2xl truncate"
+                  title="Womens Tops"
+                >
                   Womens Tops
                 </p>
                 <div className="flex items-center gap-2 mt-1">
@@ -106,8 +117,11 @@ const Categories = () => {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute top-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 truncate">
-                    <p className="font-bold text-lg xl:text-2xl truncate  max-w-[100px]">
+                  <div className="absolute top-4 left-3.5 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 truncate">
+                    <p
+                      className="font-bold text-lg xl:text-2xl truncate  md:max-w-[150px]"
+                      title={item.label}
+                    >
                       {item.label}
                     </p>
                     <div className="flex items-center gap-2 mt-1">
