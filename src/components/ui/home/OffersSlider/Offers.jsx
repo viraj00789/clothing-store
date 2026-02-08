@@ -28,8 +28,8 @@ const slides = [
 
 const OfferSlider = () => {
   return (
-    <div className="px-3.75 2xl:px-0  pb-2 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[85px]">
-      <h3 className="xl:px-12.5 text-light-black font-bold text-2xl lg:text-4xl">
+    <div className="px-0 2xl:px-0  pb-2 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[85px]">
+      <h3 className="px-3.75 xl:px-12.5 text-light-black font-bold text-2xl lg:text-4xl">
         Trending Offers
       </h3>
 
@@ -78,7 +78,7 @@ const OfferSlider = () => {
               <img
                 src={slide.image}
                 alt="offer"
-                className="hidden lg:inline xl:max-w-[calc(100vw-600px)] 2xl:min-w-[604px] h-full object-cover"
+                className="hidden lg:inline max-w-[calc(100vw-500px)] xl:max-w-[calc(100vw-600px)] 2xl:min-w-[604px] h-full object-cover"
                 loading="lazy"
               />
             </div>
