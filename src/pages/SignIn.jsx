@@ -10,7 +10,7 @@ import User from "../assets/Icons/Home/GrayIcons/home-user.svg";
 import Password from "../assets/Icons/LRF/password.svg";
 import { FaEye } from "react-icons/fa";
 import { RiEyeCloseLine } from "react-icons/ri";
-import { getItem, removeItem, setItem } from "../utils/localStorage";
+import { getItem, setItem } from "../utils/localStorage";
 
 export default function SignIn() {
   const navigate = useNavigate();
