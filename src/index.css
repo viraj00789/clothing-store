@@ -5,13 +5,16 @@
 :root {
   --light-gray: #F0F0F0;
   --light-gray-1: #F9FAFF;
+  --light-gray-2: #E1E2E7;
   --mid-gray: #565656;
   --mid-dark-gray: #646464;
   --dark-gray: #848484;
   --footer-input: #ABABAB;
+  --light-blue: #223263;
   --dark-blue: #00398F;
   --dark-button-blue: #002482;
   --light-black: #272727;
+  --light-black-1: #323232;
   --green: #0A8200;
   --dark-green: #1A4242;
   --dark-cyan: #27363B;
@@ -20,7 +23,7 @@
   --font-sf: 'SF Pro Display', system-ui, sans-serif;
   --small-mobile: 375px;
   --green-off: #0EB000;
-
+  --light-purple: #5C61F4;
 }
 
 @theme inline {
@@ -39,6 +42,10 @@
   --breakpoint-tiny: 23.4375rem;
   --color-green-off: var(--green-off);
   --color-dark-button-blue: var(--dark-button-blue);
+  --color-light-gray-2: var(--light-gray-2);
+  --color-light-blue: var(--light-blue);
+  --color-light-black-1: var(--light-black-1);
+  --color-light-purple: var(--light-purple);
 }
 
 @theme {

@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import ContainerLayout from "../layout/ContainerLayout";
 import Search from "../assets/search.svg";
 import ClothingLogo from "../assets/clothing.png";
@@ -18,6 +18,7 @@ import GraySearch from "../assets/Icons/Home/GrayIcons/home-search.svg";
 import GrayHeart from "../assets/Icons/Home/GrayIcons/home-heart.svg";
 import GrayCart from "../assets/Icons/Home/GrayIcons/home-cart.svg";
 import GrayUser from "../assets/Icons/Home/GrayIcons/home-user.svg";
+import { getItem, removeItem } from "../utils/localStorage";
 
 const navLinks = [
   { to: "/men", label: "Men" },
@@ -44,7 +45,9 @@ const navItems = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
-  const [active, setActive] = useState("home"); // Home is blue by default
+  const [active, setActive] = useState("home");
+  const authUser = getItem("auth");
+  const navigate = useNavigate();
 
   const closeSlider = useEffectEvent(() => {
     setOpen(false);
@@ -78,20 +81,31 @@ const Navbar = () => {
         <div className="flex w-full max-w-480 items-center justify-between gap-0 xl:gap-2">
           {/* Logo + desktop links */}
           <Link to="/" className="flex lg:hidden">
-            <div className="flex items-center gap-[13px]">
-              <img
-                src={Girl}
-                alt="logo"
-                loading="lazy"
-                className="w-[29px] h-[29px]"
-              />
-              <p className="font-medium text-xl truncate text-black">
-                Anna Doe
-              </p>
-            </div>
+            {authUser ? (
+              <div className="flex items-center gap-[13px]">
+                <img
+                  src={
+                    "https://images.unsplash.com/photo-1520975916090-3105956dac38?w=800&auto=format&fit=crop&q=60"
+                  }
+                  alt="logo"
+                  loading="lazy"
+                  className="w-[29px] h-[29px] rounded-full"
+                />
+                <p className="font-medium text-xl truncate text-black">
+                  {authUser?.name}
+                </p>
+              </div>
+            ) : (
+              <Link to="/sign-in">
+                <p className="font-bold">Sign In</p>
+              </Link>
+            )}
           </Link>
           <div className="flex items-center gap-4 2xl:gap-[161px]">
-            <Link to="/" className="w-8 h-8 2xl:w-[57px] 2xl:h-[48px] hidden lg:flex">
+            <Link
+              to="/"
+              className="w-8 h-8 2xl:w-[57px] 2xl:h-[48px] hidden lg:flex"
+            >
               <img
                 src={ClothingLogo}
                 alt="logo"
@@ -157,17 +171,46 @@ const Navbar = () => {
                 loading="lazy"
                 className="w-[29px] h-[29px] cursor-pointer"
               />
-              <div className="flex items-center gap-[13px]">
-                <img
-                  src={Girl}
-                  alt="logo"
-                  loading="lazy"
-                  className="w-[29px] h-[29px]"
-                />
-                <p className="font-normal text-lg truncate text-mid-dark-gray hidden xl:block">
-                  Anna Doe
-                </p>
-              </div>
+              {authUser ? (
+                <div className="relative group flex items-center gap-[13px]">
+                  <img
+                    src={Girl}
+                    alt="logo"
+                    loading="lazy"
+                    className="w-[29px] h-[29px] rounded-full"
+                  />
+                  <p className="font-normal text-lg truncate text-mid-dark-gray hidden xl:block">
+                    {authUser?.name}
+                  </p>
+                  <button
+                    onClick={() => {
+                      localStorage.removeItem("auth");
+                      navigate("/");
+                    }}
+                    className="
+          absolute right-0 top-full mt-2
+          opacity-0 invisible
+          group-hover:opacity-100 group-hover:visible
+          transition-all duration-200
+          bg-white border border-gray-200 shadow-md
+          text-sm text-dark-gray font-semibold
+          px-3 py-1.5 rounded-md
+          hover:bg-gray-200
+          z-50
+          whitespace-nowrap
+           w-[150px]
+           text-left
+           cursor-pointer
+        "
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <Link to="/sign-in">
+                  <p>Sign In</p>
+                </Link>
+              )}
             </div>
           </div>
 
@@ -254,6 +297,21 @@ const Navbar = () => {
                 <p className="text-lg">Anna Doe</p>
               </div>
             </div> */}
+
+            {/* Mobile logout */}
+            {authUser && (
+              <div className="flex items-center gap-4">
+                <p
+                  className="text-gray-700 text-lg"
+                  onClick={() => {
+                    removeItem("auth");
+                    navigate("/");
+                  }}
+                >
+                  Logout
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>
