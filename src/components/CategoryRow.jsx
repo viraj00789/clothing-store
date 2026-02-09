@@ -11,6 +11,7 @@ export default function CategoryRow() {
               src={item.src}
               alt={item.label}
               className="w-full h-full object-cover"
+              loading="lazy"
             />
           </div>
 

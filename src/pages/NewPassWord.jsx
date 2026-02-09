@@ -58,6 +58,7 @@ export default function NewPassword() {
               width={72}
               height={72}
               className="mb-6.5"
+              loading="lazy"
             />
             <p className="leading-6 text-light-blue font-bold text-lg">
               New Password
@@ -81,7 +82,7 @@ export default function NewPassword() {
                 }}
                 error={errors.password}
                 required
-                icon={<img src={PasswordIcon} alt="password" width={18} />}
+                icon={<img src={PasswordIcon} alt="password" width={18} loading="lazy"/>}
               />
 
               <button
@@ -109,7 +110,7 @@ export default function NewPassword() {
               }}
               error={errors.confirmPassword}
               required
-              icon={<img src={PasswordIcon} alt="password" width={18} />}
+              icon={<img src={PasswordIcon} alt="password" width={18} loading="lazy"/>}
             />
 
             <Button

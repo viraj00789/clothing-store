@@ -97,6 +97,7 @@ export default function SignUp() {
               width={72}
               height={72}
               className="mb-6.5"
+              loading="lazy"
             />
             <p className="leading-6 text-light-blue font-bold text-lg">
               Welcome back to E-Com!
@@ -116,7 +117,7 @@ export default function SignUp() {
                 setErrors((prev) => ({ ...prev, name: undefined }));
               }}
               error={errors.name}
-              icon={<img src={User} alt="user" width={18} />}
+              icon={<img src={User} alt="user" width={18} loading="lazy" />}
               required
             />
 
@@ -129,7 +130,7 @@ export default function SignUp() {
                 setErrors((prev) => ({ ...prev, email: undefined }));
               }}
               error={errors.email}
-              icon={<img src={Email} alt="user" width={18} />}
+              icon={<img src={Email} alt="user" width={18} loading="lazy" />}
               required
             />
 
@@ -144,7 +145,14 @@ export default function SignUp() {
                   setErrors((prev) => ({ ...prev, password: undefined }));
                 }}
                 error={errors.password}
-                icon={<img src={PasswordIcon} alt="password" width={18} />}
+                icon={
+                  <img
+                    src={PasswordIcon}
+                    alt="password"
+                    width={18}
+                    loading="lazy"
+                  />
+                }
                 required
               />
               <button
@@ -174,7 +182,14 @@ export default function SignUp() {
                   }));
                 }}
                 error={errors.confirmPassword}
-                icon={<img src={PasswordIcon} alt="password" width={18} />}
+                icon={
+                  <img
+                    src={PasswordIcon}
+                    alt="password"
+                    width={18}
+                    loading="lazy"
+                  />
+                }
                 required
               />
               <button
@@ -213,6 +228,7 @@ export default function SignUp() {
                 width={29}
                 height={35}
                 className="cursor-pointer"
+                loading="lazy"
               />
               <img
                 src={FaceBook}
@@ -220,6 +236,7 @@ export default function SignUp() {
                 width={29}
                 height={35}
                 className="cursor-pointer"
+                loading="lazy"
               />
               <img
                 src={Google}
@@ -227,6 +244,7 @@ export default function SignUp() {
                 width={29}
                 height={35}
                 className="cursor-pointer"
+                loading="lazy"
               />
             </p>
           </div>

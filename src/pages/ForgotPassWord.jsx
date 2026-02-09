@@ -54,6 +54,7 @@ export default function ForgotPassword() {
               width={72}
               height={72}
               className="mb-6.5"
+              loading="lazy"
             />
             <p className="leading-6 text-light-blue font-bold text-lg">
               Forgot Password

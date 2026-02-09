@@ -13,7 +13,7 @@ import FeaturedBlog from "../components/ui/home/FeaturedBlog";
 import Services from "../components/ui/home/Services";
 import AboutUs from "../components/ui/home/AboutUs";
 import CategoryRow from "../components/CategoryRow";
-import OurCollection from "../components/OurCollection";
+// import OurCollection from "../components/OurCollection";
 import MobileDealsForDay from "../components/ui/home/MobileDealsForDay/MobileDealsForDay";
 
 const Home = () => {
@@ -75,9 +75,9 @@ const Home = () => {
           {/* Trending section */}
           <TrendingSection />
 
-          <div className="flex-md-hidden">
+          {/* <div className="flex-md-hidden">
             <OurCollection />
-          </div>
+          </div> */}
 
           <div clasnsName="flex-md-hidden">
             <MobileDealsForDay />

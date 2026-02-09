@@ -156,6 +156,7 @@ const Navbar = () => {
                 src={Search}
                 alt="search"
                 className="absolute right-4 top-1/2 -translate-y-1/2"
+                loading="lazy"
               />
             </div>
             <div className="flex items-center gap-4 xl:gap-8">
@@ -272,6 +273,7 @@ const Navbar = () => {
                 src={Search}
                 alt="search"
                 className="absolute right-4 top-1/2 -translate-y-1/2"
+                loading="lazy"
               />
             </div>
 
@@ -330,6 +332,7 @@ const Navbar = () => {
                 src={active === item.id ? item.blue : item.gray}
                 alt={item.label}
                 className="w-6 h-6"
+                loading="lazy"
               />
             </button>
           </Link>

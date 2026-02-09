@@ -1,7 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { getItem } from "../utils/localStorage";
 
 const isAuthenticated = () => {
-  return localStorage.getItem("token");
+  return getItem("auth");
 };
 
 export default function ProtectedRoute() {

@@ -26,7 +26,7 @@ const Categories = () => {
             </p>
             <div className="flex items-center gap-2 mt-1">
               <p className="font-bold text-md lg:text-xl">Explore</p>
-              <img src={catArrow} alt="catArrow" />
+              <img src={catArrow} alt="catArrow" loading="lazy" />
             </div>
           </div>
         </div>
@@ -53,6 +53,7 @@ const Categories = () => {
                   src={item.src}
                   alt={item.label}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute top-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -64,7 +65,7 @@ const Categories = () => {
                   </p>
                   <div className="flex items-center gap-2 mt-1">
                     <p className="font-bold text-xl">Explore</p>
-                    <img src={catArrow} alt="catArrow" />
+                    <img src={catArrow} alt="catArrow" loading="lazy" />
                   </div>
                 </div>
               </div>
@@ -79,6 +80,7 @@ const Categories = () => {
                 src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1200&auto=format&fit=crop"
                 alt="Womens Tops"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute top-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -90,7 +92,7 @@ const Categories = () => {
                 </p>
                 <div className="flex items-center gap-2 mt-1">
                   <p className="font-bold text-md lg:text-xl">Explore</p>
-                  <img src={catArrow} alt="catArrow" />
+                  <img src={catArrow} alt="catArrow" loading="lazy" />
                 </div>
               </div>
             </div>
@@ -114,6 +116,7 @@ const Categories = () => {
                   <img
                     src={item.src}
                     alt={item.label}
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -128,7 +131,7 @@ const Categories = () => {
                       <p className="font-bold text-md lg:text-lg xl:text-xl">
                         Explore
                       </p>
-                      <img src={catArrow} alt="catArrow" />
+                      <img src={catArrow} alt="catArrow" loading="lazy"/>
                     </div>
                   </div>
                 </div>

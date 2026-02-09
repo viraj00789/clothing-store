@@ -99,6 +99,7 @@ export default function SignIn() {
               width={72}
               height={72}
               className="mb-6.5"
+              loading="lazy"
             />
             <p className="leading-6 text-light-blue font-bold text-lg">
               Welcome back to E-Com!
@@ -218,6 +219,7 @@ export default function SignIn() {
                 width={29}
                 height={35}
                 className="cursor-pointer"
+                loading="lazy"
               />
               <img
                 src={FaceBook}
@@ -225,6 +227,7 @@ export default function SignIn() {
                 width={29}
                 height={35}
                 className="cursor-pointer"
+                loading="lazy"
               />
               <img
                 src={Google}
@@ -232,6 +235,7 @@ export default function SignIn() {
                 width={29}
                 height={35}
                 className="cursor-pointer"
+                loading="lazy"
               />
             </p>
           </div>

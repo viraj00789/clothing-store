@@ -41,6 +41,7 @@ const CustomerSay = () => {
                     src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=60"
                     alt="Customer image"
                     className="rounded-full w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
 
@@ -52,9 +53,10 @@ const CustomerSay = () => {
                         alt="star"
                         key={index}
                         className="w-5 h-[19.2px]"
+                        loading="lazy"
                       />
                     ))}
-                    <img src={star} alt="star" className="w-5 h-[19.2px]" />
+                    <img src={star} alt="star" className="w-5 h-[19.2px]" loading="lazy"/>
                   </div>
                   <p className="font-normal text-lg">4.4</p>
                 </div>

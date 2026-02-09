@@ -34,6 +34,7 @@ const FeaturedBlog = () => {
                     className="w-full md:min-w-[200px] h-[250px] lg:h-full object-cover"
                     src={src}
                     alt="Blog"
+                    loading="lazy"
                   />
                 </div>
 

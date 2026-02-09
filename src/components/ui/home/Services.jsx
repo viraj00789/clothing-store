@@ -49,7 +49,7 @@ export default function Services() {
           key={item.id}
         >
           <div className="h-12.5 w-12.5">
-            <img src={item.image} />
+            <img src={item.image} loading="lazy" />
           </div>
           <div className="text-center space-y-3 lg:space-y-4">
             <p className="font-bold text-xl lg:text-2xl">{item.label}</p>
