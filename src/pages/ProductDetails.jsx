@@ -16,7 +16,7 @@ const ProductDetails = () => {
   return (
     <ContainerLayout>
       {" "}
-      <div className="px-3.75 px-12 mt-[100px]">
+      <div className="px-3.75 px-12 onpm run dmt-[100px]">
         <div className="flex flex-col md:flex-row gap-8 ">
           {/* ================= LEFT: IMAGES ================= */}
           <div className="flex gap-4">

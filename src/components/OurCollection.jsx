@@ -4,9 +4,9 @@ import PinkHeart from "../assets/Icons/Home/pink-heart.svg";
 import WhiteBag from "../assets/Icons/Home/white-bag.svg";
 
 const allImages = [
+  "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&auto=format&fit=crop&q=60",
   "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&auto=format&fit=crop&q=60",
   "https://images.unsplash.com/photo-1520975916090-3105956dac38?w=800&auto=format&fit=crop&q=60",
-  "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&auto=format&fit=crop&q=60",
   "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=800&auto=format&fit=crop&q=60",
   "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&auto=format&fit=crop&q=60",
 ];
@@ -139,6 +139,7 @@ const OurCollection = () => {
                 src={img}
                 alt={`collection-${i}`}
                 className="w-full rounded-lg object-cover max-h-[600px] h-full bg-top"
+                loading="lazy"
               />
             ))}
           </div>
