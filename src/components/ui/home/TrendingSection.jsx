@@ -53,7 +53,7 @@ const TrendingSection = () => {
                 key={product.id}
                 className="!w-80 lg:!w-[414px] pb-px px-px cursor-pointer"
                 onClick={() => {
-                  window.location.href = `http://localhost:5173${product.link}`;
+                  navigate(`/${product.link}`);
                 }}
               >
                 <div className="shadow-sm bg-white rounded-b-[10px]">
