@@ -66,7 +66,7 @@ const products = [
 const SimilarProduct = ({ title = "Similar Products" }) => {
   const width = useWindow();
   return (
-    <div className="px-3.75 xl:px-12.5 space-y-3 lg:space-y-[27px] mt-6">
+    <div className="px-3.75 xl:px-12.5 space-y-3 lg:space-y-[27px]">
       <h3 className="text-light-black font-bold text-2xl lg:text-4xl">
         {title}
       </h3>
@@ -75,9 +75,9 @@ const SimilarProduct = ({ title = "Similar Products" }) => {
         {products.map((product) => (
           <SwiperSlide
             key={product.id}
-            className="!w-46 lg:!w-[410px] min-h-[317px] lg:!min-h-[423px] py-3 px-px cursor-pointer"
+            className="!w-46 lg:!w-[410px] min-h-[317px] lg:!min-h-[423px] py-px px-px cursor-pointer rounded-[10px]"
           >
-            <div className="shadow-sm bg-white rounded-b-[10px]">
+            <div className="shadow-sm bg-white rounded-[10px]">
               <img
                 className="h-[301px] w-full object-cover rounded-t-[10px]"
                 src={product.image}

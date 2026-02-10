@@ -6,10 +6,12 @@
   --light-gray: #F0F0F0;
   --light-gray-1: #F9FAFF;
   --light-gray-2: #E1E2E7;
+  --light-gray-3: #F9FAFF;
   --mid-gray: #565656;
   --mid-dark-gray: #646464;
   --dark-gray: #848484;
   --footer-input: #ABABAB;
+  --size-chart: #BABABA;
   --light-blue: #223263;
   --dark-blue: #00398F;
   --dark-button-blue: #002482;
@@ -23,7 +25,14 @@
   --font-sf: 'SF Pro Display', system-ui, sans-serif;
   --small-mobile: 375px;
   --green-off: #0EB000;
+  --product-green: #299E00;
   --light-purple: #5C61F4;
+  /* Clothes Colors */
+  --cream: #FFCFB5;
+  --cyan: #96F9FF;
+  --pinkish: #FEC8FF;
+  --grayish: #F5F5F5;
+  --yellowish: #FEFFC1;
 }
 
 @theme inline {
@@ -46,6 +55,14 @@
   --color-light-blue: var(--light-blue);
   --color-light-black-1: var(--light-black-1);
   --color-light-purple: var(--light-purple);
+  --color-product-green: var(--product-green);
+  --color-size-chart: var(--size-chart);
+  --color-cream: var(--cream);
+  --color-cyan: var(--cyan);
+  --color-pinkish: var(--pinkish);
+  --color-grayish: var(--grayish);
+  --color-yellowish: var(--yellowish);
+  --color-light-gray-3: var(--light-gray-3);
 }
 
 @theme {
@@ -154,4 +171,13 @@ input[type="search"]::-ms-clear {
 ::-webkit-scrollbar-thumb:hover {
   background: #4e525a;
   /* gray-500 */
+}
+
+.custom-pagination .swiper-pagination-bullet {
+  @apply w-2.5 h-2.5 bg-gray-400 opacity-100;
+}
+
+.custom-pagination .swiper-pagination-bullet-active {
+  @apply bg-dark-button-blue w-4 h-4;
+;
 }

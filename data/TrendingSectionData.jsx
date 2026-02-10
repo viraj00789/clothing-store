@@ -17,6 +17,7 @@ export const products = [
       "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&auto=format&fit=crop&q=60",
     ],
     link: "/product/1",
+    soldBy: "Levi's Pvt. Ltd.",
   },
   {
     id: 2,
@@ -36,6 +37,7 @@ export const products = [
       "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&auto=format&fit=crop&q=60",
     ],
     link: "/product/2",
+    soldBy: "Zara India Pvt. Ltd.",
   },
   {
     id: 3,
@@ -55,6 +57,7 @@ export const products = [
       "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&auto=format&fit=crop&q=60",
     ],
     link: "/product/3",
+    soldBy: "H&M India Pvt. Ltd.",
   },
   {
     id: 4,
@@ -74,6 +77,7 @@ export const products = [
       "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&auto=format&fit=crop&q=60",
     ],
     link: "/product/4",
+    soldBy: "Nike India Pvt. Ltd.",
   },
   {
     id: 5,
@@ -93,5 +97,6 @@ export const products = [
       "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&auto=format&fit=crop&q=60",
     ],
     link: "/product/5",
+    soldBy: "Adidas India Pvt. Ltd.",
   },
 ];

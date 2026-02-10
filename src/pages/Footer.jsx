@@ -59,8 +59,8 @@ const Footer = () => {
 
   return (
     <ContainerLayout>
-      <div className="bg-dark-footer text-white mt-6 lg:mt-29">
-        <div className="px-3 md:px-6 xl:px-12.5 pt-9 mb-0 lg:mb-10 xl:mb-20">
+      <div className="text-white">
+        <div className="px-3 md:px-6 xl:px-12.5 pt-9 pb-0 lg:pb-10 xl:pb-20 bg-dark-footer">
           <div className="flex flex-col sm:flex-row items-center p font-bold gap-4 xl:gap-7.5 text-center sm:text-left px-2 md:px-0">
             <img
               src={footerLogo}
@@ -73,7 +73,7 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="flex flex-col lg:flex-row flex-wrap justify-between 2xl:justify-center gap-4 lg:gap-10 xl:gap-15 2xl:gap-27.5 mt-4 lg:mt-10 xl:mt-[83px]">
+          <div className="flex flex-col lg:flex-row flex-wrap justify-between 2xl:justify-center gap-4 lg:gap-10 xl:gap-15 2xl:gap-27.5 mt-4 lg:mt-10 xl:mt-[83px] ">
             {sections.map((sec, i) => (
               <div key={i} className="flex flex-col w-full lg:w-auto">
                 {/* Header */}
@@ -115,7 +115,7 @@ const Footer = () => {
             ))}
 
             {/* Stay in Touch */}
-            <div className="flex flex-col items-center lg:items-start gap-4.75 w-full lg:max-w-[445px]">
+            <div className="flex flex-col items-center lg:items-start gap-4.75 w-full lg:max-w-[445px] bg-dark-footer">
               <h3 className="text-respo-24">Stay In Touch</h3>
               <p className="font-normal text-lg max-w-[445px] text-center lg:text-left">
                 Stay in touch to get special offers, free giveaways and once in
@@ -140,7 +140,7 @@ const Footer = () => {
 
         <div className="lg:border"></div>
 
-        <div className="pt-[39px] flex flex-col flex-wrap md:flex-row items-center justify-center gap-6 lg:gap-50 text-center pb-[100px] md:pb-[39px]">
+        <div className="pt-[39px] flex flex-col flex-wrap md:flex-row items-center justify-center gap-6 lg:gap-50 text-center pb-[100px] md:pb-[39px] bg-dark-footer">
           <p className="cursor-pointer">Terms and Conditions</p>
           <p className="cursor-pointer">Privacy Policy</p>
           <div className="flex justify-center gap-8.5">

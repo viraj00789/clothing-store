@@ -9,8 +9,8 @@ import Heart from "../../../assets/Icons/Home/GrayIcons/home-heart.svg";
 import PinkHeart from "../../../assets/Icons/Home/pink-heart.svg";
 import WhiteBag from "../../../assets/Icons/Home/white-bag.svg";
 import { IoIosArrowBack } from "react-icons/io";
-import { products } from "../../../../data/TrendingSection";
 import { useNavigate } from "react-router";
+import { products } from "../../../../data/TrendingSectionData";
 
 const TrendingSection = () => {
   const width = useWindow();
