@@ -329,7 +329,7 @@ const ProductDetails = () => {
                   </div>
                 </>
               ) : (
-                <div className="py-4 flex w-full gap-4">
+                <div className="flex w-full gap-4">
                   <div className="w-full h-12 bg-dark-button-blue text-white rounded-10 cursor-pointer flex items-center justify-center gap-[23.23px]">
                     <button className="font-normal text-lg text-white">
                       Add to bag
