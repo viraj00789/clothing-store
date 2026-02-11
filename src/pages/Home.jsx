@@ -79,7 +79,7 @@ const Home = () => {
             <OurCollection />
           </div> */}
 
-          <div clasnsName="flex-md-hidden">
+          <div className="flex flex-col md:hidden">
             <MobileDealsForDay />
           </div>
 

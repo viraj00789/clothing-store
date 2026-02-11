@@ -5,6 +5,7 @@ import ProductDetails from "../pages/ProductDetails";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import VerifyCode from "../pages/VerifyCode";
+import WishList from "../pages/WishList";
 
 export const publicRoutes = [
   {
@@ -40,4 +41,9 @@ export const authRoutes = [
   },
 ];
 
-export const protectedRoutes = [];
+export const protectedRoutes = [
+  {
+    path: "/wishlist",
+    element: <WishList />,
+  }
+];

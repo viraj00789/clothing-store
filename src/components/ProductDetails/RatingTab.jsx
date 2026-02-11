@@ -52,12 +52,12 @@ const RatingTab = () => {
   }, [isPreviewOpen]);
 
   return (
-    <div className="mt-[27px]">
-      <h2 className="text-2xl font-bold text-light-black pb-7 pt-[29px]">
+    <div className="py-3 mt-0">
+      <h2 className="text-2xl font-bold text-light-black pb-3  hidden-lg-flex">
         Ratings
       </h2>
 
-      <div className="flex flex-col gap-7">
+      <div className="flex flex-col gap-4">
         <div className="flex gap-3">
           <p className="text-xl 2xl:text-5xl">4.4</p>
           <div className="flex items-center gap-2">
@@ -67,25 +67,37 @@ const RatingTab = () => {
             <img src={WhiteStar} loading="lazy" />
           </div>
         </div>
-        <p className="text-lg font-normal text-light-black">
+        <p className="text-lg font-normal text-dark-gray lg:text-light-black">
           40 Verified Buyers
         </p>
       </div>
 
-      <div className="mt-12 space-y-[45px]">
+      <div className="mt-6 lg:mt-12 space-y-6 lg:space-y-[45px]">
         {visibleReviews.map((review) => {
           const isExpanded = expanded[review.id];
           const shortText = review.text.slice(0, 160);
 
           return (
-            <div key={review.id} className="space-y-3.75">
+            <div key={review.id} className="space-y-2.5 lg:space-y-[15px]">
               {/* Rating */}
-              <div className="flex items-center gap-2">
-                {[...Array(4)].map((_, i) => (
-                  <img key={i} src={YellowStar} loading="lazy" />
-                ))}
-                <img src={WhiteStar} loading="lazy" />
-                <p className="font-normal text-lg">{review.rating}</p>
+              <p className="text-xl font-normal text-light-black">{review.review}</p>
+
+              <div className="flex items-center gap-4 flex-wrap">
+                <div className="flex items-center gap-2">
+                  {[...Array(4)].map((_, i) => (
+                    <img key={i} src={YellowStar} loading="lazy" />
+                  ))}
+                  <img src={WhiteStar} loading="lazy" />
+                  <p className="font-normal text-lg">{review.rating}</p>
+                </div>
+                <div className="flex-lg-hidden gap-4">
+                  <p className="text-lg text-dark-gray font-normal ">
+                    {review.name}
+                  </p>
+                  <p className="text-lg text-dark-gray font-normal">
+                    {review.date}
+                  </p>
+                </div>
               </div>
 
               {/* Text */}
@@ -135,7 +147,7 @@ const RatingTab = () => {
               )}
 
               {/* Author */}
-              <p className="text-lg text-light-black font-normal">
+              <p className="text-lg text-light-black font-normal hidden lg:flex">
                 {review.name} | {review.date}
               </p>
             </div>

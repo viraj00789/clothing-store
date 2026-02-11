@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import ContainerLayout from "../layout/ContainerLayout";
 import Search from "../assets/search.svg";
 import ClothingLogo from "../assets/clothing.png";
@@ -32,22 +32,35 @@ const navItems = [
   { id: "home", href: "/", blue: BlueHome, gray: GrayHome, label: "Home" },
   {
     id: "search",
-    href: "/",
+    href: "/search",
     blue: BlueSearch,
     gray: GraySearch,
     label: "Search",
   },
-  { id: "heart", href: "/", blue: BlueHeart, gray: GrayHeart, label: "Heart" },
-  { id: "cart", href: "/", blue: BlueCart, gray: GrayCart, label: "Cart" },
-  { id: "user", href: "/", blue: BlueUser, gray: GrayUser, label: "Profile" },
+  {
+    id: "heart",
+    href: "/wishlist",
+    blue: BlueHeart,
+    gray: GrayHeart,
+    label: "Heart",
+  },
+  { id: "cart", href: "/cart", blue: BlueCart, gray: GrayCart, label: "Cart" },
+  {
+    id: "user",
+    href: "/profile",
+    blue: BlueUser,
+    gray: GrayUser,
+    label: "Profile",
+  },
 ];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
-  const [active, setActive] = useState("home");
   const authUser = getItem("auth");
   const navigate = useNavigate();
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   const closeSlider = useEffectEvent(() => {
     setOpen(false);
@@ -165,6 +178,7 @@ const Navbar = () => {
                 alt="logo"
                 loading="lazy"
                 className="w-[29px] h-[29px] cursor-pointer"
+                onClick={() => navigate("/wishlist")}
               />
               <img
                 src={Cart}
@@ -319,24 +333,24 @@ const Navbar = () => {
       </div>
       {/* Bottom Navigation */}
       <div
-        className="fixed bottom-0 left-0 right-0 h-[65px] bg-white border-t border-gray-200 flex lg:hidden justify-center items-center gap-10 xxs:gap-10 xs:gap-15 z-20 w-full shadow-[0_-1px_6px_rgba(0,0,0,0.06)]
+        className="fixed bottom-0 left-0 right-0 h-[65px] bg-white border-t border-gray-200 flex lg:hidden justify-center items-center gap-10 xxs:gap-10 xs:gap-14 z-20 w-full shadow-[0_-1px_6px_rgba(0,0,0,0.06)]
 "
       >
-        {navItems.map((item) => (
-          <Link to={item.href} key={item.id}>
-            <button
-              onClick={() => setActive(item.id)}
-              className="flex flex-col items-center justify-center cursor-pointer"
-            >
-              <img
-                src={active === item.id ? item.blue : item.gray}
-                alt={item.label}
-                className="w-6 h-6"
-                loading="lazy"
-              />
-            </button>
-          </Link>
-        ))}
+        {navItems.map((item) => {
+          const isActive = currentPath === item.href;
+          return (
+            <Link to={item.href} key={item.id}>
+              <button className="flex flex-col items-center justify-center cursor-pointer">
+                <img
+                  src={isActive ? item.blue : item.gray}
+                  alt={item.label}
+                  className="w-6 h-6"
+                  loading="lazy"
+                />
+              </button>
+            </Link>
+          );
+        })}
       </div>
     </ContainerLayout>
   );

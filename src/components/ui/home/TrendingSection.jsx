@@ -10,7 +10,7 @@ import PinkHeart from "../../../assets/Icons/Home/pink-heart.svg";
 import WhiteBag from "../../../assets/Icons/Home/white-bag.svg";
 import { IoIosArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router";
-import { products } from "../../../../data/TrendingSectionData";
+import { products } from "../../../../data/ProductDetailsData";
 
 const TrendingSection = () => {
   const width = useWindow();
