@@ -19,6 +19,8 @@ import GrayHeart from "../assets/Icons/Home/GrayIcons/home-heart.svg";
 import GrayCart from "../assets/Icons/Home/GrayIcons/home-cart.svg";
 import GrayUser from "../assets/Icons/Home/GrayIcons/home-user.svg";
 import { getItem, removeItem } from "../utils/localStorage";
+import { getTotalWishlistItems } from "../store/slices/wishlistSlice";
+import { useSelector } from "react-redux";
 
 const navLinks = [
   { to: "/men", label: "Men" },
@@ -61,6 +63,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
+  const wishlistCount = useSelector(getTotalWishlistItems);
 
   const closeSlider = useEffectEvent(() => {
     setOpen(false);
@@ -173,13 +176,35 @@ const Navbar = () => {
               />
             </div>
             <div className="flex items-center gap-4 xl:gap-8">
-              <img
-                src={Heart}
-                alt="logo"
-                loading="lazy"
-                className="w-[29px] h-[29px] cursor-pointer"
+              <div
+                className="relative cursor-pointer"
                 onClick={() => navigate("/wishlist")}
-              />
+              >
+                <img
+                  src={Heart}
+                  alt="wishlist"
+                  loading="lazy"
+                  className="w-[29px] h-[29px]"
+                />
+
+                {wishlistCount > 0 && (
+                  <span
+                    key={wishlistCount} // 👈 retriggers animation on change
+                    className="
+        absolute -top-1.5 -right-1.5
+        min-w-[18px] h-[18px]
+        px-1
+        bg-red-500 text-white text-[11px] font-bold
+        rounded-full
+        flex items-center justify-center
+        animate-[pop_0.3s_ease-out]
+      "
+                  >
+                    {wishlistCount}
+                  </span>
+                )}
+              </div>
+
               <img
                 src={Cart}
                 alt="logo"
@@ -338,15 +363,34 @@ const Navbar = () => {
       >
         {navItems.map((item) => {
           const isActive = currentPath === item.href;
+          const isHeart = item.id === "heart";
+
           return (
             <Link to={item.href} key={item.id}>
-              <button className="flex flex-col items-center justify-center cursor-pointer">
+              <button className="flex flex-col items-center justify-center cursor-pointer relative">
                 <img
                   src={isActive ? item.blue : item.gray}
                   alt={item.label}
                   className="w-6 h-6"
                   loading="lazy"
                 />
+
+                {isHeart && wishlistCount > 0 && (
+                  <span
+                    key={wishlistCount}
+                    className="
+              absolute -top-1 -right-2
+              min-w-[16px] h-[16px]
+              px-1
+              bg-red-500 text-white text-[10px] font-bold
+              rounded-full
+              flex items-center justify-center
+              animate-[pop_0.3s_ease-out]
+            "
+                  >
+                    {wishlistCount}
+                  </span>
+                )}
               </button>
             </Link>
           );

@@ -193,3 +193,22 @@ input[type="search"]::-ms-clear {
   @apply bg-dark-button-blue w-3 h-3;
   ;
 }
+
+
+
+/* For the icon pops */
+@keyframes pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

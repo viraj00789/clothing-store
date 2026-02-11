@@ -2,7 +2,7 @@ export const products = [
   {
     id: 1,
     image:
-      "https://images.unsplash.com/photo-1540221652346-e5dd6b50f3e7?q=80&w=1169&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8amFja2V0c3xlbnwwfHwwfHx8MA%3D%3D",
     title: "Women's Denim Jacket",
     brand: "Levi's",
     rating: 4.4,
@@ -22,7 +22,7 @@ export const products = [
   {
     id: 2,
     image:
-      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://plus.unsplash.com/premium_photo-1763422784630-4e20d5a9d850?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fE1lbidzJTIwTGVhdGhlciUyMEphY2tldHxlbnwwfHwwfHx8MA%3D%3D",
     title: "Men's Leather Jacket",
     brand: "Zara",
     rating: 4.6,
@@ -42,7 +42,7 @@ export const products = [
   {
     id: 3,
     image:
-      "https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzh8fGNsb3RoZXN8ZW58MHx8MHx8fDA%3D",
+      "https://images.unsplash.com/photo-1542295669297-4d352b042bca?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c3VtbWVyJTIwZHJlc3N8ZW58MHx8MHx8fDA%3D",
     title: "Summer Dress",
     brand: "H&M",
     rating: 4.2,
@@ -62,7 +62,7 @@ export const products = [
   {
     id: 4,
     image:
-      "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1762914395256-327b841a366b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fENhc3VhbCUyMFQtU2hpcnR8ZW58MHx8MHx8fDA%3D",
     title: "Casual T-Shirt",
     brand: "Nike",
     rating: 4.7,
@@ -82,7 +82,7 @@ export const products = [
   {
     id: 5,
     image:
-      "https://images.unsplash.com/photo-1542219550-2da790bf52e9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTV8fGNsb3RoZXN8ZW58MHx8MHx8fDA%3D",
+      "https://images.unsplash.com/photo-1602810319428-019690571b5b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Zm9ybWFsJTIwc2hpcnR8ZW58MHx8MHx8fDA%3D",
     title: "Formal Shirt",
     brand: "Adidas",
     rating: 4.5,

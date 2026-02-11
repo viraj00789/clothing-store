@@ -16,11 +16,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import Share from "../assets/Icons/ProductDetails/share.svg";
 import WhiteBag from "../assets/Icons/Home/white-bag.svg";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import { useWindow } from "../hooks/useWidth";
 import ProductDetailsPin from "../components/ProductDetails/ProductDetailsPin";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../store/slices/wishlistSlice";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -29,8 +33,20 @@ const ProductDetails = () => {
   const [isSizePopupOpen, setIsSizePopupOpen] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(ProductColors[0]);
-  const [liked, setLiked] = useState(false);
+  // const [liked, setLiked] = useState(false);
   const width = useWindow();
+  const dispatch = useDispatch();
+  const wishlistItems = useSelector((state) => state.wishlist.items);
+
+  const isInWishlist = wishlistItems.some((p) => p.id === product.id);
+
+  const handleWishlist = () => {
+    if (isInWishlist) {
+      dispatch(removeFromWishlist(product.id));
+    } else {
+      dispatch(addToWishlist(product));
+    }
+  };
 
   useEffect(() => {
     if (isSizePopupOpen) {
@@ -134,7 +150,7 @@ const ProductDetails = () => {
                   src={Share}
                   alt="heart"
                   className="cursor-pointer flex lg:hidden"
-                  onClick={() => setLiked(!liked)}
+                  onClick={handleWishlist}
                   loading="lazy"
                 />
               </div>
@@ -315,16 +331,16 @@ const ProductDetails = () => {
                     </button>
                   </div>
                   <div
-                    onClick={() => setLiked(!liked)}
+                    onClick={handleWishlist}
                     className="rounded-10 cursor-pointer flex items-center justify-center gap-[23.23px] group transition-all duration-150"
                   >
                     <img
-                      src={liked ? PinkHeart : Heart}
+                      src={isInWishlist ? PinkHeart : Heart}
                       alt="WishList"
                       loading="lazy"
                       width={25.38}
                       height={22.21}
-                      className={`transition-all duration-200 ease-out group-hover:scale-120 active:scale-120 ${liked ? "scale-145" : "scale-100"}`}
+                      className={`transition-all duration-200 ease-out group-hover:scale-120 active:scale-120 ${isInWishlist ? "scale-145" : "scale-100"}`}
                     />
                   </div>
                 </>
@@ -343,7 +359,7 @@ const ProductDetails = () => {
                     />
                   </div>
                   <div
-                    onClick={() => setLiked(!liked)}
+                    onClick={handleWishlist}
                     className="w-full h-12 border border-dark-button-blue rounded-10 cursor-pointer flex items-center justify-center gap-[23.23px] group transition-all duration-15"
                   >
                     <button className="font-normal text-lg text-light-black">
@@ -351,12 +367,12 @@ const ProductDetails = () => {
                     </button>
 
                     <img
-                      src={liked ? PinkHeart : Heart}
+                      src={isInWishlist ? PinkHeart : Heart}
                       alt="WishList"
                       loading="lazy"
                       width={20}
                       height={20}
-                      className={`transition-all duration-200 ease-out group-hover:scale-120 active:scale-120 ${liked ? "scale-145" : "scale-100"}`}
+                      className={`transition-all duration-200 ease-out group-hover:scale-120 active:scale-120 ${isInWishlist ? "scale-145" : "scale-100"}`}
                     />
                   </div>
                 </div>

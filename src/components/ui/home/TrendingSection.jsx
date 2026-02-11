@@ -11,17 +11,27 @@ import WhiteBag from "../../../assets/Icons/Home/white-bag.svg";
 import { IoIosArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router";
 import { products } from "../../../../data/ProductDetailsData";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToWishlist,
+  removeFromWishlist,
+} from "../../../store/slices/wishlistSlice";
 
 const TrendingSection = () => {
   const width = useWindow();
   const [open, setOpen] = useState(false);
-  const [likedIds, setLikedIds] = useState([]);
   const [selectedImages, setSelectedImages] = useState([]);
   const navigate = useNavigate();
-  const toggleLike = (id) => {
-    setLikedIds((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
-    );
+  const dispatch = useDispatch();
+  const wishlistItems = useSelector((state) => state.wishlist.items);
+
+  const isInWishlist = (id) => wishlistItems.some((item) => item.id === id);
+  const toggleLike = (product) => {
+    if (isInWishlist(product.id)) {
+      dispatch(removeFromWishlist(product.id));
+    } else {
+      dispatch(addToWishlist(product));
+    }
   };
 
   useEffect(() => {
@@ -162,7 +172,10 @@ const TrendingSection = () => {
                 </div>
                 <div className="flex justify-between w-full gap-[13px]">
                   <div
-                    onClick={() => toggleLike(product.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleLike(product);
+                    }}
                     className="w-full h-9.5 border border-dark-button-blue rounded-10 cursor-pointer flex items-center justify-center gap-[23.23px] group transition-all duration-150"
                   >
                     <button className="font-normal text-sm text-light-black">
@@ -170,12 +183,12 @@ const TrendingSection = () => {
                     </button>
 
                     <img
-                      src={likedIds.includes(product.id) ? PinkHeart : Heart}
+                      src={isInWishlist(product.id) ? PinkHeart : Heart}
                       alt="WishList"
                       loading="lazy"
                       width={14.73}
                       height={13.04}
-                      className={`transition-all duration-200 ease-out group-hover:scale-120 active:scale-120 ${likedIds.includes(product.id) ? "scale-145" : "scale-100"}`}
+                      className={`transition-all duration-200 ease-out group-hover:scale-120 active:scale-120 ${isInWishlist(product.id) ? "scale-145" : "scale-100"}`}
                     />
                   </div>
 
