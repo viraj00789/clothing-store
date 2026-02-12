@@ -7,17 +7,8 @@ import Cart from "../assets/cart.svg";
 import Girl from "../assets/logged-girl.svg";
 import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 import { useEffect, useEffectEvent, useState } from "react";
-import { IoClose } from "react-icons/io5";
-import BlueHome from "../assets/Icons/Home/BlueIcons/home.svg";
-import BlueSearch from "../assets/Icons/Home/BlueIcons/search.svg";
-import BlueHeart from "../assets/Icons/Home/BlueIcons/heart.svg";
-import BlueCart from "../assets/Icons/Home/BlueIcons/cart.svg";
-import BlueUser from "../assets/Icons/Home/BlueIcons/user.svg";
-import GrayHome from "../assets/Icons/Home/GrayIcons/home-gray.svg";
-import GraySearch from "../assets/Icons/Home/GrayIcons/home-search.svg";
-import GrayHeart from "../assets/Icons/Home/GrayIcons/home-heart.svg";
-import GrayCart from "../assets/Icons/Home/GrayIcons/home-cart.svg";
-import GrayUser from "../assets/Icons/Home/GrayIcons/home-user.svg";
+import { IoClose, IoArrowBack } from "react-icons/io5";
+
 import { getItem, removeItem } from "../utils/localStorage";
 import {
   clearWishlist,
@@ -25,40 +16,7 @@ import {
 } from "../store/slices/wishlistSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { isAuthenticatedFromStorage } from "../utils/Auth";
-
-const navLinks = [
-  { to: "/men", label: "Men" },
-  { to: "/women", label: "Women" },
-  { to: "/kids", label: "Kids" },
-  { to: "/shop", label: "Shop" },
-  { to: "/contact-us", label: "Contact us" },
-];
-
-const navItems = [
-  { id: "home", href: "/", blue: BlueHome, gray: GrayHome, label: "Home" },
-  {
-    id: "search",
-    href: "/search",
-    blue: BlueSearch,
-    gray: GraySearch,
-    label: "Search",
-  },
-  {
-    id: "heart",
-    href: "/wishlist",
-    blue: BlueHeart,
-    gray: GrayHeart,
-    label: "Heart",
-  },
-  { id: "cart", href: "/cart", blue: BlueCart, gray: GrayCart, label: "Cart" },
-  {
-    id: "user",
-    href: "/profile",
-    blue: BlueUser,
-    gray: GrayUser,
-    label: "Profile",
-  },
-];
+import { navItems, navLinks } from "../../data/NavbarData";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -70,6 +28,16 @@ const Navbar = () => {
   const wishlistCount = useSelector(getTotalWishlistItems);
   const { isAuthenticated = false } = isAuthenticatedFromStorage();
   const dispatch = useDispatch();
+  const isHome = currentPath === "/";
+  const isSearch = currentPath === "/search";
+
+  const routeMap = navItems.reduce((acc, item) => {
+    acc[item.href] = item;
+    return acc;
+  }, {});
+  const currentItem = routeMap[currentPath];
+
+  const currentTitle = currentItem?.label || "";
 
   const closeSlider = useEffectEvent(() => {
     setOpen(false);
@@ -102,27 +70,61 @@ const Navbar = () => {
         {/* Top bar */}
         <div className="flex w-full max-w-480 items-center justify-between gap-0 xl:gap-2">
           {/* Logo + desktop links */}
-          <Link to="/" className="flex lg:hidden">
-            {authUser ? (
-              <div className="flex items-center gap-[13px]">
-                <img
-                  src={
-                    "https://images.unsplash.com/photo-1520975916090-3105956dac38?w=800&auto=format&fit=crop&q=60"
-                  }
-                  alt="logo"
-                  loading="lazy"
-                  className="w-[29px] h-[29px] rounded-full"
-                />
-                <p className="font-medium text-xl truncate text-black">
-                  {authUser?.name}
-                </p>
-              </div>
-            ) : (
-              <Link to="/sign-in">
-                <p className="font-bold">Sign In</p>
-              </Link>
+          <div className="flex items-center gap-2 lg:hidden">
+            {/* Back button (not on home) */}
+            {!isHome && (
+              <button onClick={() => navigate(-1)} className="p-1 cursor-pointer">
+                <IoArrowBack className="w-6 h-6 cursor-pointer" />
+              </button>
             )}
-          </Link>
+
+            {/* If search page → show search input */}
+            {isSearch ? (
+              <div className="relative w-[200px]">
+                <input
+                  type="search"
+                  placeholder="Search"
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                  className="w-full h-9 bg-light-gray focus:outline-none rounded-lg px-3 pr-10 text-sm"
+                />
+                {value && (
+                  <button
+                    type="button"
+                    onClick={() => setValue("")}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500"
+                  >
+                    <IoClose size={16} />
+                  </button>
+                )}
+              </div>
+            ) : isHome ? (
+              // Home → keep your existing logo/user logic
+              authUser ? (
+                <div className="flex items-center gap-[13px]">
+                  <img
+                    src="https://images.unsplash.com/photo-1520975916090-3105956dac38?w=800&auto=format&fit=crop&q=60"
+                    alt="logo"
+                    loading="lazy"
+                    className="w-[29px] h-[29px] rounded-full"
+                  />
+                  <p className="font-medium text-xl truncate text-black">
+                    {authUser?.name}
+                  </p>
+                </div>
+              ) : (
+                <Link to="/sign-in">
+                  <p className="font-bold">Sign In</p>
+                </Link>
+              )
+            ) : (
+              // Other pages → show title
+              <p className="font-semibold text-lg text-light-black truncate">
+                {currentTitle}
+              </p>
+            )}
+          </div>
+
           <div className="flex items-center gap-4 2xl:gap-[161px]">
             <Link
               to="/"

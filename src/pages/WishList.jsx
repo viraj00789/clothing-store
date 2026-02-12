@@ -70,7 +70,7 @@ const WishList = () => {
                     src={product.image}
                     alt={product.title}
                     loading="lazy"
-                    className="h-full w-full rounded-[5px]"
+                    className="h-full w-full rounded-[5px] object-cover"
                   />
                 </div>
                 <div className="flex  items-center justify-between w-full">

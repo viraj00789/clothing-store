@@ -5,6 +5,7 @@ import WhiteStar from "../../assets/Icons/ProductDetails/white-star.svg";
 import YellowStar from "../../assets/Icons/ProductDetails/yellow-star.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
+import { AnimatePresence, motion } from "framer-motion";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -80,7 +81,9 @@ const RatingTab = () => {
           return (
             <div key={review.id} className="space-y-2.5 lg:space-y-[15px]">
               {/* Rating */}
-              <p className="text-xl font-normal text-light-black">{review.review}</p>
+              <p className="text-xl font-normal text-light-black">
+                {review.review}
+              </p>
 
               <div className="flex items-center gap-4 flex-wrap">
                 <div className="flex items-center gap-2">
@@ -170,49 +173,65 @@ const RatingTab = () => {
             View Less
           </button>
         )}
-        {isPreviewOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center">
-            {/* Overlay */}
-            <div
-              className="absolute inset-0 bg-black/70"
-              onClick={() => setIsPreviewOpen(false)}
-            />
-
-            {/* Modal */}
-            <div className="relative bg-white p-4 rounded-lg max-w-3xl z-10">
-              <p className="font-bold text-xl text-light-black mb-3 px-2 ">
-                Preivew Image
-              </p>
-              <Swiper
-                modules={[Pagination]}
-                pagination={{ clickable: true }}
-                spaceBetween={16}
-                slidesPerView={1}
-                loop={true}
-                className="w-[280px] sm:w-[400px] max-w-lg"
-              >
-                {previewImages.map((img, idx) => (
-                  <SwiperSlide key={idx}>
-                    <img
-                      src={img}
-                      alt="Preview Image"
-                      className="w-full max-h-[400px] object-cover rounded cursor-pointer opacity-96"
-                      loading="lazy"
-                      loop
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-
-              <button
+        <AnimatePresence>
+          {isPreviewOpen && (
+            <motion.div
+              className="fixed inset-0 z-50 flex items-center justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {/* Overlay */}
+              <motion.div
+                className="absolute inset-0 bg-black/70"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 onClick={() => setIsPreviewOpen(false)}
-                className="mt-4 w-full px-4 py-2 bg-blue-600 text-white rounded cursor-pointer"
+              />
+
+              {/* Modal */}
+              <motion.div
+                className="relative bg-white p-4 rounded-lg max-w-3xl z-10"
+                initial={{ opacity: 0, scale: 0.95, y: 12 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 12 }}
+                transition={{ duration: 0.25, ease: "easeInOut" }}
               >
-                Close
-              </button>
-            </div>
-          </div>
-        )}
+                <p className="font-bold text-xl text-light-black mb-3 px-2">
+                  Preview Image
+                </p>
+
+                <Swiper
+                  modules={[Pagination]}
+                  pagination={{ clickable: true }}
+                  spaceBetween={16}
+                  slidesPerView={1}
+                  loop={true}
+                  className="w-[280px] sm:w-[400px] max-w-lg"
+                >
+                  {previewImages.map((img, idx) => (
+                    <SwiperSlide key={idx}>
+                      <img
+                        src={img}
+                        alt="Preview Image"
+                        className="w-full max-h-[400px] object-cover rounded cursor-pointer opacity-96"
+                        loading="lazy"
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+
+                <button
+                  onClick={() => setIsPreviewOpen(false)}
+                  className="mt-4 w-full px-4 py-2 bg-blue-600 text-white rounded cursor-pointer"
+                >
+                  Close
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
