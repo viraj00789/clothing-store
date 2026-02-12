@@ -16,6 +16,7 @@ import {
   addToWishlist,
   removeFromWishlist,
 } from "../../../store/slices/wishlistSlice";
+import { isAuthenticatedFromStorage } from "../../../utils/Auth";
 
 const TrendingSection = () => {
   const width = useWindow();
@@ -26,7 +27,13 @@ const TrendingSection = () => {
   const wishlistItems = useSelector((state) => state.wishlist.items);
 
   const isInWishlist = (id) => wishlistItems.some((item) => item.id === id);
+  const { isAuthenticated = false } = isAuthenticatedFromStorage();
+
   const toggleLike = (product) => {
+    if (!isAuthenticated) {
+      navigate("/sign-in");
+      return;
+    }
     if (isInWishlist(product.id)) {
       dispatch(removeFromWishlist(product.id));
     } else {
@@ -174,6 +181,10 @@ const TrendingSection = () => {
                   <div
                     onClick={(e) => {
                       e.stopPropagation();
+                      if (!isAuthenticated) {
+                        navigate("/sign-in");
+                        return;
+                      }
                       toggleLike(product);
                     }}
                     className="w-full h-9.5 border border-dark-button-blue rounded-10 cursor-pointer flex items-center justify-center gap-[23.23px] group transition-all duration-150"

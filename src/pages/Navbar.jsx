@@ -19,8 +19,12 @@ import GrayHeart from "../assets/Icons/Home/GrayIcons/home-heart.svg";
 import GrayCart from "../assets/Icons/Home/GrayIcons/home-cart.svg";
 import GrayUser from "../assets/Icons/Home/GrayIcons/home-user.svg";
 import { getItem, removeItem } from "../utils/localStorage";
-import { getTotalWishlistItems } from "../store/slices/wishlistSlice";
-import { useSelector } from "react-redux";
+import {
+  clearWishlist,
+  getTotalWishlistItems,
+} from "../store/slices/wishlistSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { isAuthenticatedFromStorage } from "../utils/Auth";
 
 const navLinks = [
   { to: "/men", label: "Men" },
@@ -64,6 +68,8 @@ const Navbar = () => {
   const location = useLocation();
   const currentPath = location.pathname;
   const wishlistCount = useSelector(getTotalWishlistItems);
+  const { isAuthenticated = false } = isAuthenticatedFromStorage();
+  const dispatch = useDispatch();
 
   const closeSlider = useEffectEvent(() => {
     setOpen(false);
@@ -178,7 +184,13 @@ const Navbar = () => {
             <div className="flex items-center gap-4 xl:gap-8">
               <div
                 className="relative cursor-pointer"
-                onClick={() => navigate("/wishlist")}
+                onClick={() => {
+                  if (!isAuthenticated) {
+                    navigate("/sign-in");
+                    return;
+                  }
+                  navigate("/wishlist");
+                }}
               >
                 <img
                   src={Heart}
@@ -189,7 +201,7 @@ const Navbar = () => {
 
                 {wishlistCount > 0 && (
                   <span
-                    key={wishlistCount} // 👈 retriggers animation on change
+                    key={wishlistCount}
                     className="
         absolute -top-1.5 -right-1.5
         min-w-[18px] h-[18px]
@@ -226,6 +238,7 @@ const Navbar = () => {
                     onClick={() => {
                       localStorage.removeItem("auth");
                       navigate("/");
+                      dispatch(clearWishlist());
                     }}
                     className="
           absolute right-0 top-full mt-2
@@ -343,10 +356,11 @@ const Navbar = () => {
             {authUser && (
               <div className="flex items-center gap-4">
                 <p
-                  className="text-gray-700 text-lg"
+                  className="text-gray-700 text-lg cursor-pointer"
                   onClick={() => {
                     removeItem("auth");
                     navigate("/");
+                    dispatch(clearWishlist());
                   }}
                 >
                   Logout

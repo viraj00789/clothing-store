@@ -119,6 +119,7 @@ export default function SignIn() {
               onChange={(e) => {
                 setFormData({ ...formData, email: e.target.value });
                 setErrors((prev) => ({ ...prev, email: undefined }));
+                setLoginError("");
               }}
               error={errors.email}
               required
@@ -143,6 +144,7 @@ export default function SignIn() {
                 onChange={(e) => {
                   setFormData({ ...formData, password: e.target.value });
                   setErrors((prev) => ({ ...prev, password: undefined }));
+                  setLoginError("");
                 }}
                 error={errors.password}
                 icon={

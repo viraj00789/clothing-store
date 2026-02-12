@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import SimilarProduct from "../components/ui/home/SimilarProduct";
 import ContainerLayout from "../layout/ContainerLayout";
 import { products } from "../../data/ProductDetailsData";
@@ -25,6 +25,7 @@ import {
   addToWishlist,
   removeFromWishlist,
 } from "../store/slices/wishlistSlice";
+import { isAuthenticatedFromStorage } from "../utils/Auth";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -37,10 +38,15 @@ const ProductDetails = () => {
   const width = useWindow();
   const dispatch = useDispatch();
   const wishlistItems = useSelector((state) => state.wishlist.items);
-
   const isInWishlist = wishlistItems.some((p) => p.id === product.id);
+  const { isAuthenticated = false } = isAuthenticatedFromStorage();
+  const navigate = useNavigate();
 
   const handleWishlist = () => {
+    if (!isAuthenticated) {
+      navigate("/sign-in");
+      return;
+    }
     if (isInWishlist) {
       dispatch(removeFromWishlist(product.id));
     } else {
@@ -187,7 +193,7 @@ const ProductDetails = () => {
 
             {/* ================= Size: DETAILS ================= */}
 
-            <div className="flex flex-col justify-center gap-3 xl:gap-4 pt-4 md:py-0 ">
+            <div className="flex flex-col justify-center gap-3 xl:gap-4 md:py-0 ">
               <div className="gap-4 flex flex-row xl:flex-col justify-between xl:justify-start ">
                 <p className="font-bold text-lg xl:text-2xl text-light-black">
                   Select Size
@@ -245,7 +251,7 @@ const ProductDetails = () => {
 
             {/* ================= Color: DETAILS ================= */}
 
-            <div className="flex flex-col justify-center gap-4 pt-4 lg:py-0">
+            <div className="flex flex-col justify-center gap-4 lg:py-0">
               <p className="font-bold text-lg xl:text-2xl text-light-black">
                 Color
               </p>
@@ -300,9 +306,9 @@ const ProductDetails = () => {
               <p className="font-bold text-lg xl:text-2xl text-light-black">
                 Best Offers
               </p>
-              {OfferDetails.map((item) => (
+              {OfferDetails.map((item, index) => (
                 <>
-                  <div className="space-y-3.75 text-light-black">
+                  <div className="space-y-3.75 text-light-black" key={index}>
                     <p>
                       <span className="font-bold text-lg">
                         {item.offerName}{" "}

@@ -135,13 +135,10 @@ const ProductSpecification = () => {
                     key={tab}
                     onClick={() => setActiveTab(tab)}
                     className={`
-                      mb-5.5 transition relative cursor-pointer text-lg font-normal
-                      ${
-                        isActive
-                          ? "text-dark-button-blue"
-                          : "text-gray-500 hover:text-gray-700"
-                      }
-                    `}
+  mb-5.5 relative cursor-pointer text-lg font-normal
+  transition duration-300 ease-in-out
+  ${isActive ? "text-dark-button-blue" : "text-gray-500 lg:hover:text-gray-700"}
+`}
                   >
                     {tab}
 
@@ -154,7 +151,16 @@ const ProductSpecification = () => {
             </div>
           </div>
 
-          <div className="mt-6 text-gray-800">{renderContent(activeTab)}</div>
+          <div className="mt-6 text-gray-800 relative">
+            <div
+              key={activeTab}
+              className={`
+      ${!isMobile ? "animate-fadeIn" : ""}
+    `}
+            >
+              {renderContent(activeTab)}
+            </div>
+          </div>
         </>
       )}
 
