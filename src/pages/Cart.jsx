@@ -35,7 +35,6 @@ const Cart = () => {
     (id) => wishlistItems.some((item) => item.id === id),
     [wishlistItems],
   );
-  console.log("🚀 ~ Cart ~ cartItems:", cartItems);
   const { isAuthenticated = false } = isAuthenticatedFromStorage();
 
   const toggleLike = useCallback(
@@ -91,7 +90,11 @@ const Cart = () => {
                       src={product.image}
                       alt={product.title}
                       loading="lazy"
-                      className=" w-19 sm:w-[120px] lg:w-[150px] xl:w-[223px] h-21 sm:h-[120px] lg:h-[200px] xl:h-[248px] rounded-[5px] object-cover"
+                      className=" w-19 sm:w-[120px] lg:w-[150px] xl:w-[223px] h-21 sm:h-[120px] lg:h-[200px] xl:h-[248px] rounded-[5px] object-cover cursor-pointer"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/${product.link}`);
+                      }}
                     />
                   </div>
                   <div className="flex flex-col space-y-0.5 sm:space-y-2.5 ">

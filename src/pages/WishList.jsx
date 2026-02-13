@@ -8,12 +8,14 @@ import { removeFromWishlist } from "../store/slices/wishlistSlice";
 import EmptyWishlist from "../assets/ProductDetails/wishlist.png";
 import { addManyToCart } from "../store/slices/cartSlice";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const WishList = () => {
   const width = useWindow();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.wishlist.items);
   const wishlistItems = useSelector((state) => state.wishlist.items);
+  const navigate = useNavigate();
 
   if (products.length === 0) {
     return (
@@ -73,7 +75,11 @@ const WishList = () => {
                     src={product.image}
                     alt={product.title}
                     loading="lazy"
-                    className="h-full w-full rounded-[5px] object-cover"
+                    className="h-full w-full rounded-[5px] object-cover cursor-pointer"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/${product.link}`);
+                    }}
                   />
                 </div>
                 <div className="flex  items-center justify-between w-full">

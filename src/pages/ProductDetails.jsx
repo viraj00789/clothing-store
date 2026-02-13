@@ -46,7 +46,6 @@ const ProductDetails = () => {
   // Cart States
   //
   const cartItems = useSelector((state) => state.cart.items);
-  console.log("🚀 ~ ProductDetails ~ cartItems:", cartItems);
   const cartItem = cartItems.find((i) => i.id === product.id);
   const qty = cartItem?.qty || 0;
 

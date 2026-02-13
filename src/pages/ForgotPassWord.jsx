@@ -16,7 +16,6 @@ export default function ForgotPassword() {
 
   const [errors, setErrors] = useState({});
   const emailFromStorage = getItem("user")?.email;
-  console.log("🚀 ~ ForgotPassword ~ emailFromStorage:", emailFromStorage);
 
   const validate = () => {
     const newErrors = {};
