@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { applyPromo, removePromo } from "../../store/slices/cartSlice";
 import { useWindow } from "../../hooks/useWidth";
 import toast from "react-hot-toast";
+import { store } from "../../store/store.js";
 
 const OrderSummary = () => {
-  const { items, promoDiscount, promoCode, promoError } = useSelector(
+  const { items, promoDiscount, promoCode } = useSelector(
     (state) => state.cart,
   );
 
@@ -23,14 +24,6 @@ const OrderSummary = () => {
   const shipping = itemsTotal > 0 ? 20 : 0;
 
   const total = itemsTotal + gst + shipping - promoDiscount;
-
-  useEffect(() => {
-    if (promoError) {
-      toast.error(promoError);
-    } else if (promoDiscount > 0) {
-      toast.success("Coupon applied successfully 🎉");
-    }
-  }, [promoError, promoDiscount]);
 
   return (
     <>
@@ -93,17 +86,25 @@ const OrderSummary = () => {
                     }
 
                     dispatch(applyPromo(coupon));
+
+                    // Read updated state AFTER dispatch (from store)
+                    const { promoError } = store.getState().cart;
+
+                    if (promoError) {
+                      toast.error(promoError);
+                    } else {
+                      toast.success("Coupon applied successfully 🎉");
+                    }
                   }}
                 >
                   Apply
                 </button>
               ) : (
                 <button
-                  className="bg-red-500 hover:bg-red-600 transition text-white font-semibold px-6 py-3 cursor-pointer w-fit"
+                  className="bg-red-600 hover:bg-red-700 transition text-white font-semibold px-6 py-3 cursor-pointer w-fit disabled:opacity-50 disabled:cursor-not-allowed"
                   onClick={() => {
-                    dispatch(removePromo());
                     setCoupon("");
-                    // toast.info("Coupon removed");
+                    dispatch(removePromo());
                   }}
                 >
                   Remove
