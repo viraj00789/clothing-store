@@ -15,14 +15,13 @@ export default function VerifyCode() {
 
   const [errors, setErrors] = useState({});
 
-  // Safe one-time OTP generation – initializer runs only once (even in StrictMode)
   const generatedOtp = useState(() => {
     if (!location.state?.fromForgot) return null;
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     console.log("Generated OTP:", otp);
     return otp;
-  })[0]; // we only need the value, not the setter
+  })[0];
 
   useEffect(() => {
     if (!location.state?.fromForgot) {
