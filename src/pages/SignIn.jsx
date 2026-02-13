@@ -11,6 +11,7 @@ import Password from "../assets/Icons/LRF/password.svg";
 import { FaEye } from "react-icons/fa";
 import { RiEyeCloseLine } from "react-icons/ri";
 import { getItem, setItem } from "../utils/localStorage";
+import toast from "react-hot-toast";
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ export default function SignIn() {
     const savedUser = getItem("user");
 
     if (!savedUser) {
-      setLoginError("No account found. Please register first.");
+      toast.error("No account found. Please register first.");
       return;
     }
 
@@ -74,7 +75,7 @@ export default function SignIn() {
       savedUser.password === formData.password;
 
     if (!isMatch) {
-      setLoginError("Invalid email/phone or password");
+      toast.error("Invalid email/phone or password");
       return;
     }
 
@@ -101,7 +102,7 @@ export default function SignIn() {
               className="mb-6.5"
               loading="lazy"
             />
-            <p className="leading-6 text-dark-blue font-bold text-lg">
+            <p className="leading-6 text-light-blue-dark font-bold text-lg">
               Welcome back to E-Com!
             </p>
             <p className="mt-2 leading-6 text-dark-gray font-bold text-lg">

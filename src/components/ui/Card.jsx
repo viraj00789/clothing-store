@@ -1,8 +1,13 @@
+import { useNavigate } from "react-router";
 import star from "../../assets/black-star.svg";
 
 const ProductCard = ({ product, showWishlistIcon }) => {
+  const navigate = useNavigate();
   return (
-    <div className="w-full min-h-full py-px px-px cursor-pointer rounded-[10px]">
+    <div
+      className="w-full min-h-full py-px px-px cursor-pointer rounded-[10px]"
+      onClick={() => navigate(`/${product.link}`)}
+    >
       <div className="shadow-sm bg-white rounded-[10px]">
         {showWishlistIcon}
 

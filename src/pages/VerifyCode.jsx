@@ -1,28 +1,46 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import Logo from "../assets/clothing.png";
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
-import User from "../assets/Icons/Home/GrayIcons/home-user.svg";
+import toast from "react-hot-toast";
 
 export default function VerifyCode() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [formData, setFormData] = useState({
-    email: "",
+    otp: "",
   });
 
   const [errors, setErrors] = useState({});
 
+  // Safe one-time OTP generation – initializer runs only once (even in StrictMode)
+  const generatedOtp = useState(() => {
+    if (!location.state?.fromForgot) return null;
+
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    console.log("Generated OTP:", otp);
+    return otp;
+  })[0]; // we only need the value, not the setter
+
+  useEffect(() => {
+    if (!location.state?.fromForgot) {
+      toast.error("Unauthorized access to verification page");
+      navigate("/forgot-password");
+    }
+  }, [navigate, location.state?.fromForgot]);
+
   const validate = () => {
     const newErrors = {};
-
-    const value = formData.email.trim();
+    const value = formData.otp.trim();
 
     if (!value) {
-      newErrors.email = "Code is required.";
-    } else if (!/^\d{5}$/.test(value)) {
-      newErrors.email = "Enter a valid 5-digit verification code.";
+      newErrors.otp = "OTP is required.";
+    } else if (!/^\d{6}$/.test(value)) {
+      newErrors.otp = "Enter a valid 6-digit OTP.";
+    } else if (value !== generatedOtp) {
+      newErrors.otp = "Invalid OTP";
     }
 
     setErrors(newErrors);
@@ -32,9 +50,13 @@ export default function VerifyCode() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!validate()) return;
+    if (!validate()) {
+      toast.error("Invalid OTP");
+      return;
+    }
 
-    navigate("/");
+    toast.success("OTP verified successfully");
+    navigate("/new-password", { state: { fromVerify: true } });
   };
 
   return (
@@ -43,38 +65,37 @@ export default function VerifyCode() {
       <div className="flex items-center justify-center px-6 py-12">
         <div className="w-full max-w-[347px]">
           <div className="text-center flex items-center flex-col mb-10">
-            {/* Need to Remove */}
             <img
               src={Logo}
-              alt="Passbook Logo"
+              alt="Logo"
               width={72}
               height={72}
               className="mb-6.5"
               loading="lazy"
             />
-            <p className="leading-6 text-light-blue font-bold text-lg">
+            <p className="leading-6 text-light-blue-dark font-bold text-lg">
               Enter Verification Code
             </p>
             <p className="mt-2 leading-6 text-dark-gray font-normal text-sm">
-              <span className="text-red-500">*</span> We will send you a message
-              to set or reset your new password
+              <span className="text-red-500">*</span> Enter the 6-digit OTP sent
+              to you
             </p>
           </div>
 
           <form className="space-y-2" onSubmit={handleSubmit} noValidate>
             <Input
-              id="email"
-              name="email"
+              id="otp"
+              name="otp"
               type="text"
               inputMode="numeric"
-              placeholder="Enter OTP here"
-              value={formData.email}
+              placeholder="Enter 6-digit OTP"
+              value={formData.otp}
               onChange={(e) => {
-                setFormData({ ...formData, email: e.target.value });
-                setErrors((prev) => ({ ...prev, email: undefined }));
+                setFormData({ otp: e.target.value });
+                setErrors((prev) => ({ ...prev, otp: undefined }));
               }}
-              error={errors.email}
-              maxLength={5} // (HTML ignores this for number, but your validation still protects)
+              error={errors.otp}
+              maxLength={6}
               required
             />
 
@@ -91,7 +112,7 @@ export default function VerifyCode() {
       {/* RIGHT SIDE */}
       <div className="hidden lg:block">
         <img
-          src="https://plus.unsplash.com/premium_photo-1669704098750-7cd22c35422b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1vZGVsc3xlbnwwfHwwfHx8MA%3D%3D"
+          src="https://plus.unsplash.com/premium_photo-1669704098750-7cd22c35422b?w=500&auto=format&fit=crop&q=60"
           alt="Hero"
           className="object-cover h-screen w-full"
           loading="lazy"

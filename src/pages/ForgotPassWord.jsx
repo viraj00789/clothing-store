@@ -4,6 +4,8 @@ import Logo from "../assets/clothing.png";
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
 import User from "../assets/Icons/Home/GrayIcons/home-user.svg";
+import { getItem } from "../utils/localStorage";
+import toast from "react-hot-toast";
 
 export default function ForgotPassword() {
   const navigate = useNavigate();
@@ -13,6 +15,8 @@ export default function ForgotPassword() {
   });
 
   const [errors, setErrors] = useState({});
+  const emailFromStorage = getItem("user")?.email;
+  console.log("🚀 ~ ForgotPassword ~ emailFromStorage:", emailFromStorage);
 
   const validate = () => {
     const newErrors = {};
@@ -39,7 +43,15 @@ export default function ForgotPassword() {
 
     if (!validate()) return;
 
-    navigate("/");
+    if (emailFromStorage === formData.email) {
+      navigate("/verify-code", { state: { fromForgot: true } });
+    } else {
+      toast.error("Enter the registered Email/Phone number");
+      return;
+    }
+
+    setFormData({ email: "" });
+    toast.success("Email/Phone number verified successfully");
   };
 
   return (
@@ -56,7 +68,7 @@ export default function ForgotPassword() {
               className="mb-6.5"
               loading="lazy"
             />
-            <p className="leading-6 text-light-blue font-bold text-lg">
+            <p className="leading-6 text-dark-blue font-bold text-lg">
               Forgot Password
             </p>
             <p className="mt-2 leading-6 text-dark-gray font-normal text-sm">

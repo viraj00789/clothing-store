@@ -29,11 +29,11 @@ export const authRoutes = [
     element: <SignUp />,
   },
   {
-    path: "forgot-password",
+    path: "/forgot-password",
     element: <ForgotPassword />,
   },
   {
-    path: "verify-code",
+    path: "/verify-code",
     element: <VerifyCode />,
   },
   {

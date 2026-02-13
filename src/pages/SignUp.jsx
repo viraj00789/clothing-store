@@ -99,7 +99,7 @@ export default function SignUp() {
               className="mb-6.5"
               loading="lazy"
             />
-            <p className="leading-6 text-dark-blue font-bold text-lg">
+            <p className="leading-6 text-light-blue-dark font-bold text-lg">
               Welcome back to E-Com!
             </p>
             <p className="mt-2 leading-6 text-dark-gray font-bold text-lg">

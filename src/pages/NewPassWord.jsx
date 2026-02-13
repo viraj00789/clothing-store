@@ -1,22 +1,33 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import Logo from "../assets/clothing.png";
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
 import PasswordIcon from "../assets/Icons/LRF/password.svg";
 import { FaEye } from "react-icons/fa";
 import { RiEyeCloseLine } from "react-icons/ri";
+import toast from "react-hot-toast";
+import { getItem, setItem } from "../utils/localStorage"; // adjust path if needed
 
 export default function NewPassword() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [formData, setFormData] = useState({
     password: "",
     confirmPassword: "",
   });
-  const [showPassword, setShowPassword] = useState(false);
 
+  const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
+
+  // 🔒 Protect route: must come from verify page
+  useEffect(() => {
+    if (!location.state?.fromVerify) {
+      toast.error("Unauthorized access ❌");
+      navigate("/forgot-password");
+    }
+  }, [location.state, navigate]);
 
   const validate = () => {
     const newErrors = {};
@@ -40,7 +51,29 @@ export default function NewPassword() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!validate()) return;
+    if (!validate()) {
+      toast.error("Please fix the errors ❌");
+      return;
+    }
+
+    // 💾 Get user from localStorage
+    const user = getItem("user");
+
+    if (!user) {
+      toast.error("User not found ❌");
+      navigate("/");
+      return;
+    }
+
+    // ✅ Update password
+    const updatedUser = {
+      ...user,
+      password: formData.password,
+    };
+
+    setItem("user", updatedUser);
+
+    toast.success("Password updated successfully ✅");
 
     navigate("/");
   };
@@ -51,16 +84,15 @@ export default function NewPassword() {
       <div className="flex items-center justify-center px-6 py-12">
         <div className="w-full max-w-[347px]">
           <div className="text-center flex items-center flex-col mb-10">
-            {/* Need to Remove */}
             <img
               src={Logo}
-              alt="Passbook Logo"
+              alt="Logo"
               width={72}
               height={72}
               className="mb-6.5"
               loading="lazy"
             />
-            <p className="leading-6 text-light-blue font-bold text-lg">
+            <p className="leading-6 text-light-blue-dark font-bold text-lg">
               New Password
             </p>
             <p className="mt-2 leading-6 text-dark-gray font-normal text-sm">
@@ -82,7 +114,14 @@ export default function NewPassword() {
                 }}
                 error={errors.password}
                 required
-                icon={<img src={PasswordIcon} alt="password" width={18} loading="lazy"/>}
+                icon={
+                  <img
+                    src={PasswordIcon}
+                    alt="password"
+                    width={18}
+                    loading="lazy"
+                  />
+                }
               />
 
               <button
@@ -90,11 +129,7 @@ export default function NewPassword() {
                 className="absolute top-1/2 right-4 -translate-y-1/2 text-dark-gray"
                 onClick={() => setShowPassword((prev) => !prev)}
               >
-                {showPassword ? (
-                  <FaEye className="cursor-pointer text-dark-gray" />
-                ) : (
-                  <RiEyeCloseLine className="cursor-pointer text-dark-gray" />
-                )}
+                {showPassword ? <FaEye /> : <RiEyeCloseLine />}
               </button>
             </div>
 
@@ -110,12 +145,19 @@ export default function NewPassword() {
               }}
               error={errors.confirmPassword}
               required
-              icon={<img src={PasswordIcon} alt="password" width={18} loading="lazy"/>}
+              icon={
+                <img
+                  src={PasswordIcon}
+                  alt="password"
+                  width={18}
+                  loading="lazy"
+                />
+              }
             />
 
             <Button
               buttonType="submit"
-              title="Send Verification"
+              title="Update Password"
               className="w-full bg-primary text-gray-900 font-bold"
               buttonPadding="p-3.5 mt-7"
             />
@@ -126,7 +168,7 @@ export default function NewPassword() {
       {/* RIGHT SIDE */}
       <div className="hidden lg:block">
         <img
-          src="https://plus.unsplash.com/premium_photo-1669704098750-7cd22c35422b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1vZGVsc3xlbnwwfHwwfHx8MA%3D%3D"
+          src="https://plus.unsplash.com/premium_photo-1669704098750-7cd22c35422b?w=500&auto=format&fit=crop&q=60"
           alt="Hero"
           className="object-cover h-screen w-full"
           loading="lazy"
