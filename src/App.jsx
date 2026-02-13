@@ -4,10 +4,12 @@ import ProtectedRoute from "./routes/ProtectedRoutes";
 import MainLayout from "./layout/MainLayout";
 import AuthLayout from "./layout/AuthLayout";
 import ScrollToTop from "./hooks/scrollToTop";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       <BrowserRouter>
         <ScrollToTop />
         <Routes>

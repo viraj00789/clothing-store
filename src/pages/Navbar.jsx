@@ -17,6 +17,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { isAuthenticatedFromStorage } from "../utils/Auth";
 import { navItems, navLinks } from "../../data/NavbarData";
+import { clearCart } from "../store/slices/cartSlice";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -38,6 +39,7 @@ const Navbar = () => {
   const currentItem = routeMap[currentPath];
 
   const currentTitle = currentItem?.label || "";
+  const { items } = useSelector((state) => state.cart);
 
   const closeSlider = useEffectEvent(() => {
     setOpen(false);
@@ -73,7 +75,10 @@ const Navbar = () => {
           <div className="flex items-center gap-2 lg:hidden">
             {/* Back button (not on home) */}
             {!isHome && (
-              <button onClick={() => navigate(-1)} className="p-1 cursor-pointer">
+              <button
+                onClick={() => navigate(-1)}
+                className="p-1 cursor-pointer"
+              >
                 <IoArrowBack className="w-6 h-6 cursor-pointer" />
               </button>
             )}
@@ -219,12 +224,39 @@ const Navbar = () => {
                 )}
               </div>
 
-              <img
-                src={Cart}
-                alt="logo"
-                loading="lazy"
-                className="w-[29px] h-[29px] cursor-pointer"
-              />
+              <div className="relative cursor-pointer">
+                <img
+                  onClick={() => {
+                    if (!isAuthenticated) {
+                      navigate("/sign-in");
+                      return;
+                    }
+                    navigate("/cart");
+                  }}
+                  src={Cart}
+                  alt="logo"
+                  loading="lazy"
+                  className="w-[29px] h-[29px] cursor-pointer"
+                />
+
+                {items.length > 0 && (
+                  <span
+                    key={items.length}
+                    className="
+        absolute -top-1.5 -right-1.5
+        min-w-[18px] h-[18px]
+        px-1
+        bg-red-500 text-white text-[11px] font-bold
+        rounded-full
+        flex items-center justify-center
+        animate-[pop_0.3s_ease-out]
+      "
+                  >
+                    {items.length}
+                  </span>
+                )}
+              </div>
+
               {authUser ? (
                 <div className="relative group flex items-center gap-[13px]">
                   <img
@@ -241,6 +273,7 @@ const Navbar = () => {
                       localStorage.removeItem("auth");
                       navigate("/");
                       dispatch(clearWishlist());
+                      dispatch(clearCart());
                     }}
                     className="
           absolute right-0 top-full mt-2
@@ -363,6 +396,7 @@ const Navbar = () => {
                     removeItem("auth");
                     navigate("/");
                     dispatch(clearWishlist());
+                    dispatch(clearCart());
                   }}
                 >
                   Logout
@@ -380,6 +414,7 @@ const Navbar = () => {
         {navItems.map((item) => {
           const isActive = currentPath === item.href;
           const isHeart = item.id === "heart";
+          const isCart = item.id === "cart";
 
           return (
             <Link to={item.href} key={item.id}>
@@ -405,6 +440,22 @@ const Navbar = () => {
             "
                   >
                     {wishlistCount}
+                  </span>
+                )}
+                {isCart && items.length > 0 && (
+                  <span
+                    key={items.length}
+                    className="
+              absolute -top-1 -right-2
+              min-w-[16px] h-[16px]
+              px-1
+              bg-red-500 text-white text-[10px] font-bold
+              rounded-full
+              flex items-center justify-center
+              animate-[pop_0.3s_ease-out]
+            "
+                  >
+                    {items.length}
                   </span>
                 )}
               </button>

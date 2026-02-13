@@ -1,3 +1,4 @@
+import Cart from "../pages/Cart";
 import ForgotPassword from "../pages/ForgotPassWord";
 import Home from "../pages/Home";
 import NewPassword from "../pages/NewPassWord";
@@ -45,5 +46,9 @@ export const protectedRoutes = [
   {
     path: "/wishlist",
     element: <WishList />,
-  }
+  },
+  {
+    path: "/cart",
+    element: <Cart />,
+  },
 ];

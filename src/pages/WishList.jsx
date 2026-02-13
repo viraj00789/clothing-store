@@ -6,11 +6,14 @@ import { useWindow } from "../hooks/useWidth";
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromWishlist } from "../store/slices/wishlistSlice";
 import EmptyWishlist from "../assets/ProductDetails/wishlist.png";
+import { addManyToCart } from "../store/slices/cartSlice";
+import toast from "react-hot-toast";
 
 const WishList = () => {
   const width = useWindow();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.wishlist.items);
+  const wishlistItems = useSelector((state) => state.wishlist.items);
 
   if (products.length === 0) {
     return (
@@ -105,10 +108,18 @@ const WishList = () => {
         )}
         <div className="flex items-center justify-center">
           <Button
+            onClick={() => {
+              if (wishlistItems.length === 0) {
+                toast.error("Wishlist is empty");
+                return;
+              }
+              dispatch(addManyToCart(wishlistItems));
+              toast.success("All items added to cart 🛒");
+            }}
             buttonType="button"
             title="Add all to cart"
             buttonPadding="px-2 lg:px-3 py-3.5"
-            className="max-w-[354px] h-13"
+            className="max-w-[354px] h-13 hover:bg-dark-gray-500!"
           />
         </div>
       </div>

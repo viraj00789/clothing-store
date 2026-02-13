@@ -25,7 +25,9 @@ import {
   addToWishlist,
   removeFromWishlist,
 } from "../store/slices/wishlistSlice";
+import { increaseQty, decreaseQty, addToCart } from "../store/slices/cartSlice";
 import { isAuthenticatedFromStorage } from "../utils/Auth";
+import { FiMinus, FiPlus } from "react-icons/fi";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -41,6 +43,12 @@ const ProductDetails = () => {
   const isInWishlist = wishlistItems.some((p) => p.id === product.id);
   const { isAuthenticated = false } = isAuthenticatedFromStorage();
   const navigate = useNavigate();
+  // Cart States
+  //
+  const cartItems = useSelector((state) => state.cart.items);
+  console.log("🚀 ~ ProductDetails ~ cartItems:", cartItems);
+  const cartItem = cartItems.find((i) => i.id === product.id);
+  const qty = cartItem?.qty || 0;
 
   const handleWishlist = () => {
     if (!isAuthenticated) {
@@ -331,11 +339,45 @@ const ProductDetails = () => {
             <div className="flex w-full gap-4.5">
               {width > 1024 ? (
                 <>
-                  <div className="w-full max-w-full md:max-w-42 h-12 bg-dark-button-blue text-white rounded-10 cursor-pointer flex items-center justify-center hover:bg-blue-900 transition duration-100 ease-in-out">
-                    <button className="font-normal text-lg text-white cursor-pointer ">
-                      Add to bag
-                    </button>
-                  </div>
+                  {qty === 0 ? (
+                    <div
+                      className="w-full max-w-full md:max-w-42 h-12 bg-dark-button-blue text-white rounded-10 cursor-pointer flex items-center justify-center hover:bg-blue-900 transition duration-100 ease-in-out"
+                      onClick={() => {
+                        if (!isAuthenticated) {
+                          navigate("/sign-in");
+                          return;
+                        }
+                        dispatch(addToCart(product));
+                      }}
+                    >
+                      <button className="font-normal text-lg text-white cursor-pointer ">
+                        Add to bag
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex items-center bg-dark-button-blue border-2 border-light-blue rounded-md overflow-hidden w-[150px] h-12">
+                      {/* Minus */}
+                      <button
+                        onClick={() => dispatch(decreaseQty(product.id))}
+                        className="flex-1 h-full flex items-center justify-center text-light-blue-1 hover:bg-light-blue/30 transition cursor-pointer"
+                      >
+                        <FiMinus className="text-white" />
+                      </button>
+
+                      {/* Value */}
+                      <div className="flex-1 h-full flex items-center justify-center text-white font-medium border-l border-r border-light-blue bg-dark-button-blue">
+                        {qty}
+                      </div>
+
+                      {/* Plus */}
+                      <button
+                        onClick={() => dispatch(increaseQty(product.id))}
+                        className="flex-1 h-full flex items-center justify-center text-light-blue-1 hover:bg-light-blue/30 transition cursor-pointer"
+                      >
+                        <FiPlus className="text-white" />
+                      </button>
+                    </div>
+                  )}
                   <div
                     onClick={handleWishlist}
                     className="rounded-10 cursor-pointer flex items-center justify-center gap-[23.23px] group transition-all duration-150"
@@ -353,16 +395,52 @@ const ProductDetails = () => {
               ) : (
                 <div className="flex w-full gap-4">
                   <div className="w-full h-12 bg-dark-button-blue text-white rounded-10 cursor-pointer flex items-center justify-center gap-[23.23px]">
-                    <button className="font-normal text-lg text-white">
-                      Add to bag
-                    </button>
-                    <img
-                      src={WhiteBag}
-                      alt="WishList"
-                      loading="lazy"
-                      width={18}
-                      height={18}
-                    />
+                    {qty === 0 ? (
+                      <>
+                        <button
+                          className="font-normal text-lg text-white"
+                          onClick={() => {
+                            if (!isAuthenticated) {
+                              navigate("/sign-in");
+                              return;
+                            }
+                            dispatch(addToCart(product));
+                          }}
+                        >
+                          Add to bag
+                        </button>
+                        <img
+                          src={WhiteBag}
+                          alt="WishList"
+                          loading="lazy"
+                          width={18}
+                          height={18}
+                        />
+                      </>
+                    ) : (
+                      <div className="flex items-center justify-between rounded-md overflow-hidden w-full lg:w-[120px] h-[40px]">
+                        {/* Minus */}
+                        <button
+                          onClick={() => dispatch(decreaseQty(product.id))}
+                          className="h-full flex items-center justify-center text-white hover:bg-light-blue/30 transition cursor-pointer w-full text-center"
+                        >
+                          <FiMinus size={20} />
+                        </button>
+
+                        {/* Value */}
+                        <div className="h-full flex items-center justify-center text-light-blue font-medium text-center border-l border-r w-full">
+                          {qty}
+                        </div>
+
+                        {/* Plus */}
+                        <button
+                          onClick={() => dispatch(increaseQty(product.id))}
+                          className="h-full flex items-center justify-center text-white hover:bg-light-blue/30 transition cursor-pointer text-center w-full"
+                        >
+                          <FiPlus size={20} />
+                        </button>
+                      </div>
+                    )}
                   </div>
                   <div
                     onClick={handleWishlist}

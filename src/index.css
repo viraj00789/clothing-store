@@ -35,6 +35,8 @@
   --yellowish: #FEFFC1;
   /* Clothes Colors */
   --dark-white: #EAEAEA;
+  --light-blue: #EBF0FF;
+  --light-blue-1: #9098B1;
 }
 
 @theme inline {
@@ -66,6 +68,8 @@
   --color-yellowish: var(--yellowish);
   --color-light-gray-3: var(--light-gray-3);
   --color-dark-white: var(--dark-white);
+  --color-light-blue: var(--light-blue);
+  --color-light-blue-1: var(--light-blue-1);
 }
 
 @theme {

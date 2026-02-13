@@ -17,6 +17,11 @@ import {
   removeFromWishlist,
 } from "../../../store/slices/wishlistSlice";
 import { isAuthenticatedFromStorage } from "../../../utils/Auth";
+import {
+  addToCart,
+  decreaseQty,
+  increaseQty,
+} from "../../../store/slices/cartSlice";
 
 const TrendingSection = () => {
   const width = useWindow();
@@ -28,6 +33,9 @@ const TrendingSection = () => {
 
   const isInWishlist = (id) => wishlistItems.some((item) => item.id === id);
   const { isAuthenticated = false } = isAuthenticatedFromStorage();
+  const cartItems = useSelector((state) => state.cart.items);
+
+  const getCartItem = (id) => cartItems.find((item) => item.id === id);
 
   const toggleLike = (product) => {
     if (!isAuthenticated) {
@@ -39,6 +47,27 @@ const TrendingSection = () => {
     } else {
       dispatch(addToWishlist(product));
     }
+  };
+
+  const handleIncrease = (id, e) => {
+    e.stopPropagation();
+
+    if (!isAuthenticated) {
+      navigate("/sign-in");
+      return;
+    }
+
+    dispatch(increaseQty(id));
+  };
+
+  const handleDecrease = (id, e) => {
+    e.stopPropagation();
+
+    if (!isAuthenticated) {
+      navigate("/sign-in");
+      return;
+    }
+    dispatch(decreaseQty(id));
   };
 
   useEffect(() => {
@@ -203,18 +232,51 @@ const TrendingSection = () => {
                     />
                   </div>
 
-                  <div className="w-full h-9.5 bg-dark-button-blue text-white rounded-10 cursor-pointer flex items-center justify-center gap-[23.23px]">
-                    <button className="font-normal text-sm text-white">
-                      Add to Bag
-                    </button>
-                    <img
-                      src={WhiteBag}
-                      alt="WishList"
-                      loading="lazy"
-                      width={14.88}
-                      height={17}
-                    />
-                  </div>
+                  {getCartItem(product.id) ? (
+                    <div className="w-full h-9.5 bg-dark-button-blue text-white rounded-10 flex items-center justify-center gap-3 px-4">
+                      <button
+                        onClick={(e) => handleDecrease(product.id, e)}
+                        className="text-lg font-bold cursor-pointer w-full text-center"
+                      >
+                        −
+                      </button>
+
+                      <span className="text-sm font-medium p-4 border-l border-r w-full text-center">
+                        {getCartItem(product.id).qty}
+                      </span>
+
+                      <button
+                        onClick={(e) => handleIncrease(product.id, e)}
+                        className="text-lg font-bold cursor-pointer w-full text-center"
+                      >
+                        +
+                      </button>
+                    </div>
+                  ) : (
+                    <div
+                      className="w-full h-9.5 bg-dark-button-blue text-white rounded-10 cursor-pointer flex items-center justify-center gap-[23.23px]"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (!isAuthenticated) {
+                          navigate("/sign-in");
+                          return;
+                        }
+                        dispatch(addToCart(product));
+                      }}
+                    >
+                      <button className="font-normal text-sm text-white cursor-pointer!">
+                        Add to Bag
+                      </button>
+                      <img
+                        src={WhiteBag}
+                        alt="WishList"
+                        loading="lazy"
+                        width={14.88}
+                        height={17}
+                        className="cursor-pointer"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

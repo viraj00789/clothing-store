@@ -11,7 +11,7 @@ const Button = ({
       type={buttonType}
       onClick={onClick}
       disabled={disabled}
-      className={`inline-flex items-center justify-center rounded-md text-md font-bold transition cursor-pointer bg-dark-blue hover:bg-light-blue text-white w-full ${buttonPadding} ${className}`}
+      className={`inline-flex items-center justify-center rounded-md text-md font-bold transition cursor-pointer bg-dark-blue hover:bg-dark-gray-500 text-white w-full ${buttonPadding} ${className}`}
     >
       {title}
     </button>
