@@ -92,7 +92,7 @@ const HomePageSlider = () => {
                 className="w-full lg:w-1/2 h-full bg-cover bg-center flex items-center justify-center"
                 style={{ backgroundImage: `url(${background1})` }}
               >
-                <div className="flex flex-col items-center gap-10 lg:gap-[66px]">
+                <div className="flex flex-col items-center gap-10 lg:gap-[34px]">
                   <div>
                     <img
                       src={slide.brand}

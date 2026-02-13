@@ -62,7 +62,7 @@ const DealsForDays = () => {
         Deals of the Day
       </h3>
 
-      <Swiper spaceBetween={width > 1025 ? 71 : 18} slidesPerView="auto">
+      <Swiper spaceBetween={width > 1025 ? 25 : 18} slidesPerView="auto">
         {products.map((product) => (
           <SwiperSlide
             key={product.id}
