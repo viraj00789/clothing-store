@@ -4,6 +4,7 @@ import { useWindow } from "../../../hooks/useWidth";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import { useNavigate } from "react-router";
 
 const products = [
   {
@@ -13,6 +14,7 @@ const products = [
     title: "Women's Denim Jacket",
     brand: "Levi's",
     price: 700,
+    link: "/product/1",
   },
   {
     id: 2,
@@ -21,6 +23,7 @@ const products = [
     title: "Men's Leather Jacket",
     brand: "Zara",
     price: 1200,
+    link: "/product/2",
   },
   {
     id: 3,
@@ -29,6 +32,7 @@ const products = [
     title: "Summer Dress",
     brand: "H&M",
     price: 900,
+    link: "/product/3",
   },
   {
     id: 4,
@@ -37,6 +41,7 @@ const products = [
     title: "Casual T-Shirt",
     brand: "Nike",
     price: 500,
+    link: "/product/4",
   },
   {
     id: 5,
@@ -45,10 +50,12 @@ const products = [
     title: "Formal Shirt",
     brand: "Adidas",
     price: 650,
+    link: "/product/5",
   },
 ];
 const DealsForDays = () => {
   const width = useWindow();
+  const navigate = useNavigate();
   return (
     <div className="px-3.75 xl:px-12.5 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[85px] rounded-[10px]">
       <h3 className="text-light-black font-bold text-2xl lg:text-4xl">
@@ -59,7 +66,8 @@ const DealsForDays = () => {
         {products.map((product) => (
           <SwiperSlide
             key={product.id}
-            className="!w-[215px] md:!w-[490px] pl-px pb-px cursor-grab rouneded-10"
+            className="!w-[215px] md:!w-[490px] pl-px pb-px cursor-pointer rouneded-10"
+            onClick={() => navigate(product.link)}
           >
             <div className="rounded-b-[10px] overflow-hidden shadow-sm bg-white">
               <img

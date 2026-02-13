@@ -11,9 +11,11 @@ import {
   FashionSidesMobile,
 } from "../../../../../data/FashionSlidesData";
 import { useWindow } from "../../../../hooks/useWidth";
+import { useNavigate } from "react-router";
 
 const FashionSlider = () => {
   const width = useWindow();
+  const navigate = useNavigate();
   return (
     <>
       <Swiper
@@ -70,7 +72,10 @@ const FashionSlider = () => {
                           {slide.title2}
                         </p>
                       </div>
-                      <button className="border-2 border-white lg:border-mid-gray py-1.5 px-[31px] lg:py-2.75 lg:px-5.25 rounded-[10px] cursor-pointer font-normal text-xl lg:text-2xl text-white">
+                      <button
+                        className="border-2 border-white lg:border-mid-gray py-1.5 px-[31px] lg:py-2.75 lg:px-5.25 rounded-[10px] cursor-pointer font-normal text-xl lg:text-2xl text-white"
+                        onClick={() => navigate(slide.link)}
+                      >
                         {slide.button}
                       </button>
                     </div>

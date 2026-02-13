@@ -8,6 +8,7 @@ export const FashionSides = [
     title2: "50% - 80% off",
     button: "Explore Now",
     backColor: "bg-green-400",
+    link: "/product/3",
   },
   {
     image:
@@ -17,6 +18,7 @@ export const FashionSides = [
     title2: "Up to 60% off",
     button: "Shop Now",
     backColor: "bg-rose-500",
+    link: "/product/13",
   },
   {
     image:
@@ -26,6 +28,7 @@ export const FashionSides = [
     title2: "Fresh Styles 2026",
     button: "Discover",
     backColor: "bg-orange-200",
+    link: "/product/12",
   },
   {
     image:
@@ -35,6 +38,7 @@ export const FashionSides = [
     title2: "Limited Time Only",
     button: "Grab Now",
     backColor: "bg-red-300",
+    link: "/product/16",
   },
 ];
 
@@ -47,6 +51,7 @@ export const FashionSidesMobile = [
     title2: "50% - 80% off",
     button: "Explore",
     backColor: "bg-dark-green",
+    link: "/product/14",
   },
   {
     image:
@@ -56,6 +61,7 @@ export const FashionSidesMobile = [
     title2: "Up to 60% off",
     button: "Shop Now",
     backColor: "bg-rose-500",
+    link: "/product/15",
   },
   {
     image:
@@ -65,6 +71,7 @@ export const FashionSidesMobile = [
     title2: "Fresh Styles 2026",
     button: "Discover",
     backColor: "bg-orange-200",
+    link: "/product/16",
   },
   {
     image:
@@ -74,5 +81,6 @@ export const FashionSidesMobile = [
     title2: "Limited Time Only",
     button: "Grab Now",
     backColor: "bg-red-300",
+    link: "/product/17",
   },
 ];

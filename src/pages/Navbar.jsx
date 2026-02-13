@@ -293,6 +293,7 @@ const Navbar = () => {
                   >
                     Logout
                   </button>
+                  
                 </div>
               ) : (
                 <Link to="/sign-in">

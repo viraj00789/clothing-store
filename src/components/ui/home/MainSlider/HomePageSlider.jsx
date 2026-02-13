@@ -7,6 +7,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import background1 from "../../../../assets/HomeSliderImages/background1.svg";
 import prada from "../../../../assets/HomeSliderImages/prada1.svg";
 import "./HomeSlider.css";
+import { useNavigate } from "react-router";
 
 const slides = [
   {
@@ -16,6 +17,7 @@ const slides = [
     title1: "Big Fashion Festival",
     title2: "50% - 80% off",
     button: "Explore",
+    link: "/product/11",
   },
   {
     image:
@@ -24,6 +26,7 @@ const slides = [
     title1: "Luxury Week Sale",
     title2: "Up to 60% off",
     button: "Shop Now",
+    link: "/product/1",
   },
   {
     image:
@@ -32,6 +35,7 @@ const slides = [
     title1: "New Season Arrivals",
     title2: "Fresh Styles 2026",
     button: "Discover",
+    link: "/product/13",
   },
   {
     image:
@@ -40,6 +44,7 @@ const slides = [
     title1: "Street Style Edit",
     title2: "Trending Now",
     button: "View Collection",
+    link: "/product/15",
   },
   {
     image:
@@ -48,10 +53,12 @@ const slides = [
     title1: "Exclusive Deals",
     title2: "Limited Time Only",
     button: "Grab Now",
+    link: "/product/9",
   },
 ];
 
 const HomePageSlider = () => {
+  const navigate = useNavigate();
   return (
     <div className="slider-wrapper">
       <Swiper
@@ -103,7 +110,12 @@ const HomePageSlider = () => {
                         {slide.title2}
                       </p>
                     </div>
-                    <button className="border border-mid-gray py-1 px-9 rounded-[10px] cursor-pointer font-normal text-xl lg:text-2xl w-fit">
+                    <button
+                      className="border border-mid-gray py-1 px-9 rounded-[10px] cursor-pointer font-normal text-xl lg:text-2xl w-fit"
+                      onClick={() => {
+                        navigate(`/${slide.link}`);
+                      }}
+                    >
                       {slide.button}
                     </button>
                   </div>
