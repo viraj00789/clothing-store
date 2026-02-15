@@ -88,7 +88,7 @@ export default function SignUp() {
   return (
     <div className="w-full h-full flex bg-white">
       {/* LEFT SIDE */}
-      <div className="flex items-start justify-center px-6 py-12 h-[calc(100vh-1px)] overflow-auto w-full">
+      <div className="flex items-center justify-center px-6 py-12 h-[calc(100vh-1px)] overflow-auto w-full">
         <div className="w-full max-w-[343px]">
           <div className="text-center flex items-center flex-col mb-7">
             <img
