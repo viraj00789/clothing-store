@@ -169,18 +169,21 @@ const TrendingSection = () => {
 
                   {/* Bottom right with +2 */}
                   <button
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       setSelectedImages(product.allImages);
                       setOpen(true);
                     }}
                     className="relative rounded-xl bg-cover bg-center overflow-hidden"
                     style={{ backgroundImage: `url(${product.allImages[2]})` }}
                   >
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer">
-                      <span className="text-white text-4xl font-bold">
-                        + {product.allImages.length - 3}
-                      </span>
-                    </div>
+                    {product.allImages.length - 3 > 0 && (
+                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer">
+                        <span className="text-white text-4xl font-bold">
+                          + {product.allImages.length - 3}
+                        </span>
+                      </div>
+                    )}
                   </button>
                 </div>
                 <div className="space-y-1 rounded-b-[10px]">
