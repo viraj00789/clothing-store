@@ -89,9 +89,9 @@ export default function SignIn() {
   };
 
   return (
-    <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-white">
+    <div className="w-full h-full flex bg-white">
       {/* LEFT SIDE */}
-      <div className="flex items-center justify-center px-6 py-12">
+      <div className="flex items-center justify-center px-6 py-12 w-full h-[calc(100vh-1px)] overflow-auto">
         <div className="w-full max-w-[343px]">
           <div className="text-center flex items-center flex-col mb-13">
             <img
@@ -206,7 +206,7 @@ export default function SignIn() {
             />
           </form>
 
-          <div className="flex gap-4.5 mt-11.5 items-center mb-4.5">
+          <div className="flex gap-4.5 mt-5 items-center mb-4.5">
             <p className="h-px w-full bg-light-gray-2"></p>
             <p className="text-sm text-dark-gray font-bold">OR</p>
             <p className="h-px w-full bg-light-gray-2"></p>
@@ -242,7 +242,7 @@ export default function SignIn() {
               />
             </p>
           </div>
-          <div className="text-center mt-15.5">
+          <div className="text-center mt-8">
             <p className=" text-xs font-normal text-dark-gray">
               Don't have an account?{" "}
               <Link to={"/sign-up"}>
@@ -256,11 +256,11 @@ export default function SignIn() {
       </div>
 
       {/* RIGHT SIDE */}
-      <div className="hidden lg:block">
+      <div className="hidden lg:block max-h-screen w-full">
         <img
           src="https://plus.unsplash.com/premium_photo-1669704098750-7cd22c35422b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1vZGVsc3xlbnwwfHwwfHx8MA%3D%3D"
           alt="Hero"
-          className="object-cover h-screen w-full"
+          className="object-cover h-full w-full"
           loading="lazy"
         />
       </div>

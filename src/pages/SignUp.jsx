@@ -86,9 +86,9 @@ export default function SignUp() {
   };
 
   return (
-    <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-white">
+    <div className="w-full h-full flex bg-white">
       {/* LEFT SIDE */}
-      <div className="flex items-center justify-center px-6 py-12">
+      <div className="flex items-start justify-center px-6 py-12 h-[calc(100vh-1px)] overflow-auto w-full">
         <div className="w-full max-w-[343px]">
           <div className="text-center flex items-center flex-col mb-7">
             <img
@@ -212,7 +212,7 @@ export default function SignUp() {
               buttonPadding="p-3.5"
             />
           </form>
-          <div className="flex gap-4.5 mt-8 items-center mb-4.5">
+          <div className="flex gap-4.5 mt-5 items-center mb-4.5">
             <p className="h-px w-full bg-light-gray-2"></p>
             <p className="text-sm text-dark-gray font-bold">OR</p>
             <p className="h-px w-full bg-light-gray-2"></p>
@@ -249,7 +249,7 @@ export default function SignUp() {
             </p>
           </div>
 
-          <div className="text-center mt-15.5">
+          <div className="text-center mt-8">
             <p className="text-xs text-dark-gray">
               Already have an account?{" "}
               <Link to="/sign-in" className="text-light-purple font-bold">
@@ -261,7 +261,7 @@ export default function SignUp() {
       </div>
 
       {/* RIGHT SIDE */}
-      <div className="hidden lg:block">
+      <div className="hidden lg:block w-full">
         <img
           src="https://images.unsplash.com/photo-1520975916090-3105956dac38"
           alt="Hero"

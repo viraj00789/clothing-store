@@ -67,7 +67,7 @@ const Cart = () => {
 
   return (
     <>
-      <div className="w-full flex flex-col px-3 xl:px-10 2xl:px-40 pt-20 lg:pt-30 pb-15 lg:pb-20 space-y-6 xl:space-y-12">
+      <div className="w-full flex flex-col px-3 md:px-25 lg:px-20 xl:px-10 2xl:px-40 pt-20 lg:pt-30 pb-15 lg:pb-20 space-y-6 xl:space-y-12">
         <h1 className="text-xl md:text-2xl lg:text-4xl font-bold ">
           My Cart{" "}
           {cartItems?.length > 0 && (

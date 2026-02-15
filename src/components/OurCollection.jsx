@@ -88,7 +88,7 @@ const OurCollection = () => {
         <div className="flex justify-between w-full gap-[13px]">
           <div
             onClick={() => setLiked(!liked)}
-            className="w-full h-9.5 border border-dark-button-blue rounded-10 cursor-pointer flex items-center justify-center gap-[23.23px] group transition-all duration-150"
+            className="w-full h-9.5 border border-dark-button-blue rounded-10 cursor-pointer flex items-center justify-center gap-3 sm:gap-[23.23px] group transition-all duration-150"
           >
             <button className="font-normal text-sm text-light-black">
               WishList
@@ -104,7 +104,7 @@ const OurCollection = () => {
             />
           </div>
 
-          <div className="w-full h-9.5 bg-dark-button-blue text-white rounded-10 cursor-pointer flex items-center justify-center gap-[23.23px]">
+          <div className="w-full h-9.5 bg-dark-button-blue text-white rounded-10 cursor-pointer flex items-center justify-center gap-3 sm:gap-[23.23px]">
             <button className="font-normal text-sm text-white">
               Add to Bag
             </button>

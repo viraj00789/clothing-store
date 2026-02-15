@@ -5,6 +5,7 @@ import MainLayout from "./layout/MainLayout";
 import AuthLayout from "./layout/AuthLayout";
 import ScrollToTop from "./hooks/scrollToTop";
 import { Toaster } from "react-hot-toast";
+import NotFound from "./pages/NotFoundPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
               ))}
             </Route>
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>

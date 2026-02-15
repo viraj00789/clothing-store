@@ -216,7 +216,7 @@ const TrendingSection = () => {
                       }
                       toggleLike(product);
                     }}
-                    className="w-full h-9.5 border border-dark-button-blue rounded-10 cursor-pointer flex items-center justify-center gap-[23.23px] group transition-all duration-150"
+                    className="w-full h-9.5 border border-dark-button-blue rounded-10 cursor-pointer flex items-center justify-center gap-3 sm:gap-[23.23px] group transition-all duration-150"
                   >
                     <button className="font-normal text-sm text-light-black">
                       WishList
@@ -254,7 +254,7 @@ const TrendingSection = () => {
                     </div>
                   ) : (
                     <div
-                      className="w-full h-9.5 bg-dark-button-blue text-white rounded-10 cursor-pointer flex items-center justify-center gap-[23.23px]"
+                      className="w-full h-9.5 bg-dark-button-blue text-white rounded-10 cursor-pointer flex items-center justify-center gap-3 sm:gap-[23.23px]"
                       onClick={(e) => {
                         e.stopPropagation();
                         if (!isAuthenticated) {

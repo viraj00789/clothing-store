@@ -65,6 +65,30 @@ const Navbar = () => {
     };
   }, []);
 
+  const userMenuItems = [
+    {
+      label: "Profile",
+      to: "/profile",
+      show: (authUser) => !!authUser,
+    },
+    {
+      label: "Forgot Password",
+      to: "/forgot-password",
+      show: (authUser) => !!authUser, // or true if you want always visible
+    },
+    {
+      label: "Logout",
+      action: ({ navigate, dispatch }) => {
+        removeItem("auth");
+        navigate("/");
+        dispatch(clearWishlist());
+        dispatch(clearCart());
+      },
+      danger: true,
+      show: (authUser) => !!authUser,
+    },
+  ];
+
   return (
     <ContainerLayout>
       {/* Sticky navbar */}
@@ -268,32 +292,46 @@ const Navbar = () => {
                   <p className="font-normal text-lg truncate text-mid-dark-gray hidden xl:block">
                     {authUser?.name}
                   </p>
-                  <button
-                    onClick={() => {
-                      localStorage.removeItem("auth");
-                      navigate("/");
-                      dispatch(clearWishlist());
-                      dispatch(clearCart());
-                    }}
+
+                  {/* Dropdown menu */}
+                  <div
                     className="
-          absolute right-0 top-full mt-2
-          opacity-0 invisible
-          group-hover:opacity-100 group-hover:visible
-          transition-all duration-200
-          bg-white border border-gray-200 shadow-md
-          text-sm text-dark-gray font-semibold
-          px-3 py-1.5 rounded-md
-          hover:bg-gray-200
-          z-50
-          whitespace-nowrap
-           w-[150px]
-           text-left
-           cursor-pointer
-        "
+        absolute right-0 top-full mt-2
+        opacity-0 invisible
+        group-hover:opacity-100 group-hover:visible
+        transition-all duration-200
+        bg-white border border-gray-200 shadow-md
+        text-sm font-semibold
+        px-2 py-2 rounded-md
+        z-50
+        whitespace-nowrap
+        w-[180px]
+      "
                   >
-                    Logout
-                  </button>
-                  
+                    {userMenuItems
+                      .filter((item) =>
+                        item.show ? item.show(authUser) : true,
+                      )
+                      .map((item) => (
+                        <button
+                          key={item.label}
+                          onClick={() => {
+                            if (item.to) {
+                              navigate(item.to);
+                            } else if (item.action) {
+                              item.action({ navigate, dispatch });
+                            }
+                          }}
+                          className={`
+              block w-full text-left px-3 py-2 rounded
+              hover:bg-gray-100 cursor-pointer
+              ${item.danger ? "text-red-600" : "text-gray-700"}
+            `}
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                  </div>
                 </div>
               ) : (
                 <Link to="/sign-in">
@@ -389,19 +427,30 @@ const Navbar = () => {
             </div> */}
 
             {/* Mobile logout */}
+            {/* Mobile user menu */}
             {authUser && (
-              <div className="flex items-center gap-4">
-                <p
-                  className="text-gray-700 text-lg cursor-pointer"
-                  onClick={() => {
-                    removeItem("auth");
-                    navigate("/");
-                    dispatch(clearWishlist());
-                    dispatch(clearCart());
-                  }}
-                >
-                  Logout
-                </p>
+              <div className="flex flex-col gap-4 pt-2x">
+                {userMenuItems
+                  .filter((item) => (item.show ? item.show(authUser) : true))
+                  .map((item) => (
+                    <p
+                      key={item.label}
+                      className={`
+            text-lg cursor-pointer
+            ${item.danger ? "text-red-600" : "text-gray-700"}
+          `}
+                      onClick={() => {
+                        setOpen(false); // close mobile menu
+                        if (item.to) {
+                          navigate(item.to);
+                        } else if (item.action) {
+                          item.action({ navigate, dispatch });
+                        }
+                      }}
+                    >
+                      {item.label}
+                    </p>
+                  ))}
               </div>
             )}
           </div>

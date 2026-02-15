@@ -1,6 +1,6 @@
 .swiper-pagination-bullet {
-  @apply w-2.5 h-2.5 bg-gray-400 opacity-100;
+  @apply w-2.5 h-2.5 bg-gray-400 opacity-100 m-0!;
 }
 .swiper-pagination-bullet-active {
-  @apply bg-blue-600;
+  @apply bg-blue-600 m-0!;
 }

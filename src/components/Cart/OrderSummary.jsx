@@ -51,7 +51,7 @@ const OrderSummary = () => {
             </div>
 
             <div className="flex justify-between text-gray-500">
-              <span>GST (5%)</span>
+              <span>GST (2.5%)</span>
               <span className="text-dark-button-blue font-medium">
                 ₹{gst.toFixed(2)}
               </span>

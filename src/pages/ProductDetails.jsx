@@ -379,7 +379,7 @@ const ProductDetails = () => {
                   )}
                   <div
                     onClick={handleWishlist}
-                    className="rounded-10 cursor-pointer flex items-center justify-center gap-[23.23px] group transition-all duration-150"
+                    className="rounded-10 cursor-pointer flex items-center justify-center gap-3 sm:gap-[23.23px] group transition-all duration-150"
                   >
                     <img
                       src={isInWishlist ? PinkHeart : Heart}
@@ -393,35 +393,35 @@ const ProductDetails = () => {
                 </>
               ) : (
                 <div className="flex w-full gap-4">
-                  <div className="w-full h-12 bg-dark-button-blue text-white rounded-10 cursor-pointer flex items-center justify-center gap-[23.23px]">
+                  <div className="w-full h-12 bg-dark-button-blue text-white rounded-10 cursor-pointer flex items-center justify-center gap-3 sm:gap-[23.23px]">
                     {qty === 0 ? (
-                      <>
-                        <button
-                          className="font-normal text-lg text-white"
-                          onClick={() => {
-                            if (!isAuthenticated) {
-                              navigate("/sign-in");
-                              return;
-                            }
-                            dispatch(addToCart(product));
-                          }}
-                        >
+                      <div
+                        onClick={() => {
+                          if (!isAuthenticated) {
+                            navigate("/sign-in");
+                            return;
+                          }
+                          dispatch(addToCart(product));
+                        }}
+                        className="w-full h-full flex items-center justify-center gap-3 sm:gap-[23.23px]"
+                      >
+                        <span className="font-normal text-lg text-white">
                           Add to bag
-                        </button>
+                        </span>
                         <img
                           src={WhiteBag}
-                          alt="WishList"
+                          alt="Bag"
                           loading="lazy"
                           width={18}
                           height={18}
                         />
-                      </>
+                      </div>
                     ) : (
                       <div className="flex items-center justify-between rounded-md overflow-hidden w-full lg:w-[120px] h-[40px]">
                         {/* Minus */}
                         <button
                           onClick={() => dispatch(decreaseQty(product.id))}
-                          className="h-full flex items-center justify-center text-white hover:bg-light-blue/30 transition cursor-pointer w-full text-center"
+                          className="h-full flex items-center justify-center text-white transition cursor-pointer w-full text-center"
                         >
                           <FiMinus size={20} />
                         </button>
@@ -434,7 +434,7 @@ const ProductDetails = () => {
                         {/* Plus */}
                         <button
                           onClick={() => dispatch(increaseQty(product.id))}
-                          className="h-full flex items-center justify-center text-white hover:bg-light-blue/30 transition cursor-pointer text-center w-full"
+                          className="h-full flex items-center justify-center text-white transition cursor-pointer text-center w-full"
                         >
                           <FiPlus size={20} />
                         </button>
@@ -443,7 +443,7 @@ const ProductDetails = () => {
                   </div>
                   <div
                     onClick={handleWishlist}
-                    className="w-full h-12 border border-dark-button-blue rounded-10 cursor-pointer flex items-center justify-center gap-[23.23px] group transition-all duration-15"
+                    className="w-full h-12 border border-dark-button-blue rounded-10 cursor-pointer flex items-center justify-center gap-3 sm:gap-[23.23px] group transition-all duration-15"
                   >
                     <button className="font-normal text-lg text-light-black">
                       WishList
