@@ -12,6 +12,10 @@
   --dark-gray: #848484;
   --footer-input: #ABABAB;
   --size-chart: #BABABA;
+  --mid-gray-1: #6D6D6D;
+  --mid-gray-2: #636363;
+  --mid-gray-3: #939393;
+  --mid-gray-4: #898989;
   --light-blue-dark: #223263;
   --dark-blue: #00398F;
   --dark-button-blue: #002482;
@@ -70,6 +74,10 @@
   --color-dark-white: var(--dark-white);
   --color-light-blue: var(--light-blue);
   --color-light-blue-1: var(--light-blue-1);
+  --color-mid-gray-1: var(--mid-gray-1);
+  --color-mid-gray-2: var(--mid-gray-2);
+  --color-mid-gray-3: var(--mid-gray-3);
+  --color-mid-gray-4: var(--mid-gray-4);
 }
 
 @theme {

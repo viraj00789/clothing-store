@@ -1,4 +1,5 @@
 import Cart from "../pages/Cart";
+import Filters from "../pages/Filters";
 import ForgotPassword from "../pages/ForgotPassWord";
 import Home from "../pages/Home";
 import NewPassword from "../pages/NewPassWord";
@@ -16,6 +17,10 @@ export const publicRoutes = [
   {
     path: "/product/:id",
     element: <ProductDetails />,
+  },
+  {
+    path: "/filters/:category",
+    element: <Filters />,
   },
 ];
 
