@@ -46,7 +46,10 @@ const WishList = () => {
                     <div className="relative">
                       <button
                         className="absolute top-3 right-3 z-1 rounded-full p-2 flex items-center justify-center bg-white shadow"
-                        onClick={() => dispatch(removeFromWishlist(product.id))}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          dispatch(removeFromWishlist(product.id));
+                        }}
                       >
                         <img
                           className="cursor-pointer"
