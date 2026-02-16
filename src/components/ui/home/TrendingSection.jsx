@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useWindow } from "../../../hooks/useWidth";
-import { useEffect, useState } from "react";
+import { useEffect, useEffectEvent, useState } from "react";
 import Heart from "../../../assets/Icons/Home/GrayIcons/home-heart.svg";
 import PinkHeart from "../../../assets/Icons/Home/pink-heart.svg";
 import WhiteBag from "../../../assets/Icons/Home/white-bag.svg";
@@ -81,6 +81,17 @@ const TrendingSection = () => {
       document.body.style.overflow = "auto";
     };
   }, [open]);
+
+  const openEvent = useEffectEvent(() => {
+    setOpen(false);
+  });
+
+  useEffect(() => {
+    if (width > 768) {
+      openEvent();
+    }
+  }, [open,width]);
+
   return (
     <>
       <div className="px-3.75 xl:px-12.5 space-y-3 lg:space-y-[27px] mt-3 lg:mt-[80px]">
