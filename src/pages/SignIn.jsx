@@ -31,20 +31,20 @@ export default function SignIn() {
     const value = formData.email.trim();
 
     if (!value) {
-      newErrors.email = "Email or phone number is required";
+      newErrors.email = "Email or phone number is required.";
     } else {
       const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
       const isPhone = /^[0-9]{10}$/.test(value);
 
       if (!isEmail && !isPhone) {
-        newErrors.email = "Enter a valid email or phone number";
+        newErrors.email = "Enter a valid email or phone number.";
       }
     }
 
     if (!formData.password) {
-      newErrors.password = "Password is required";
+      newErrors.password = "Password is required.";
     } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
+      newErrors.password = "Password must be at least 6 characters.";
     }
 
     setErrors(newErrors);

@@ -23,13 +23,13 @@ export default function ForgotPassword() {
     const value = formData.email.trim();
 
     if (!value) {
-      newErrors.email = "Email or phone number is required";
+      newErrors.email = "Email or phone number is required.";
     } else {
       const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
       const isPhone = /^[0-9]{10}$/.test(value);
 
       if (!isEmail && !isPhone) {
-        newErrors.email = "Enter a valid email or phone number";
+        newErrors.email = "Enter a valid email or phone number.";
       }
     }
 

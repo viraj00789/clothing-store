@@ -25,7 +25,7 @@ export default function VerifyCode() {
 
   useEffect(() => {
     if (!location.state?.fromForgot) {
-      toast.error("Unauthorized access to verification page");
+      toast.error("Unauthorized access to verification page.");
       navigate("/forgot-password");
     }
   }, [navigate, location.state?.fromForgot]);
@@ -54,7 +54,7 @@ export default function VerifyCode() {
       return;
     }
 
-    toast.success("OTP verified successfully");
+    toast.success("OTP verified successfully.");
     navigate("/new-password", { state: { fromVerify: true } });
   };
 

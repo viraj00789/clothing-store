@@ -52,7 +52,7 @@ export default function NewPassword() {
     e.preventDefault();
 
     if (!validate()) {
-      toast.error("Please fix the errors ❌");
+      toast.error("Please fix the errors.");
       return;
     }
 
@@ -60,7 +60,7 @@ export default function NewPassword() {
     const user = getItem("user");
 
     if (!user) {
-      toast.error("User not found ❌");
+      toast.error("User not found.");
       navigate("/");
       return;
     }
@@ -73,7 +73,7 @@ export default function NewPassword() {
 
     setItem("user", updatedUser);
 
-    toast.success("Password updated successfully ✅");
+    toast.success("Password updated successfully.");
 
     navigate("/");
   };

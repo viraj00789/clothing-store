@@ -38,31 +38,31 @@ export default function SignUp() {
     const newErrors = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
+      newErrors.name = "Name is required.";
     }
 
     const value = formData.email.trim();
     if (!value) {
-      newErrors.email = "Email or phone number is required";
+      newErrors.email = "Email or phone number is required.";
     } else {
       const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
       const isPhone = /^[0-9]{10}$/.test(value);
 
       if (!isEmail && !isPhone) {
-        newErrors.email = "Enter a valid email or phone number";
+        newErrors.email = "Enter a valid email or phone number.";
       }
     }
 
     if (!formData.password) {
-      newErrors.password = "Password is required";
+      newErrors.password = "Password is required.";
     } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
+      newErrors.password = "Password must be at least 6 characters.";
     }
 
     if (!formData.confirmPassword) {
-      newErrors.confirmPassword = "Confirm password is required";
+      newErrors.confirmPassword = "Confirm password is required.";
     } else if (formData.confirmPassword !== formData.password) {
-      newErrors.confirmPassword = "Passwords do not match";
+      newErrors.confirmPassword = "Passwords do not match.";
     }
 
     setErrors(newErrors);
