@@ -9,6 +9,8 @@ import Filter from "../assets/Icons/Filters/filters.svg";
 import DownArrow from "../assets/Icons/Filters/down-arrow.svg";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
+import { useWindow } from "../hooks/useWidth";
+import { LiaFilterSolid } from "react-icons/lia";
 
 const Filters = () => {
   const { category } = useParams();
@@ -18,7 +20,9 @@ const Filters = () => {
   const [selectedColors, setSelectedColors] = useState([]);
   const [selectedDiscount, setSelectedDiscount] = useState([]);
   const [sortBy, setSortBy] = useState("");
-  const [showSideBar, setShowSideBar] = useState(true);
+  const [showSideBar, setShowSideBar] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const width = useWindow();
 
   const formattedCategory =
     category.charAt(0).toUpperCase() + category.slice(1);
@@ -46,7 +50,6 @@ const Filters = () => {
       return priceMatch && brandMatch && colorMatch && discountMatch;
     });
 
-    // SORTING
     if (sortBy === "low-high") {
       filtered.sort((a, b) => a.price - b.price);
     } else if (sortBy === "high-low") {
@@ -80,104 +83,212 @@ const Filters = () => {
     clearFiltersEvent();
   }, [category]);
 
+  // Lock scroll when drawer open
+  useEffect(() => {
+    if (showSideBar && width < 1024) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [showSideBar, width]);
+
   return (
     <ContainerLayout>
-      <div className="flex gap-6 px-6 py-6 bg-gray-50 min-h-screen pt-30">
-        <div
-          className={`
-    transition-all duration-200.12 ease
-    ${showSideBar ? "w-115 opacity-100" : "w-0 opacity-0"}
-  `}
-        >
-          <FiltersSidebar
-            products={categoryProducts}
-            priceRange={priceRange}
-            setPriceRange={setPriceRange}
-            selectedBrands={selectedBrands}
-            setSelectedBrands={setSelectedBrands}
-            selectedColors={selectedColors}
-            setSelectedColors={setSelectedColors}
-            selectedDiscount={selectedDiscount}
-            setSelectedDiscount={setSelectedDiscount}
-            clearFilters={clearFilters}
-          />
-        </div>
+      <div className="flex gap-3.75 lg:gap-6 px-3 lg:px-6 py-6 bg-gray-50 min-h-screen pt-20 lg:pt-30">
+        {/* DESKTOP SIDEBAR (Inset Layout ≥1024) */}
+        {width >= 1024 && !showSideBar && (
+          <div className="w-78 xl:w-115">
+            <FiltersSidebar
+              products={categoryProducts}
+              priceRange={priceRange}
+              setPriceRange={setPriceRange}
+              selectedBrands={selectedBrands}
+              setSelectedBrands={setSelectedBrands}
+              selectedColors={selectedColors}
+              setSelectedColors={setSelectedColors}
+              selectedDiscount={selectedDiscount}
+              setSelectedDiscount={setSelectedDiscount}
+              clearFilters={clearFilters}
+            />
+          </div>
+        )}
 
-        <div className="flex-1">
+        {/* MAIN CONTENT */}
+        <div className="flex-1 w-full">
           <div className="flex w-full items-center justify-between mb-5">
-            <h2 className="text-2xl font-semibold capitalize">
+            <h2 className="text-lg xl:text-2xl font-semibold capitalize max-w-full truncate whitespace-nowrap">
               {category} Products
             </h2>
-            {/* SORT SECTION */}
-            <div className="flex items-center gap-4 xl:gap-11">
+
+            <div className="flex items-center gap-1.5 md:gap-4">
+              {/* FILTER BUTTON (ALL SCREENS) */}
               <div
-                className="flex items-center justify-center gap-3.5 cursor-pointer"
-                onClick={() => setShowSideBar(!showSideBar)}
+                className="flex items-center gap-2 cursor-pointer"
+                onClick={() => setShowSideBar((prev) => !prev)}
               >
-                <p className="font-bold text-light-black text-2xl">Filters</p>
-                <div>
-                  <img src={Filter} alt="filter" loading="lazy" />
-                </div>
+                <p className="font-bold text-sm md:text-lg xl:text-2xl">
+                  Filters
+                </p>
+                {width >= 1024 ? (
+                  <>
+                    <img src={Filter} alt="filter" width={18} height={18} />
+                  </>
+                ) : (
+                  <LiaFilterSolid size={22} className="cursor-pointer" />
+                )}
               </div>
 
-              <div className="flex items-center justify-end relative">
-                <div className="relative inline-block">
-                  <select
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value)}
-                    className="border rounded-lg px-4 py-2 bg-white shadow-sm 
-               focus:outline-none appearance-none 
-               font-semibold text-gray-700 pr-10
-               w-auto min-w-[180px] cursor-pointer"
-                  >
-                    <option value="" disabled hidden>
-                      Sort By
-                    </option>
-                    <option value="popularity">Popularity</option>
-                    <option value="low-high">Price - Low to High</option>
-                    <option value="high-low">Price - High to Low</option>
-                    <option value="newest">Newest</option>
-                  </select>
+              {/* SORT */}
+              <div className="relative">
+                <button
+                  onClick={() => setIsOpen((prev) => !prev)}
+                  className="px-4 py-2 flex justify-between items-center gap-2 font-semibold text-light-black cursor-pointer! text-sm md:text-lg xl:text-2xl whitespace-nowrap"
+                >
+                  {sortBy
+                    ? sortBy === "popularity"
+                      ? "Popularity"
+                      : sortBy === "low-high"
+                        ? "Price - Low to High"
+                        : sortBy === "high-low"
+                          ? "Price - High to Low"
+                          : "Newest"
+                    : "Sort By"}
 
-                  <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-                    <img
-                      src={DownArrow}
-                      alt="dropdown arrow"
-                      className="w-4 h-4"
-                    />
+                  <img
+                    src={DownArrow}
+                    alt="dropdown arrow"
+                    className={`w-3 h-3 transition-transform duration-200 mr-2 md:mr-0 ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
+                    loading="lazy"
+                  />
+                </button>
+
+                {isOpen && (
+                  <div className="absolute z-5 -left-12 mt-2 bg-white shadow-lg rounded-lg overflow-hidden cursor-pointer">
+                    <button
+                      onClick={() => {
+                        setSortBy("popularity");
+                        setIsOpen(false);
+                      }}
+                      className={`w-full text-left text-sm px-4 py-3 font-medium hover:bg-blue-50 cursor-pointer ${
+                        sortBy === "popularity"
+                          ? "bg-blue-100 text-blue-700"
+                          : "text-light-black"
+                      }`}
+                    >
+                      Popularity
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setSortBy("low-high");
+                        setIsOpen(false);
+                      }}
+                      className={`w-full text-left text-sm px-4 py-3 font-medium hover:bg-blue-50 cursor-pointer ${
+                        sortBy === "low-high"
+                          ? "bg-blue-100 text-blue-700"
+                          : "text-gray-700"
+                      }`}
+                    >
+                      Price - Low to High
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setSortBy("high-low");
+                        setIsOpen(false);
+                      }}
+                      className={`w-full text-left text-sm px-4 py-3 font-medium hover:bg-blue-50 cursor-pointer ${
+                        sortBy === "high-low"
+                          ? "bg-blue-100 text-blue-700"
+                          : "text-gray-700"
+                      }`}
+                    >
+                      Price - High to Low
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setSortBy("newest");
+                        setIsOpen(false);
+                      }}
+                      className={`w-full text-left text-sm px-4 py-3 font-medium hover:bg-blue-50 cursor-pointer ${
+                        sortBy === "newest"
+                          ? "bg-blue-100 text-blue-700"
+                          : "text-gray-700"
+                      }`}
+                    >
+                      Newest
+                    </button>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
 
+          {/* PRODUCT GRID */}
           <motion.div
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+            // layout
+            className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 lg:gap-6 items-stretch"
           >
             <AnimatePresence>
               {filteredProducts.map((product) => (
                 <motion.div
                   key={product.id}
                   layout
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 1, y: 0, x: 0 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <ProductCard product={product} />
                 </motion.div>
               ))}
             </AnimatePresence>
           </motion.div>
-
-          {filteredProducts.length === 0 && (
-            <div className="text-center text-gray-500 mt-10">
-              No products found.
-            </div>
-          )}
         </div>
       </div>
+
+      {/* DRAWER FOR <1024 */}
+      <AnimatePresence>
+        {showSideBar && width < 1024 && (
+          <>
+            {/* Overlay */}
+            <motion.div
+              className="fixed inset-0 bg-black/40 z-40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowSideBar(false)}
+            />
+
+            {/* Drawer */}
+            <motion.div
+              className={`fixed top-0 left-0 h-full bg-white z-50 overflow-y-auto
+              ${width < 768 ? "w-full" : "w-96"}`}
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ duration: 0.3 }}
+            >
+              <FiltersSidebar
+                products={categoryProducts}
+                priceRange={priceRange}
+                setPriceRange={setPriceRange}
+                selectedBrands={selectedBrands}
+                setSelectedBrands={setSelectedBrands}
+                selectedColors={selectedColors}
+                setSelectedColors={setSelectedColors}
+                selectedDiscount={selectedDiscount}
+                setSelectedDiscount={setSelectedDiscount}
+                clearFilters={clearFilters}
+                onClose={() => setShowSideBar(false)}
+              />
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </ContainerLayout>
   );
 };

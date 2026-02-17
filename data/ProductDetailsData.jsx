@@ -324,7 +324,7 @@ export const products = [
     id: 16,
     image: "https://m.media-amazon.com/images/I/416vnslKWxL._AC_UY1100_.jpg",
     title: "Blouse",
-    brand: "",
+    brand: "Westside",
     rating: 4.2,
     price: 550,
     oldPrice: 900,

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Range, getTrackBackground } from "react-range";
 import { FiChevronDown } from "react-icons/fi";
 import CustomCheckbox from "../ui/CheckBox";
+import { useWindow } from "../../hooks/useWidth";
 
 const STEP = 100;
 const MIN = 0;
@@ -18,9 +19,11 @@ const FiltersSidebar = ({
   selectedDiscount,
   setSelectedDiscount,
   clearFilters,
+  onClose,
 }) => {
   const [showAllBrands, setShowAllBrands] = useState(false);
   const [showAllColors, setShowAllColors] = useState(false);
+  const width = useWindow();
 
   const brands = [...new Set(products.map((p) => p.brand))];
   const colors = [...new Set(products.map((p) => p.color))];
@@ -50,27 +53,37 @@ const FiltersSidebar = ({
 
   return (
     <div
-      className="w-115 bg-white px-5 py-8 rounded-xl shadow-[0px_0px_30px_0px_#00000012]
- sticky top-25 h-fit"
+      className="w-full lg:w-78 xl:w-115 bg-white px-0 sm:px-5 py-8 rounded-xl shadow-none lg:shadow-[0px_0px_30px_0px_#00000012]
+ overflow-y-auto lg:overflow-y-hidden lg:sticky top-25 h-full md:h-fit"
     >
       {/* HEADER */}
-      <div className="flex justify-between items-center mb-6">
-        <h3 className=" text-xl xl:text-4xl font-semibold">Filters</h3>
-        <button
-          onClick={clearFilters}
-          className="text-lg text-dark-blue cursor-pointer font-normal"
-        >
-          Clear All
-        </button>
+      <div className="flex justify-between items-center mb-6 px-4 sm:px-0">
+        <h3 className="text-xl xl:text-4xl font-semibold">Filters</h3>
+
+        <div className="flex items-center gap-4">
+          <button
+            onClick={clearFilters}
+            className="text-lg text-dark-blue font-normal cursor-pointer"
+          >
+            Clear All
+          </button>
+
+          {/* CLOSE BUTTON - ONLY FOR MOBILE/FULLSCREEN */}
+          {onClose && (
+            <button onClick={onClose} className="text-2xl font-bold lg:hidden">
+              ✕
+            </button>
+          )}
+        </div>
       </div>
 
       {/* PRICE FILTER */}
       <div className="">
         <button
           onClick={() => toggleSection("price")}
-          className={`flex justify-between items-center w-full cursor-pointer ${
+          className={`flex justify-between items-center w-full cursor-pointer px-4 sm:px-0 ${
             !openSections.price
-              ? "border-b border-dark-gray/50 pb-4 transition-all duration-500"
+              ? "border-b border-light-blue md:border-dark-gray/50 pb-4 transition-all duration-300"
               : ""
           }`}
         >
@@ -84,9 +97,9 @@ const FiltersSidebar = ({
         </button>
 
         <div
-          className={`overflow-hidden transition-all duration-500 ${
+          className={`overflow-hidden transition-all duration-300 px-4 sm:px-0 ${
             openSections.price
-              ? "max-h-[500px] opacity-100 mt-6 pb-6 border-b border-dark-gray/50"
+              ? "max-h-[500px] opacity-100 mt-6 pb-6 border-b border-light-blue md:border-dark-gray/50"
               : "max-h-0 opacity-0"
           }`}
         >
@@ -104,11 +117,14 @@ const FiltersSidebar = ({
                   <div
                     key={key}
                     {...rest}
-                    className="h-1.5 max-w-72 w-full rounded-full"
+                    className="h-1.5 max-w-full md:max-w-70 mr-1.5 md:ml-1 w-full rounded-full"
                     style={{
                       background: getTrackBackground({
                         values: priceRange,
-                        colors: ["#939393", "#2563eb", "#939393"],
+                        colors:
+                          width < 768
+                            ? ["#EBF0FF", "#223263", "#EBF0FF"]
+                            : ["#939393", "#2563eb", "#939393"],
                         min: MIN,
                         max: MAX,
                       }),
@@ -125,14 +141,14 @@ const FiltersSidebar = ({
                   <div
                     key={key}
                     {...rest}
-                    className="h-5 w-5 bg-white border border-dark-gray rounded-full shadow-md"
+                    className="h-5 w-5 bg-light-blue-dark md:bg-white border border-dark-gray rounded-full shadow-md"
                   />
                 );
               }}
             />
 
             {/* Clickable Dots */}
-            <div className="flex justify-between mt-4 px-1 max-w-72 w-full">
+            <div className="hidden md:flex justify-between mt-4 gap-3 max-w-full md:max-w-72 w-full">
               {Array.from({ length: 9 }).map((_, i) => {
                 const value = MIN + ((MAX - MIN) / 8) * i;
 
@@ -153,8 +169,8 @@ const FiltersSidebar = ({
                         setPriceRange([priceRange[0], value]);
                       }
                     }}
-                    className={`w-2 h-2 rounded-full transition ${
-                      isActive ? "bg-blue-600" : "bg-mid-gray-1"
+                    className={`w-2 h-2 rounded-full transition cursor-pointer hidden md:flex ${
+                      isActive ? "bg-blue-600" : "bg-dark-gray"
                     }`}
                   />
                 );
@@ -162,7 +178,7 @@ const FiltersSidebar = ({
             </div>
           </div>
 
-          <div className="flex justify-between mt-6 text-gray-800 font-medium max-w-82">
+          <div className="flex justify-between mt-6 text-gray-800 font-medium max-w-full md:max-w-82">
             <div>
               <p className="text-lg font-normal text-mid-gray-2">Min</p>
               <p>Rs. {priceRange[0]}</p>
@@ -180,9 +196,9 @@ const FiltersSidebar = ({
       <div className="my-4">
         <button
           onClick={() => toggleSection("brand")}
-          className={`flex justify-between items-center w-full cursor-pointer ${
+          className={`flex justify-between items-center w-full cursor-pointer px-4 sm:px-0 ${
             !openSections.brand
-              ? "border-b border-dark-gray/50 pb-4 transition-all duration-500"
+              ? "border-b border-light-blue md:border-dark-gray/50 pb-4 transition-all duration-300"
               : ""
           }`}
         >
@@ -195,32 +211,58 @@ const FiltersSidebar = ({
           />
         </button>
         <div
-          className={`overflow-hidden transition-all duration-500 border-b border-dark-gray/50 ${
+          className={`overflow-hidden transition-all duration-300 border-b border-light-blue md:border-dark-gray/50 px-4 sm:px-0 ${
             openSections.brand
-              ? "max-h-150 opacity-100 my-6 pb-6 border-b border-dark-gray/50"
+              ? "max-h-150 opacity-100 my-6 pb-6 border-b border-light-blue md:border-dark-gray/50"
               : "max-h-0 opacity-0"
           }`}
         >
-          <div className="space-y-3">
-            {visibleBrands.map((brand) => {
-              const count = products.filter((p) => p.brand === brand).length;
+          {width >= 768 ? (
+            // DESKTOP: checkboxes
+            <div className="space-y-3">
+              {visibleBrands.map((brand) => {
+                const count = products.filter((p) => p.brand === brand).length;
+                return (
+                  <CustomCheckbox
+                    key={brand}
+                    checked={selectedBrands.includes(brand)}
+                    onChange={() =>
+                      toggleItem(brand, selectedBrands, setSelectedBrands)
+                    }
+                    label={brand}
+                    count={count}
+                  />
+                );
+              })}
+            </div>
+          ) : (
+            // MOBILE: text block / pills
+            <div className="flex flex-wrap gap-2">
+              {visibleBrands.map((brand) => {
+                const count = products.filter((p) => p.brand === brand).length;
+                const isSelected = selectedBrands.includes(brand);
 
-              return (
-                <CustomCheckbox
-                  key={brand}
-                  checked={selectedBrands.includes(brand)}
-                  onChange={() =>
-                    toggleItem(brand, selectedBrands, setSelectedBrands)
-                  }
-                  label={brand}
-                  count={count}
-                />
-              );
-            })}
-          </div>
+                return (
+                  <button
+                    key={brand}
+                    onClick={() =>
+                      toggleItem(brand, selectedBrands, setSelectedBrands)
+                    }
+                    className={`p-4 border rounded-5 cursor-pointer text-sm ${
+                      isSelected
+                        ? "text-light-blue-dark bg-light-gray-4 border-none"
+                        : "text-light-blue-1 bg-white border-light-blue"
+                    }`}
+                  >
+                    {brand} ({count})
+                  </button>
+                );
+              })}
+            </div>
+          )}
 
           {/* MORE BUTTON */}
-          {brands.length > 6 && (
+          {brands.length > 6 && width >= 768 && (
             <button
               onClick={() => setShowAllBrands(!showAllBrands)}
               className="mt-3 text-dark-blue text-lg font-normal cursor-pointer"
@@ -232,12 +274,12 @@ const FiltersSidebar = ({
       </div>
 
       {/* COLOR FILTER */}
-      <div className="my-4">
+      <div className="my-4 ">
         <button
           onClick={() => toggleSection("color")}
-          className={`flex justify-between items-center w-full cursor-pointer ${
+          className={`flex justify-between items-center w-full cursor-pointer px-4 sm:px-0 ${
             !openSections.color
-              ? "border-b border-dark-gray/50 pb-4 transition-all duration-500"
+              ? "border-b border-light-blue md:border-dark-gray/50 pb-4 transition-all duration-300"
               : ""
           }`}
         >
@@ -251,32 +293,58 @@ const FiltersSidebar = ({
         </button>
 
         <div
-          className={`overflow-hidden transition-all duration-500 ${
+          className={`overflow-hidden transition-all duration-300 px-4 sm:px-0 ${
             openSections.color
-              ? "max-h-[500px] opacity-100 mt-6 pb-6 border-b border-dark-gray/50"
+              ? "max-h-[500px] opacity-100 mt-6 pb-6 border-b border-light-blue md:border-dark-gray/50"
               : "max-h-0 opacity-0"
           }`}
         >
-          <div className="space-y-3">
-            {(showAllColors ? colors : colors.slice(0, 6)).map((color) => {
-              const count = products.filter((p) => p.color === color).length;
+          {width >= 768 ? (
+            // DESKTOP: checkboxes
+            <div className="space-y-3">
+              {colors.map((color) => {
+                const count = products.filter((p) => p.color === color).length;
+                return (
+                  <CustomCheckbox
+                    key={color}
+                    checked={selectedColors.includes(color)}
+                    onChange={() =>
+                      toggleItem(color, selectedColors, setSelectedColors)
+                    }
+                    label={color}
+                    count={count}
+                  />
+                );
+              })}
+            </div>
+          ) : (
+            // MOBILE: text block / pills
+            <div className="flex flex-wrap gap-2">
+              {colors.map((color) => {
+                const count = products.filter((p) => p.color === color).length;
+                const isSelected = selectedColors.includes(color);
 
-              return (
-                <CustomCheckbox
-                  key={color}
-                  checked={selectedColors.includes(color)}
-                  onChange={() =>
-                    toggleItem(color, selectedColors, setSelectedColors)
-                  }
-                  label={color}
-                  count={count}
-                />
-              );
-            })}
-          </div>
+                return (
+                  <button
+                    key={color}
+                    onClick={() =>
+                      toggleItem(color, selectedColors, setSelectedColors)
+                    }
+                    className={`p-4 border rounded-5 cursor-pointer text-sm ${
+                      isSelected
+                        ? "text-light-blue-dark bg-light-gray-4 border-none"
+                        : "text-light-blue-1 bg-white border-light-blue"
+                    }`}
+                  >
+                    {color} ({count})
+                  </button>
+                );
+              })}
+            </div>
+          )}
 
           {/* MORE BUTTON */}
-          {colors.length > 6 && (
+          {colors.length > 6 && width >= 768 && (
             <button
               onClick={() => setShowAllColors(!showAllColors)}
               className="mt-3 text-dark-blue text-lg font-normal cursor-pointer"
@@ -287,13 +355,13 @@ const FiltersSidebar = ({
         </div>
       </div>
 
-      {/* DISCOUNT */}
+      {/* DISCOUNT FILTER */}
       <div>
         <button
           onClick={() => toggleSection("discount")}
-          className={`flex justify-between items-center w-full cursor-pointer ${
+          className={`flex justify-between items-center w-full cursor-pointer px-4 sm:px-0 ${
             !openSections.discount
-              ? "border-b border-dark-gray/50 pb-4 transition-all duration-500"
+              ? "border-b border-light-blue md:border-dark-gray/50 pb-4 transition-all duration-300"
               : ""
           }`}
         >
@@ -308,31 +376,60 @@ const FiltersSidebar = ({
           />
         </button>
         <div
-          className={`overflow-hidden transition-all duration-500 ${
+          className={`overflow-hidden transition-all duration-300 px-4 sm:px-0 ${
             openSections.discount
-              ? "max-h-[500px] opacity-100 mt-6 pb-6 border-b border-dark-gray/50"
+              ? "max-h-[500px] opacity-100 mt-6 pb-6 border-b border-light-blue md:border-dark-gray/50"
               : "max-h-0 opacity-0"
           }`}
         >
-          <div className="space-y-3">
-            {[10, 20, 30, 40, 50].map((d) => {
-              const count = products.filter(
-                (p) => parseInt(p.discount) >= d,
-              ).length;
+          {width >= 768 ? (
+            // DESKTOP: checkboxes
+            <div className="space-y-3">
+              {[10, 20, 30, 40, 50].map((d) => {
+                const count = products.filter(
+                  (p) => parseInt(p.discount) >= d,
+                ).length;
 
-              return (
-                <CustomCheckbox
-                  key={d}
-                  checked={selectedDiscount.includes(d)}
-                  onChange={() =>
-                    toggleItem(d, selectedDiscount, setSelectedDiscount)
-                  }
-                  label={`${d}% & above`}
-                  count={count}
-                />
-              );
-            })}
-          </div>
+                return (
+                  <CustomCheckbox
+                    key={d}
+                    checked={selectedDiscount.includes(d)}
+                    onChange={() =>
+                      toggleItem(d, selectedDiscount, setSelectedDiscount)
+                    }
+                    label={`${d}% & above`}
+                    count={count}
+                  />
+                );
+              })}
+            </div>
+          ) : (
+            // MOBILE: text block / pills
+            <div className="flex flex-wrap gap-2">
+              {[10, 20, 30, 40, 50].map((d) => {
+                const count = products.filter(
+                  (p) => parseInt(p.discount) >= d,
+                ).length;
+                const isSelected = selectedDiscount.includes(d);
+
+                return (
+                  <button
+                    key={d}
+                    onClick={() =>
+                      toggleItem(d, selectedDiscount, setSelectedDiscount)
+                    }
+                    className={`p-4 border rounded-5 cursor-pointer text-sm ${
+                      isSelected
+                        ? "text-light-blue-dark bg-light-gray-4 border-none"
+                        : "text-light-blue-1 bg-white border-light-blue"
+                    }`}
+                  >
+                    {d}% & above ({count})
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
     </div>

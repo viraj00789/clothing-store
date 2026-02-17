@@ -5,20 +5,20 @@ const ProductCard = ({ product, showWishlistIcon }) => {
   const navigate = useNavigate();
   return (
     <div
-      className="w-full min-h-full py-px px-px cursor-pointer rounded-[10px]"
+      className="w-full h-full cursor-pointer rounded-[10px]"
       onClick={() => navigate(`/${product.link}`)}
     >
-      <div className="shadow-sm bg-white rounded-[10px]">
+      <div className="shadow-sm bg-white rounded-[10px] flex flex-col h-full">
         {showWishlistIcon}
 
         <img
-          className="h-[301px] w-full object-cover rounded-t-[10px]"
+          className="w-full h-[301px] object-cover rounded-t-[10px]"
           src={product.allImages?.[0]}
           alt={product.title}
           loading="lazy"
         />
 
-        <div className="px-5 py-2.5 space-y-2 rounded-b-[10px] min-h-full  md:min-h-[169px] 2xl:min-h-full">
+        <div className="px-5 py-3 flex flex-col grow space-y-2">
           <div
             className="font-bold text-xl lg:text-[24px] text-light-black truncate"
             title={product.title}
@@ -27,10 +27,14 @@ const ProductCard = ({ product, showWishlistIcon }) => {
           </div>
 
           <div className="flex gap-4 items-center">
-            <p className="text-lg font-normal text-light-black">
+            <p
+              className="text-lg text-light-black truncate"
+              title={product.brand}
+            >
               {product.brand}
             </p>
-            <div className="flex items-center justify-center gap-2">
+
+            <div className="flex items-center gap-2">
               <p className="text-black text-lg">{product.rating}</p>
               <img
                 src={star}
@@ -42,13 +46,15 @@ const ProductCard = ({ product, showWishlistIcon }) => {
             </div>
           </div>
 
-          <div className="flex gap-3 flex-wrap">
-            <p className="font-bold text-lg lg:text-2xl whitespace-nowrap text-light-black">
+          <div className=" flex gap-3 flex-wrap">
+            <p className="font-bold text-lg lg:text-2xl text-light-black">
               Rs. {product.price}
             </p>
-            <p className="text-light-black line-through text-lg font-normal">
+
+            <p className="line-through text-lg text-light-black">
               Rs. {product.oldPrice}
             </p>
+
             <p className="text-green text-lg">({product.discount})</p>
           </div>
         </div>
