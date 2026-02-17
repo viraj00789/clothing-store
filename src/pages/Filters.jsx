@@ -11,6 +11,7 @@ import DownArrow from "../assets/Icons/Filters/down-arrow.svg";
 import { motion, AnimatePresence } from "framer-motion";
 import { useWindow } from "../hooks/useWidth";
 import { LiaFilterSolid } from "react-icons/lia";
+import NoClothesFound from "../components/Filters/NoClothesFound";
 
 const Filters = () => {
   const { category } = useParams();
@@ -96,22 +97,31 @@ const Filters = () => {
     <ContainerLayout>
       <div className="flex gap-3.75 lg:gap-6 px-3 lg:px-6 py-6 bg-gray-50 min-h-screen pt-20 lg:pt-30">
         {/* DESKTOP SIDEBAR (Inset Layout ≥1024) */}
-        {width >= 1024 && !showSideBar && (
-          <div className="w-78 xl:w-115">
-            <FiltersSidebar
-              products={categoryProducts}
-              priceRange={priceRange}
-              setPriceRange={setPriceRange}
-              selectedBrands={selectedBrands}
-              setSelectedBrands={setSelectedBrands}
-              selectedColors={selectedColors}
-              setSelectedColors={setSelectedColors}
-              selectedDiscount={selectedDiscount}
-              setSelectedDiscount={setSelectedDiscount}
-              clearFilters={clearFilters}
-            />
-          </div>
-        )}
+        <AnimatePresence initial={false}>
+          {width >= 1024 && !showSideBar && (
+            <motion.div
+              key="desktop-sidebar"
+              // initial={{ x: 40, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -100, opacity: 0 }}
+              transition={{ duration: 0.175, ease: "easeInOut" }}
+              className="w-78 xl:w-115"
+            >
+              <FiltersSidebar
+                products={categoryProducts}
+                priceRange={priceRange}
+                setPriceRange={setPriceRange}
+                selectedBrands={selectedBrands}
+                setSelectedBrands={setSelectedBrands}
+                selectedColors={selectedColors}
+                setSelectedColors={setSelectedColors}
+                selectedDiscount={selectedDiscount}
+                setSelectedDiscount={setSelectedDiscount}
+                clearFilters={clearFilters}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* MAIN CONTENT */}
         <div className="flex-1 w-full">
@@ -228,25 +238,26 @@ const Filters = () => {
           </div>
 
           {/* PRODUCT GRID */}
-          <motion.div
-            // layout
-            className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 lg:gap-6 items-stretch"
-          >
-            <AnimatePresence>
-              {filteredProducts.map((product) => (
-                <motion.div
-                  key={product.id}
-                  layout
-                  initial={{ opacity: 1, y: 0, x: 0 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <ProductCard product={product} />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
+          {filteredProducts.length > 0 ? (
+            <motion.div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 lg:gap-6 items-stretch">
+              <AnimatePresence initial={false}>
+                {filteredProducts.map((product) => (
+                  <motion.div
+                    key={product.id}
+                    layout
+                    // initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.175, ease: "easeInOut" }}
+                  >
+                    <ProductCard product={product} />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
+          ) : (
+            <NoClothesFound clearFilters={clearFilters} />
+          )}
         </div>
       </div>
 
