@@ -22,6 +22,7 @@ import { useNavigate } from "react-router";
 import { isAuthenticatedFromStorage } from "../utils/Auth";
 import EmptyCart from "../assets/Cart/empty-cart.webp";
 import ContainerLayout from "../layout/ContainerLayout";
+import AvailableOffers from "../components/Cart/AvailableOffers";
 
 const Cart = () => {
   const width = useWindow();
@@ -67,139 +68,152 @@ const Cart = () => {
 
   return (
     <>
-      <div className="w-full flex flex-col px-3 md:px-25 lg:px-20 xl:px-10 2xl:px-40 pt-20 lg:pt-30 pb-15 lg:pb-20 space-y-6 xl:space-y-12">
-        <h1 className="text-xl md:text-2xl lg:text-4xl font-bold ">
-          My Cart{" "}
-          {cartItems?.length > 0 && (
-            <span className="text-dark-blue">({cartItems?.length} items)</span>
-          )}
-        </h1>
-        <div className={`flex w-full gap-6 ${width < 1091 && "flex-col"}`}>
-          <div
-            className={`w-full space-y-3 lg:space-y-8 ${width < 1091 ? "max-w-full" : "max-w-5xl"}`}
-          >
-            {cartItems?.map((product) => (
+      <ContainerLayout>
+        <div className="w-full flex flex-col px-3 md:px-25 lg:px-20 xl:px-10 2xl:px-40 pt-20 lg:pt-30 pb-15 lg:pb-20 space-y-6 xl:space-y-12">
+          <h1 className="text-xl md:text-2xl lg:text-4xl font-bold ">
+            My Cart{" "}
+            {cartItems?.length > 0 && (
+              <span className="text-dark-blue">
+                ({cartItems?.length} items)
+              </span>
+            )}
+          </h1>
+          <div className="space-y-4">
+            <div
+              className={`flex w-full gap-6 grow ${width < 1091 && "flex-col"}`}
+            >
               <div
-                className={`flex items-center gap-3 w-full justify-between rounded-10 sm:p-3 lg:p-4 lg:shadow-[0px_0px_10px_0px_#0000001A]
-                      border border-light-blue p-2 ${width < 1091 ? "max-w-full" : "max-w-5xl"}`}
-                key={product.id}
+                className={`w-full space-y-3 lg:space-y-8 ${width < 1091 ? "max-w-full" : "max-w-5xl"}`}
               >
-                <div className="flex gap-1.5 md:gap-4 items-center">
-                  <div className="w-19 sm:w-[120px] lg:w-[150px] xl:w-[223px] flex-shrink-0">
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      loading="lazy"
-                      className=" w-19 sm:w-[120px] lg:w-[150px] xl:w-[223px] h-21 sm:h-[120px] lg:h-[200px] xl:h-[248px] rounded-[5px] object-cover cursor-pointer"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate(`/${product.link}`);
-                      }}
-                    />
-                  </div>
-                  <div className="flex flex-col space-y-0.5 sm:space-y-2.5 ">
-                    <p
-                      className={`text-light-black font-bold text-sm md:text-xl xl:text-2xl ${width < 375 ? "max-w-21" : "max-w-[150px]"}   sm:max-w-full truncate`}
-                      title={product.title}
-                    >
-                      {product.title}
-                    </p>
-                    <p className="font-normal text-sm md:text-lg text-light-black">
-                      {product.brand}
-                    </p>
-                    <p className="font-bold text-lg lg:text-xl text-dark-button-blue">
-                      <span className="text-lg">₹</span> {product.price}
-                    </p>
-                    <p className="font-normal text-md text-dark-gray hidden-lg-flex flex gap-2">
-                      <span className="text-light-black">Order Date:</span>
-                      <span>{formattedDate}</span>
-                    </p>
-
-                    <p className="font-normal text-md text-dark-gray hidden-lg-flex flex gap-2">
-                      <span className="text-light-black">Ship To:</span>
-                      <span>{userName}</span>
-                    </p>
-
-                    <p className="font-normal text-md text-dark-gray hidden-lg-flex flex gap-2 whitespace-nowrap">
-                      <span className="text-light-black whitespace-nowrap">
-                        Order Number:
-                      </span>
-                      <span className="whitespace-nowrap">{orderNumber}</span>
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center  sm:items-start justify-between">
-                  <div className="flex flex-col items-center gap-3 w-full">
-                    <div className="flex items-center border-2 border-light-blue rounded-md overflow-hidden h-10 w-23 lg:w-[120px] lg:h-[40px]">
-                      {/* Minus */}
-                      <button
-                        onClick={() => dispatch(decreaseQty(product.id))}
-                        className="flex-1 h-full flex items-center justify-center text-light-blue-1 hover:bg-light-blue/30 transition cursor-pointer"
-                      >
-                        <FiMinus />
-                      </button>
-
-                      {/* Value */}
-                      <div className="flex-1 h-full flex items-center justify-center text-dark-button-blue/50 font-medium border-l border-r border-light-blue bg-light-blue">
-                        {product.qty}
+                {cartItems?.map((product) => (
+                  <div
+                    className={`flex items-center gap-3 w-full justify-between rounded-10 sm:p-3 lg:p-4 lg:shadow-[0px_0px_10px_0px_#0000001A]
+                      border border-light-blue p-2 ${width < 1091 ? "max-w-full" : "max-w-5xl"}`}
+                    key={product.id}
+                  >
+                    <div className="flex gap-1.5 md:gap-4 items-center">
+                      <div className="w-19 sm:w-[120px] lg:w-[150px] xl:w-[223px] flex-shrink-0">
+                        <img
+                          src={product.image}
+                          alt={product.title}
+                          loading="lazy"
+                          className=" w-19 sm:w-[120px] lg:w-[150px] xl:w-[223px] h-21 sm:h-[120px] lg:h-[200px] xl:h-[248px] rounded-[5px] object-cover cursor-pointer"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(`/${product.link}`);
+                          }}
+                        />
                       </div>
+                      <div className="flex flex-col space-y-0.5 sm:space-y-2.5 ">
+                        <p
+                          className={`text-light-black font-bold text-sm md:text-xl xl:text-2xl ${width < 375 ? "max-w-21" : "max-w-[150px]"}   sm:max-w-full truncate`}
+                          title={product.title}
+                        >
+                          {product.title}
+                        </p>
+                        <p className="font-normal text-sm md:text-lg text-light-black">
+                          {product.brand}
+                        </p>
+                        <p className="font-bold text-lg lg:text-xl text-dark-button-blue">
+                          <span className="text-lg">₹</span> {product.price}
+                        </p>
+                        <p className="font-normal text-md text-dark-gray hidden-lg-flex flex gap-2">
+                          <span className="text-light-black">Order Date:</span>
+                          <span>{formattedDate}</span>
+                        </p>
 
-                      {/* Plus */}
-                      <button
-                        onClick={() => dispatch(increaseQty(product.id))}
-                        className="flex-1 h-full flex items-center justify-center text-light-blue-1 hover:bg-light-blue/30 transition cursor-pointer"
-                      >
-                        <FiPlus />
-                      </button>
+                        <p className="font-normal text-md text-dark-gray hidden-lg-flex flex gap-2">
+                          <span className="text-light-black">Ship To:</span>
+                          <span>{userName}</span>
+                        </p>
+
+                        <p className="font-normal text-md text-dark-gray hidden-lg-flex flex gap-2 whitespace-nowrap">
+                          <span className="text-light-black whitespace-nowrap">
+                            Order Number:
+                          </span>
+                          <span className="whitespace-nowrap">
+                            {orderNumber}
+                          </span>
+                        </p>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <div
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (!isAuthenticated) {
-                            navigate("/sign-in");
-                            return;
-                          }
-                          toggleLike(product);
-                        }}
-                        className="rounded-10 cursor-pointer flex items-center justify-center group transition-all duration-150"
-                      >
-                        <div className="w-[26px] h-[26px] flex items-center justify-center">
-                          <img
-                            src={isInWishlist(product.id) ? PinkHeart : Heart}
-                            alt="WishList"
-                            loading="lazy"
-                            className={`
+
+                    <div className="flex items-center  sm:items-start justify-between">
+                      <div className="flex flex-col items-center gap-3 w-full">
+                        <div className="flex items-center border-2 border-light-blue rounded-md overflow-hidden h-10 w-23 lg:w-[120px] lg:h-[40px]">
+                          {/* Minus */}
+                          <button
+                            onClick={() => dispatch(decreaseQty(product.id))}
+                            className="flex-1 h-full flex items-center justify-center text-light-blue-1 hover:bg-light-blue/30 transition cursor-pointer"
+                          >
+                            <FiMinus />
+                          </button>
+
+                          {/* Value */}
+                          <div className="flex-1 h-full flex items-center justify-center text-dark-button-blue/50 font-medium border-l border-r border-light-blue bg-light-blue">
+                            {product.qty}
+                          </div>
+
+                          {/* Plus */}
+                          <button
+                            onClick={() => dispatch(increaseQty(product.id))}
+                            className="flex-1 h-full flex items-center justify-center text-light-blue-1 hover:bg-light-blue/30 transition cursor-pointer"
+                          >
+                            <FiPlus />
+                          </button>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (!isAuthenticated) {
+                                navigate("/sign-in");
+                                return;
+                              }
+                              toggleLike(product);
+                            }}
+                            className="rounded-10 cursor-pointer flex items-center justify-center group transition-all duration-150"
+                          >
+                            <div className="w-[26px] h-[26px] flex items-center justify-center">
+                              <img
+                                src={
+                                  isInWishlist(product.id) ? PinkHeart : Heart
+                                }
+                                alt="WishList"
+                                loading="lazy"
+                                className={`
                                transition-transform duration-200 ease-out transform-gpu
                                group-hover:scale-110 active:scale-110
                                ${isInWishlist(product.id) ? "scale-145" : "scale-100"}
                              `}
-                          />
-                        </div>
-                      </div>
+                              />
+                            </div>
+                          </div>
 
-                      <div
-                        className="cursor-pointer"
-                        onClick={() => dispatch(deleteFromCart(product.id))}
-                      >
-                        <img
-                          src={Delete}
-                          alt="Delete"
-                          size={32}
-                          loading="lazy"
-                          className="cursor-pointer"
-                        />
+                          <div
+                            className="cursor-pointer"
+                            onClick={() => dispatch(deleteFromCart(product.id))}
+                          >
+                            <img
+                              src={Delete}
+                              alt="Delete"
+                              size={32}
+                              loading="lazy"
+                              className="cursor-pointer"
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
+              <OrderSummary />
+            </div>
+            <AvailableOffers />
           </div>
-          <OrderSummary />
         </div>
-      </div>
+      </ContainerLayout>
     </>
   );
 };

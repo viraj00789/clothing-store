@@ -92,7 +92,7 @@ const Navbar = () => {
   return (
     <ContainerLayout>
       {/* Sticky navbar */}
-      <div className="shadow-md max-w-480 w-full z-10 p-4 2xl:px-4 fixed top-0 bg-white mb-10">
+      <div className="shadow-md max-w-480 w-full z-10 px-3 py-4 2xl:px-4 fixed top-0 bg-white mb-10">
         {/* Top bar */}
         <div className="flex w-full max-w-480 items-center justify-between gap-0 xl:gap-2">
           {/* Logo + desktop links */}

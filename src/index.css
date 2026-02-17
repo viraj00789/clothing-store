@@ -7,11 +7,17 @@
   --light-gray-1: #F9FAFF;
   --light-gray-2: #E1E2E7;
   --light-gray-3: #F9FAFF;
+  --light-gray-4: #e9ebf0;
+  --light-gray-5: #CACACA;
   --mid-gray: #565656;
   --mid-dark-gray: #646464;
   --dark-gray: #848484;
   --footer-input: #ABABAB;
   --size-chart: #BABABA;
+  --mid-gray-1: #6D6D6D;
+  --mid-gray-2: #636363;
+  --mid-gray-3: #939393;
+  --mid-gray-4: #898989;
   --light-blue-dark: #223263;
   --dark-blue: #00398F;
   --dark-button-blue: #002482;
@@ -70,6 +76,13 @@
   --color-dark-white: var(--dark-white);
   --color-light-blue: var(--light-blue);
   --color-light-blue-1: var(--light-blue-1);
+  --color-mid-gray-1: var(--mid-gray-1);
+  --color-mid-gray-2: var(--mid-gray-2);
+  --color-mid-gray-3: var(--mid-gray-3);
+  --color-mid-gray-4: var(--mid-gray-4);
+  --color-light-gray-4: var(--light-gray-4);
+  --color-light-gray-5: var(--light-gray-5);
+  --color-light-blue-dark: var(--light-blue-dark);
 }
 
 @theme {
@@ -137,6 +150,11 @@ input[type="search"]::-ms-clear {
 .text-respo-24 {
   @apply font-bold text-lg lg:text-2xl
 }
+
+.rounded-5 {
+  @apply rounded-[5px]
+}
+
 
 .rounded-10 {
   @apply rounded-[10px]

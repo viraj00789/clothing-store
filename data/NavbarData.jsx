@@ -10,9 +10,9 @@ import GrayCart from "../src/assets/Icons/Home/GrayIcons/home-cart.svg";
 import GrayUser from "../src/assets/Icons/Home/GrayIcons/home-user.svg";
 
 export const navLinks = [
-  { to: "/product/1", label: "Men" },
-  { to: "/product/2", label: "Women" },
-  { to: "/product/3", label: "Kids" },
+  { to: "/filters/men", label: "Men" },
+  { to: "/filters/women", label: "Women" },
+  { to: "/filters/kids", label: "Kids" },
   { to: "/product/4", label: "Shop" },
   { to: "/product/5", label: "Contact us" },
 ];
