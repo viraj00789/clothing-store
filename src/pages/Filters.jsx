@@ -240,15 +240,18 @@ const Filters = () => {
 
           {/* PRODUCT GRID */}
           {filteredProducts.length > 0 ? (
-            <motion.div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 lg:gap-6 items-stretch">
+            <motion.div
+              className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 lg:gap-6 items-stretch"
+              initial={false}
+            >
               <AnimatePresence initial={false}>
                 {filteredProducts.map((product) => (
                   <motion.div
                     key={product.id}
                     layout="position"
-                    // initial={{ opacity: 0, y: 20 }}
+                    // // initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
+                    // exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.12, ease: "easeInOut" }}
                   >
                     <ProductCard product={product} />
