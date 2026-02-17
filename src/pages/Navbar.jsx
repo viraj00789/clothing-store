@@ -250,7 +250,8 @@ const Navbar = () => {
 
               <div className="relative cursor-pointer">
                 <img
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     if (!isAuthenticated) {
                       navigate("/sign-in");
                       return;
