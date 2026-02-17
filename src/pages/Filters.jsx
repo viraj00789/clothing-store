@@ -101,11 +101,10 @@ const Filters = () => {
           {width >= 1024 && !showSideBar && (
             <motion.div
               key="desktop-sidebar"
-              // layout="size"
-              // initial={{ x: 40, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -100, opacity: 0 }}
-              transition={{ duration: 0.12, ease: "ease" }}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -10 }}
+              transition={{ duration: 0.2 }}
               className="w-78 xl:w-115"
             >
               <FiltersSidebar
