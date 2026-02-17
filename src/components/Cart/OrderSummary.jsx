@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useEffectEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { applyPromo, removePromo } from "../../store/slices/cartSlice";
 import { useWindow } from "../../hooks/useWidth";
@@ -15,19 +15,28 @@ const OrderSummary = () => {
 
   const isPromoApplied = promoDiscount > 0;
 
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+  const coupounEvent = useEffectEvent(() => {
     setCoupon(promoCode || "");
-  }, [promoCode]);
+  });
 
   useEffect(() => {
-    if (promoError) {
+    coupounEvent();
+  }, [promoCode]);
+
+  const prevDiscountRef = useRef(promoDiscount);
+  const prevErrorRef = useRef(promoError);
+
+  useEffect(() => {
+    if (promoError && promoError !== prevErrorRef.current) {
       toast.error(promoError);
     }
 
-    if (promoDiscount > 0) {
+    if (promoDiscount > 0 && prevDiscountRef.current <= 0) {
       toast.success("Coupon applied successfully 🎉");
     }
+
+    prevErrorRef.current = promoError;
+    prevDiscountRef.current = promoDiscount;
   }, [promoError, promoDiscount]);
 
   const itemsTotal = items.reduce(
@@ -37,7 +46,6 @@ const OrderSummary = () => {
 
   const gst = itemsTotal * 0.025;
   const shipping = itemsTotal > 0 ? 20 : 0;
-
   const total = itemsTotal + gst + shipping - promoDiscount;
 
   return (
@@ -100,7 +108,6 @@ const OrderSummary = () => {
                       toast.error("Please enter a coupon code");
                       return;
                     }
-
                     dispatch(applyPromo(coupon));
                   }}
                 >
@@ -110,9 +117,7 @@ const OrderSummary = () => {
                 <button
                   className="bg-red-600 hover:bg-red-700 transition 
                   text-white font-semibold px-6 py-3"
-                  onClick={() => {
-                    dispatch(removePromo());
-                  }}
+                  onClick={() => dispatch(removePromo())}
                 >
                   Remove
                 </button>
