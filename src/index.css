@@ -8,6 +8,7 @@
   --light-gray-2: #E1E2E7;
   --light-gray-3: #F9FAFF;
   --light-gray-4: #e9ebf0;
+  --light-gray-5: #CACACA;
   --mid-gray: #565656;
   --mid-dark-gray: #646464;
   --dark-gray: #848484;
@@ -80,6 +81,7 @@
   --color-mid-gray-3: var(--mid-gray-3);
   --color-mid-gray-4: var(--mid-gray-4);
   --color-light-gray-4: var(--light-gray-4);
+  --color-light-gray-5: var(--light-gray-5);
   --color-light-blue-dark: var(--light-blue-dark);
 }
 

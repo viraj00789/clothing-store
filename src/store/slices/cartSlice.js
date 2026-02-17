@@ -41,21 +41,37 @@ const cartSlice = createSlice({
       const code = action.payload.trim().toUpperCase();
 
       const PROMOS = {
-        SAVE10: 10,
-        OFF50: 50,
-        VIRAJ100: 100,
+        SAVE100: { discount: 100, minAmount: 1000 },
+        OFF500: { discount: 500, minAmount: 2000 },
+        VIRAJ1000: { discount: 1000, minAmount: 3000 },
       };
 
-      if (PROMOS[code]) {
-        state.promoCode = code;
-        state.promoDiscount = PROMOS[code];
-        state.promoError = null;
-      } else {
+      const promo = PROMOS[code];
+
+      const itemsTotal = state.items.reduce(
+        (sum, item) => sum + item.price * item.qty,
+        0,
+      );
+
+      if (!promo) {
         state.promoError = "Invalid coupon code";
         state.promoDiscount = 0;
         state.promoCode = "";
+        return;
       }
+
+      if (itemsTotal < promo.minAmount) {
+        state.promoError = `Minimum cart value should be ₹${promo.minAmount}`;
+        state.promoDiscount = 0;
+        state.promoCode = "";
+        return;
+      }
+
+      state.promoCode = code;
+      state.promoDiscount = promo.discount;
+      state.promoError = null;
     },
+
     removePromo: (state) => {
       state.promoCode = "";
       state.promoDiscount = 0;
