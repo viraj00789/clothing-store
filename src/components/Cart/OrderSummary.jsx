@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { applyPromo, removePromo } from "../../store/slices/cartSlice";
 import { useWindow } from "../../hooks/useWidth";
 import toast from "react-hot-toast";
-import { useEffectEvent } from "react";
 
 const OrderSummary = () => {
   const { items, promoDiscount, promoCode, promoError } = useSelector(

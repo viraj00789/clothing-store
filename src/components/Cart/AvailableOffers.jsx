@@ -12,16 +12,16 @@ const AvailableOffers = () => {
 
   const offers = [
     {
-      code: "SAVE100",
-      discount: 100,
-      minAmount: 1000,
+      code: "OFF500",
+      discount: 500,
+      minAmount: 2000,
       expires: "31st December 2026 | 11:59 PM",
       recommended: true,
     },
     {
-      code: "OFF500",
-      discount: 500,
-      minAmount: 2000,
+      code: "SAVE100",
+      discount: 100,
+      minAmount: 1000,
       expires: "31st December 2026 | 11:59 PM",
       recommended: false,
     },
