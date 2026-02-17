@@ -240,25 +240,21 @@ const Filters = () => {
 
           {/* PRODUCT GRID */}
           {filteredProducts.length > 0 ? (
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 lg:gap-6 items-stretch"
-              initial={false}
-            >
-              <AnimatePresence initial={false}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 lg:gap-6 items-stretch">
+              <AnimatePresence mode="popLayout">
                 {filteredProducts.map((product) => (
                   <motion.div
                     key={product.id}
-                    layout="size"
-                    // // initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0, x: 0 }}
-                    // exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.12, ease: "easeInOut" }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
                   >
                     <ProductCard product={product} />
                   </motion.div>
                 ))}
               </AnimatePresence>
-            </motion.div>
+            </div>
           ) : (
             <NoClothesFound clearFilters={clearFilters} />
           )}
