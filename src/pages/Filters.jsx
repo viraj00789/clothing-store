@@ -101,7 +101,7 @@ const Filters = () => {
           {width >= 1024 && !showSideBar && (
             <motion.div
               key="desktop-sidebar"
-              layout="preserve-aspect"
+              // layout="size"
               // initial={{ x: 40, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: -100, opacity: 0 }}
@@ -245,7 +245,7 @@ const Filters = () => {
                 {filteredProducts.map((product) => (
                   <motion.div
                     key={product.id}
-                    layout="preserve-aspect"
+                    layout="size"
                     // initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
