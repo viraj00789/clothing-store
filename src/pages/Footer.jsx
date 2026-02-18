@@ -48,6 +48,17 @@ const sections = [
       "Clearance",
     ],
   },
+  {
+    title: "More links",
+    items: [
+      "Blogs",
+      "Gift center",
+      "Buying guides",
+      "New arrivals",
+      "Clearance",
+    ],
+  },
+  
 ];
 
 const Footer = () => {
@@ -73,7 +84,7 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="flex flex-col lg:flex-row flex-wrap justify-between 2xl:justify-center gap-4 lg:gap-10 xl:gap-15 2xl:gap-27.5 mt-4 lg:mt-10 xl:mt-[83px] ">
+          <div className="flex flex-col lg:flex-row flex-wrap justify-between gap-4 mt-4 lg:mt-10 xl:mt-[83px]">
             {sections.map((sec, i) => (
               <div key={i} className="flex flex-col w-full lg:w-auto">
                 {/* Header */}

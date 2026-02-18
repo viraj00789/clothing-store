@@ -71,15 +71,15 @@ const SimilarProduct = ({ title = "Similar Products" }) => {
         {title}
       </h3>
 
-      <Swiper spaceBetween={width > 1025 ? 38 : 12} slidesPerView="auto" className="">
+      <Swiper spaceBetween={width > 1025 ? 16 : 12} slidesPerView="auto" className="">
         {products.map((product) => (
           <SwiperSlide
             key={product.id}
-            className="!w-75 py-px px-px cursor-pointer rounded-[10px]"
+            className="!w-70 lg:!w-[410px] min-h-[317px] lg:!min-h-[423px] py-px px-px cursor-pointer rounded-[10px]"
           >
             <div className="shadow-sm bg-white rounded-[10px]">
               <img
-                className="h-full w-full object-cover rounded-t-[10px]"
+                className="h-[301px] w-full object-cover rounded-t-[10px]"
                 src={product.image}
                 alt={product.title}
                 loading="lazy"
