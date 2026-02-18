@@ -354,13 +354,13 @@ const ProductDetails = () => {
                       </button>
                     </div>
                   ) : (
-                    <div className="flex items-center bg-dark-button-blue border-2 border-light-blue rounded-md overflow-hidden w-[150px] h-12">
+                    <div className="flex items-center bg-white border border-dark-blue rounded-md overflow-hidden w-[150px] h-12">
                       {/* Minus */}
                       <button
                         onClick={() => dispatch(decreaseQty(product.id))}
                         className="flex-1 h-full flex items-center justify-center text-light-blue-1 hover:bg-light-blue/30 transition cursor-pointer"
                       >
-                        <FiMinus className="text-white" />
+                        <FiMinus className="text-dark-blue bg-transparent" />
                       </button>
 
                       {/* Value */}
@@ -373,7 +373,7 @@ const ProductDetails = () => {
                         onClick={() => dispatch(increaseQty(product.id))}
                         className="flex-1 h-full flex items-center justify-center text-light-blue-1 hover:bg-light-blue/30 transition cursor-pointer"
                       >
-                        <FiPlus className="text-white" />
+                        <FiPlus className="text-dark-blue bg-transparent" />
                       </button>
                     </div>
                   )}
@@ -393,7 +393,7 @@ const ProductDetails = () => {
                 </>
               ) : (
                 <div className="flex w-full gap-4">
-                  <div className="w-full h-12 bg-dark-button-blue text-white rounded-10 cursor-pointer flex items-center justify-center gap-3 sm:gap-[23.23px]">
+                  <div className="w-full h-12  text-white rounded-10 cursor-pointer flex items-center justify-center gap-3 sm:gap-[23.23px]">
                     {qty === 0 ? (
                       <div
                         onClick={() => {
@@ -403,7 +403,7 @@ const ProductDetails = () => {
                           }
                           dispatch(addToCart(product));
                         }}
-                        className="w-full h-full flex items-center justify-center gap-3 sm:gap-[23.23px]"
+                        className="w-full h-full flex items-center justify-center gap-3 sm:gap-[23.23px] bg-dark-button-blue rounded-10 cursor-pointer hover:bg-blue-900 transition duration-100 ease-in-out"
                       >
                         <span className="font-normal text-lg text-white">
                           Add to bag
@@ -417,11 +417,11 @@ const ProductDetails = () => {
                         />
                       </div>
                     ) : (
-                      <div className="flex items-center justify-between rounded-md overflow-hidden w-full lg:w-[120px] h-[40px]">
+                      <div className="flex items-center justify-between rounded-md overflow-hidden w-full lg:w-[120px] h-[40px] bg-dark-blue border border-dark-blue">
                         {/* Minus */}
                         <button
                           onClick={() => dispatch(decreaseQty(product.id))}
-                          className="h-full flex items-center justify-center text-white transition cursor-pointer w-full text-center"
+                          className="h-full flex items-center justify-center text-dark-blue bg-trasparent transition cursor-pointer w-full text-center"
                         >
                           <FiMinus size={20} />
                         </button>
@@ -434,7 +434,7 @@ const ProductDetails = () => {
                         {/* Plus */}
                         <button
                           onClick={() => dispatch(increaseQty(product.id))}
-                          className="h-full flex items-center justify-center text-white transition cursor-pointer text-center w-full"
+                          className="h-full flex items-center justify-center text-dark-blue bg-bg-trasparent transition cursor-pointer text-center w-full"
                         >
                           <FiPlus size={20} />
                         </button>

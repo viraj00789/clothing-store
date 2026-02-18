@@ -95,7 +95,7 @@ const Filters = () => {
 
   return (
     <ContainerLayout>
-      <div className="flex gap-3.75 lg:gap-6 px-3 lg:px-6 py-6 bg-gray-50 min-h-screen pt-20 lg:pt-30">
+      <div className="flex gap-3.75 lg:gap-6 px-3 lg:px-6 xl:px-12.5 py-6 bg-gray-50 min-h-screen pt-20 lg:pt-30">
         {/* DESKTOP SIDEBAR (Inset Layout ≥1024) */}
         <AnimatePresence initial={false}>
           {width >= 1024 && !showSideBar && (

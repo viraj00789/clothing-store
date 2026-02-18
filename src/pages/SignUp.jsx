@@ -250,7 +250,7 @@ export default function SignUp() {
           </div>
 
           <div className="text-center mt-8">
-            <p className="text-xs text-dark-gray">
+            <p className="text-md text-dark-gray font-semibold">
               Already have an account?{" "}
               <Link to="/sign-in" className="text-light-purple font-bold">
                 Login

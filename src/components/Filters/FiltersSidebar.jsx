@@ -53,7 +53,7 @@ const FiltersSidebar = ({
 
   return (
     <div
-      className="w-full lg:w-78 xl:w-115 bg-white px-0 sm:px-5 py-8 rounded-xl shadow-none lg:shadow-[0px_0px_30px_0px_#00000012]
+      className="w-full lg:w-78 xl:w-115 px-0 sm:px-5 py-8 rounded-xl
  overflow-y-auto lg:overflow-y-hidden lg:sticky top-25 h-full md:h-fit"
     >
       {/* HEADER */}

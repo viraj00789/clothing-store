@@ -77,7 +77,7 @@ const DealsForDays = () => {
                 loading="lazy"
               />
 
-              <div className="py-5 xl:py-7.5 flex flex-col items-center space-y-4 xl:space-y-10.75">
+              <div className="py-5 xl:py-7.5 flex flex-col items-center space-y-4 xl:space-y-8">
                 <img
                   className="max-w-[151.26px] w-full object-cover hidden-md-flex"
                   src={levis}

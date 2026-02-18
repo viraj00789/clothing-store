@@ -67,14 +67,14 @@ const OfferSlider = () => {
           >
             <div className="flex shadow-[0_0_12px_0_rgba(0,0,0,0.1)] h-100 lg:h-[587px] w-full items-center justify-between rounded-[10px] overflow-hidden bg-white">
               {/* LEFT CONTENT */}
-              <div className="flex items-center justify-center flex-col w-full lg:min-w-[487px]  xl:min-w-[600px] 2xl:min-w-[542px] space-y-5 xl:space-y-[65.27px]">
+              <div className="flex items-center justify-center flex-col w-full lg:min-w-[487px]  xl:min-w-[600px] 2xl:min-w-[542px] space-y-5">
                 <img
                   src={slide.brand}
                   alt="brand"
                   className="w-[175px]"
                   loading="lazy"
                 />
-                <div className="flex justify-center flex-col items-center gap-4 xl:gap-10">
+                <div className="flex justify-center flex-col items-center gap-5">
                   <p className="font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl">
                     {slide.subtitle}
                   </p>

@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router";
+import { Link, NavLink, useLocation, useNavigate } from "react-router";
 import ContainerLayout from "../layout/ContainerLayout";
 import Search from "../assets/search.svg";
 import ClothingLogo from "../assets/clothing.png";
@@ -92,7 +92,7 @@ const Navbar = () => {
   return (
     <ContainerLayout>
       {/* Sticky navbar */}
-      <div className="shadow-md max-w-480 w-full z-10 px-3 py-4 xl:px-12 fixed top-0 bg-white mb-10">
+      <div className="shadow-md max-w-480 w-full z-10 px-3 py-4 xl:px-12.5 fixed top-0 bg-white mb-10">
         {/* Top bar */}
         <div className="flex w-full max-w-480 items-center justify-between gap-0 xl:gap-2">
           {/* Logo + desktop links */}
@@ -169,19 +169,44 @@ const Navbar = () => {
             <ul className="hidden lg:flex gap-4 xl:gap-8">
               {navLinks.map((link) => (
                 <li key={link.to}>
-                  <Link
+                  <NavLink
                     to={link.to}
-                    className="text-light-black hover:text-gray-900 font-medium text-lg truncate"
+                    className={({ isActive }) =>
+                      `
+          relative font-medium text-lg truncate
+          transition-colors duration-300
+          ${
+            isActive
+              ? "text-dark-blue"
+              : "text-light-black hover:text-dark-blue"
+          }
+          after:content-['']
+          after:absolute
+          after:left-0
+          after:-bottom-1
+          after:h-[2px]
+          after:w-full
+          after:bg-dark-blue
+          after:transition-transform
+          after:duration-300
+          after:origin-left
+          ${
+            isActive
+              ? "after:scale-x-100"
+              : "after:scale-x-0 hover:after:scale-x-100"
+          }
+        `
+                    }
                   >
                     {link.label}
-                  </Link>
+                  </NavLink>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Desktop right section */}
-          <div className="hidden lg:flex items-center gap-4 2xl:gap-15">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-8">
             <div className="relative">
               <div className="relative w-full 3xl:w-133">
                 <input
@@ -336,7 +361,7 @@ const Navbar = () => {
                 </div>
               ) : (
                 <Link to="/sign-in">
-                  <p>Sign In</p>
+                  <p className="font-bold text-cl">Sign In</p>
                 </Link>
               )}
             </div>

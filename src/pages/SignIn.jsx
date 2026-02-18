@@ -243,7 +243,7 @@ export default function SignIn() {
             </p>
           </div>
           <div className="text-center mt-8">
-            <p className=" text-xs font-normal text-dark-gray">
+            <p className=" text-md font-semibold text-dark-gray">
               Don't have an account?{" "}
               <Link to={"/sign-up"}>
                 <span className="text-light-purple cursor-pointer">

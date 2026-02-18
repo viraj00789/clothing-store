@@ -101,7 +101,7 @@ const TrendingSection = () => {
 
         {width > 768 ? (
           <Swiper
-            spaceBetween={width > 1025 ? 38 : 12}
+            spaceBetween={width > 1025 ? 16 : 12}
             slidesPerView="auto"
             className="cursor-pointer"
           >

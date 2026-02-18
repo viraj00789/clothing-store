@@ -28,8 +28,8 @@ const AvailableOffers = () => {
   ];
 
   return (
-    <div className="bg-white p-6 rounded-lg border border-light-blue md:shadow-lg max-w-full">
-      <h2 className="text-xl font-semibold text-light-black mb-3">
+    <div className="bg-white p-6 rounded-lg border border-light-blue md:shadow-lg max-w-5xl mt-4">
+      <h2 className="text-xl font-semibold text-dark-blue mb-3">
         Available offers
       </h2>
 

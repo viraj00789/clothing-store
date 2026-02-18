@@ -32,13 +32,13 @@ const WishList = () => {
 
   return (
     <ContainerLayout>
-      <div className="pb-10 pt-20 lg:pt-33 px-3.75 md:px-4 2xl:px-12 space-y-4 lg:space-y-6 bg-light-gray-1 rounded-10">
+      <div className="pb-10 pt-20 lg:pt-30 px-3.75  md:px-25 lg:px-20 xl:px-10 2xl:px-40 space-y-4 lg:space-y-6 bg-light-gray-1 rounded-10">
         <h1 className="text-xl md:text-2xl lg:text-4xl font-bold text-light-black">
           My WishList
         </h1>
 
         {width > 1024 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 2xl:gap-15">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 2xl:gap-8">
             {products.map((product) => (
               <div key={product.id}>
                 <ProductCard

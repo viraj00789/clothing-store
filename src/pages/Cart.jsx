@@ -22,7 +22,6 @@ import { useNavigate } from "react-router";
 import { isAuthenticatedFromStorage } from "../utils/Auth";
 import EmptyCart from "../assets/Cart/empty-cart.webp";
 import ContainerLayout from "../layout/ContainerLayout";
-import AvailableOffers from "../components/Cart/AvailableOffers";
 
 const Cart = () => {
   const width = useWindow();
@@ -83,12 +82,12 @@ const Cart = () => {
               className={`flex w-full gap-6 grow ${width < 1091 && "flex-col"}`}
             >
               <div
-                className={`w-full space-y-3 lg:space-y-8 ${width < 1091 ? "max-w-full" : "max-w-5xl"}`}
+                className={`w-full ${width < 1091 ? "max-w-full" : "max-w-5xl"}`}
               >
                 {cartItems?.map((product) => (
                   <div
-                    className={`flex items-center gap-3 w-full justify-between rounded-10 sm:p-3 lg:p-4 lg:shadow-[0px_0px_10px_0px_#0000001A]
-                      border border-light-blue p-2 ${width < 1091 ? "max-w-full" : "max-w-5xl"}`}
+                    className={`flex items-center gap-3 w-full justify-between sm:p-3 lg:p-4 border-b last:border-b-0 border-dark-blue
+                       p-2 ${width < 1091 ? "max-w-full" : "max-w-5xl"}`}
                     key={product.id}
                   >
                     <div className="flex gap-1.5 md:gap-4 items-center">
@@ -140,24 +139,24 @@ const Cart = () => {
 
                     <div className="flex items-center  sm:items-start justify-between">
                       <div className="flex flex-col items-center gap-3 w-full">
-                        <div className="flex items-center border-2 border-light-blue rounded-md overflow-hidden h-10 w-23 lg:w-[120px] lg:h-[40px]">
+                        <div className="flex items-center border border-dark-blue rounded-md overflow-hidden h-10 w-23 lg:w-[120px] lg:h-[40px]">
                           {/* Minus */}
                           <button
                             onClick={() => dispatch(decreaseQty(product.id))}
-                            className="flex-1 h-full flex items-center justify-center text-light-blue-1 hover:bg-light-blue/30 transition cursor-pointer"
+                            className="flex-1 h-full flex items-center justify-center text-dark-blue hover:bg-light-blue/30 transition cursor-pointer"
                           >
                             <FiMinus />
                           </button>
 
                           {/* Value */}
-                          <div className="flex-1 h-full flex items-center justify-center text-dark-button-blue/50 font-medium border-l border-r border-light-blue bg-light-blue">
+                          <div className="flex-1 h-full flex items-center justify-center text-dark-button-blue/50 font-medium border-l border-r text-white bg-dark-blue">
                             {product.qty}
                           </div>
 
                           {/* Plus */}
                           <button
                             onClick={() => dispatch(increaseQty(product.id))}
-                            className="flex-1 h-full flex items-center justify-center text-light-blue-1 hover:bg-light-blue/30 transition cursor-pointer"
+                            className="flex-1 h-full flex items-center justify-center text-dark-blue hover:bg-light-blue/30 transition cursor-pointer"
                           >
                             <FiPlus />
                           </button>
@@ -210,7 +209,6 @@ const Cart = () => {
               </div>
               <OrderSummary />
             </div>
-            <AvailableOffers />
           </div>
         </div>
       </ContainerLayout>
