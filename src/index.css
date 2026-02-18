@@ -23,6 +23,7 @@
   --dark-button-blue: #002482;
   --light-black: #272727;
   --light-black-1: #323232;
+  --light-black-2: #181725;
   --green: #0A8200;
   --dark-green: #1A4242;
   --dark-cyan: #27363B;
@@ -53,6 +54,8 @@
   --color-dark-blue: var(--dark-blue);
   --color-dark-gray: var(--dark-gray);
   --color-light-black: var(--light-black);
+  --color-light-black-1: var(--light-black-1);
+  --color-light-black-2: var(--light-black-2);
   --color-green: var(--green);
   --color-dark-green: var(--dark-green);
   --color-dark-cyan: var(--dark-cyan);
@@ -122,11 +125,11 @@ body {
 }
 
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   body {
     font-family: var(--font-baskerville);
   }
-}
+} */
 
 
 /* ==================== Serch Bar ====================== */

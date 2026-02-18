@@ -3,7 +3,9 @@ import Filters from "../pages/Filters";
 import ForgotPassword from "../pages/ForgotPassWord";
 import Home from "../pages/Home";
 import NewPassword from "../pages/NewPassWord";
+import Orders from "../pages/Order";
 import ProductDetails from "../pages/ProductDetails";
+import Profile from "../pages/Profile";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import VerifyCode from "../pages/VerifyCode";
@@ -55,5 +57,13 @@ export const protectedRoutes = [
   {
     path: "/cart",
     element: <Cart />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
+  },
+  {
+    path: "/orders",
+    element: <Orders />,
   },
 ];

@@ -92,7 +92,7 @@ const Navbar = () => {
   return (
     <ContainerLayout>
       {/* Sticky navbar */}
-      <div className="shadow-md max-w-480 w-full z-10 px-3 py-4 2xl:px-4 fixed top-0 bg-white mb-10">
+      <div className="shadow-md max-w-480 w-full z-10 px-3 py-4 xl:px-12 fixed top-0 bg-white mb-10">
         {/* Top bar */}
         <div className="flex w-full max-w-480 items-center justify-between gap-0 xl:gap-2">
           {/* Logo + desktop links */}
@@ -154,7 +154,7 @@ const Navbar = () => {
             )}
           </div>
 
-          <div className="flex items-center gap-4 2xl:gap-[161px]">
+          <div className="flex items-center gap-4 xl:gap-8">
             <Link
               to="/"
               className="w-8 h-8 2xl:w-[57px] 2xl:h-[48px] hidden lg:flex"
@@ -166,12 +166,12 @@ const Navbar = () => {
                 className="w-8 h-8 2xl:w-[57px] 2xl:h-[48px] cursor-pointer object-contain"
               />
             </Link>
-            <ul className="hidden lg:flex gap-4 xl:gap-10">
+            <ul className="hidden lg:flex gap-4 xl:gap-8">
               {navLinks.map((link) => (
                 <li key={link.to}>
                   <Link
                     to={link.to}
-                    className="text-gray-700 hover:text-gray-900 font-normal text-lg truncate"
+                    className="text-light-black hover:text-gray-900 font-medium text-lg truncate"
                   >
                     {link.label}
                   </Link>

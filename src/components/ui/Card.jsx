@@ -46,7 +46,7 @@ const ProductCard = ({ product, showWishlistIcon }) => {
             </div>
           </div>
 
-          <div className=" flex gap-3 flex-wrap">
+          <div className=" flex gap-3 flex-wrap items-center">
             <p className="font-bold text-lg lg:text-2xl text-light-black">
               Rs. {product.price}
             </p>
