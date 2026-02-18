@@ -90,7 +90,7 @@ const TrendingSection = () => {
     if (width > 768) {
       openEvent();
     }
-  }, [open,width]);
+  }, [open, width]);
 
   return (
     <>
@@ -114,6 +114,27 @@ const TrendingSection = () => {
                 }}
               >
                 <div className="shadow-sm bg-white rounded-b-[10px]">
+                  <div className="relative">
+                    <button
+                      className="absolute top-3 right-3 z-10 
+             bg-white/30 backdrop-blur-md 
+             rounded-full p-2 
+             shadow-md
+             hover:scale-110 transition cursor-pointer"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleLike(product);
+                      }}
+                    >
+                      <img
+                        src={isInWishlist(product.id) ? PinkHeart : Heart}
+                        alt="WishList"
+                        width={20}
+                        height={20}
+                        className="transition-all duration-200 ease-out"
+                      />
+                    </button>
+                  </div>
                   <img
                     className="h-[301px] w-full object-cover rounded-t-[10px]"
                     src={product.image}
@@ -247,21 +268,21 @@ const TrendingSection = () => {
                   </div>
 
                   {getCartItem(product.id) ? (
-                    <div className="w-full h-9.5 bg-dark-button-blue text-white rounded-10 flex items-center justify-center gap-3 px-4">
+                    <div className="w-full h-9.5 bg-white text-dark-blue rounded-10 flex items-center justify-center gap-3 px-4 border border-dark-blue">
                       <button
                         onClick={(e) => handleDecrease(product.id, e)}
-                        className="text-lg font-bold cursor-pointer w-full text-center"
+                        className="text-lg font-bold cursor-pointer w-full text-center bg-white text-dark-blue"
                       >
                         −
                       </button>
 
-                      <span className="text-sm font-medium p-4 border-l border-r w-full text-center">
+                      <span className="text-sm font-medium p-2 border-l border-r w-full text-center bg-dark-blue text-white">
                         {getCartItem(product.id).qty}
                       </span>
 
                       <button
                         onClick={(e) => handleIncrease(product.id, e)}
-                        className="text-lg font-bold cursor-pointer w-full text-center"
+                        className="text-lg font-bold cursor-pointer w-full text-center bg-white text-dark-blue"
                       >
                         +
                       </button>

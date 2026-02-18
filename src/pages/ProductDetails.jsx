@@ -421,7 +421,7 @@ const ProductDetails = () => {
                         {/* Minus */}
                         <button
                           onClick={() => dispatch(decreaseQty(product.id))}
-                          className="h-full flex items-center justify-center text-dark-blue bg-trasparent transition cursor-pointer w-full text-center"
+                          className="h-full flex items-center justify-center text-dark-blue bg-white transition cursor-pointer w-full text-center"
                         >
                           <FiMinus size={20} />
                         </button>
@@ -434,7 +434,7 @@ const ProductDetails = () => {
                         {/* Plus */}
                         <button
                           onClick={() => dispatch(increaseQty(product.id))}
-                          className="h-full flex items-center justify-center text-dark-blue bg-bg-trasparent transition cursor-pointer text-center w-full"
+                          className="h-full flex items-center justify-center text-dark-blue bg-white transition cursor-pointer text-center w-full"
                         >
                           <FiPlus size={20} />
                         </button>
