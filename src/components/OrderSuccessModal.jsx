@@ -6,10 +6,10 @@ const OrderSuccessModal = ({ isOpen, onClose, orderId, amount }) => {
   const formattedTime = now.toLocaleTimeString();
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
       <div
         className="bg-white w-[95%] sm:w-[400px] lg:w-[500px]
-        rounded-3xl shadow-2xl p-4 xl:p-10 text-center animate-scaleIn"
+        rounded-md shadow-2xl p-4 xl:p-10 text-center animate-scaleIn"
       >
         {/* 🔥 BIG Premium Animation */}
         <div className="flex justify-center mb-6">
@@ -22,16 +22,16 @@ const OrderSuccessModal = ({ isOpen, onClose, orderId, amount }) => {
           ></lottie-player>
         </div>
 
-        <h2 className="text-3xl font-bold text-green-600">
+        <p className="text-sm xl:text-3xl font-bold text-green-600">
           Payment Successful 🎉
-        </h2>
+        </p>
 
-        <p className="text-gray-600 mt-3 text-lg">
+        <p className="text-gray-600 mt-3 text-sm md:text-lg">
           Your order has been placed successfully.
         </p>
 
         {/* Order Details Box */}
-        <div className="mt-4 xl:mt-6 text-left bg-gray-50 rounded-xl p-6 space-y-3 text-base">
+        <div className="mt-4 xl:mt-6 text-left bg-gray-50 rounded-sm p-6 space-y-3 text-base">
           <div className="flex justify-between">
             <span className="text-gray-500">Order ID:</span>
             <span className="font-semibold">{orderId}</span>
