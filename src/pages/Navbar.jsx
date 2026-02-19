@@ -16,7 +16,7 @@ import {
 } from "../store/slices/wishlistSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { isAuthenticatedFromStorage } from "../utils/Auth";
-import { navItems, navLinks } from "../../data/NavbarData";
+import { HideNavbarOn, navItems, navLinks } from "../../data/NavbarData";
 import { clearCart } from "../store/slices/cartSlice";
 
 const Navbar = () => {
@@ -483,29 +483,32 @@ const Navbar = () => {
         </div>
       </div>
       {/* Bottom Navigation */}
-      <div
-        className="fixed bottom-0 left-0 right-0 h-[65px] bg-white border-t border-gray-200 flex lg:hidden justify-center items-center gap-10 xxs:gap-10 xs:gap-14 z-20 w-full shadow-[0_-1px_6px_rgba(0,0,0,0.06)]
+      {!HideNavbarOn.includes(currentPath) && (
+        <div
+          className="fixed bottom-0 left-0 right-0 h-[65px] bg-white border-t border-gray-200 flex lg:hidden justify-center items-center gap-10 xxs:gap-10 xs:gap-14 z-20 w-full shadow-[0_-1px_6px_rgba(0,0,0,0.06)]
 "
-      >
-        {navItems.map((item) => {
-          const isActive = currentPath === item.href;
-          const isHeart = item.id === "heart";
-          const isCart = item.id === "cart";
+        >
+          {navItems
+            ?.filter((item) => !item.hidden)
+            ?.map((item) => {
+              const isActive = currentPath === item.href;
+              const isHeart = item.id === "heart";
+              const isCart = item.id === "cart";
 
-          return (
-            <Link to={item.href} key={item.id}>
-              <button className="flex flex-col items-center justify-center cursor-pointer relative">
-                <img
-                  src={isActive ? item.blue : item.gray}
-                  alt={item.label}
-                  className="w-6 h-6"
-                  loading="lazy"
-                />
+              return (
+                <Link to={item.href} key={item.id}>
+                  <button className="flex flex-col items-center justify-center cursor-pointer relative">
+                    <img
+                      src={isActive ? item.blue : item.gray}
+                      alt={item.label}
+                      className="w-6 h-6"
+                      loading="lazy"
+                    />
 
-                {isHeart && wishlistCount > 0 && (
-                  <span
-                    key={wishlistCount}
-                    className="
+                    {isHeart && wishlistCount > 0 && (
+                      <span
+                        key={wishlistCount}
+                        className="
               absolute -top-1 -right-2
               min-w-[16px] h-[16px]
               px-1
@@ -514,14 +517,14 @@ const Navbar = () => {
               flex items-center justify-center
               animate-[pop_0.3s_ease-out]
             "
-                  >
-                    {wishlistCount}
-                  </span>
-                )}
-                {isCart && items.length > 0 && (
-                  <span
-                    key={items.length}
-                    className="
+                      >
+                        {wishlistCount}
+                      </span>
+                    )}
+                    {isCart && items.length > 0 && (
+                      <span
+                        key={items.length}
+                        className="
               absolute -top-1 -right-2
               min-w-[16px] h-[16px]
               px-1
@@ -530,15 +533,16 @@ const Navbar = () => {
               flex items-center justify-center
               animate-[pop_0.3s_ease-out]
             "
-                  >
-                    {items.length}
-                  </span>
-                )}
-              </button>
-            </Link>
-          );
-        })}
-      </div>
+                      >
+                        {items.length}
+                      </span>
+                    )}
+                  </button>
+                </Link>
+              );
+            })}
+        </div>
+      )}
     </ContainerLayout>
   );
 };

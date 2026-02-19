@@ -18,14 +18,16 @@ import {
   addToWishlist,
   removeFromWishlist,
 } from "../store/slices/wishlistSlice";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { isAuthenticatedFromStorage } from "../utils/Auth";
 import EmptyCart from "../assets/Cart/empty-cart.webp";
 import ContainerLayout from "../layout/ContainerLayout";
+import { IoArrowBackSharp } from "react-icons/io5";
 
 const Cart = () => {
   const width = useWindow();
   const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
   const userName = getItem("auth")?.name;
   const [orderNumber] = useState(generateOrderNumber());
@@ -52,6 +54,36 @@ const Cart = () => {
     [isAuthenticated, isInWishlist, navigate, dispatch],
   );
 
+  // Determine page title based on current route
+  const pageTitle = (() => {
+    switch (location.pathname) {
+      case "/cart":
+        return "Cart";
+      case "/address":
+        return "Delivery Address";
+      case "/payment":
+        return "Payment";
+      default:
+        return "";
+    }
+  })();
+
+  const showBackButton = location.pathname !== "/cart";
+
+  const handleBack = () => {
+    switch (location.pathname) {
+      case "/address":
+        navigate("/cart");
+        break;
+      case "/payment":
+        navigate("/address");
+        break;
+      default:
+        navigate("/cart");
+        break;
+    }
+  };
+
   if (cartItems?.length === 0) {
     return (
       <ContainerLayout>
@@ -68,21 +100,27 @@ const Cart = () => {
   return (
     <>
       <ContainerLayout>
-        <div className="w-full flex flex-col px-3 md:px-25 lg:px-20 xl:px-10 2xl:px-40 pt-20 lg:pt-30 pb-15 lg:pb-20 space-y-6 xl:space-y-12">
-          <h1 className="text-xl md:text-2xl lg:text-4xl font-bold ">
-            My Cart{" "}
-            {cartItems?.length > 0 && (
-              <span className="text-dark-blue">
-                ({cartItems?.length} items)
-              </span>
-            )}
-          </h1>
+        <div className="w-full flex flex-col px-3 md:px-25 lg:px-20 xl:px-10 2xl:px-85 pt-20 lg:pt-30 pb-15 lg:pb-20 space-y-6 xl:space-y-12">
+          <div className="flex items-center gap-3">
+            <div>
+              {showBackButton && (
+                <IoArrowBackSharp
+                  size={30}
+                  className="cursor-pointer"
+                  onClick={handleBack}
+                />
+              )}
+              <h1 className="text-xl md:text-2xl lg:text-4xl font-bold ">
+                {pageTitle}
+              </h1>
+            </div>
+          </div>
           <div className="space-y-4">
             <div
               className={`flex w-full gap-6 grow ${width < 1091 && "flex-col"}`}
             >
               <div
-                className={`w-full ${width < 1091 ? "max-w-full" : "max-w-5xl"}`}
+                className={`w-full ${width < 1091 ? "max-w-full" : "max-w-3xl"}`}
               >
                 {cartItems?.map((product) => (
                   <div
@@ -207,7 +245,7 @@ const Cart = () => {
                   </div>
                 ))}
               </div>
-              <OrderSummary />
+              <OrderSummary checkOut={() => navigate("/address")} />
             </div>
           </div>
         </div>

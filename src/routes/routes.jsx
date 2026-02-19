@@ -1,9 +1,13 @@
+import OrderSummary from "../components/Cart/OrderSummary";
 import Cart from "../pages/Cart";
+import DeliveryAddress from "../pages/DeliveryAddress";
 import Filters from "../pages/Filters";
+import FinalSummary from "../pages/FinalSummary";
 import ForgotPassword from "../pages/ForgotPassWord";
 import Home from "../pages/Home";
 import NewPassword from "../pages/NewPassWord";
 import Orders from "../pages/Order";
+import PaymentPage from "../pages/Payment";
 import ProductDetails from "../pages/ProductDetails";
 import Profile from "../pages/Profile";
 import SignIn from "../pages/SignIn";
@@ -65,5 +69,17 @@ export const protectedRoutes = [
   {
     path: "/orders",
     element: <Orders />,
+  },
+  {
+    path: "/address",
+    element: <DeliveryAddress />,
+  },
+  {
+    path: "/payment",
+    element: <PaymentPage />,
+  },
+  {
+    path: "/final-summary",
+    element: <FinalSummary />,
   },
 ];

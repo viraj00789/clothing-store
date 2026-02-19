@@ -24,7 +24,8 @@ export const navItems = [
     blue: BlueHome,
     gray: GrayHome,
     label: "Home",
-    topBar: { type: "title" }, // shows title
+    topBar: { type: "title" },
+    hidden: false,
   },
   {
     id: "search",
@@ -32,7 +33,8 @@ export const navItems = [
     blue: BlueSearch,
     gray: GraySearch,
     label: "Search",
-    topBar: { type: "search" }, // shows search input
+    topBar: { type: "search" },
+    hidden: false,
   },
   {
     id: "heart",
@@ -41,6 +43,7 @@ export const navItems = [
     gray: GrayHeart,
     label: "Wishlist",
     topBar: { type: "title" },
+    hidden: false,
   },
   {
     id: "cart",
@@ -48,7 +51,8 @@ export const navItems = [
     blue: BlueCart,
     gray: GrayCart,
     label: "Cart",
-    topBar: { type: "custom" }, // 👈 custom UI
+    topBar: { type: "custom" },
+    hidden: false,
   },
   {
     id: "user",
@@ -57,5 +61,35 @@ export const navItems = [
     gray: GrayUser,
     label: "Profile",
     topBar: { type: "title" },
+    hidden: false,
+  },
+  {
+    id: "address",
+    href: "/address",
+    blue: BlueUser,
+    gray: GrayUser,
+    label: "Address",
+    topBar: { type: "title" },
+    hidden: true, // 👈 will not render
+  },
+  {
+    id: "payment",
+    href: "/payment",
+    blue: BlueUser,
+    gray: GrayUser,
+    label: "Payment",
+    topBar: { type: "title" },
+    hidden: true, // 👈 will not render
+  },
+  {
+    id: "final-summary",
+    href: "/final-summary",
+    blue: BlueUser,
+    gray: GrayUser,
+    label: "Final Summary",
+    topBar: { type: "title" },
+    hidden: true, // 👈 will not render
   },
 ];
+
+export const HideNavbarOn = ["/address", "/payment", "/final-summary"];

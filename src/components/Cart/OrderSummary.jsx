@@ -5,7 +5,7 @@ import { useWindow } from "../../hooks/useWidth";
 import toast from "react-hot-toast";
 import AvailableOffers from "./AvailableOffers";
 
-const OrderSummary = () => {
+const OrderSummary = ({ checkOut }) => {
   const { items, promoDiscount, promoCode, promoError } = useSelector(
     (state) => state.cart,
   );
@@ -55,7 +55,7 @@ const OrderSummary = () => {
       {items.length > 0 && (
         <div
           className={`w-full ${
-            width < 1091 ? "max-w-full" : "max-w-xl"
+            width < 1091 ? "max-w-full" : "max-w-lg"
           } bg-gray/60 rounded-10  border border-dark-blue
           p-3.5 md:p-6 h-fit sticky top-30 text-white`}
         >
@@ -150,6 +150,7 @@ const OrderSummary = () => {
             hover:bg-blue-900 transition 
             text-white font-semibold 
             py-1.5 md:py-3 rounded-lg text-lg cursor-pointer"
+            onClick={checkOut}
           >
             Check Out
           </button>

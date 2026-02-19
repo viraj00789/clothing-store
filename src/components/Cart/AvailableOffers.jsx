@@ -54,7 +54,7 @@ const AvailableOffers = () => {
               <button
                 disabled={!eligible}
                 onClick={() => dispatch(applyPromo(offer.code))}
-                className={`text-sm font-medium transition cursor-pointer ${
+                className={`text-lg font-medium transition cursor-pointer ${
                   eligible
                     ? "text-dark-button-blue"
                     : "text-gray-400 cursor-not-allowed"
