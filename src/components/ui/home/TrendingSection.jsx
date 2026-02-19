@@ -251,7 +251,7 @@ const TrendingSection = () => {
                       }
                       toggleLike(product);
                     }}
-                    className="w-full h-9.5 border border-dark-button-blue rounded-10 cursor-pointer flex items-center justify-center gap-3 sm:gap-[23.23px] group transition-all duration-150"
+                    className="w-full h-10 border border-dark-button-blue rounded-10 cursor-pointer flex items-center justify-center gap-3 sm:gap-[23.23px] group transition-all duration-150"
                   >
                     <button className="font-normal text-sm text-light-black">
                       WishList
@@ -268,7 +268,7 @@ const TrendingSection = () => {
                   </div>
 
                   {getCartItem(product.id) ? (
-                    <div className="w-full h-9.5 bg-white text-dark-blue rounded-10 flex items-center justify-center gap-3 px-4 border border-dark-blue">
+                    <div className="w-full h-10 bg-white text-dark-blue rounded-10 flex items-center justify-center gap-3 px-4 border border-dark-blue">
                       <button
                         onClick={(e) => handleDecrease(product.id, e)}
                         className="text-lg font-bold cursor-pointer w-full text-center bg-white text-dark-blue"
@@ -276,7 +276,7 @@ const TrendingSection = () => {
                         −
                       </button>
 
-                      <span className="text-sm font-medium p-2 border-l border-r w-full text-center bg-dark-blue text-white">
+                      <span className="text-sm font-medium p-2.5 border-l border-r w-full text-center bg-dark-blue text-white">
                         {getCartItem(product.id).qty}
                       </span>
 
@@ -289,7 +289,7 @@ const TrendingSection = () => {
                     </div>
                   ) : (
                     <div
-                      className="w-full h-9.5 bg-dark-button-blue text-white rounded-10 cursor-pointer flex items-center justify-center gap-3 sm:gap-[23.23px]"
+                      className="w-full h-10 bg-dark-button-blue text-white rounded-10 cursor-pointer flex items-center justify-center gap-3 sm:gap-[23.23px]"
                       onClick={(e) => {
                         e.stopPropagation();
                         if (!isAuthenticated) {

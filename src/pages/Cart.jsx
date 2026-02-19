@@ -86,8 +86,8 @@ const Cart = () => {
               >
                 {cartItems?.map((product) => (
                   <div
-                    className={`flex items-center gap-3 w-full justify-between sm:p-3 lg:p-4 border-b last:border-b-0 border-dark-blue
-                       p-2 ${width < 1091 ? "max-w-full" : "max-w-5xl"}`}
+                    className={`flex items-center gap-3 w-full justify-between sm:py-3 lg:py-4 border-b last:border-b-0 border-dark-blue
+                       py-3 ${width < 1091 ? "max-w-full" : "max-w-5xl"}`}
                     key={product.id}
                   >
                     <div className="flex gap-1.5 md:gap-4 items-center">
