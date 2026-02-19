@@ -5,7 +5,7 @@ import { IoArrowBackSharp, IoCardOutline } from "react-icons/io5";
 import { FaPaypal, FaGooglePay, FaMoneyBillWave } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useWindow } from "../hooks/useWidth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import OrderSuccessModal from "../components/OrderSuccessModal";
 
 const iconMap = {
@@ -63,6 +63,13 @@ const FinalSummary = () => {
 
     setShowSuccessModal(true);
   };
+
+  useEffect(() => {
+    if (items.length === 0) {
+      toast.error("Please review your cart.");
+      navigate("/cart", { replace: true });
+    }
+  }, [location.key, navigate]);
 
   return (
     <ContainerLayout>

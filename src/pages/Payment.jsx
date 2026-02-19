@@ -43,6 +43,15 @@ const PaymentPage = () => {
   });
   const [editingId, setEditingId] = useState(null);
 
+  const items = useSelector((state) => state.cart.items);
+
+  useEffect(() => {
+    if (items.length === 0) {
+      toast.error("Please review your cart before payment.");
+      navigate("/cart", { replace: true });
+    }
+  }, [location.key, navigate]);
+
   // ✅ Validation
   const validate = () => {
     const err = {};

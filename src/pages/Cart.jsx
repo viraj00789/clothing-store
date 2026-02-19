@@ -245,7 +245,11 @@ const Cart = () => {
                   </div>
                 ))}
               </div>
-              <OrderSummary checkOut={() => navigate("/address")} />
+              <OrderSummary
+                checkOut={() =>
+                  navigate("/address", { state: { from: "cart" } })
+                }
+              />
             </div>
           </div>
         </div>

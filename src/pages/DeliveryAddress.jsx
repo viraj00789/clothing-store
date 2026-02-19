@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import ContainerLayout from "../layout/ContainerLayout";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { IoArrowBackSharp } from "react-icons/io5";
 import { nanoid } from "@reduxjs/toolkit";
 import {
@@ -24,6 +24,16 @@ const DeliveryAddress = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const width = useWindow();
+  const location = useLocation();
+  const items = useSelector((state) => state.cart.items);
+
+  useEffect(() => {
+    if (items.length === 0) {
+      toast.error("Please review your cart before selecting delivery address.");
+      navigate("/cart", { replace: true });
+    }
+  }, [location.key, navigate]);
+
   const { addresses } = useSelector((state) => state.address);
   const selectedAddress = useSelector(selectSelectedAddress);
   const [open, setopen] = useState(false);
