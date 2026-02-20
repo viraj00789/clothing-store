@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router";
+
 const NoClothesFound = ({ clearFilters }) => {
+  const Navigate = useNavigate();
   return (
     <div className="flex flex-col items-center justify-center text-center py-16 px-4">
       <img
@@ -18,7 +21,10 @@ const NoClothesFound = ({ clearFilters }) => {
       </p>
 
       <button
-        onClick={clearFilters}
+        onClick={() => {
+          clearFilters();
+          Navigate("/search/all");
+        }}
         className="mt-6 bg-dark-button-blue hover:bg-blue-900 transition text-white px-6 py-2 rounded-lg font-medium cursor-pointer"
       >
         Clear Filters

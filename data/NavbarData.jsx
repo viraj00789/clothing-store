@@ -10,10 +10,9 @@ import GrayCart from "../src/assets/Icons/Home/GrayIcons/home-cart.svg";
 import GrayUser from "../src/assets/Icons/Home/GrayIcons/home-user.svg";
 
 export const navLinks = [
-  { to: "/filters/men", label: "Men" },
-  { to: "/filters/women", label: "Women" },
-  { to: "/filters/kids", label: "Kids" },
-  { to: "/product/4", label: "Shop" },
+  { to: "/search/men", label: "Men" },
+  { to: "/search/women", label: "Women" },
+  { to: "/search/kids", label: "Kids" },
   { to: "/product/5", label: "Contact us" },
 ];
 
@@ -29,11 +28,20 @@ export const navItems = [
   },
   {
     id: "search",
-    href: "/search",
+    href: "/search/all",
     blue: BlueSearch,
     gray: GraySearch,
     label: "Search",
     topBar: { type: "search" },
+    hidden: true,
+  },
+  {
+    id: "SearchCategory",
+    href: "/searchcategory",
+    blue: BlueSearch,
+    gray: GraySearch,
+    label: "Search Category",
+    topBar: { type: "title" },
     hidden: false,
   },
   {
@@ -92,4 +100,9 @@ export const navItems = [
   },
 ];
 
-export const HideNavbarOn = ["/address", "/payment", "/final-summary"];
+export const HideNavbarOn = [
+  "/address",
+  "/payment",
+  "/final-summary",
+  "/search",
+];

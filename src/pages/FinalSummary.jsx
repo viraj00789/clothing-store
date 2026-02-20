@@ -140,7 +140,7 @@ const FinalSummary = () => {
                     <p className="text-sm text-gray-500">Qty: {item.qty}</p>
                   </div>
                 </div>
-                <p className="font-semibold">${item.price * item.qty}</p>
+                <p className="font-semibold">₹{item.price * item.qty}</p>
               </div>
             ))}
           </div>
@@ -236,7 +236,7 @@ const FinalSummary = () => {
             className="fixed bottom-0 left-0 right-0 z-13 h-[65px] bg-gray-100 border-t border-gray-200 flex lg:hidden justify-between items-center gap-2 px-3 w-full shadow-[0_-1px_6px_rgba(0,0,0,0.06)]
         "
           >
-            <span className="text-lg font-bold">${finalTotal.toFixed(2)}</span>
+            <span className="text-lg font-bold">₹{finalTotal.toFixed(2)}</span>
 
             <button
               onClick={handlePayment}

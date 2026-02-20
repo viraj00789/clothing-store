@@ -18,7 +18,7 @@ const ProductCard = ({ product, showWishlistIcon }) => {
           loading="lazy"
         />
 
-        <div className="px-5 py-3 flex flex-col grow space-y-2">
+        <div className="px-4 md:px-5 py-3 flex flex-col grow space-y-1 md:space-y-2">
           <div
             className="font-bold text-xl lg:text-[24px] text-light-black truncate"
             title={product.title}
@@ -26,16 +26,16 @@ const ProductCard = ({ product, showWishlistIcon }) => {
             {product.title}
           </div>
 
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-1 sm:gap-2 lg:gap-4 items-center flex-wrap">
             <p
-              className="text-lg text-light-black truncate"
+              className="text-md sm:text-lg text-light-black truncate"
               title={product.brand}
             >
               {product.brand}
             </p>
 
             <div className="flex items-center gap-2">
-              <p className="text-black text-lg">{product.rating}</p>
+              <p className="text-black text-sm sm:text-lg">{product.rating}</p>
               <img
                 src={star}
                 alt="rating star"
@@ -46,16 +46,16 @@ const ProductCard = ({ product, showWishlistIcon }) => {
             </div>
           </div>
 
-          <div className=" flex gap-3 flex-wrap items-center">
-            <p className="font-bold text-lg lg:text-2xl text-light-black">
+          <div className=" flex gap-2 sm:gap-3 flex-wrap items-center">
+            <p className="font-bold text-sm sm:text-lg lg:text-2xl text-light-black">
               Rs. {product.price}
             </p>
 
-            <p className="line-through text-lg text-light-black">
+            <p className="line-through text-sm sm:text-lg text-light-black">
               Rs. {product.oldPrice}
             </p>
 
-            <p className="text-green text-lg">({product.discount})</p>
+            <p className="text-green text-sm sm:text-lg">({product.discount})</p>
           </div>
         </div>
       </div>

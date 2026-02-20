@@ -125,11 +125,11 @@ body {
 }
 
 
-/* @media (min-width: 768px) {
+@media (min-width: 768px) {
   body {
     font-family: var(--font-baskerville);
   }
-} */
+}
 
 
 /* ==================== Serch Bar ====================== */

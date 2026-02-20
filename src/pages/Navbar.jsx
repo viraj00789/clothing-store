@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { isAuthenticatedFromStorage } from "../utils/Auth";
 import { HideNavbarOn, navItems, navLinks } from "../../data/NavbarData";
 import { clearCart } from "../store/slices/cartSlice";
+import { products } from "../../data/ProductDetailsData";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -30,7 +31,10 @@ const Navbar = () => {
   const { isAuthenticated = false } = isAuthenticatedFromStorage();
   const dispatch = useDispatch();
   const isHome = currentPath === "/";
-  const isSearch = currentPath === "/search";
+  const isSearch = currentPath.startsWith("/search");
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const queryFromURL = new URLSearchParams(location.search).get("q") || "";
 
   const routeMap = navItems.reduce((acc, item) => {
     acc[item.href] = item;
@@ -89,14 +93,34 @@ const Navbar = () => {
     },
   ];
 
+  const handleSearch = () => {
+    if (!value.trim()) {
+      navigate("/search/all");
+    } else {
+      navigate(`/search/all?q=${value}`);
+    }
+  };
+
+  const handleSearchOnMobile = () => {
+    if (!value.trim()) {
+      navigate("/search/all");
+    } else {
+      navigate(`/search/all?q=${value}`);
+    }
+  };
+
+  useEffect(() => {
+    setValue(queryFromURL);
+  }, [queryFromURL]);
+
   return (
     <ContainerLayout>
       {/* Sticky navbar */}
-      <div className="shadow-md max-w-480 w-full z-10 px-3 py-4 xl:px-12.5 fixed top-0 bg-white mb-10">
+      <div className="shadow-[0px_0px_15px_0px_#0000001A] max-w-480 w-full z-10 px-3 py-4 xl:px-12.5 fixed top-0 bg-white mb-10">
         {/* Top bar */}
         <div className="flex w-full max-w-480 items-center justify-between gap-0 xl:gap-2">
           {/* Logo + desktop links */}
-          <div className="flex items-center gap-2 lg:hidden">
+          <div className="flex items-center gap-2 lg:hidden w-full">
             {/* Back button (not on home) */}
             {!isHome && (
               <button
@@ -109,23 +133,94 @@ const Navbar = () => {
 
             {/* If search page → show search input */}
             {isSearch ? (
-              <div className="relative w-[200px]">
+              <div className="relative w-full mr-3">
                 <input
                   type="search"
                   placeholder="Search"
                   value={value}
-                  onChange={(e) => setValue(e.target.value)}
-                  className="w-full h-9 bg-light-gray focus:outline-none rounded-lg px-3 pr-10 text-sm"
+                  onChange={(e) => {
+                    setValue(e.target.value);
+                    setShowSuggestions(true);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      setShowSuggestions(false);
+                      handleSearchOnMobile();
+                    }
+                  }}
+                  className="w-full h-9 bg-light-gray focus:outline-none rounded-lg px-9 pr-10 text-sm"
                 />
+                {showSuggestions && value && (
+                  <div className="absolute top-full left-0 w-full mt-2 bg-white shadow-lg rounded-xl z-50 overflow-hidden">
+                    {products
+                      ?.filter((p) =>
+                        p?.title?.toLowerCase()?.includes(value?.toLowerCase()),
+                      )
+                      .slice(0, 3) // show only 3 suggestions
+                      .map((p) => (
+                        <div
+                          key={p.id}
+                          onClick={() => {
+                            navigate(`/product/${p.id}`);
+                            setValue("");
+                            setOpen(false); // close mobile menu if open
+                          }}
+                          className="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-100 transition"
+                        >
+                          <img
+                            src={
+                              p.image ||
+                              `https://source.unsplash.com/60x60/?${encodeURIComponent(
+                                p.name,
+                              )}`
+                            }
+                            alt={p.title}
+                            className="w-12 h-12 object-cover rounded-lg flex-shrink-0"
+                          />
+                          <div className="flex flex-col">
+                            <span className="font-medium text-gray-800">
+                              {p.title}
+                            </span>
+                            <span className="text-sm text-gray-500">
+                              Rs. {p.price}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+
+                    {/* Optional: "See all results" */}
+                    <div
+                      onClick={() => {
+                        navigate(`/search/all?q=${value}`);
+                        setShowSuggestions(false);
+                      }}
+                      className="px-4 py-3 text-center text-dark-blue font-medium cursor-pointer hover:bg-blue-50 transition truncate max-w-full"
+                    >
+                      See all results for "{value}"
+                    </div>
+                  </div>
+                )}
                 {value && (
                   <button
                     type="button"
-                    onClick={() => setValue("")}
+                    onClick={() => {
+                      setValue("");
+                      setShowSuggestions(false);
+                      navigate("/search/all");
+                    }}
                     className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500"
                   >
                     <IoClose size={16} />
                   </button>
                 )}
+                <img
+                  src={Search}
+                  alt="search"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 opacity-50"
+                  loading="lazy"
+                  width={19}
+                  height={19}
+                />
               </div>
             ) : isHome ? (
               // Home → keep your existing logo/user logic
@@ -208,13 +303,22 @@ const Navbar = () => {
           {/* Desktop right section */}
           <div className="hidden lg:flex items-center gap-4 xl:gap-8">
             <div className="relative">
-              <div className="relative w-full 3xl:w-133">
+              <div className="relative w-full 2xl:w-133">
                 <input
                   type="search"
-                  placeholder="Search"
+                  placeholder="Search the desired product ....."
                   value={value}
-                  onChange={(e) => setValue(e.target.value)}
-                  className="w-full h-12 bg-light-gray focus:outline-none rounded-lg px-9 pr-12 appearance-none
+                  onChange={(e) => {
+                    setValue(e.target.value);
+                    setShowSuggestions(true);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      setShowSuggestions(false);
+                      handleSearch();
+                    }
+                  }}
+                  className="w-full h-12 bg-light-gray focus:outline-none rounded-lg px-9 pl-12 appearance-none text-gray-600
                    [&::-webkit-search-cancel-button]:hidden
                    [&::-webkit-search-decoration]:hidden
                    [&::-ms-clear]:hidden"
@@ -223,17 +327,72 @@ const Navbar = () => {
                 {value && (
                   <button
                     type="button"
-                    onClick={() => setValue("")}
-                    className="absolute right-12 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 cursor-pointer"
+                    onClick={() => {
+                      setValue("");
+                      navigate("/search/all");
+                    }}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 cursor-pointer"
                   >
                     <IoClose size={20} />
                   </button>
+                )}
+
+                {/* Mobile Search Suggestions */}
+                {showSuggestions && value && (
+                  <div className="absolute top-full left-0 w-full mt-2 bg-white shadow-lg rounded-xl z-50 overflow-hidden">
+                    {products
+                      ?.filter((p) =>
+                        p?.title?.toLowerCase()?.includes(value?.toLowerCase()),
+                      )
+                      .slice(0, 3) // show only 3 suggestions
+                      .map((p) => (
+                        <div
+                          key={p.id}
+                          onClick={() => {
+                            navigate(`/product/${p.id}`);
+                            setValue("");
+                            setOpen(false); // close mobile menu if open
+                          }}
+                          className="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-100 transition"
+                        >
+                          <img
+                            src={
+                              p.image ||
+                              `https://source.unsplash.com/60x60/?${encodeURIComponent(
+                                p.name,
+                              )}`
+                            }
+                            alt={p.title}
+                            className="w-12 h-12 object-cover rounded-lg flex-shrink-0"
+                          />
+                          <div className="flex flex-col">
+                            <span className="font-medium text-gray-800">
+                              {p.title}
+                            </span>
+                            <span className="text-sm text-gray-500">
+                              Rs. {p.price}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+
+                    {/* Optional: "See all results" */}
+                    <div
+                      onClick={() => {
+                        navigate(`/search/all?q=${value}`);
+                        setShowSuggestions(false);
+                      }}
+                      className="px-4 py-3 text-center text-dark-blue font-medium cursor-pointer hover:bg-blue-50 transition truncate max-w-full"
+                    >
+                      See all results for "{value}"
+                    </div>
+                  </div>
                 )}
               </div>
               <img
                 src={Search}
                 alt="search"
-                className="absolute right-4 top-1/2 -translate-y-1/2"
+                className="absolute left-4 top-1/2 -translate-y-1/2 opacity-50"
                 loading="lazy"
               />
             </div>
@@ -308,12 +467,14 @@ const Navbar = () => {
               </div>
 
               {authUser ? (
-                <div className="relative group flex items-center gap-[13px]">
+                <div className="relative group flex items-center gap-[13px] cursor-pointer">
                   <img
-                    src={Girl}
+                    src={
+                      "https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tbWV8ZW58MHx8MHx8fDA%3D"
+                    }
                     alt="logo"
                     loading="lazy"
-                    className="w-[29px] h-[29px] rounded-full"
+                    className="w-[29px] h-[29px] rounded-full object-cover cursor-pointer"
                   />
                   <p className="font-normal text-lg truncate text-mid-dark-gray hidden xl:block">
                     {authUser?.name}
@@ -398,7 +559,7 @@ const Navbar = () => {
         >
           <div className="bg-white space-y-4 p-4">
             {/* Mobile search */}
-            <div className="relative">
+            {/* <div className="relative">
               <div className="relative w-full xl:w-133">
                 <input
                   type="search"
@@ -427,7 +588,7 @@ const Navbar = () => {
                 className="absolute right-4 top-1/2 -translate-y-1/2"
                 loading="lazy"
               />
-            </div>
+            </div> */}
 
             {/* Mobile links */}
             <ul className="flex flex-col gap-4">

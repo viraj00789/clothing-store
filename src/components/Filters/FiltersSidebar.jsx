@@ -3,6 +3,7 @@ import { Range, getTrackBackground } from "react-range";
 import { FiChevronDown } from "react-icons/fi";
 import CustomCheckbox from "../ui/CheckBox";
 import { useWindow } from "../../hooks/useWidth";
+import { useNavigate } from "react-router";
 
 const STEP = 100;
 const MIN = 0;
@@ -24,6 +25,7 @@ const FiltersSidebar = ({
   const [showAllBrands, setShowAllBrands] = useState(false);
   const [showAllColors, setShowAllColors] = useState(false);
   const width = useWindow();
+  const navigate = useNavigate();
 
   const brands = [...new Set(products.map((p) => p.brand))];
   const colors = [...new Set(products.map((p) => p.color))];
@@ -50,11 +52,12 @@ const FiltersSidebar = ({
   };
 
   const visibleBrands = showAllBrands ? brands : brands.slice(0, 6);
+  const visibleColors = showAllColors ? colors : colors.slice(0, 6);
 
   return (
     <div
-      className="w-full lg:w-78 xl:w-115 px-0 sm:px-5 py-8 rounded-xl
- overflow-y-auto lg:overflow-y-hidden lg:sticky top-25 h-full md:h-fit"
+      className="w-full lg:w-78 xl:w-115 px-0 sm:px-5 py-8 lg:py-2 rounded-xl
+  h-full lg:h-[calc(100vh-122px)] overflow-auto sticky lg:top-30"
     >
       {/* HEADER */}
       <div className="flex justify-between items-center mb-6 px-4 sm:px-0">
@@ -62,7 +65,10 @@ const FiltersSidebar = ({
 
         <div className="flex items-center gap-4">
           <button
-            onClick={clearFilters}
+            onClick={() => {
+              clearFilters();
+              navigate("/search/all");
+            }}
             className="text-lg text-dark-blue font-normal cursor-pointer"
           >
             Clear All
@@ -99,7 +105,7 @@ const FiltersSidebar = ({
         <div
           className={`overflow-hidden transition-all duration-300 px-4 sm:px-0 ${
             openSections.price
-              ? "max-h-[500px] opacity-100 mt-6 pb-6 border-b border-light-blue md:border-dark-gray/50"
+              ? "max-h-125 opacity-100 mt-6 pb-6 border-b border-light-blue md:border-dark-gray/50"
               : "max-h-0 opacity-0"
           }`}
         >
@@ -213,51 +219,67 @@ const FiltersSidebar = ({
         <div
           className={`overflow-hidden transition-all duration-300 border-b border-light-blue md:border-dark-gray/50 px-4 sm:px-0 ${
             openSections.brand
-              ? "max-h-150 opacity-100 my-6 pb-6 border-b border-light-blue md:border-dark-gray/50"
+              ? "max-h-250 opacity-100 my-6 pb-6 border-b border-light-blue md:border-dark-gray/50"
               : "max-h-0 opacity-0"
           }`}
         >
           {width >= 768 ? (
             // DESKTOP: checkboxes
             <div className="space-y-3">
-              {visibleBrands.map((brand) => {
-                const count = products.filter((p) => p.brand === brand).length;
-                return (
-                  <CustomCheckbox
-                    key={brand}
-                    checked={selectedBrands.includes(brand)}
-                    onChange={() =>
-                      toggleItem(brand, selectedBrands, setSelectedBrands)
-                    }
-                    label={brand}
-                    count={count}
-                  />
-                );
-              })}
+              {visibleBrands.length > 0 ? (
+                visibleBrands.map((brand) => {
+                  const count = products.filter(
+                    (p) => p.brand === brand,
+                  ).length;
+                  return (
+                    <CustomCheckbox
+                      key={brand}
+                      checked={selectedBrands.includes(brand)}
+                      onChange={() =>
+                        toggleItem(brand, selectedBrands, setSelectedBrands)
+                      }
+                      label={brand}
+                      count={count}
+                    />
+                  );
+                })
+              ) : (
+                <p className="text-lg font-normal text-mid-gray-2 text-center">
+                  No Brand found.
+                </p>
+              )}
             </div>
           ) : (
             // MOBILE: text block / pills
             <div className="flex flex-wrap gap-2">
-              {visibleBrands.map((brand) => {
-                const count = products.filter((p) => p.brand === brand).length;
-                const isSelected = selectedBrands.includes(brand);
+              {brands.length > 0 ? (
+                brands.map((brand) => {
+                  const count = products.filter(
+                    (p) => p.brand === brand,
+                  ).length;
+                  const isSelected = selectedBrands.includes(brand);
 
-                return (
-                  <button
-                    key={brand}
-                    onClick={() =>
-                      toggleItem(brand, selectedBrands, setSelectedBrands)
-                    }
-                    className={`p-4 border rounded-5 cursor-pointer text-sm ${
-                      isSelected
-                        ? "text-light-blue-dark bg-light-gray-4 border-none"
-                        : "text-light-blue-1 bg-white border-light-blue"
-                    }`}
-                  >
-                    {brand} ({count})
-                  </button>
-                );
-              })}
+                  return (
+                    <button
+                      key={brand}
+                      onClick={() =>
+                        toggleItem(brand, selectedBrands, setSelectedBrands)
+                      }
+                      className={`p-4 border rounded-5 cursor-pointer text-sm ${
+                        isSelected
+                          ? "text-light-blue-dark bg-light-gray-4 border-none"
+                          : "text-light-blue-1 bg-white border-light-blue"
+                      }`}
+                    >
+                      {brand} ({count})
+                    </button>
+                  );
+                })
+              ) : (
+                <p className="text-lg font-normal text-mid-gray-2 text-center">
+                  No Brand found.
+                </p>
+              )}
             </div>
           )}
 
@@ -295,51 +317,67 @@ const FiltersSidebar = ({
         <div
           className={`overflow-hidden transition-all duration-300 px-4 sm:px-0 ${
             openSections.color
-              ? "max-h-[500px] opacity-100 mt-6 pb-6 border-b border-light-blue md:border-dark-gray/50"
+              ? "max-h-250 opacity-100 mt-6 pb-6 border-b border-light-blue md:border-dark-gray/50"
               : "max-h-0 opacity-0"
           }`}
         >
           {width >= 768 ? (
             // DESKTOP: checkboxes
             <div className="space-y-3">
-              {colors.map((color) => {
-                const count = products.filter((p) => p.color === color).length;
-                return (
-                  <CustomCheckbox
-                    key={color}
-                    checked={selectedColors.includes(color)}
-                    onChange={() =>
-                      toggleItem(color, selectedColors, setSelectedColors)
-                    }
-                    label={color}
-                    count={count}
-                  />
-                );
-              })}
+              {visibleColors.length > 0 ? (
+                visibleColors.map((color) => {
+                  const count = products.filter(
+                    (p) => p.color === color,
+                  ).length;
+                  return (
+                    <CustomCheckbox
+                      key={color}
+                      checked={selectedColors.includes(color)}
+                      onChange={() =>
+                        toggleItem(color, selectedColors, setSelectedColors)
+                      }
+                      label={color}
+                      count={count}
+                    />
+                  );
+                })
+              ) : (
+                <p className="text-lg font-normal text-mid-gray-2 text-center">
+                  No Color found.
+                </p>
+              )}
             </div>
           ) : (
             // MOBILE: text block / pills
             <div className="flex flex-wrap gap-2">
-              {colors.map((color) => {
-                const count = products.filter((p) => p.color === color).length;
-                const isSelected = selectedColors.includes(color);
+              {colors.length > 0 ? (
+                colors.map((color) => {
+                  const count = products.filter(
+                    (p) => p.color === color,
+                  ).length;
+                  const isSelected = selectedColors.includes(color);
 
-                return (
-                  <button
-                    key={color}
-                    onClick={() =>
-                      toggleItem(color, selectedColors, setSelectedColors)
-                    }
-                    className={`p-4 border rounded-5 cursor-pointer text-sm ${
-                      isSelected
-                        ? "text-light-blue-dark bg-light-gray-4 border-none"
-                        : "text-light-blue-1 bg-white border-light-blue"
-                    }`}
-                  >
-                    {color} ({count})
-                  </button>
-                );
-              })}
+                  return (
+                    <button
+                      key={color}
+                      onClick={() =>
+                        toggleItem(color, selectedColors, setSelectedColors)
+                      }
+                      className={`p-4 border rounded-5 cursor-pointer text-sm ${
+                        isSelected
+                          ? "text-light-blue-dark bg-light-gray-4 border-none"
+                          : "text-light-blue-1 bg-white border-light-blue"
+                      }`}
+                    >
+                      {color} ({count})
+                    </button>
+                  );
+                })
+              ) : (
+                <p className="text-lg font-normal text-mid-gray-2 text-center">
+                  No Color found.
+                </p>
+              )}
             </div>
           )}
 
