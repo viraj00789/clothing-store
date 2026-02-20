@@ -51,11 +51,20 @@ const addressSlice = createSlice({
     selectAddress: (state, action) => {
       state.selectedId = action.payload;
     },
+
+    resetAddress: (state) => {
+      state.selectedId = null;
+    },
   },
 });
 
-export const { addAddress, editAddress, deleteAddress, selectAddress } =
-  addressSlice.actions;
+export const {
+  addAddress,
+  editAddress,
+  deleteAddress,
+  selectAddress,
+  resetAddress,
+} = addressSlice.actions;
 
 // ✅ Selector (THIS is how you "get all addresses")
 export const selectAllAddresses = (state) => state.address.addresses;

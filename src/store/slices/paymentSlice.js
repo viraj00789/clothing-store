@@ -59,10 +59,20 @@ const paymentSlice = createSlice({
     selectCard: (state, action) => {
       state.selectedCard = action.payload;
     },
+    resetPayment: (state) => {
+      state.selectedCard = null;
+      state.selectedMethod = "card";
+    },
   },
 });
 
-export const { selectMethod, addCard, deleteCard, selectCard, editCard } =
-  paymentSlice.actions;
+export const {
+  selectMethod,
+  addCard,
+  deleteCard,
+  selectCard,
+  editCard,
+  resetPayment,
+} = paymentSlice.actions;
 
 export default paymentSlice.reducer;

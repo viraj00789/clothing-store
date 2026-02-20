@@ -1,4 +1,4 @@
-const OrderSuccessModal = ({ isOpen, onClose, orderId, amount }) => {
+const OrderSuccessModal = ({ isOpen, onClose, orderId, amount, onOrder }) => {
   if (!isOpen) return null;
 
   const now = new Date();
@@ -56,11 +56,14 @@ const OrderSuccessModal = ({ isOpen, onClose, orderId, amount }) => {
         </div>
 
         <button
-          onClick={onClose}
+          onClick={() => {
+            onOrder();
+            onClose();
+          }}
           className="mt-8 w-full bg-dark-button-blue hover:bg-blue-900 
           text-white py-3 rounded-xl text-lg font-semibold transition cursor-pointer"
         >
-          Continue Shopping
+          Go to Orders
         </button>
       </div>
     </div>

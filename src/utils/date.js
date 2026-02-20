@@ -5,3 +5,8 @@ export const formattedDate = date.toLocaleDateString("en-GB", {
   month: "long",
   year: "numeric",
 });
+
+export const formattedTime = date.toLocaleTimeString("en-GB", {
+  hour: "numeric",
+  minute: "numeric",
+});
