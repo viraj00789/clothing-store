@@ -10,12 +10,9 @@ import {
   editAddress,
   selectSelectedAddress,
   selectAddress,
-  deleteAddress,
 } from "../store/slices/addressSlice";
 import { FaAngleDown } from "react-icons/fa";
 import { useWindow } from "../hooks/useWidth";
-import { MdEdit } from "react-icons/md";
-import { FaTrashAlt } from "react-icons/fa";
 import toast from "react-hot-toast";
 
 const countries = ["India", "USA", "Germany", "Canada", "Australia"];
@@ -42,6 +39,8 @@ const DeliveryAddress = () => {
   const [showForm, setShowForm] = useState(false);
 
   const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
     country: countries[0],
     city: "",
     zip: "",
@@ -54,15 +53,17 @@ const DeliveryAddress = () => {
   // 🔹 Validate form
   const validateForm = () => {
     const newErrors = {};
-    if (!form.city.trim()) newErrors.city = "City is required";
-    if (!form.zip) newErrors.zip = "ZIP code is required";
-    else if (form.zip.length !== 6) newErrors.zip = "ZIP code must be 6 digits";
-    if (!form.street.trim()) newErrors.street = "Street address is required";
+    if (!form.firstName.trim()) newErrors.firstName = "First name is required.";
+    if (!form.lastName.trim()) newErrors.lastName = "Last name is required.";
+    if (!form.city.trim()) newErrors.city = "City is required.";
+    if (!form.zip) newErrors.zip = "ZIP code is required.";
+    else if (form.zip.length !== 6) newErrors.zip = "ZIP code must be 6 digits.";
+    if (!form.street.trim()) newErrors.street = "Street address is required.";
     else if (form.street.length > 250)
-      newErrors.street = "Street must be less than 250 characters";
-    if (!form.phone.trim()) newErrors.phone = "Phone number is required";
+      newErrors.street = "Street must be less than 250 characters.";
+    if (!form.phone.trim()) newErrors.phone = "Phone number is required.";
     else if (!/^\d{10}$/.test(form.phone))
-      newErrors.phone = "Phone number must be 10 digits";
+      newErrors.phone = "Phone number must be 10 digits.";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -70,6 +71,8 @@ const DeliveryAddress = () => {
 
   const resetForm = () => {
     setForm({
+      firstName: "",
+      lastName: "",
       country: countries[0],
       city: "",
       zip: "",
@@ -134,7 +137,7 @@ const DeliveryAddress = () => {
   return (
     <ContainerLayout>
       {items.length > 0 && (
-        <div className="w-full flex flex-col px-3 md:px-25 lg:px-20 xl:px-10 2xl:px-85 pt-20 lg:pt-30 pb-15 lg:pb-20 space-y-6 xl:space-y-12">
+        <div className="w-full flex flex-col px-0 sm:px-3 md:px-25 lg:px-20 xl:px-10 2xl:px-85 pt-20 lg:pt-30 pb-15 lg:pb-20 space-y-6 xl:space-y-12">
           {/* Header */}
           <div className="flex items-center gap-3">
             {width >= 768 && (
@@ -144,10 +147,19 @@ const DeliveryAddress = () => {
                 onClick={() => navigate("/cart")}
               />
             )}
-            <h1 className="text-xl md:text-2xl lg:text-4xl font-bold">
+            <h1 className="text-xl md:text-2xl lg:text-4xl font-bold  pl-2">
               Choose Address
             </h1>
           </div>
+
+          <button
+            onClick={() => {
+              navigate("/add-address");
+            }}
+            className="w-full text-dark-button-blue bg-white py-3.25 font-medium text-sm cursor-pointer border-y text-left pl-3"
+          >
+            +{"  "} Add new address
+          </button>
 
           {/* Address List */}
           <div className="flex flex-col lg:flex-row gap-6">
@@ -156,57 +168,88 @@ const DeliveryAddress = () => {
                 addresses.map((address) => (
                   <div
                     key={address.id}
-                    className={`border rounded-lg p-4 cursor-pointer ${
+                    className={`rounded-lg p-4 cursor-pointer ${
                       selectedAddress?.id === address.id
-                        ? "border-dark-button-blue bg-blue-50"
-                        : "border-gray-300"
+                        ? " bg-blue-50"
+                        : "bg-grayish"
                     }`}
                     onClick={() => handleDeliver(address)}
                   >
-                    <div className="flex items-start gap-4">
-                      <input
-                        type="radio"
-                        checked={selectedAddress?.id === address.id}
-                        onChange={() => handleDeliver(address)}
-                        className="mt-2 p-3"
-                      />
+                    <div className="flex flex-col items-start">
+                      <div className="flex gap-3 items-center">
+                        <label className="flex items-center gap-3 cursor-pointer">
+                          <input
+                            type="radio"
+                            checked={selectedAddress?.id === address.id}
+                            onChange={() => handleDeliver(address)}
+                            className="hidden"
+                          />
+
+                          <div
+                            className={`w-5 h-5 rounded-full border flex items-center justify-center
+                               ${
+                                 selectedAddress?.id === address.id
+                                   ? "border-dark-button-blue"
+                                   : "border-dark-button-blue"
+                               }`}
+                          >
+                            {selectedAddress?.id === address.id && (
+                              <div className="w-2.5 h-2.5 bg-dark-button-blue rounded-full" />
+                            )}
+                          </div>
+                        </label>
+                        <p className="font-bold text-lg">
+                          <span className="text-light-black text-sm">
+                            {" "}
+                            {address.firstName} {address.lastName}
+                          </span>
+                        </p>
+                      </div>
 
                       <div className="flex-1">
                         <p className="font-bold text-lg">
-                          Street:
-                          <span className="text-dark-gray text-lg">
+                          <span className="text-light-black text-sm">
                             {" "}
                             {address.street}
                           </span>
                         </p>
                         <p className="font-bold text-lg">
-                          City:{" "}
-                          <span className="text-dark-gray text-lg">
+                          <span className="text-light-black text-sm">
                             {" "}
                             {address.city}, {address.zip}
                           </span>
                         </p>
                         <p className="font-bold text-lg">
-                          Country:{" "}
-                          <span className="text-dark-gray text-lg">
+                          <span className="text-light-black text-sm">
                             {" "}
                             {address.country}
                           </span>
                         </p>
                         <p className="font-bold text-lg">
-                          Phone:{" "}
-                          <span className="text-dark-gray text-lg">
+                          <span className="text-light-black text-sm">
                             +91 {address.phone}
                           </span>
                         </p>{" "}
                         {/* Display phone number */}
                         <div className="flex gap-4 mt-3 items-center">
-                          <MdEdit
+                          <p
+                            className="text-dark-button-blue text-sm"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleEdit(address);
+                            }}
+                          >
+                            Edit
+                          </p>
+
+                          {/* For Edit  */}
+                          {/* <MdEdit
                             onClick={() => handleEdit(address)}
                             className="text-light-black"
                             fontSize={24}
-                          />
-                          <FaTrashAlt
+                          /> */}
+                          {/* For delete */}
+                          {/* <FaTrashAlt
                             fontSize={20}
                             disabled={editingId === address.id}
                             onClick={() => {
@@ -218,7 +261,7 @@ const DeliveryAddress = () => {
                                 ? "opacity-50 cursor-not-allowed"
                                 : ""
                             } `}
-                          />
+                          /> */}
 
                           {/* <button
                       disabled={editingId === address.id}
@@ -235,7 +278,21 @@ const DeliveryAddress = () => {
                       Delete
                     </button> */}
                         </div>
+                        {/* Deliver to this address */}
                       </div>
+                      {width < 640 && (
+                        <div className="flex gap-4 mt-3 items-center justify-center w-full rounded-10 cursor-pointer">
+                          <button
+                            className="bg-dark-button-blue text-sm text-white px-3 py-2.5 rounded-10 cursor-pointer"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleDeliver(address);
+                            }}
+                          >
+                            Deliver to this address
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))
@@ -262,6 +319,44 @@ const DeliveryAddress = () => {
                   className={`w-full ${width < 1091 ? "max-w-full" : "max-w-lg"}`}
                 >
                   <div className="space-y-4 border p-4 rounded-lg border-gray-300">
+                    <div>
+                      <label className="block font-medium mb-1">
+                        First Name
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="First Name"
+                        value={form.firstName}
+                        onChange={(e) =>
+                          handleChange("firstName", e.target.value)
+                        }
+                        className={`w-full border p-2 rounded ${errors.firstName ? "border-red-500" : "border-gray-300"}`}
+                      />
+                      {errors.firstName && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.firstName}
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      <label className="block font-medium mb-1">
+                        Last Name
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Last Name"
+                        value={form.lastName}
+                        onChange={(e) =>
+                          handleChange("lastName", e.target.value)
+                        }
+                        className={`w-full border p-2 rounded ${errors.lastName ? "border-red-500" : "border-gray-300"}`}
+                      />
+                      {errors.lastName && (
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.lastName}
+                        </p>
+                      )}
+                    </div>
                     {/* Country */}
                     <label className="block font-medium mb-1">Country</label>
                     <div className="relative w-full">
@@ -398,7 +493,7 @@ const DeliveryAddress = () => {
           {/* Add New Address Button and Pay Button */}
           {width >= 1024 && (
             <div className="flex gap-2">
-              <button
+              {/* <button
                 onClick={() => {
                   if (!showForm) {
                     setEditingId(null);
@@ -417,7 +512,7 @@ const DeliveryAddress = () => {
                 className="mt-6 w-full bg-dark-button-blue text-white py-3 rounded font-bold hover:bg-blue-900 cursor-pointer"
               >
                 +{"  "} Add new address
-              </button>
+              </button> */}
               <button
                 onClick={() => handlePay()}
                 className="mt-6 w-full bg-white text-dark-blue py-3 rounded font-bold border border-dark-blue cursor-pointer hover:bg-gray-50"
@@ -431,7 +526,7 @@ const DeliveryAddress = () => {
             className="fixed bottom-0 left-0 right-0 z-13 h-[65px] bg-white border-t border-gray-200 flex lg:hidden justify-center items-center gap-2 px-3 w-full shadow-[0_-1px_6px_rgba(0,0,0,0.06)]
         "
           >
-            <button
+            {/* <button
               onClick={() => {
                 if (!showForm) {
                   setEditingId(null);
@@ -450,7 +545,7 @@ const DeliveryAddress = () => {
               className="w-full bg-dark-button-blue text-white py-3 rounded font-bold hover:bg-blue-900 cursor-pointer"
             >
               +{"  "} Add new address
-            </button>
+            </button> */}
             <button
               onClick={handlePay}
               className="w-full bg-white text-dark-blue py-3 rounded font-bold border border-dark-blue cursor-pointer hover:bg-gray-50"

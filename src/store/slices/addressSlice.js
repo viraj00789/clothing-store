@@ -4,6 +4,8 @@ const initialState = {
   addresses: [
     {
       id: nanoid(),
+      firstName: "John",
+      lastName: "Doe",
       country: "India",
       city: "Mumbai",
       zip: "400001",
@@ -12,6 +14,8 @@ const initialState = {
     },
     {
       id: nanoid(),
+      firstName: "Viraj",
+      lastName: "Koradia",
       country: "USA",
       city: "New York",
       zip: "100001",

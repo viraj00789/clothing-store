@@ -1,4 +1,6 @@
 import SearchCategoryMobile from "../components/Search/SearchCategoryMobile";
+import AddAddress from "../pages/AddAddress";
+import AddPayment from "../pages/AddPayment";
 import Cart from "../pages/Cart";
 import DeliveryAddress from "../pages/DeliveryAddress";
 import Filters from "../pages/Filters";
@@ -30,10 +32,10 @@ export const publicRoutes = [
   //   path: "/filters/:category",
   //   element: <Filters />,
   // },
-  {
-    path: "/searchcategory",
-    element: <SearchCategoryMobile />,
-  },
+  // {
+  //   path: "/searchcategory",
+  //   element: <SearchCategoryMobile />,
+  // },
   {
     path: "/search/:category",
     element: <Search />,
@@ -85,8 +87,16 @@ export const protectedRoutes = [
     element: <DeliveryAddress />,
   },
   {
+    path: "/add-address",
+    element: <AddAddress />,
+  },
+  {
     path: "/payment",
     element: <PaymentPage />,
+  },
+  {
+    path: "/add-payment",
+    element: <AddPayment />,
   },
   {
     path: "/final-summary",

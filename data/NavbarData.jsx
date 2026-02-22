@@ -33,17 +33,17 @@ export const navItems = [
     gray: GraySearch,
     label: "Search",
     topBar: { type: "search" },
-    hidden: true,
-  },
-  {
-    id: "SearchCategory",
-    href: "/searchcategory",
-    blue: BlueSearch,
-    gray: GraySearch,
-    label: "Search Category",
-    topBar: { type: "title" },
     hidden: false,
   },
+  // {
+  //   id: "SearchCategory",
+  //   href: "/searchcategory",
+  //   blue: BlueSearch,
+  //   gray: GraySearch,
+  //   label: "Search Category",
+  //   topBar: { type: "title" },
+  //   hidden: false,
+  // },
   {
     id: "heart",
     href: "/wishlist",
@@ -81,8 +81,26 @@ export const navItems = [
     hidden: true, // 👈 will not render
   },
   {
+    id: "addAddress",
+    href: "/add-address",
+    blue: BlueUser,
+    gray: GrayUser,
+    label: "Add Address",
+    topBar: { type: "title" },
+    hidden: true, // 👈 will not render
+  },
+  {
     id: "payment",
     href: "/payment",
+    blue: BlueUser,
+    gray: GrayUser,
+    label: "Payment",
+    topBar: { type: "title" },
+    hidden: true, // 👈 will not render
+  },
+  {
+    id: "payment",
+    href: "/add-payment",
     blue: BlueUser,
     gray: GrayUser,
     label: "Payment",
@@ -105,4 +123,6 @@ export const HideNavbarOn = [
   "/payment",
   "/final-summary",
   "/search",
+  "/add-address",
+  "/add-payment",
 ];
