@@ -16,6 +16,8 @@ import {
 import { useNavigate } from "react-router";
 import { useWindow } from "../hooks/useWidth";
 import { IoArrowBackSharp } from "react-icons/io5";
+import { checkoutSteps } from "../../data/TimeLineData";
+import Timeline from "../components/ui/TimeLine";
 
 const iconMap = {
   card: <IoCardOutline size={22} />,
@@ -158,6 +160,8 @@ const PaymentPage = () => {
     <ContainerLayout>
       {items.length > 0 && (
         <div className="w-full flex flex-col px-3 md:px-25 lg:px-20 xl:px-10 2xl:px-85 pt-20 lg:pt-30 pb-15 lg:pb-20 space-y-6 xl:space-y-12">
+          <Timeline steps={checkoutSteps} />
+
           <div className="flex items-center gap-3">
             {width >= 768 && (
               <IoArrowBackSharp

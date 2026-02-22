@@ -14,6 +14,8 @@ import {
 import { FaAngleDown } from "react-icons/fa";
 import { useWindow } from "../hooks/useWidth";
 import toast from "react-hot-toast";
+import { checkoutSteps } from "../../data/TimeLineData";
+import Timeline from "../components/ui/TimeLine";
 
 const countries = ["India", "USA", "Germany", "Canada", "Australia"];
 
@@ -57,7 +59,8 @@ const DeliveryAddress = () => {
     if (!form.lastName.trim()) newErrors.lastName = "Last name is required.";
     if (!form.city.trim()) newErrors.city = "City is required.";
     if (!form.zip) newErrors.zip = "ZIP code is required.";
-    else if (form.zip.length !== 6) newErrors.zip = "ZIP code must be 6 digits.";
+    else if (form.zip.length !== 6)
+      newErrors.zip = "ZIP code must be 6 digits.";
     if (!form.street.trim()) newErrors.street = "Street address is required.";
     else if (form.street.length > 250)
       newErrors.street = "Street must be less than 250 characters.";
@@ -137,7 +140,9 @@ const DeliveryAddress = () => {
   return (
     <ContainerLayout>
       {items.length > 0 && (
-        <div className="w-full flex flex-col px-0 sm:px-3 md:px-25 lg:px-20 xl:px-10 2xl:px-85 pt-20 lg:pt-30 pb-15 lg:pb-20 space-y-6 xl:space-y-12">
+        <div className="w-full flex flex-col px-0 sm:px-3 md:px-25 lg:px-20 xl:px-45 2xl:px-85 pt-20 lg:pt-30 pb-15 lg:pb-20 space-y-6 xl:space-y-12">
+          <Timeline steps={checkoutSteps} />
+
           {/* Header */}
           <div className="flex items-center gap-3">
             {width >= 768 && (
