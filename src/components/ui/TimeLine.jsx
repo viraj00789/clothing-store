@@ -32,11 +32,7 @@ export default function Timeline({ steps = [] }) {
             const isActive = index === currentIndex;
 
             return (
-              <Link
-                key={index}
-                to={step.path}
-                className="flex flex-col items-center z-2"
-              >
+              <div className="flex flex-col items-center z-2">
                 {/* Circle */}
                 <div
                   className={`w-6 h-6 sm:w-12 sm:h-12 flex items-center justify-center rounded-full border-2 font-semibold
@@ -64,7 +60,7 @@ export default function Timeline({ steps = [] }) {
                 >
                   {step.label}
                 </span>
-              </Link>
+              </div>
             );
           })}
         </div>
