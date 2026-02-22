@@ -24,7 +24,7 @@ const iconMap = {
   gpay: <FaGooglePay size={22} />,
 };
 
-const PaymentPage = () => {
+const AddPayment = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const width = useWindow();
@@ -113,29 +113,29 @@ const PaymentPage = () => {
     setIsSubmitted(false);
   };
 
-  const handleContinue = () => {
-    if (!selectedMethod) {
-      toast.error("Please select a payment method.");
-      return;
-    }
+  //   const handleContinue = () => {
+  //     if (!selectedMethod) {
+  //       toast.error("Please select a payment method.");
+  //       return;
+  //     }
 
-    if (selectedMethod === "card") {
-      if (cards.length === 0) {
-        toast.error("Please add a card first.");
-        return;
-      }
+  //     if (selectedMethod === "card") {
+  //       if (cards.length === 0) {
+  //         toast.error("Please add a card first.");
+  //         return;
+  //       }
 
-      if (!selectedCard) {
-        toast.error("Please select a saved card.");
-        return;
-      }
-    }
+  //       if (!selectedCard) {
+  //         toast.error("Please select a saved card.");
+  //         return;
+  //       }
+  //     }
 
-    toast.success("Payment method selected successfully.");
+  //     toast.success("Payment method selected successfully.");
 
-    // navigate to review page
-    navigate("/final-summary");
-  };
+  //     // navigate to review page
+  //     navigate("/final-summary");
+  //   };
 
   useEffect(() => {
     if (selectedMethod === "card") {
@@ -167,7 +167,7 @@ const PaymentPage = () => {
               />
             )}
             <h1 className="text-xl md:text-2xl lg:text-4xl font-bold">
-              Choose Payment
+              Add Payment
             </h1>
           </div>
 
@@ -461,14 +461,14 @@ const PaymentPage = () => {
                 >
                   + Add New Card
                 </button>
-                <button
+                {/* <button
                   onClick={handleContinue}
                   className={`w-full py-3 rounded font-bold bg-white text-dark-blue border border-dark-blue cursor-pointer ${
                     selectedMethod === "card" ? "" : ""
                   }`}
                 >
                   Continue
-                </button>
+                </button> */}
               </div>
             )}
           </div>
@@ -497,14 +497,14 @@ const PaymentPage = () => {
                 >
                   + Add New Card
                 </button>
-                <button
+                {/* <button
                   onClick={handleContinue}
                   className={`w-full py-3 rounded font-bold bg-white text-dark-blue border border-dark-blue cursor-pointer ${
                     selectedMethod === "card" ? "" : ""
                   }`}
                 >
                   Continue
-                </button>
+                </button> */}
               </div>
             )}
           </div>
@@ -514,4 +514,4 @@ const PaymentPage = () => {
   );
 };
 
-export default PaymentPage;
+export default AddPayment;

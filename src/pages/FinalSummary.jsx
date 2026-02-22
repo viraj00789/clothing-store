@@ -12,6 +12,7 @@ import { clearCart } from "../store/slices/cartSlice";
 import { resetPayment } from "../store/slices/paymentSlice";
 import { resetAddress } from "../store/slices/addressSlice";
 import { nanoid } from "@reduxjs/toolkit";
+import { FaAngleRight } from "react-icons/fa6";
 
 const iconMap = {
   card: <IoCardOutline size={20} />,
@@ -125,22 +126,32 @@ const FinalSummary = () => {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="flex justify-between items-center border-b pb-3"
+                className="flex justify-between items-center border-b pb-3 last:border-0"
               >
-                <div className="flex gap-3">
+                <div className="flex items-center gap-3">
                   <div>
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-16 h-16 object-cover"
+                      className="w-22 h-22 object-cover rounded-5"
                     />
                   </div>
                   <div>
-                    <p className="font-medium">{item.title}</p>
+                    <p className="font-bold text-light-black text-sm">
+                      {item.title}
+                    </p>
                     <p className="text-sm text-gray-500">Qty: {item.qty}</p>
+                    <p className="font-bold text-lg text-dark-button-blue">
+                      ₹{item.price * item.qty}
+                    </p>
                   </div>
                 </div>
-                <p className="font-semibold">${item.price * item.qty}</p>
+                <p className="font-bold text-lg text-dark-button-blue">
+                  <FaAngleRight
+                    className="text-light-black"
+                    onClick={() => navigate("/cart")}
+                  />
+                </p>
               </div>
             ))}
           </div>
@@ -149,16 +160,30 @@ const FinalSummary = () => {
             onClick={() => navigate("/address")}
             className="bg-white rounded-lg p-4 border border-gray-300 cursor-pointer"
           >
-            <h2 className="font-bold text-lg mb-2">Delivery Address</h2>
+            <h2 className="font-bold text-lg mb-4.5">Delivery Address</h2>
 
             {selectedAddress ? (
-              <div className="text-sm text-gray-700">
-                <p>{selectedAddress.street}</p>
-                <p>
-                  {selectedAddress.city}, {selectedAddress.country}
+              <div className="flex justify-between w-full items-center">
+                <div className="text-sm text-gray-700">
+                  <p className="text-light-black text-sm">
+                    {selectedAddress.street}
+                  </p>
+                  <p className="text-light-black text-sm">
+                    {selectedAddress.city}, {selectedAddress.country}
+                  </p>
+                  <p className="text-light-black text-sm">
+                    ZIP: {selectedAddress.zip}
+                  </p>
+                  <p className="text-light-black text-sm">
+                    Phone: {selectedAddress.phone}
+                  </p>
+                </div>
+                <p className="font-bold text-lg text-dark-button-blue">
+                  <FaAngleRight
+                    className="text-light-black"
+                    onClick={() => navigate("/address")}
+                  />
                 </p>
-                <p>ZIP: {selectedAddress.zip}</p>
-                <p>Phone: {selectedAddress.phone}</p>
               </div>
             ) : (
               <p className="text-red-500">No address selected</p>
@@ -169,26 +194,42 @@ const FinalSummary = () => {
             onClick={() => navigate("/payment")}
             className="bg-white rounded-lg p-4 border border-gray-300 cursor-pointer"
           >
-            <h2 className="font-bold text-lg mb-2">Payment Method</h2>
+            <h2 className="font-bold text-lg mb-4.5">Payment Method</h2>
 
-            {selectedMethodData && (
-              <div className="flex items-center gap-3">
-                {iconMap[selectedMethodData.icon]}
-                <span>{selectedMethodData.label}</span>
+            <div className="flex justify-between items-center">
+              <div>
+                {selectedMethodData && (
+                  <div className="flex items-center gap-3">
+                    {iconMap[selectedMethodData.icon]}
+                    <span>{selectedMethodData.label}</span>
+                  </div>
+                )}
+
+                {selectedMethod === "card" && selectedCardData && (
+                  <p className="text-sm text-gray-500 mt-1">
+                    **** **** **** {selectedCardData.cardNumber.slice(-4)}
+                  </p>
+                )}
               </div>
-            )}
-
-            {selectedMethod === "card" && selectedCardData && (
-              <p className="text-sm text-gray-500 mt-1">
-                **** **** **** {selectedCardData.cardNumber.slice(-4)}
+              <p className="font-bold text-lg text-dark-button-blue">
+                <FaAngleRight
+                  className="text-light-black"
+                  onClick={() =>
+                    navigate(
+                      "/paymentbg-white rounded-lg p-4 border border-gray-300 space-y-2",
+                    )
+                  }
+                />
               </p>
-            )}
+            </div>
           </div>
           {/* ===== Price Breakdown ===== */}
           <div className="bg-white rounded-lg p-4 border border-gray-300 space-y-2">
             <div className="flex justify-between">
               <span>Items ({items.length})</span>
-              <span>+₹{itemsTotal.toFixed(2)}</span>
+              <span className="text-dark-button-blue font-normal text-sm">
+                +₹{itemsTotal.toFixed(2)}
+              </span>
             </div>
 
             <div className="flex justify-between">
@@ -196,13 +237,18 @@ const FinalSummary = () => {
               {promoDiscount > 0 ? (
                 <span className="text-green-600 font-medium">-0.00</span>
               ) : (
-                <span>₹{shipping.toFixed(2)}</span>
+                <span className="text-dark-button-blue font-normal text-sm">
+                  ₹{shipping.toFixed(2)}
+                </span>
               )}
             </div>
 
             <div className="flex justify-between">
               <span>Import Charges</span>
-              <span> +₹{importCharges.toFixed(2)}</span>
+              <span className="text-dark-button-blue font-normal text-sm">
+                {" "}
+                +₹{importCharges.toFixed(2)}
+              </span>
             </div>
 
             {promoCode && promoDiscount > 0 && (
@@ -216,13 +262,20 @@ const FinalSummary = () => {
 
             <div className="flex justify-between font-bold text-lg">
               <span>Total</span>
-              <span>₹{finalTotal.toFixed(2)}</span>
+              <span className="text-dark-button-blue font-bold text-lg">₹{finalTotal.toFixed(2)}</span>
             </div>
           </div>
           {/* ===== Pay Button ===== */}
           {width >= 1024 && (
             <div className="flex justify-between items-center bg-gray-100 p-4 rounded-lg">
-              <span className="text-lg font-bold">{finalTotal.toFixed(2)}</span>
+              <div>
+                <span className="text-xl font-bold text-dark-button-blue">
+                  ₹{finalTotal.toFixed(2)}
+                </span>
+                <p className="text-light-black text-sm font-medium">
+                  View Price Details
+                </p>
+              </div>
 
               <button
                 onClick={handlePayment}
@@ -236,7 +289,17 @@ const FinalSummary = () => {
             className="fixed bottom-0 left-0 right-0 z-13 h-[65px] bg-gray-100 border-t border-gray-200 flex lg:hidden justify-between items-center gap-2 px-3 w-full shadow-[0_-1px_6px_rgba(0,0,0,0.06)]
         "
           >
-            <span className="text-lg font-bold">${finalTotal.toFixed(2)}</span>
+            <div>
+              <span className="text-xl font-bold text-dark-button-blue">
+                ₹{finalTotal.toFixed(2)}
+              </span>
+              <p
+                className="text-light-black text-sm font-medium"
+                onClick={() => navigate("/cart")}
+              >
+                View Price Details
+              </p>
+            </div>
 
             <button
               onClick={handlePayment}

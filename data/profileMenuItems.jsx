@@ -10,13 +10,13 @@ export const ProfileMenuItems = [
   { href: "/wishlist", label: "Wishlist", icon: Heart },
   { href: "/cart", label: "Carts", icon: Order },
   {
-    href: "/delivery-address",
+    href: "/add-address",
     label: "Delivery Address",
     icon: DeliveryAddress,
   },
   { href: "/orders", label: "My Orders", icon: Order },
   {
-    href: "/payment-methods",
+    href: "/add-payment",
     label: "Payment Methods",
     icon: PaymentMethods,
   },

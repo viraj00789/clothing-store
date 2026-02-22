@@ -25,7 +25,6 @@ const Orders = () => {
   const orders = useSelector((state) => {
     return state.order?.orders;
   });
-  console.log("🚀 ~ Orders ~ orders:", orders);
 
   const handleWishlist = (product) => {
     if (!isAuthenticated) {

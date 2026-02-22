@@ -101,19 +101,19 @@ const TrendingSection = () => {
 
         {width > 768 ? (
           <Swiper
-            spaceBetween={width > 1025 ? 16 : 12}
+            spaceBetween={width > 1025 ? 40 : 12}
             slidesPerView="auto"
             className="cursor-pointer"
           >
             {products.map((product) => (
               <SwiperSlide
                 key={product.id}
-                className="!w-80 lg:!w-[414px] pb-px px-px cursor-pointer"
+                className="!w-80 lg:!w-[414px] pb-px px-px cursor-pointer shadow-[0_0_30px_0_#0000000D]! backdrop"
                 onClick={() => {
                   navigate(`/${product.link}`);
                 }}
               >
-                <div className="shadow-sm bg-white rounded-b-[10px]">
+                <div className="bg-white rounded-b-[10px]">
                   <div className="relative">
                     <button
                       className="absolute top-3 right-3 z-10 

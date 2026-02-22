@@ -62,14 +62,14 @@ const DealsForDays = () => {
         Deals of the Day
       </h3>
 
-      <Swiper spaceBetween={width > 1025 ? 25 : 18} slidesPerView="auto">
+      <Swiper spaceBetween={width > 1025 ? 71 : 18} slidesPerView="auto">
         {products.map((product) => (
           <SwiperSlide
             key={product.id}
             className="!w-[215px] md:!w-[490px] pl-px pb-px cursor-pointer rouneded-10"
             onClick={() => navigate(product.link)}
           >
-            <div className="rounded-b-[10px] overflow-hidden shadow-sm bg-white">
+            <div className="rounded-b-[10px] overflow-hidden shadow-[0_0_30px_0_#A5A5A512] bg-white">
               <img
                 className="h-[227px] md:h-[298px] w-full object-cover rounded-t-[10px]"
                 src={product.image}

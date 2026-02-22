@@ -1,4 +1,6 @@
-import OrderSummary from "../components/Cart/OrderSummary";
+import SearchCategoryMobile from "../components/Search/SearchCategoryMobile";
+import AddAddress from "../pages/AddAddress";
+import AddPayment from "../pages/AddPayment";
 import Cart from "../pages/Cart";
 import DeliveryAddress from "../pages/DeliveryAddress";
 import Filters from "../pages/Filters";
@@ -10,6 +12,7 @@ import Orders from "../pages/Order";
 import PaymentPage from "../pages/Payment";
 import ProductDetails from "../pages/ProductDetails";
 import Profile from "../pages/Profile";
+import Search from "../pages/Search";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import VerifyCode from "../pages/VerifyCode";
@@ -24,9 +27,18 @@ export const publicRoutes = [
     path: "/product/:id",
     element: <ProductDetails />,
   },
+  // Needed for future use
+  // {
+  //   path: "/filters/:category",
+  //   element: <Filters />,
+  // },
+  // {
+  //   path: "/searchcategory",
+  //   element: <SearchCategoryMobile />,
+  // },
   {
-    path: "/filters/:category",
-    element: <Filters />,
+    path: "/search/:category",
+    element: <Search />,
   },
 ];
 
@@ -75,8 +87,16 @@ export const protectedRoutes = [
     element: <DeliveryAddress />,
   },
   {
+    path: "/add-address",
+    element: <AddAddress />,
+  },
+  {
     path: "/payment",
     element: <PaymentPage />,
+  },
+  {
+    path: "/add-payment",
+    element: <AddPayment />,
   },
   {
     path: "/final-summary",

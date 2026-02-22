@@ -15,7 +15,7 @@ import NoClothesFound from "../components/Filters/NoClothesFound";
 import { useDebounce } from "../hooks/useDebounce";
 import { searchProducts } from "../utils/SearchProducts";
 
-const Filters = () => {
+const Search = () => {
   const { category } = useParams();
   const location = useLocation();
   const query = new URLSearchParams(location.search).get("q") || "";
@@ -253,7 +253,7 @@ const Filters = () => {
 
           {/* PRODUCT GRID */}
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 lg:gap-6 items-stretch">
+            <div className="grid grid-cols-2 xl:grid-cols-3 gap-3 lg:gap-6 items-stretch">
               <AnimatePresence mode="popLayout">
                 {filteredProducts.map((product) => (
                   <motion.div
@@ -298,7 +298,7 @@ const Filters = () => {
               transition={{ duration: 0.3 }}
             >
               <FiltersSidebar
-                products={categoryProducts}
+                products={searchedProducts}
                 priceRange={priceRange}
                 setPriceRange={setPriceRange}
                 selectedBrands={selectedBrands}
@@ -318,4 +318,4 @@ const Filters = () => {
   );
 };
 
-export default Filters;
+export default Search;
