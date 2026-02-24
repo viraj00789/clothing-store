@@ -57,16 +57,16 @@ const DealsForDays = () => {
   const width = useWindow();
   const navigate = useNavigate();
   return (
-    <div className="px-3.75 xl:px-12.5 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[85px] rounded-[10px]">
+    <div className="px-3.75 xl:px-12.5 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[69px] rounded-[10px]">
       <h3 className="text-light-black font-bold text-2xl lg:text-4xl">
         Deals of the Day
       </h3>
 
-      <Swiper spaceBetween={width > 1025 ? 71 : 18} slidesPerView="auto">
+      <Swiper spaceBetween={width > 1025 ? 61.5 : 18} slidesPerView="auto">
         {products.map((product) => (
           <SwiperSlide
             key={product.id}
-            className="!w-[215px] md:!w-[490px] pl-px pb-px cursor-pointer rouneded-10"
+            className="!w-[215px] md:!w-[490px] pl-0.5 pb-2 cursor-pointer rouneded-10"
             onClick={() => navigate(product.link)}
           >
             <div className="rounded-b-[10px] overflow-hidden shadow-[0_0_30px_0_#A5A5A512] bg-white">
@@ -77,14 +77,13 @@ const DealsForDays = () => {
                 loading="lazy"
               />
 
-              <div className="py-5 xl:py-7.5 flex flex-col items-center space-y-4 xl:space-y-8">
+              <div className="py-5 xl:py-7.5 flex flex-col items-center space-y-4 xl:space-y-10.75">
                 <img
                   className="max-w-[151.26px] w-full object-cover hidden-md-flex"
                   src={levis}
                   alt={product.title}
                   loading="lazy"
                 />
-
                 <div className="space-y-3 xl:space-y-5.75 text-light-black text-center">
                   <p className="font-bold text-xl lg:text-4xl">
                     Best of Styles

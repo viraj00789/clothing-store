@@ -101,19 +101,19 @@ const TrendingSection = () => {
 
         {width > 768 ? (
           <Swiper
-            spaceBetween={width > 1025 ? 40 : 12}
+            spaceBetween={width > 1025 ? 38.5 : 12}
             slidesPerView="auto"
             className="cursor-pointer"
           >
             {products.map((product) => (
               <SwiperSlide
                 key={product.id}
-                className="!w-80 lg:!w-[414px] pb-px px-px cursor-pointer shadow-[0_0_30px_0_#0000000D]! backdrop"
+                className="!w-80 lg:!w-[414px] mx-px mb-4 cursor-pointer shadow-[0px_0px_30px_0px_#0000000D] overflow-visible rounded-10"
                 onClick={() => {
                   navigate(`/${product.link}`);
                 }}
               >
-                <div className="bg-white rounded-b-[10px]">
+                <div className="bg-white rounded-b-2xl">
                   <div className="relative">
                     <button
                       className="absolute top-3 right-3 z-10 
@@ -142,7 +142,7 @@ const TrendingSection = () => {
                     loading="lazy"
                   />
 
-                  <div className="px-5 py-2.5 space-y-1 rounded-b-[10px]">
+                  <div className="px-5 py-2.5 space-y-1 rounded-b-2xl">
                     <div className="font-bold text-xl lg:text-[24px] text-light-black">
                       {product.title}
                     </div>
@@ -171,7 +171,7 @@ const TrendingSection = () => {
                       <p className="text-dark-gray line-through text-lg font-normal">
                         Rs. {product.oldPrice}
                       </p>
-                      <p className="text-green text-lg">({product.discount})</p>
+                      <p className="text-green text-lg font-bold">({product.discount})</p>
                     </div>
                   </div>
                 </div>

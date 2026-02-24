@@ -116,7 +116,7 @@ const Navbar = () => {
   return (
     <ContainerLayout>
       {/* Sticky navbar */}
-      <div className="shadow-[0px_0px_15px_0px_#0000001A] max-w-480 w-full z-10 px-3 py-4 xl:px-12.5 fixed top-0 bg-white mb-10">
+      <div className="shadow-[0px_0px_15px_0px_#0000001A] max-w-480 w-full z-10 px-3.75 pl-3.75 2xl:pl-12.5 pr-3.75  2xl:pr-[17px] py-4 fixed top-0 bg-white mb-10">
         {/* Top bar */}
         <div className="flex w-full max-w-480 items-center justify-between gap-0 xl:gap-2">
           {/* Logo + desktop links */}
@@ -249,7 +249,7 @@ const Navbar = () => {
             )}
           </div>
 
-          <div className="flex items-center gap-4 xl:gap-8">
+          <div className="flex items-center gap-4 xl:gap-8 2xl:gap-[161px]">
             <Link
               to="/"
               className="w-8 h-8 2xl:w-[57px] 2xl:h-[48px] hidden lg:flex"
@@ -301,9 +301,15 @@ const Navbar = () => {
           </div>
 
           {/* Desktop right section */}
-          <div className="hidden lg:flex items-center gap-4 xl:gap-8">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-8 2xl:gap-15">
             <div className="relative">
-              <div className="relative w-full 2xl:w-133">
+              <div className="relative w-full 2xl:w-[534px]">
+                <img
+                  src={Search}
+                  alt="search"
+                  className="absolute top-3 right-4"
+                  loading="lazy"
+                />
                 <input
                   type="search"
                   placeholder="Search the desired product ....."
@@ -318,7 +324,7 @@ const Navbar = () => {
                       handleSearch();
                     }
                   }}
-                  className="w-full h-12 bg-light-gray focus:outline-none rounded-lg px-9 pl-12 appearance-none text-gray-600
+                  className="w-full h-12 bg-light-gray focus:outline-none rounded-lg px-6 pr-18 appearance-none text-gray-600
                    [&::-webkit-search-cancel-button]:hidden
                    [&::-webkit-search-decoration]:hidden
                    [&::-ms-clear]:hidden"
@@ -331,7 +337,7 @@ const Navbar = () => {
                       setValue("");
                       navigate("/search/all");
                     }}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 cursor-pointer"
+                    className="absolute right-12 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 cursor-pointer"
                   >
                     <IoClose size={20} />
                   </button>
@@ -389,12 +395,6 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-              <img
-                src={Search}
-                alt="search"
-                className="absolute left-4 top-1/2 -translate-y-1/2 opacity-50"
-                loading="lazy"
-              />
             </div>
             <div className="flex items-center gap-4 xl:gap-8">
               <div

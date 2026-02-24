@@ -4,7 +4,7 @@
 
 .offer-triple-slider .swiper-slide {
   transition: all 0.4s ease;
-  transform: scale(0.899);
+  transform: scale(0.881);
 }
 
 .offer-triple-slider .swiper-slide-active {
@@ -14,7 +14,7 @@
   z-index: 10;
   width: 1142px !important;
   border-radius: 10px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.21);
+  /* box-shadow: 0 0 2px rgba(0, 0, 0, 0.21); */
 }
 
 .offer-triple-slider .swiper-button-prev,
@@ -86,10 +86,36 @@
     display: none;
   }
 
-  .offer-triple-slider{
-   padding-right: 18px;
-   padding-left: 18px;
+  .offer-triple-slider {
+    padding-right: 18px;
+    padding-left: 18px;
   }
+
+}
+
+@media screen and (max-width: 1399px) {
+
+
+  .offer-triple-slider {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+
+
+
+}
+
+@media screen and (min-width: 1400px) {
+
+
+  .offer-triple-slider {
+    margin-right: 50px;
+    margin-left: 50px;
+  }
+
+
+
 
 }
 
@@ -104,6 +130,7 @@
   .offer-triple-slider .swiper-button-next {
     display: none;
   } */
+
 
 
 }

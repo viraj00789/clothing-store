@@ -15,6 +15,7 @@ import AboutUs from "../components/ui/home/AboutUs";
 import CategoryRow from "../components/CategoryRow";
 // import OurCollection from "../components/OurCollection";
 import MobileDealsForDay from "../components/ui/home/MobileDealsForDay/MobileDealsForDay";
+import Cross from "../assets/cross.svg";
 
 const Home = () => {
   const [open, setOpen] = useState(true);
@@ -27,7 +28,7 @@ const Home = () => {
           {open && (
             <div
               className={`
-      w-full p-3.75 bg-light-gray-1 hidden-md-flex items-start md:items-center justify-between
+      w-full p-3.75 lg:px-12.5 bg-light-gray-1 hidden-md-flex items-start md:items-center justify-between
       transition-all duration-500 ease-in-out 
       ${closing ? "opacity-0 max-h-0 overflow-hidden" : "opacity-100 max-h-40"}
     `}
@@ -50,10 +51,13 @@ const Home = () => {
               </div>
 
               <div className="mt-0.5 md:mt-0">
-                <RxCross2
-                  size={17.11}
+                <img
+                  width={17.11}
+                  height={17.11}
                   className="cursor-pointer text-dark-gray"
                   onClick={() => setClosing(true)}
+                  loading="lazy"
+                  src={Cross}
                 />
               </div>
             </div>

@@ -19,23 +19,20 @@ const CustomerSay = () => {
 
       <Swiper
         modules={[Navigation, Autoplay]}
-        slidesPerView={width > 768 ? 1.889 : 1}
-        centeredSlides={width > 1024}
-        spaceBetween={width > 1629 ? 0 : 15}
-        speed={800}
+        slidesPerView={width > 768 ? 2 : 1}
+        centeredSlides={true}
+        spaceBetween={width > 1025 ? 62 : 20}
+        speed={500}
         navigation
-        onSwiper={(swiper) => {
-          setTimeout(() => {
-            swiper.autoplay?.start();
-          }, 1000);
-        }}
+        loop
+        autoplay={{ delay: 1400 }}
         className="customer-say"
       >
-        {[...Array(3)].map((_, i) => (
+        {[...Array(6)].map((_, i) => (
           <SwiperSlide key={i}>
             {/* YOUR CARD (unchanged) */}
             <div className="flex justify-start lg:justify-center px-px lg:px-0 py-0.5 lg:py-5 lg:py-[27px] gap-5">
-              <div className="w-full lg:w-236.5 h-full xl:h-[476px] flex flex-col items-center justify-center shadow-[0_0_10px_0_rgba(0,0,0,0.1)] py-5 lg:py-[57.5px] px-4 lg:px-8 bg-white cursor-grab">
+              <div className="w-full lg:w-[946px] h-full xl:h-[476px] flex flex-col items-center justify-center rounded-10 shadow-[0_0_10px_0_rgba(0,0,0,0.1)] py-5 lg:py-[58px] px-4 lg:px-8 bg-white cursor-grab">
                 <div className="w-37.5 h-37.5">
                   <img
                     src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=60"
@@ -56,12 +53,17 @@ const CustomerSay = () => {
                         loading="lazy"
                       />
                     ))}
-                    <img src={star} alt="star" className="w-5 h-[19.2px]" loading="lazy"/>
+                    <img
+                      src={star}
+                      alt="star"
+                      className="w-5 h-[19.2px]"
+                      loading="lazy"
+                    />
                   </div>
-                  <p className="font-normal text-lg">4.4</p>
+                  <p className="font-normal text-lg text-black">4.4</p>
                 </div>
 
-                <p className="font-normal text-base xl:text-2xl text-center pt-3 lg:pt-6">
+                <p className="font-normal text-base xl:text-2xl text-center pt-3 lg:pt-6 text-light-black">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui
                   vel morbi cursus sed sodales molestie proin dictum gravida.
                   Porttitor maecenas tincidunt ipsum semper malesuada. In sapien

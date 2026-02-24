@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "./Offers.css";
 import { useNavigate } from "react-router";
+import { useWindow } from "../../../../hooks/useWidth";
 const slides = [
   {
     image:
@@ -28,58 +29,70 @@ const slides = [
     subtitle: "Min 40% Off",
     link: "/product/15",
   },
+  {
+    image:
+      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    brand: levis,
+    subtitle: "Min 40% Off",
+    link: "/product/15",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    brand: levis,
+    subtitle: "Min 40% Off",
+    link: "/product/15",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    brand: levis,
+    subtitle: "Min 40% Off",
+    link: "/product/15",
+  },
 ];
 
 const OfferSlider = () => {
   const navigate = useNavigate();
+  const width = useWindow();
   return (
-    <div className="px-0 2xl:px-0  pb-2 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[85px]">
+    <div className="px-0 pb-2 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[85px]">
       <h3 className="px-3.75 xl:px-12.5 text-light-black font-bold text-2xl lg:text-4xl">
         Trending Offers
       </h3>
 
       <Swiper
-        modules={[Navigation]}
-        slidesPerView={1}
-        centeredSlides={false}
-        speed={800}
+        modules={[Navigation, Autoplay]}
+        slidesPerView={width > 1450 ? 1.66 : 1}
+        centeredSlides={true}
+        speed={500}
         navigation
         autoplay={{
-          delay: 4000,
-          disableOnInteraction: false,
+          delay: 2000,
         }}
-        breakpoints={{
-          1200: {
-            slidesPerView: 1,
-            centeredSlides: false,
-          },
-          1450: {
-            slidesPerView: 1.888,
-            centeredSlides: true,
-          },
-        }}
+        loop
         className="offer-triple-slider"
       >
         {slides.map((slide, index) => (
           <SwiperSlide
             key={index}
-            className=" flex items-center justify-center flex-col"
+            className=" flex items-center justify-center flex-col cursor-grab my-2 px-0.5"
           >
-            <div className="flex shadow-[0_0_12px_0_rgba(0,0,0,0.1)] h-100 lg:h-[587px] w-full items-center justify-between rounded-[10px] overflow-hidden bg-white">
+            <div className="flex h-100 lg:h-[587px] w-full items-center justify-between rounded-[10px] overflow-hidden bg-white shadow-[0px_0px_12px_0px_#0000001A] ">
               {/* LEFT CONTENT */}
-              <div className="flex items-center justify-center flex-col w-full lg:min-w-[487px]  xl:min-w-[600px] 2xl:min-w-[542px] space-y-5">
+              <div className="flex items-center justify-center flex-col w-full lg:min-w-[487px]  xl:min-w-[600px] 2xl:min-w-[542px] space-y-5 xl:space-y-[65.27px] rounded-10">
                 <img
                   src={slide.brand}
                   alt="brand"
                   className="w-[175px]"
                   loading="lazy"
                 />
-                <div className="flex justify-center flex-col items-center gap-5">
+                <div className="flex justify-center flex-col items-center gap-4 xl:gap-10">
                   <p className="font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl">
                     {slide.subtitle}
                   </p>
                   <button
-                    className="border border-mid-gray py-1 px-9 rounded-[10px] cursor-pointer font-normal text-xl lg:text-2xl hover:bg-black hover:text-white transition ease-in-out duration-300 max-w-[172px]"
+                    className="border-2 border-mid-gray py-2 px-4 lg:px-9.5 rounded-[10px] cursor-pointer font-normal text-xl lg:text-2xl hover:bg-black hover:text-white transition ease-in-out duration-300 w-full lg:w-[172px]"
                     onClick={() => navigate(slide.link)}
                   >
                     Explore

@@ -60,15 +60,15 @@ const Footer = () => {
   return (
     <ContainerLayout>
       <div className="text-white">
-        <div className="px-3 md:px-6 xl:px-12.5 pt-9 pb-0 lg:pb-10 xl:pb-20 bg-dark-footer">
-          <div className="flex flex-col sm:flex-row items-center p font-bold gap-4 xl:gap-7.5 text-center sm:text-left px-2 md:px-0">
+        <div className="px-3 md:px-6 xl:px-12.5 pt-6 pb-0 lg:pb-10 xl:pb-20 bg-dark-footer">
+          <div className="flex flex-col sm:flex-row items-center font-bold gap-4 xl:gap-7.5 text-center sm:text-left px-2 md:px-0">
             <img
               src={footerLogo}
               alt="footer logo"
               className="w-10 h-10 xl:w-[76px] xl:h-[64px]"
               loading="lazy"
             />
-            <p className="font-bold text-2xl lg:text-3xl xl:text-[79px]">
+            <p className="font-bold text-2xl lg:text-3xl xl:text-[64px]">
               Globex
             </p>
           </div>
@@ -100,7 +100,7 @@ const Footer = () => {
                     open === i ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                   } lg:max-h-none lg:opacity-100`}
                 >
-                  <div className="flex flex-col gap-3 mt-2 lg:mt-4.75 p-2 md:p-0">
+                  <div className="flex flex-col gap-[15px] mt-2 lg:mt-[17px] p-2 md:p-0">
                     {sec.items.map((item, idx) => (
                       <p
                         key={idx}
@@ -115,7 +115,7 @@ const Footer = () => {
             ))}
 
             {/* Stay in Touch */}
-            <div className="flex flex-col items-center lg:items-start gap-4.75 w-full lg:max-w-[445px] bg-dark-footer">
+            <div className="flex flex-col items-center lg:items-start gap-4 w-full lg:max-w-[445px] bg-dark-footer">
               <h3 className="text-respo-24">Stay In Touch</h3>
               <p className="font-normal text-lg max-w-[445px] text-center lg:text-left">
                 Stay in touch to get special offers, free giveaways and once in
@@ -123,7 +123,7 @@ const Footer = () => {
               </p>
               <div className="relative w-full  max-w-[445px] flex flex-col items-center justify-center">
                 <input
-                  className="border border-white h-11 w-full pl-11 placeholder:text-footer-input focus:outline-none"
+                  className="border border-white h-11 w-full pl-15 placeholder:text-footer-input focus:outline-none placeholder:text-lg"
                   type="email"
                   placeholder="Enter your email"
                 />
@@ -138,11 +138,13 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="lg:border"></div>
+        <div className="lg:h-[1px] lg:bg-white"></div>
 
         <div className="pt-[39px] flex flex-col flex-wrap md:flex-row items-center justify-center gap-6 lg:gap-50 text-center pb-[100px] md:pb-[39px] bg-dark-footer">
-          <p className="cursor-pointer">Terms and Conditions</p>
-          <p className="cursor-pointer">Privacy Policy</p>
+          <p className="cursor-pointer font-normal text-lg">
+            Terms & Conditions
+          </p>
+          <p className="cursor-pointer font-normal text-lg">Privacy Policy</p>
           <div className="flex justify-center gap-8.5">
             {images.map((image) => (
               <img

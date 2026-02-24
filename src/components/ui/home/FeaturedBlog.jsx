@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import Services from "../../../assets/service-arrow.svg";
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -40,25 +40,30 @@ const FeaturedBlog = () => {
 
                 <div className="lg:min-w-[293px] px-8 py-6.25 space-y-4 lg:space-y-6 shadow-[0_0_50px_0_#96969612] rounded-[5px]">
                   <p className="font-normal text-lg text-dark-gray">Blog</p>
-                  <p className="font-bold text-xl max-md:truncate">
+                  <p className="font-bold text-xl max-md:truncate lg:max-w-[180px]">
                     Discover new way to decorate your home .
                   </p>
-                  <p className="font-normal text-lg text-dark-gray max-md:truncate">
+                  <p className="font-normal text-lg text-dark-gray max-md:truncate lg:max-w-[228px]">
                     Lorem ipsum dolor sit amet, aliqua consectetur adipiscing
                     elit ut ...
                   </p>
-                  <p className="h-px w-10 bg-dark-cyan" />
-                  <p className="font-normal text-lg text-dark-cyan max-md:truncate">
-                    By Souha .H
-                  </p>
+                  <div>
+                    <p className="h-px w-10 bg-dark-cyan mb-2.5" />
+                    <div className="flex items-center justify-between">
+                      <p className="font-normal text-lg text-dark-cyan max-md:truncate">
+                        By Souha .H
+                      </p>
+                      <img src={Services} loading="lazy" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
-      <div className="flex  items-center justify-center">
-        <button className="border border-mid-gray py-1 px-3 lg:px-9.5 rounded-[10px] cursor-pointer font-normal text-xl lg:text-2xl lg:text-2xl hover:bg-black hover:text-white transition ease-in-out duration-300 max-w-[172px] whitespace-nowrap">
+      <div className="flex items-center justify-center">
+        <button className="border-2 border-mid-gray py-1.5 px-3 lg:px-9.5 rounded-[10px] cursor-pointer font-normal text-xl lg:text-2xl lg:text-2xl hover:bg-black hover:text-white transition ease-in-out duration-300 max-w-[172px] whitespace-nowrap lg:mt-[35px]">
           View all
         </button>
       </div>

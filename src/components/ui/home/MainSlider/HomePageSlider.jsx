@@ -62,7 +62,7 @@ const HomePageSlider = () => {
   return (
     <div className="slider-wrapper">
       <Swiper
-        modules={[Pagination, Autoplay]}
+        modules={[Pagination]}
         pagination={{
           el: ".custom-pagination",
           clickable: true,
@@ -70,13 +70,13 @@ const HomePageSlider = () => {
           bulletActiveClass: "custom-bullet-active",
         }}
         speed={1000}
-        autoplay={{ delay: 4000, disableOnInteraction: false }}
+        // autoplay={{ delay: 4000, disableOnInteraction: false }}
         loop={true}
-        className="w-full h-[768px] home-slider"
+        className="w-full h-[796px] home-slider"
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="flex w-full h-[768px] cursor-grab">
+            <div className="flex w-full h-[796px] cursor-grab">
               {/* Left image */}
               <div className="hidden lg:inline w-1/2 h-full">
                 <img
@@ -92,7 +92,7 @@ const HomePageSlider = () => {
                 className="w-full lg:w-1/2 h-full bg-cover bg-center flex items-center justify-center"
                 style={{ backgroundImage: `url(${background1})` }}
               >
-                <div className="flex flex-col items-center gap-10 lg:gap-[34px]">
+                <div className="flex flex-col items-center gap-10 lg:gap-[66px]">
                   <div>
                     <img
                       src={slide.brand}
@@ -103,15 +103,15 @@ const HomePageSlider = () => {
                   </div>
                   <div className="text-center flex flex-col gap-[34px] items-center justify-center">
                     <div className="gap-5 lg:space-y-[22px]">
-                      <p className="text-2xl lg:text-5xl font-bold text-mid-dark-gray">
+                      <p className="text-2xl lg:text-5xl font-bold text-mid-gray">
                         {slide.title1}
                       </p>
-                      <p className="text-2xl lg:text-5xl font-bold text-mid-dark-gray">
+                      <p className="text-2xl lg:text-5xl font-bold text-mid-gray">
                         {slide.title2}
                       </p>
                     </div>
                     <button
-                      className="border border-mid-gray py-1 px-9 rounded-[10px] cursor-pointer font-normal text-xl lg:text-2xl w-fit"
+                      className="border-2 border-mid-gray py-1.5 px-8.5 rounded-[10px] cursor-pointer font-normal text-xl lg:text-2xl w-fit"
                       onClick={() => {
                         navigate(`/${slide.link}`);
                       }}
