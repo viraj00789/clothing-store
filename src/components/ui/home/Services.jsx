@@ -53,7 +53,7 @@ export default function Services() {
           </div>
           <div className="text-center space-y-3 lg:space-y-4">
             <p className="font-bold text-xl lg:text-2xl">{item.label}</p>
-            <p>{item.desc}</p>
+            <p className="text-light-black text-lg leading-3.45">{item.desc}</p>
           </div>
         </div>
       ))}
