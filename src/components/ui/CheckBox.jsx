@@ -4,7 +4,7 @@ const CustomCheckbox = ({
   label,
   count,
   boxSize = "h-6 w-6",
-  checkSize = 12,
+  checkSize = 7,
 }) => {
   return (
     <label className="flex items-center gap-2 cursor-pointer select-none">
@@ -25,6 +25,7 @@ const CustomCheckbox = ({
             transition-all duration-150
             peer-checked:border-dark-gray
             peer-checked:bg-dark-gray
+            w-[14px] h-[14px]
           `}
         />
 

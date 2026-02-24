@@ -4,7 +4,7 @@ const ProductDetailsPin = () => {
   const [pincode, setPincode] = useState("");
   return (
     <div className="space-y-2 max-w-[400px]">
-      <p className="font-semibold text-lg text-light-black">Delivery Details</p>
+      <p className="font-medium lg:font-bold text-lg text-light-black">Delivery Details</p>
       <div className="relative border border-dark-gray py-3.5 px-5.5 rounded-10">
         <input
           type="number"

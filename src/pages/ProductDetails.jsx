@@ -10,7 +10,7 @@ import PopUp from "../components/ui/PopUp";
 import sizeChart from "../assets/ProductDetails/size-chart.webp";
 import { OfferDetails, ProductColors, sizes } from "../../data/SizeData";
 import PinkHeart from "../assets/Icons/Home/pink-heart.svg";
-import Heart from "../assets/Icons/Home/GrayIcons/home-heart.svg";
+import Heart from "../assets/heart.svg";
 import ProductSpecification from "../components/ProductDetails/ProductSpecification";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
@@ -79,8 +79,8 @@ const ProductDetails = () => {
   return (
     <ContainerLayout>
       {" "}
-      <div className="pt-15 lg:pt-[100px] bg-light-gray-3">
-        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 2xl:gap-24">
+      <div className="pt-15 lg:pt-[106px] sm:bg-light-gray-3 bg-white">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 2xl:gap-[96px]">
           {/* ================= LEFT: IMAGES ================= */}
           <div className="flex gap-4">
             {/* ================= MOBILE: SWIPER (< lg) ================= */}
@@ -104,13 +104,13 @@ const ProductDetails = () => {
                     <img
                       src={img}
                       alt=""
-                      className="w-full h-[450px] object-cover rounded"
+                      className="w-full h-[570px] object-cover rounded"
                       loading="lazy"
                     />
                   </SwiperSlide>
                 ))}
               </Swiper>
-              <div className="product-pagination flex justify-center items-center gap-1.25 p-0 mt-2" />
+              <div className="product-pagination flex justify-center items-center gap-[6px] p-0 mt-[11px]" />
             </div>
 
             {/* ================= DESKTOP: YOUR EXISTING LAYOUT (>= lg) ================= */}
@@ -122,10 +122,10 @@ const ProductDetails = () => {
                     key={i}
                     src={img}
                     alt=""
-                    className={`object-cover rounded-10 cursor-pointer border ${
+                    className={`object-cover rounded-10 cursor-pointer ${
                       activeImage === img
-                        ? "border-blue-300 border-3 w-[180px] h-[180px]"
-                        : "border-gray-200 w-[165px] h-[165px]"
+                        ? "w-[180px] h-[180px]"
+                        : "w-[165px] h-[165px]"
                     }`}
                     onClick={() => setActiveImage(img)}
                   />
@@ -137,7 +137,7 @@ const ProductDetails = () => {
                 <img
                   src={activeImage}
                   alt={product.title}
-                  className="w-[837px] h-[885px] object-cover rounded"
+                  className="w-[837px] h-[885px] object-cover rounded-10"
                   loading="lazy"
                 />
               </div>
@@ -147,14 +147,14 @@ const ProductDetails = () => {
           {/* ================= RIGHT: DETAILS ================= */}
           <div className="flex flex-col gap-5 xl:gap-7.5 px-3.75 lg:pr-3.75 xl:pr-12">
             <div className="flex justify-between">
-              <div className="flex flex-col gap-2.5 xl:gap-4.5">
-                <h1 className="text-xl md:text-2xl xl:text-4xl font-bold text-light-black">
+              <div className="flex flex-col gap-[5px] sm:gap-2.5 xl:gap-4.5">
+                <h1 className="text-xl md:text-2xl xl:text-4xl font-medium lg:font-bold text-light-black">
                   {product.title}
                 </h1>
-                <p className="text-light-black font-normal text-lg md:text-2xl">
+                <p className="text-light-black font-normal text-sm md:text-lg md:text-2xl">
                   {product.brand}
                 </p>
-                <p className="text-light-black font-normal text-lg">
+                <p className="text-light-black font-normal text-sm md:text-lg">
                   Sold By: {product.soldBy}
                 </p>
               </div>
@@ -172,11 +172,13 @@ const ProductDetails = () => {
             {/* ================= Seller: DETAILS ================= */}
 
             <div className="flex items-center gap-2.5 sm:gap-4.5">
-              <div className="flex items-center gap-2">
-                {[...Array(4)].map((_, i) => (
-                  <img key={i} src={BlackStar} loading="lazy" />
-                ))}
-                <img src={WhiteStar} loading="lazy" />
+              <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-0.5">
+                  {[...Array(4)].map((_, i) => (
+                    <img key={i} src={BlackStar} loading="lazy" />
+                  ))}
+                  <img src={WhiteStar} loading="lazy" />
+                </div>
                 <span className="font-normal text-lg text-light-black">
                   {product.rating}
                 </span>
@@ -193,16 +195,16 @@ const ProductDetails = () => {
               <span className="line-through text-mid-dark-gray text-lg font-normal">
                 Rs. {product.oldPrice}
               </span>
-              <span className="font-normal text-product-green">
+              <span className="font-normal text-lg xl:text-2xl text-product-green">
                 ({product.discount})
               </span>
             </div>
 
             {/* ================= Size: DETAILS ================= */}
 
-            <div className="flex flex-col justify-center gap-3 xl:gap-4 md:py-0 ">
+            <div className="flex flex-col justify-center gap-1.5 lg:gap-3 xl:gap-4 md:py-0 ">
               <div className="gap-4 flex flex-row xl:flex-col justify-between xl:justify-start ">
-                <p className="font-bold text-lg xl:text-2xl text-light-black">
+                <p className="font-medium lg:font-bold text-lg xl:text-2xl text-light-black">
                   Select Size
                 </p>
                 <div
@@ -223,7 +225,7 @@ const ProductDetails = () => {
                 </div>
               </div>
               {/* Sizes */}
-              <div className="flex gap-3 lg:gap-4.75 overflow-auto trending-scroll">
+              <div className="flex gap-3 lg:gap-[19px] overflow-auto trending-scroll">
                 {sizes.map((size) => {
                   const isSelected = selectedSize === size.label;
 
@@ -233,8 +235,8 @@ const ProductDetails = () => {
                       disabled={size.disabled}
                       onClick={() => setSelectedSize(size.label)}
                       className={`
-              relative min-w-13 min-h-13 lg:min-w-14 lg:min-h-14 rounded-none lg:rounded-full border flex items-center justify-center text-lg font-normal
-              transition shadow-[0px_0px_15px_0px_#0000000D] lg:shadow-none
+              relative min-w-[42px] min-h-[42px] lg:min-w-14 lg:min-h-14 rounded-none lg:rounded-full border flex items-center justify-center text-lg font-normal
+              transition shadow-[0px_0px_20px_0px_#0000000D] lg:shadow-none bg-white md:bg-none m-2 md:m-0
               ${
                 size.disabled
                   ? "border-white lg:border-gray-300 text-gray-400 cursor-not-allowed"
@@ -248,7 +250,7 @@ const ProductDetails = () => {
 
                       {/* Cross line for disabled (XS) */}
                       {size.disabled && (
-                        <span className="absolute w-18 lg:w-14 h-px bg-gray-300 rotate-[-45deg] lg:rotate-[-45deg]" />
+                        <span className="absolute w-14 lg:w-14 h-px bg-gray-300 rotate-[-45deg] lg:rotate-[-45deg]" />
                       )}
                     </button>
                   );
@@ -259,8 +261,8 @@ const ProductDetails = () => {
             {/* ================= Color: DETAILS ================= */}
 
             <div className="flex flex-col justify-center gap-4 lg:py-0">
-              <p className="font-bold text-lg xl:text-2xl text-light-black">
-                Color
+              <p className="font-medium lg:font-bold text-lg xl:text-2xl text-light-black">
+                Select Color
               </p>
 
               <div className="flex items-center gap-5">
@@ -310,23 +312,23 @@ const ProductDetails = () => {
 
             {/* ================= Best Offer: ================= */}
             <div className="flex flex-col justify-center gap-3">
-              <p className="font-bold text-lg xl:text-2xl text-light-black">
+              <p className="font-medium lg:font-bold text-lg xl:text-2xl text-light-black">
                 Best Offers
               </p>
               {OfferDetails.map((item, index) => (
                 <>
                   <div className="space-y-3.75 text-light-black" key={index}>
                     <p>
-                      <span className="font-bold text-lg">
+                      <span className="font-normal lg:font-bold text-sm md:text-lg">
                         {item.offerName}{" "}
                       </span>
-                      <span className="font-normal text-lg">
+                      <span className="font-normal text-sm md:text-lg">
                         {item.offPercent}{" "}
                       </span>
-                      <span className="font-normal text-lg">
+                      <span className="font-normal text-sm md:text-lg">
                         {item.onOffer}
                       </span>{" "}
-                      <span className="font-normal text-lg text-dark-blue">
+                      <span className="font-normal text-sm md:text-lg text-dark-blue">
                         {item.terms}
                       </span>
                     </p>

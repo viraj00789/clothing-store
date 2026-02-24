@@ -34,28 +34,30 @@ const ProductSpecification = () => {
       return (
         <div className="space-y-3 md:space-y-4 lg:space-y-[27px] py-4">
           <div>
-            <h3 className="font-bold text-2xl mb-3 text-light-black hidden lg:flex">
+            <h3 className="font-bold text-2xl mb-2 text-light-black hidden lg:flex">
               Product Details
             </h3>
-            <p>
+            <p className="text-sm md:text-lg font-normal text-light-black">
               Blue washed jacket, has a spread collar, 4 pockets, button
               closure, long sleeves, straight hem
             </p>
           </div>
 
           <div>
-            <h3 className="font-bold text-2xl mb-3 text-light-black hidden lg:flex">
+            <h3 className="font-bold text-2xl mb-2 text-light-black hidden lg:flex">
               Size & Fit
             </h3>
-            <p>The model (height 5'8") is wearing a size S</p>
+            <p className="text-sm md:text-lg text-light-black">
+              The model (height 5'8") is wearing a size S
+            </p>
           </div>
 
           <div>
-            <h3 className="font-bold text-2xl mb-3 text-light-black hidden lg:flex">
+            <h3 className="font-bold text-2xl mb-2 text-light-black hidden lg:flex">
               Material & Care
             </h3>
-            <p>100% cotton</p>
-            <p>Machine Wash</p>
+            <p className="text-sm md:text-lg text-light-black">100% cotton</p>
+            <p className="text-sm md:text-lg text-light-black">Machine Wash</p>
           </div>
         </div>
       );
@@ -63,21 +65,26 @@ const ProductSpecification = () => {
 
     if (tab === "Specification") {
       return (
-        <div className="py-4 lg:mt-[27px]">
+        <div className="py-4 lg:mt-[11px]">
           <h2 className="text-2xl font-bold text-light-black mb-3 hidden-lg-flex">
             Specifications
           </h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-2 gap-x-13 lg:gap-x-10 gap-y-[13px] w-full lg:max-w-md">
+          <div className="grid grid-cols-2 md:grid-cols-2 gap-x-13 2xl:gap-x-[98px] gap-y-[13px] w-full lg:max-w-lg">
             {specifications.map((item, index) => (
-              <div key={index} className="flex flex-col gap-[7px] lg:gap-2.5">
-                <p className="text-lg font-normal text-dark-gray">
-                  {item.label}
-                </p>
-                <p className="text-lg font-normal text-light-black">
-                  {item.value}
-                </p>
-                <div className="h-px w-full bg-dark-white lg:bg-dark-gray mt-2" />
+              <div
+                key={index}
+                className="flex flex-col gap-[7px] lg:gap-3 whitespace-nowrap"
+              >
+                <div className="space-y-2.25">
+                  <p className="text-sm md:text-lg text-dark-gray">
+                    {item.label}
+                  </p>
+                  <p className="text-sm md:text-lg text-light-black">
+                    {item.value}
+                  </p>
+                </div>
+                <div className="h-px w-full bg-dark-white lg:bg-dark-gray" />
               </div>
             ))}
           </div>
@@ -91,7 +98,7 @@ const ProductSpecification = () => {
 
     if (tab === "How this was made") {
       return (
-        <p className="py-4">
+        <p className="py-4 font-normal text-sm lg:text-lg">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -105,7 +112,7 @@ const ProductSpecification = () => {
 
     if (tab === "Manufacturing Information") {
       return (
-        <p className="py-4">
+        <p className="py-4 font-normal text-sm lg:text-lg">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -121,7 +128,7 @@ const ProductSpecification = () => {
   };
 
   return (
-    <div className="w-full py-3.75 lg:py-15 xl:py-20 px-3.75 xl:px-12.5 2xl:px-[203px] bg-light-gray-3">
+    <div className="w-full py-3.75 lg:py-15 xl:py-20 px-3.75 xl:px-12.5 2xl:px-[203px] bg-white sm:bg-light-gray-3">
       {/* ===== DESKTOP TABS (UNCHANGED) ===== */}
       {!isMobile && (
         <>
@@ -135,7 +142,7 @@ const ProductSpecification = () => {
                     key={tab}
                     onClick={() => setActiveTab(tab)}
                     className={`
-  mb-5.5 relative cursor-pointer text-lg font-normal
+  mb-5.5 relative cursor-pointer text-sm md:text-lg
   transition duration-300 ease-in-out
   ${isActive ? "text-dark-button-blue" : "text-gray-500 lg:hover:text-gray-700"}
 `}
@@ -151,7 +158,7 @@ const ProductSpecification = () => {
             </div>
           </div>
 
-          <div className="mt-6 text-gray-800 relative">
+          <div className="mt-[11px] text-gray-800 relative">
             <div
               key={activeTab}
               className={`

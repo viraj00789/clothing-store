@@ -211,12 +211,11 @@ input[type="search"]::-ms-clear {
 }
 
 .product-pagination .swiper-pagination-bullet {
-  @apply w-2 h-2 bg-gray-400 opacity-100;
+  @apply w-[5px] h-[5px] bg-gray-400 opacity-100;
 }
 
 .product-pagination .swiper-pagination-bullet-active {
-  @apply bg-dark-button-blue w-3 h-3;
-  ;
+  @apply bg-dark-button-blue w-[7px] h-[7px];
 }
 
 

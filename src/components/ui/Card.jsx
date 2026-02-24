@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router";
-import star from "../../assets/black-star.svg";
+import star from "../../assets/star.svg";
 
 const ProductCard = ({ product, showWishlistIcon }) => {
   const navigate = useNavigate();
   return (
     <div
-      className="w-full h-full cursor-pointer rounded-[10px]"
+      className="w-full h-full cursor-pointer rounded-[10px] shadow-[0px_0px_30px_0px_#0000000D]"
       onClick={() => navigate(`/${product.link}`)}
     >
-      <div className="shadow-sm bg-white rounded-[10px] flex flex-col h-full">
+      <div className="bg-white rounded-[10px] flex flex-col h-full">
         {showWishlistIcon}
 
         <img
@@ -18,7 +18,7 @@ const ProductCard = ({ product, showWishlistIcon }) => {
           loading="lazy"
         />
 
-        <div className="px-4 md:px-5 py-3 flex flex-col grow space-y-1 md:space-y-2">
+        <div className="px-4 md:px-5 py-3 flex flex-col grow space-y-1">
           <div
             className="font-bold text-xl lg:text-[24px] text-light-black truncate"
             title={product.title}
@@ -35,7 +35,7 @@ const ProductCard = ({ product, showWishlistIcon }) => {
             </p>
 
             <div className="flex items-center gap-2">
-              <p className="text-black text-sm sm:text-lg">{product.rating}</p>
+              <p className="text-dark-gray text-sm sm:text-lg">{product.rating}</p>
               <img
                 src={star}
                 alt="rating star"
@@ -51,11 +51,13 @@ const ProductCard = ({ product, showWishlistIcon }) => {
               Rs. {product.price}
             </p>
 
-            <p className="line-through text-sm sm:text-lg text-light-black">
+            <p className="line-through text-sm sm:text-lg text-dark-gray">
               Rs. {product.oldPrice}
             </p>
 
-            <p className="text-green text-sm sm:text-lg">({product.discount})</p>
+            <p className="text-green text-sm sm:text-lg font-bold">
+              ({product.discount})
+            </p>
           </div>
         </div>
       </div>

@@ -109,7 +109,7 @@ const Search = () => {
 
   return (
     <ContainerLayout>
-      <div className="flex gap-3.75 lg:gap-6 px-3 lg:px-6 xl:px-12.5 py-6 bg-gray-50 min-h-screen pt-20 lg:pt-30">
+      <div className="flex gap-3.75 lg:gap-[43px] px-3 lg:px-6 xl:px-12.5 py-6 bg-gray-50 min-h-screen pt-20 lg:pt-35">
         {/* DESKTOP SIDEBAR (Inset Layout ≥1024) */}
         <AnimatePresence initial={false}>
           {width >= 1024 && !showSideBar && (
@@ -139,15 +139,15 @@ const Search = () => {
 
         {/* MAIN CONTENT */}
         <div className="flex-1 w-full">
-          <div className="flex w-full items-center justify-between mb-5">
+          <div className="flex w-full items-center justify-between mb-5 lg:mb-9.5">
             <h2 className="text-lg xl:text-3xl font-semibold capitalize max-w-full truncate whitespace-nowrap">
               {category} Products
             </h2>
 
-            <div className="flex items-center gap-1.5 md:gap-4">
+            <div className="flex items-center gap-1.5 md:gap-4 lg:gap-11">
               {/* FILTER BUTTON (ALL SCREENS) */}
               <div
-                className="flex items-center gap-2 cursor-pointer"
+                className="flex items-center gap-[10px] cursor-pointer"
                 onClick={() => setShowSideBar((prev) => !prev)}
               >
                 <p className="font-bold text-sm md:text-lg xl:text-2xl">
@@ -166,7 +166,7 @@ const Search = () => {
               <div className="relative">
                 <button
                   onClick={() => setIsOpen((prev) => !prev)}
-                  className="px-4 py-2 flex justify-between items-center gap-2 font-semibold text-light-black cursor-pointer! text-sm md:text-lg xl:text-2xl whitespace-nowrap"
+                  className="flex justify-between items-center gap-2.5 font-bold text-light-black cursor-pointer! text-sm md:text-lg xl:text-2xl whitespace-nowrap"
                 >
                   {sortBy
                     ? sortBy === "popularity"
@@ -181,15 +181,17 @@ const Search = () => {
                   <img
                     src={DownArrow}
                     alt="dropdown arrow"
-                    className={`w-3 h-3 transition-transform duration-200 mr-2 md:mr-0 ${
+                    className={`transition-transform duration-200 mr-[10px] md:mr-0 ${
                       isOpen ? "rotate-180" : ""
                     }`}
                     loading="lazy"
+                    width={15}
+                    height={7.5}
                   />
                 </button>
 
                 {isOpen && (
-                  <div className="absolute z-5 -left-12 mt-2 bg-white shadow-lg rounded-lg overflow-hidden cursor-pointer">
+                  <div className="absolute z-5 -left-15 mt-2 bg-white shadow-lg rounded-lg overflow-hidden cursor-pointer">
                     <button
                       onClick={() => {
                         setSortBy("popularity");
@@ -223,7 +225,7 @@ const Search = () => {
                         setSortBy("high-low");
                         setIsOpen(false);
                       }}
-                      className={`w-full text-left text-sm px-4 py-3 font-medium hover:bg-blue-50 cursor-pointer ${
+                      className={`w-full text-left text-sm px-4 py-3 font-medium hover:bg-blue-50 cursor-pointer whitespace-nowrap ${
                         sortBy === "high-low"
                           ? "bg-blue-100 text-blue-700"
                           : "text-gray-700"
@@ -237,7 +239,7 @@ const Search = () => {
                         setSortBy("newest");
                         setIsOpen(false);
                       }}
-                      className={`w-full text-left text-sm px-4 py-3 font-medium hover:bg-blue-50 cursor-pointer ${
+                      className={`w-full text-left text-sm px-4 py-3 font-medium hover:bg-blue-50 cursor-pointer whitespace-nowrap ${
                         sortBy === "newest"
                           ? "bg-blue-100 text-blue-700"
                           : "text-gray-700"
@@ -253,7 +255,7 @@ const Search = () => {
 
           {/* PRODUCT GRID */}
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-2 xl:grid-cols-3 gap-3 lg:gap-6 items-stretch">
+            <div className="grid grid-cols-2 xl:grid-cols-3 gap-3 lg:gap-[43px] items-stretch">
               <AnimatePresence mode="popLayout">
                 {filteredProducts.map((product) => (
                   <motion.div

@@ -85,7 +85,7 @@ const SimilarProduct = ({ title = "Similar Products" }) => {
                 loading="lazy"
               />
 
-              <div className="px-5 py-2.5 space-y-1 rounded-b-[10px] min-h-[180px] md:min-h-full">
+              <div className="px-5 py-2.5 space-y-1 rounded-b-[10px] min-h-full sm:min-h-[150px] lg:min-h-full">
                 <div
                   className="font-bold text-xl lg:text-[24px] text-light-black truncate"
                   title={product.title}

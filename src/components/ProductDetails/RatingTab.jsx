@@ -5,6 +5,7 @@ import WhiteStar from "../../assets/Icons/ProductDetails/white-star.svg";
 import YellowStar from "../../assets/Icons/ProductDetails/yellow-star.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
+// eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from "framer-motion";
 
 import "swiper/css";
@@ -54,21 +55,27 @@ const RatingTab = () => {
 
   return (
     <div className="py-3 mt-0">
-      <h2 className="text-2xl font-bold text-light-black pb-3  hidden-lg-flex">
+      <h2 className="text-2xl font-bold text-light-black pb-[29px]  hidden-lg-flex">
         Ratings
       </h2>
 
-      <div className="flex flex-col gap-4">
-        <div className="flex gap-3">
+      <div className="flex flex-col gap-1.5 md:gap-4">
+        <div className="flex gap-4 md:gap-1.5">
           <p className="text-xl 2xl:text-5xl">4.4</p>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             {[...Array(4)].map((_, i) => (
-              <img key={i} src={BlackStar} loading="lazy" />
+              <img
+                key={i}
+                src={BlackStar}
+                loading="lazy"
+                width={25}
+                height={23.77}
+              />
             ))}
-            <img src={WhiteStar} loading="lazy" />
+            <img src={WhiteStar} loading="lazy" width={25} height={23.77} />
           </div>
         </div>
-        <p className="text-lg font-normal text-dark-gray lg:text-light-black">
+        <p className="text-sm md:text-lg font-normal text-dark-gray lg:text-light-black">
           40 Verified Buyers
         </p>
       </div>
@@ -76,40 +83,53 @@ const RatingTab = () => {
       <div className="mt-6 lg:mt-12 space-y-6 lg:space-y-[45px]">
         {visibleReviews.map((review) => {
           const isExpanded = expanded[review.id];
-          const shortText = review.text.slice(0, 160);
+          const shortText = review.text.slice(0, 280);
 
           return (
-            <div key={review.id} className="space-y-2.5 lg:space-y-[15px]">
+            <div key={review.id} className="space-y-2.5 lg:space-y-4">
               {/* Rating */}
               <p className="text-xl font-normal text-light-black">
                 {review.review}
               </p>
 
               <div className="flex items-center gap-4 flex-wrap">
-                <div className="flex items-center gap-2">
-                  {[...Array(4)].map((_, i) => (
-                    <img key={i} src={YellowStar} loading="lazy" />
-                  ))}
-                  <img src={WhiteStar} loading="lazy" />
+                <div className="flex items-center gap-3">
+                  <div className="flex gap-1.5">
+                    {[...Array(4)].map((_, i) => (
+                      <img
+                        key={i}
+                        src={YellowStar}
+                        loading="lazy"
+                        width={20}
+                        height={19.02}
+                      />
+                    ))}
+                    <img
+                      src={WhiteStar}
+                      loading="lazy"
+                      width={20}
+                      height={19.02}
+                    />
+                  </div>
                   <p className="font-normal text-lg">{review.rating}</p>
                 </div>
                 <div className="flex-lg-hidden gap-4">
-                  <p className="text-lg text-dark-gray font-normal ">
+                  <p className="text-sm md:text-lg text-dark-gray font-normal ">
                     {review.name}
                   </p>
-                  <p className="text-lg text-dark-gray font-normal">
+                  <p className="text-sm md:text-lg text-dark-gray font-normal">
                     {review.date}
                   </p>
                 </div>
               </div>
 
               {/* Text */}
-              <p className="text-lg text-light-black font-normal max-w-[908px] cursor-pointer">
+              <p className="text-sm md:text-lg text-light-black font-normal max-w-[908px] cursor-pointer leading-5.5">
                 {isExpanded ? review.text : shortText}
                 {review.text.length > 160 && (
                   <button
                     onClick={() => toggleReadMore(review.id)}
-                    className="text-dark-blue ml-2 text-lg cursor-pointer"
+                    className="text-dark-blue ml-2 text-sm md:text-lg cursor-pointer"
                   >
                     {isExpanded ? "Read Less" : "Read More"}
                   </button>
@@ -118,7 +138,7 @@ const RatingTab = () => {
 
               {/* Images */}
               {review.images.length > 0 && (
-                <div className="flex gap-3">
+                <div className="flex gap-4">
                   {review.images.slice(0, 2).map((img, idx) => (
                     <img
                       key={idx}
@@ -139,9 +159,10 @@ const RatingTab = () => {
                       <img
                         src={review.images[2]}
                         alt=""
+                        loading="lazy"
                         className="w-full h-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center text-white font-semibold text-lg">
+                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center text-white font-normal text-lg 2xl:text-5xl">
                         +{review.images.length - 2}
                       </div>
                     </div>
@@ -150,8 +171,10 @@ const RatingTab = () => {
               )}
 
               {/* Author */}
-              <p className="text-lg text-light-black font-normal hidden lg:flex">
-                {review.name} | {review.date}
+              <p className="text-lg text-light-black font-normal hidden lg:flex items-center">
+                {review.name}{" "}
+                <span className="bg-dark-gray w-px h-4.5 mx-1.5"></span>
+                {review.date}
               </p>
             </div>
           );
@@ -161,14 +184,14 @@ const RatingTab = () => {
         {!showAll ? (
           <button
             onClick={() => setShowAll(true)}
-            className="text-dark-blue text-lg font-medium cursor-pointer"
+            className="text-dark-blue text-sm md:text-lg font-medium cursor-pointer"
           >
             View all Reviews
           </button>
         ) : (
           <button
             onClick={() => setShowAll(false)}
-            className="text-dark-blue text-lg font-medium cursor-pointer"
+            className="text-dark-blue text-sm md:text-lg font-medium cursor-pointer"
           >
             View Less
           </button>
@@ -198,7 +221,7 @@ const RatingTab = () => {
                 exit={{ opacity: 0, scale: 0.95, y: 12 }}
                 transition={{ duration: 0.25, ease: "easeInOut" }}
               >
-                <p className="font-bold text-xl text-light-black mb-3 px-2">
+                <p className="font-bold text-base md:text-xl text-light-black mb-3 px-2">
                   Preview Image
                 </p>
 
