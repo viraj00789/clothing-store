@@ -1,5 +1,4 @@
 import { Link } from "react-router";
-import { RxCross2 } from "react-icons/rx";
 import { useState } from "react";
 import HomePageSlider from "../components/ui/home/MainSlider/HomePageSlider";
 import ContainerLayout from "../layout/ContainerLayout";

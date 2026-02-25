@@ -73,7 +73,7 @@ const FashionSlider = () => {
                         </p>
                       </div>
                       <button
-                        className="border-2 border-white lg:border-mid-gray py-1.5 px-[31px] lg:py-2 lg:px-4.5 rounded-[5px] cursor-pointer font-normal text-base text-lg text-white"
+                        className="border-2 border-white py-1.5 px-[31px] lg:py-2 lg:px-4.5 rounded-[5px] cursor-pointer font-normal text-base text-lg text-white"
                         onClick={() => navigate(slide.link)}
                       >
                         {slide.button}
