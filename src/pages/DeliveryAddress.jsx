@@ -113,8 +113,17 @@ const DeliveryAddress = () => {
   };
 
   const handleChange = (field, value) => {
-    setForm({ ...form, [field]: value });
-    setErrors({ ...errors, [field]: "" });
+    const cleanedValue = value.replace(/^\s+/, "");
+
+    setForm((prev) => ({
+      ...prev,
+      [field]: cleanedValue,
+    }));
+
+    setErrors((prev) => ({
+      ...prev,
+      [field]: "",
+    }));
   };
 
   const handlePay = () => {
@@ -471,7 +480,7 @@ const DeliveryAddress = () => {
                         maxLength={250}
                         value={form.street}
                         onChange={(e) => handleChange("street", e.target.value)}
-                        className={`w-full border p-2 rounded ${errors.street ? "border-red-500" : "border-gray-300"}`}
+                        className={`w-full border p-2 rounded resize-none ${errors.street ? "border-red-500" : "border-gray-300"}`}
                       />
                       {errors.street && (
                         <p className="text-red-500 text-sm">{errors.street}</p>

@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useWindow } from "../../../hooks/useWidth";
+import { Link } from "react-router";
 
 const products = [
   {
@@ -16,6 +17,7 @@ const products = [
     price: 700,
     oldPrice: 1000,
     discount: "30% off",
+    link: "/product/1",
   },
   {
     id: 2,
@@ -27,6 +29,7 @@ const products = [
     price: 1200,
     oldPrice: 2000,
     discount: "40% off",
+    link: "/product/2",
   },
   {
     id: 3,
@@ -38,6 +41,7 @@ const products = [
     price: 900,
     oldPrice: 1500,
     discount: "40% off",
+    link: "/product/3",
   },
   {
     id: 4,
@@ -49,6 +53,7 @@ const products = [
     price: 500,
     oldPrice: 800,
     discount: "37% off",
+    link: "/product/4",
   },
   {
     id: 5,
@@ -60,6 +65,7 @@ const products = [
     price: 650,
     oldPrice: 1000,
     discount: "35% off",
+    link: "/product/5",
   },
 ];
 
@@ -71,13 +77,20 @@ const SimilarProduct = ({ title = "Similar Products" }) => {
         {title}
       </h3>
 
-      <Swiper spaceBetween={width > 1025 ? 16 : 12} slidesPerView="auto" className="">
+      <Swiper
+        spaceBetween={width > 1025 ? 16 : 12}
+        slidesPerView="auto"
+        className=""
+      >
         {products.map((product) => (
           <SwiperSlide
             key={product.id}
             className="!w-70 lg:!w-[410px] min-h-[317px] lg:!min-h-[423px] py-px px-px cursor-pointer rounded-[10px]"
           >
-            <div className="shadow-sm bg-white rounded-[10px]">
+            <Link
+              className="shadow-sm bg-white rounded-[10px]"
+              to={product.link}
+            >
               <img
                 className="h-[301px] w-full object-cover rounded-t-[10px]"
                 src={product.image}
@@ -118,7 +131,7 @@ const SimilarProduct = ({ title = "Similar Products" }) => {
                   <p className="text-green text-lg">({product.discount})</p>
                 </div>
               </div>
-            </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

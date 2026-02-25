@@ -73,6 +73,15 @@ const ProductDetails = () => {
     };
   }, [isSizePopupOpen]);
 
+  useEffect(() => {
+    if (product) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setActiveImage(product.allImages?.[0]);
+      setSelectedSize(null);
+      setSelectedColor(ProductColors[0]);
+    }
+  }, [id, product]);
+
   if (!product) {
     return <div className="p-10 text-xl">Product not found ❌</div>;
   }

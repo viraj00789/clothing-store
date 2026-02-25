@@ -269,7 +269,10 @@ const PaymentPage = () => {
                           : "border-gray-300 focus:ring-dark-button-blue"
                       }`}
                       onChange={(e) => {
-                        setForm({ ...form, expiry: e.target.value });
+                        setForm({
+                          ...form,
+                          expiry: e.target.value.replace(/\D/g, ""),
+                        });
                         setErrors({ ...errors, expiry: "" });
                       }}
                     />
@@ -319,7 +322,10 @@ const PaymentPage = () => {
                         : "border-gray-300 focus:ring-dark-button-blue"
                     }`}
                     onChange={(e) => {
-                      setForm({ ...form, holder: e.target.value });
+                      setForm({
+                        ...form,
+                        holder: e.target.value.replace(/\D/g, ""),
+                      });
                       setErrors({ ...errors, holder: "" });
                     }}
                   />
@@ -342,7 +348,10 @@ const PaymentPage = () => {
                         : "border-gray-300 focus:ring-dark-button-blue"
                     }`}
                     onChange={(e) => {
-                      setForm({ ...form, cardName: e.target.value });
+                      setForm({
+                        ...form,
+                        cardName: e.target.value.replace(/\D/g, ""),
+                      });
                       setErrors({ ...errors, cardName: "" });
                     }}
                   />
