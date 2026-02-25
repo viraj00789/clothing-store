@@ -29,7 +29,7 @@ const Home = () => {
             <div
               className={`
       w-full p-3.75 lg:px-12.5 bg-light-gray-1 hidden-md-flex items-start md:items-center justify-between
-      transition-all duration-500 ease-in-out 
+      transition-all duration-100 
       ${closing ? "opacity-0 max-h-0 overflow-hidden" : "opacity-100 max-h-40"}
     `}
               onTransitionEnd={() => {

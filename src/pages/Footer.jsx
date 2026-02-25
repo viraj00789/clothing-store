@@ -8,51 +8,92 @@ import instgram from "../assets/footer/insta.svg";
 import whatsapp from "../assets/footer/whatsapp.svg";
 import twitter from "../assets/footer/twitter.svg";
 import { IoSend } from "react-icons/io5";
+import toast from "react-hot-toast";
+import { Link } from "react-router";
 
 const images = [
-  { id: 1, img: facebook, alt: "facebook" },
-  { id: 2, img: instgram, alt: "instgram" },
-  { id: 3, img: whatsapp, alt: "whatsapp" },
-  { id: 4, img: twitter, alt: "twitter" },
+  {
+    id: 1,
+    img: facebook,
+    alt: "facebook",
+    link: "https://facebook.com",
+  },
+  {
+    id: 2,
+    img: instgram,
+    alt: "instagram",
+    link: "https://instagram.com",
+  },
+  {
+    id: 3,
+    img: whatsapp,
+    alt: "whatsapp",
+    link: "https://wa.me/1234567890",
+  },
+  {
+    id: 4,
+    img: twitter,
+    alt: "twitter",
+    link: "https://twitter.com",
+  },
 ];
 
 const sections = [
   {
     title: "Women",
-    items: ["All Women", "Skirts", "T-Shirts", "Tops", "Jackets"],
+    items: [
+      { label: "All Women", link: "/search/all?q=women" },
+      { label: "Skirts", link: "/search/all?q=kurti" },
+      { label: "T-Shirts", link: "/search/all?q=shirt" },
+      { label: "Tops", link: "/search/all?q=top" },
+      { label: "Jackets", link: "/search/all?q=jacket" },
+    ],
   },
   {
     title: "Men",
-    items: ["All Men", "Shirts", "T-Shirts", "Shorts", "Jackets"],
+    items: [
+      { label: "All Men", link: "/search/all?q=men" },
+      { label: "Shirts", link: "/search/all?q=shirt" },
+      { label: "T-Shirts", link: "/search/all?q=tshirt" },
+      { label: "Shorts", link: "/search/all?q=shorts" },
+      { label: "Jackets", link: "/search/all?q=men" },
+    ],
   },
   {
     title: "Kids",
-    items: ["All Kids", "Shirts", "T-Shirts", "Shorts", "Jackets"],
+    items: [
+      { label: "All Kids", link: "/search/all?q=kid" },
+      { label: "Shirts", link: "/search/all?q=shirt" },
+      { label: "T-Shirts", link: "/search/all?q=shirt" },
+      { label: "Shorts", link: "/search/all?q=shorts" },
+      { label: "Jackets", link: "/search/all?q=jacket" },
+    ],
   },
   {
     title: "Shopping",
     items: [
-      "Your cart",
-      "Your orders",
-      "Compared items",
-      "Wishlist",
-      "Shipping Details",
+      { label: "Your cart", link: "/cart" },
+      { label: "Your orders", link: "/orders" },
+      { label: "Compared items", link: "/" },
+      { label: "Wishlist", link: "/wishlist" },
+      { label: "Shipping Details", link: "/" },
     ],
   },
   {
     title: "More links",
     items: [
-      "Blogs",
-      "Gift center",
-      "Buying guides",
-      "New arrivals",
-      "Clearance",
+      { label: "Blogs", link: "/" },
+      { label: "Gift center", link: "/" },
+      { label: "Buying guides", link: "/" },
+      { label: "New arrivals", link: "/" },
+      { label: "Clearance", link: "/" },
     ],
   },
 ];
 
 const Footer = () => {
   const [open, setOpen] = useState(null);
+  const [emailData, setEmailData] = useState("");
 
   const toggle = (i) => {
     setOpen(open === i ? null : i);
@@ -103,12 +144,13 @@ const Footer = () => {
                 >
                   <div className="flex flex-col gap-[15px] mt-2 lg:mt-[17px] p-2 md:p-0">
                     {sec.items.map((item, idx) => (
-                      <p
+                      <Link
                         key={idx}
+                        to={item.link}
                         className="font-normal text-lg cursor-pointer"
                       >
-                        {item}
-                      </p>
+                        {item.label}
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -124,9 +166,11 @@ const Footer = () => {
               </p>
               <div className="relative w-full  max-w-[445px] flex flex-col items-center justify-center">
                 <input
-                  className="border border-white h-11 w-full pl-15 placeholder:text-footer-input focus:outline-none placeholder:text-lg"
+                  className="border border-white h-11 w-full px-15 placeholder:text-footer-input focus:outline-none placeholder:text-lg"
                   type="email"
                   placeholder="Enter your email"
+                  value={emailData}
+                  onChange={(e) => setEmailData(e.target.value)}
                 />
                 <img
                   src={email}
@@ -134,7 +178,16 @@ const Footer = () => {
                   className="absolute left-3 top-3"
                   loading="lazy"
                 />
-                <IoSend size={20} className="absolute right-3 top-3 cursor-pointer" />
+                {emailData && (
+                  <IoSend
+                    size={20}
+                    className="absolute right-3 top-3 cursor-pointer"
+                    onClick={() => {
+                      setEmailData("");
+                      toast.success("Email sent successfully");
+                    }}
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -143,19 +196,28 @@ const Footer = () => {
         <div className="lg:h-[1px] lg:bg-white"></div>
 
         <div className="pt-[39px] flex flex-col flex-wrap md:flex-row items-center justify-center gap-6 lg:gap-50 text-center pb-[100px] md:pb-[39px] bg-dark-footer">
-          <p className="cursor-pointer font-normal text-lg">
+          <Link
+            to="/terms-and-conditions"
+            className="cursor-pointer font-normal text-lg"
+          >
             Terms & Conditions
-          </p>
-          <p className="cursor-pointer font-normal text-lg">Privacy Policy</p>
+          </Link>
+          <Link
+            to="/privacy-policy"
+            className="cursor-pointer font-normal text-lg"
+          >
+            Privacy Policy
+          </Link>
           <div className="flex justify-center gap-8.5">
             {images.map((image) => (
-              <img
-                key={image.id}
-                src={image.img}
-                alt={image.alt}
-                className="cursor-pointer"
-                loading="lazy"
-              />
+              <Link key={image.id} to={image.link} rel="noopener noreferrer">
+                <img
+                  src={image.img}
+                  alt={image.alt}
+                  className="cursor-pointer hover:opacity-80 transition"
+                  loading="lazy"
+                />
+              </Link>
             ))}
           </div>
         </div>

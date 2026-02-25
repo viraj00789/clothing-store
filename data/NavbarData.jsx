@@ -116,6 +116,24 @@ export const navItems = [
     topBar: { type: "title" },
     hidden: true, // 👈 will not render
   },
+  {
+    id: "privacy-policy",
+    href: "/privacy-policy",
+    blue: BlueUser,
+    gray: GrayUser,
+    label: "Privacy Policy",
+    topBar: { type: "title" },
+    hidden: true, // 👈 will not render
+  },
+  {
+    id: "terms-and-conditions",
+    href: "/terms-and-conditions",
+    blue: BlueUser,
+    gray: GrayUser,
+    label: "Terms and Conditions",
+    topBar: { type: "title" },
+    hidden: true, // 👈 will not render
+  },
 ];
 
 export const HideNavbarOn = [

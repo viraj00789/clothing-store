@@ -46,16 +46,17 @@ const AddAddress = () => {
   // 🔹 Validate form
   const validateForm = () => {
     const newErrors = {};
-    if (!form.firstName.trim()) newErrors.firstName = "First name is required.";
-    if (!form.lastName.trim()) newErrors.lastName = "Last name is required.";
-    if (!form.city.trim()) newErrors.city = "City is required.";
+    if (!form.firstName?.trim())
+      newErrors.firstName = "First name is required.";
+    if (!form.lastName?.trim()) newErrors.lastName = "Last name is required.";
+    if (!form.city?.trim()) newErrors.city = "City is required.";
     if (!form.zip) newErrors.zip = "ZIP code is required.";
     else if (form.zip.length !== 6)
       newErrors.zip = "ZIP code must be 6 digits.";
-    if (!form.street.trim()) newErrors.street = "Street address is required.";
+    if (!form.street?.trim()) newErrors.street = "Street address is required.";
     else if (form.street.length > 250)
       newErrors.street = "Street must be less than 250 characters.";
-    if (!form.phone.trim()) newErrors.phone = "Phone number is required.";
+    if (!form.phone?.trim()) newErrors.phone = "Phone number is required.";
     else if (!/^\d{10}$/.test(form.phone))
       newErrors.phone = "Phone number must be 10 digits.";
 

@@ -10,11 +10,13 @@ import Home from "../pages/Home";
 import NewPassword from "../pages/NewPassWord";
 import Orders from "../pages/Order";
 import PaymentPage from "../pages/Payment";
+import PrivacyPolicy from "../pages/PrivacyPolicyPage";
 import ProductDetails from "../pages/ProductDetails";
 import Profile from "../pages/Profile";
 import Search from "../pages/Search";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
+import TermsAndConditions from "../pages/TermsAndConditions";
 import VerifyCode from "../pages/VerifyCode";
 import WishList from "../pages/WishList";
 
@@ -39,6 +41,14 @@ export const publicRoutes = [
   {
     path: "/search/:category",
     element: <Search />,
+  },
+  {
+    path: "/privacy-policy",
+    element: <PrivacyPolicy />,
+  },
+  {
+    path: "/terms-and-conditions",
+    element: <TermsAndConditions />,
   },
 ];
 
