@@ -12,6 +12,8 @@ import Email from "../assets/Icons/LRF/mail.svg";
 import Google from "../assets/Icons/LRF/google.svg";
 import Apple from "../assets/Icons/LRF/apple.svg";
 import FaceBook from "../assets/Icons/LRF/facebook.svg";
+import toast from "react-hot-toast";
+import { IoArrowBack } from "react-icons/io5";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -82,6 +84,8 @@ export default function SignUp() {
 
     setItem("user", userData);
 
+    toast.success("Account created successfully.");
+
     navigate("/sign-in");
   };
 
@@ -91,14 +95,22 @@ export default function SignUp() {
       <div className="flex items-center justify-center px-6 py-12 h-[calc(100vh-1px)] overflow-auto w-full">
         <div className="w-full max-w-[343px]">
           <div className="text-center flex items-center flex-col mb-7">
-            <img
-              src={Logo}
-              alt="Logo"
-              width={72}
-              height={72}
-              className="mb-6.5"
-              loading="lazy"
-            />
+            <div className="flex items-start justify-between w-full">
+              <IoArrowBack
+                size={22}
+                onClick={() => navigate(-1)}
+                className="cursor-pointer"
+              />
+              <img
+                src={Logo}
+                alt="Passbook Logo"
+                width={72}
+                height={72}
+                className="mb-6.5"
+                loading="lazy"
+              />
+              <div />
+            </div>
             <p className="leading-6 text-light-blue-dark font-bold text-lg">
               Welcome back to E-Com!
             </p>
@@ -113,7 +125,10 @@ export default function SignUp() {
               placeholder="Name"
               value={formData.name}
               onChange={(e) => {
-                setFormData({ ...formData, name: e.target.value });
+                setFormData({
+                  ...formData,
+                  name: e.target.value.replace(/^\s+/, ""),
+                });
                 setErrors((prev) => ({ ...prev, name: undefined }));
               }}
               error={errors.name}
@@ -126,7 +141,10 @@ export default function SignUp() {
               placeholder="Email / Phone Number"
               value={formData.email}
               onChange={(e) => {
-                setFormData({ ...formData, email: e.target.value });
+                setFormData({
+                  ...formData,
+                  email: e.target.value.replace(/^\s+/, ""),
+                });
                 setErrors((prev) => ({ ...prev, email: undefined }));
               }}
               error={errors.email}
@@ -141,7 +159,10 @@ export default function SignUp() {
                 placeholder="Password"
                 value={formData.password}
                 onChange={(e) => {
-                  setFormData({ ...formData, password: e.target.value });
+                  setFormData({
+                    ...formData,
+                    password: e.target.value.replace(/^\s+/, ""),
+                  });
                   setErrors((prev) => ({ ...prev, password: undefined }));
                 }}
                 error={errors.password}
@@ -175,7 +196,10 @@ export default function SignUp() {
                 placeholder="Confirm Password"
                 value={formData.confirmPassword}
                 onChange={(e) => {
-                  setFormData({ ...formData, confirmPassword: e.target.value });
+                  setFormData({
+                    ...formData,
+                    confirmPassword: e.target.value.replace(/^\s+/, ""),
+                  });
                   setErrors((prev) => ({
                     ...prev,
                     confirmPassword: undefined,

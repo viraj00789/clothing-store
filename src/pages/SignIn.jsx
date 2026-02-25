@@ -12,6 +12,7 @@ import { FaEye } from "react-icons/fa";
 import { RiEyeCloseLine } from "react-icons/ri";
 import { getItem, setItem } from "../utils/localStorage";
 import toast from "react-hot-toast";
+import { IoArrowBack } from "react-icons/io5";
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -85,6 +86,8 @@ export default function SignIn() {
       email: savedUser.email,
     });
 
+    toast.success("Login successful");
+
     navigate("/");
   };
 
@@ -94,14 +97,22 @@ export default function SignIn() {
       <div className="flex items-center justify-center px-6 py-12 w-full h-[calc(100vh-1px)] overflow-auto">
         <div className="w-full max-w-[343px]">
           <div className="text-center flex items-center flex-col mb-13">
-            <img
-              src={Logo}
-              alt="Passbook Logo"
-              width={72}
-              height={72}
-              className="mb-6.5"
-              loading="lazy"
-            />
+            <div className="flex items-start justify-between w-full">
+              <IoArrowBack
+                size={22}
+                onClick={() => navigate(-1)}
+                className="cursor-pointer"
+              />
+              <img
+                src={Logo}
+                alt="Passbook Logo"
+                width={72}
+                height={72}
+                className="mb-6.5"
+                loading="lazy"
+              />
+              <div />
+            </div>
             <p className="leading-6 text-light-blue-dark font-bold text-lg">
               Welcome back to E-Com!
             </p>
@@ -114,11 +125,14 @@ export default function SignIn() {
             <Input
               id="email"
               name="email"
-              type="email"
+              type="text"
               placeholder="Your Email / Phone Number"
               value={formData.email}
               onChange={(e) => {
-                setFormData({ ...formData, email: e.target.value });
+                setFormData({
+                  ...formData,
+                  email: e.target.value?.trimStart(),
+                });
                 setErrors((prev) => ({ ...prev, email: undefined }));
                 setLoginError("");
               }}
@@ -143,7 +157,10 @@ export default function SignIn() {
                 placeholder="Password"
                 value={formData.password}
                 onChange={(e) => {
-                  setFormData({ ...formData, password: e.target.value });
+                  setFormData({
+                    ...formData,
+                    password: e.target.value.trimStart(),
+                  });
                   setErrors((prev) => ({ ...prev, password: undefined }));
                   setLoginError("");
                 }}

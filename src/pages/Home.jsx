@@ -28,10 +28,8 @@ const Home = () => {
           {open && (
             <div
               className={`
-      w-full p-3.75 lg:px-12.5 bg-light-gray-1 hidden-md-flex items-start md:items-center justify-between
-      transition-all duration-100 
-      ${closing ? "opacity-0 max-h-0 overflow-hidden" : "opacity-100 max-h-40"}
-    `}
+w-full p-3.75 lg:px-12.5 bg-light-gray-1 hidden-md-flex items-start md:items-center justify-between
+  transition-all duration-150 transform${closing ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"}    `}
               onTransitionEnd={() => {
                 if (closing) {
                   setOpen(false); // finally remove from DOM after animation

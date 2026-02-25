@@ -44,7 +44,7 @@ const SearchWithSuggestions = () => {
       {/* Search Input */}
       <input
         type="search"
-        placeholder="Search the desired product ....."
+        placeholder="Search the desired product....."
         value={value}
         onChange={(e) => {
           setValue(e.target.value);

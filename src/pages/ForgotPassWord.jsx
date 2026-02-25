@@ -6,6 +6,7 @@ import Button from "../components/ui/Button";
 import User from "../assets/Icons/Home/GrayIcons/home-user.svg";
 import { getItem } from "../utils/localStorage";
 import toast from "react-hot-toast";
+import { IoArrowBack } from "react-icons/io5";
 
 export default function ForgotPassword() {
   const navigate = useNavigate();
@@ -59,14 +60,22 @@ export default function ForgotPassword() {
       <div className="flex items-center justify-center px-6 py-12">
         <div className="w-full max-w-[347px]">
           <div className="text-center flex items-center flex-col mb-10">
-            <img
-              src={Logo}
-              alt="Passbook Logo"
-              width={72}
-              height={72}
-              className="mb-6.5"
-              loading="lazy"
-            />
+            <div className="flex items-start justify-between w-full">
+              <IoArrowBack
+                size={22}
+                onClick={() => navigate(-1)}
+                className="cursor-pointer"
+              />
+              <img
+                src={Logo}
+                alt="Passbook Logo"
+                width={72}
+                height={72}
+                className="mb-6.5"
+                loading="lazy"
+              />
+              <div />
+            </div>
             <p className="leading-6 text-dark-blue font-bold text-lg">
               Forgot Password
             </p>

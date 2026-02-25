@@ -8,6 +8,7 @@ import { FaEye } from "react-icons/fa";
 import { RiEyeCloseLine } from "react-icons/ri";
 import toast from "react-hot-toast";
 import { getItem, setItem } from "../utils/localStorage"; // adjust path if needed
+import { IoArrowBack } from "react-icons/io5";
 
 export default function NewPassword() {
   const navigate = useNavigate();
@@ -84,14 +85,22 @@ export default function NewPassword() {
       <div className="flex items-center justify-center px-6 py-12">
         <div className="w-full max-w-[347px]">
           <div className="text-center flex items-center flex-col mb-10">
-            <img
-              src={Logo}
-              alt="Logo"
-              width={72}
-              height={72}
-              className="mb-6.5"
-              loading="lazy"
-            />
+            <div className="flex items-start justify-between w-full">
+              <IoArrowBack
+                size={22}
+                onClick={() => navigate(-1)}
+                className="cursor-pointer"
+              />
+              <img
+                src={Logo}
+                alt="Passbook Logo"
+                width={72}
+                height={72}
+                className="mb-6.5"
+                loading="lazy"
+              />
+              <div />
+            </div>
             <p className="leading-6 text-light-blue-dark font-bold text-lg">
               New Password
             </p>
@@ -109,7 +118,10 @@ export default function NewPassword() {
                 placeholder="New Password"
                 value={formData.password}
                 onChange={(e) => {
-                  setFormData({ ...formData, password: e.target.value });
+                  setFormData({
+                    ...formData,
+                    password: e.target.value?.trimStart(),
+                  });
                   setErrors((prev) => ({ ...prev, password: undefined }));
                 }}
                 error={errors.password}
@@ -140,7 +152,10 @@ export default function NewPassword() {
               placeholder="Confirm Password"
               value={formData.confirmPassword}
               onChange={(e) => {
-                setFormData({ ...formData, confirmPassword: e.target.value });
+                setFormData({
+                  ...formData,
+                  confirmPassword: e.target.value?.trimStart(),
+                });
                 setErrors((prev) => ({ ...prev, confirmPassword: undefined }));
               }}
               error={errors.confirmPassword}

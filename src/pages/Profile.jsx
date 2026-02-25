@@ -1,6 +1,6 @@
 import { FiLogOut, FiChevronRight } from "react-icons/fi";
 import { getItem } from "../utils/localStorage";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useLogout from "../hooks/logout";
 import { ProfileMenuItems } from "../../data/profileMenuItems";
 
@@ -60,7 +60,8 @@ const Profile = () => {
 
       {/* Bottom */}
       <div className="text-xs text-center text-gray-400 mt-6">
-        Privacy Policy | Terms and Conditions
+        <Link to="/privacy-policy">Privacy Policy</Link> |{" "}
+        <Link to="/terms-and-conditions"> Terms and Conditions </Link>
       </div>
     </div>
   );

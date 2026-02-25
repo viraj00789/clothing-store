@@ -4,6 +4,7 @@ import Logo from "../assets/clothing.png";
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
 import toast from "react-hot-toast";
+import { IoArrowBack } from "react-icons/io5";
 
 export default function VerifyCode() {
   const navigate = useNavigate();
@@ -64,14 +65,23 @@ export default function VerifyCode() {
       <div className="flex items-center justify-center px-6 py-12">
         <div className="w-full max-w-[347px]">
           <div className="text-center flex items-center flex-col mb-10">
-            <img
-              src={Logo}
-              alt="Logo"
-              width={72}
-              height={72}
-              className="mb-6.5"
-              loading="lazy"
-            />
+            <div className="flex items-start justify-between w-full">
+              <IoArrowBack
+                size={22}
+                onClick={() => navigate(-1)}
+                className="cursor-pointer"
+              />
+
+              <img
+                src={Logo}
+                alt="Logo"
+                width={72}
+                height={72}
+                className="mb-6.5"
+                loading="lazy"
+              />
+              <div />
+            </div>
             <p className="leading-6 text-light-blue-dark font-bold text-lg">
               Enter Verification Code
             </p>
@@ -90,7 +100,7 @@ export default function VerifyCode() {
               placeholder="Enter 6-digit OTP"
               value={formData.otp}
               onChange={(e) => {
-                setFormData({ otp: e.target.value });
+                setFormData({ otp: e.target.value.trimStart() });
                 setErrors((prev) => ({ ...prev, otp: undefined }));
               }}
               error={errors.otp}

@@ -316,7 +316,7 @@ const Navbar = () => {
                 />
                 <input
                   type="search"
-                  placeholder="Search the desired product ....."
+                  placeholder="Search the desired product....."
                   value={value}
                   onChange={(e) => {
                     const input = e.target.value;

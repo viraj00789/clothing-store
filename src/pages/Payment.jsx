@@ -58,17 +58,41 @@ const PaymentPage = () => {
   const validate = () => {
     const err = {};
 
-    if (!/^\d{16}$/.test(form.cardNumber))
+    // Remove spaces before validation
+    const cleanCardNumber = form.cardNumber.replace(/\s/g, "");
+    const cleanExpiry = form.expiry;
+    const cleanCvv = form.cvv;
+
+    // ✅ Card Number (16 digits)
+    if (!/^\d{16}$/.test(cleanCardNumber)) {
       err.cardNumber = "Card number must be 16 digits.";
+    }
 
-    if (!/^\d{2}\/\d{2}$/.test(form.expiry))
-      err.expiry = "Expiry must be MM/YY.";
+    // ✅ Expiry Format (MM/YY)
+    if (!/^\d{2}\/\d{2}$/.test(cleanExpiry)) {
+      err.expiry = "Expiry must be in MM/YY format.";
+    } else {
+      const [month] = cleanExpiry.split("/").map(Number);
 
-    if (!/^\d{3}$/.test(form.cvv)) err.cvv = "CVV must be 3 digits.";
+      if (month < 1 || month > 12) {
+        err.expiry = "Invalid month.";
+      }
+    }
 
-    if (!form.holder.trim()) err.holder = "Card holder name required.";
+    // ✅ CVV (3 digits)
+    if (!/^\d{3}$/.test(cleanCvv)) {
+      err.cvv = "CVV must be 3 digits.";
+    }
 
-    if (!form.cardName.trim()) err.cardName = "Card name required.";
+    // ✅ Holder Name
+    if (!form.holder.trim()) {
+      err.holder = "Card holder name required.";
+    }
+
+    // ✅ Card Name
+    if (!form.cardName.trim()) {
+      err.cardName = "Card name required.";
+    }
 
     setErrors(err);
     return Object.keys(err).length === 0;
@@ -234,19 +258,36 @@ const PaymentPage = () => {
                   <input
                     type="text"
                     value={form.cardNumber}
-                    maxLength={16}
+                    // maxLength={16}
                     className={`w-full p-3 rounded transition-colors duration-200 border ${
                       isSubmitted && errors.cardNumber
                         ? "border-red-500 focus:ring-red-500"
                         : "border-gray-300 focus:ring-dark-button-blue"
                     }`}
                     onChange={(e) => {
-                      setForm({
-                        ...form,
-                        cardNumber: e.target.value.replace(/\D/g, ""),
-                      });
-                      setErrors({ ...errors, cardNumber: "" });
+                      // Remove all non-digits
+                      let value = e.target.value.replace(/\D/g, "");
+
+                      // Limit to 16 digits
+                      value = value.slice(0, 16);
+
+                      // Add space every 4 digits
+                      const formattedValue = value.replace(
+                        /(\d{4})(?=\d)/g,
+                        "$1 ",
+                      );
+
+                      setForm((prev) => ({
+                        ...prev,
+                        cardNumber: formattedValue,
+                      }));
+
+                      setErrors((prev) => ({
+                        ...prev,
+                        cardNumber: "",
+                      }));
                     }}
+                    placeholder="Enter card number"
                   />
                   {isSubmitted && errors.cardNumber && (
                     <p className="text-red-500 text-sm">{errors.cardNumber}</p>
@@ -271,10 +312,11 @@ const PaymentPage = () => {
                       onChange={(e) => {
                         setForm({
                           ...form,
-                          expiry: e.target.value.replace(/\D/g, ""),
+                          expiry: e.target.value.replace(/^\s+/, ""),
                         });
                         setErrors({ ...errors, expiry: "" });
                       }}
+                      placeholder="Enter Expiry"
                     />
                     {isSubmitted && errors.expiry && (
                       <p className="text-red-500 text-sm">{errors.expiry}</p>
@@ -297,10 +339,13 @@ const PaymentPage = () => {
                       onChange={(e) => {
                         setForm({
                           ...form,
-                          cvv: e.target.value.replace(/\D/g, ""),
+                          cvv: e.target.value
+                            .replace(/\D/g, "")
+                            .replace(/^\s+/, ""),
                         });
                         setErrors({ ...errors, cvv: "" });
                       }}
+                      placeholder="Enter CVV"
                     />
                     {isSubmitted && errors.cvv && (
                       <p className="text-red-500 text-sm">{errors.cvv}</p>
@@ -324,10 +369,11 @@ const PaymentPage = () => {
                     onChange={(e) => {
                       setForm({
                         ...form,
-                        holder: e.target.value.replace(/\D/g, ""),
+                        holder: e.target.value.replace(/^\s+/, ""),
                       });
                       setErrors({ ...errors, holder: "" });
                     }}
+                    placeholder="Enter Card Holder Name"
                   />
                   {isSubmitted && errors.holder && (
                     <p className="text-red-500 text-sm">{errors.holder}</p>
@@ -348,12 +394,19 @@ const PaymentPage = () => {
                         : "border-gray-300 focus:ring-dark-button-blue"
                     }`}
                     onChange={(e) => {
-                      setForm({
-                        ...form,
-                        cardName: e.target.value.replace(/\D/g, ""),
-                      });
-                      setErrors({ ...errors, cardName: "" });
+                      const value = e.target.value.replace(/^\s+/, ""); // remove leading spaces
+
+                      setForm((prev) => ({
+                        ...prev,
+                        cardName: value,
+                      }));
+
+                      setErrors((prev) => ({
+                        ...prev,
+                        cardName: "",
+                      }));
                     }}
+                    placeholder="Enter Card Name"
                   />
                   {isSubmitted && errors.cardName && (
                     <p className="text-red-500 text-sm">{errors.cardName}</p>
