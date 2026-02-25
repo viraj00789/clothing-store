@@ -19,7 +19,6 @@ import Cross from "../assets/cross.svg";
 
 const Home = () => {
   const [open, setOpen] = useState(true);
-  const [closing, setClosing] = useState(false);
 
   return (
     <>
@@ -27,18 +26,12 @@ const Home = () => {
         <div className="mt-16 lg:mt-20">
           {open && (
             <div
-              className={`
-w-full p-3.75 lg:px-12.5 bg-light-gray-1 hidden-md-flex items-start md:items-center justify-between
-  transition-all duration-150 transform${closing ? "-translate-y-full opacity-0" : "translate-y-0 opacity-100"}    `}
-              onTransitionEnd={() => {
-                if (closing) {
-                  setOpen(false); // finally remove from DOM after animation
-                  setClosing(false);
-                }
-              }}
+              className={`w-full p-3.75 lg:px-12.5 bg-light-gray-1 hidden-md-flex items-start md:items-center justify-between transition-opacity duration-200 ${
+                open ? "opacity-100" : "opacity-0"
+              }`}
             >
+              {" "}
               <div />
-
               <div className="flex flex-col lg:flex-row items-center justify-center gap-[15px]">
                 <p className="text-sm lg:text-lg font-normal text-center text-light-black">
                   Invite Friends and get 50% off on your next purchase
@@ -47,15 +40,15 @@ w-full p-3.75 lg:px-12.5 bg-light-gray-1 hidden-md-flex items-start md:items-cen
                   Invite Now
                 </Link>
               </div>
-
               <div className="mt-0.5 md:mt-0">
                 <img
                   width={17.11}
                   height={17.11}
                   className="cursor-pointer text-dark-gray"
-                  onClick={() => setClosing(true)}
+                  onClick={() => setOpen(false)}
                   loading="lazy"
                   src={Cross}
+                  alt="close"
                 />
               </div>
             </div>
