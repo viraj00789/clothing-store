@@ -141,7 +141,9 @@ const DeliveryAddress = () => {
     <ContainerLayout>
       {items.length > 0 && (
         <div className="w-full flex flex-col px-0 sm:px-3 md:px-25 lg:px-20 xl:px-45 2xl:px-85 pt-20 lg:pt-30 pb-15 lg:pb-20 space-y-6 xl:space-y-12">
-          <Timeline steps={checkoutSteps} />
+          <div className="  px-3.75 lg:px-0">
+            <Timeline steps={checkoutSteps} />
+          </div>
 
           {/* Header */}
           <div className="flex items-center gap-3">

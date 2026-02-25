@@ -14,8 +14,8 @@ export default function Timeline({ steps = [] }) {
   const progress = Math.min(adjustedProgress, 100);
 
   return (
-    <div className="w-full px-3">
-      <div className="max-w-5xl mx-auto relative w-full">
+    <div className="w-full">
+      <div className="max-w-7xl mx-auto relative w-full">
         <div className="absolute top-3 sm:top-6 left-0 right-0 mx-[25px] sm:mx-6 h-[3px]">
           <div className="w-full h-full bg-gray-300 rounded-full" />
 

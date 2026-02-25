@@ -7,6 +7,7 @@ import facebook from "../assets/footer/facebook.svg";
 import instgram from "../assets/footer/insta.svg";
 import whatsapp from "../assets/footer/whatsapp.svg";
 import twitter from "../assets/footer/twitter.svg";
+import { IoSend } from "react-icons/io5";
 
 const images = [
   { id: 1, img: facebook, alt: "facebook" },
@@ -133,6 +134,7 @@ const Footer = () => {
                   className="absolute left-3 top-3"
                   loading="lazy"
                 />
+                <IoSend size={20} className="absolute right-3 top-3 cursor-pointer" />
               </div>
             </div>
           </div>

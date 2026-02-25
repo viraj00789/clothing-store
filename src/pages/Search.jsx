@@ -255,7 +255,7 @@ const Search = () => {
 
           {/* PRODUCT GRID */}
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-2 xl:grid-cols-3 gap-3 lg:gap-[43px] items-stretch">
+            <div className="grid grid-cols-2 xl:grid-cols-3 gap-3 gap-5 2xl:gap-[43px] items-stretch">
               <AnimatePresence mode="popLayout">
                 {filteredProducts.map((product) => (
                   <motion.div

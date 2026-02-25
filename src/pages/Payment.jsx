@@ -177,7 +177,7 @@ const PaymentPage = () => {
 
           <div className="flex flex-col lg:flex-row gap-4">
             {/* ✅ Payment Methods */}
-            <div className="space-y-3 w-full">
+            <div className="space-y-0 md:space-y-3 w-full">
               {methods.map((method) => (
                 <div
                   key={method.id}
@@ -199,11 +199,11 @@ const PaymentPage = () => {
                       setShowForm(false);
                     }
                   }}
-                  className={`flex items-start justify-start gap-3 p-4 border rounded-lg cursor-pointer
+                  className={`flex items-start justify-start gap-3 p-4 border-b last:border-0 md:border md:last:border md:rounded-lg border-light-blue cursor-pointer
                 ${
                   selectedMethod === method.id
-                    ? "bg-blue-100 border-dark-button-blue"
-                    : "border-gray-300"
+                    ? "bg-blue-100 md:border-dark-button-blue"
+                    : "md:border-gray-300"
                 }`}
                 >
                   <div>{iconMap[method.icon]}</div>

@@ -139,7 +139,11 @@ const Navbar = () => {
                   placeholder="Search"
                   value={value}
                   onChange={(e) => {
-                    setValue(e.target.value);
+                    const input = e.target.value;
+
+                    if (input.startsWith(" ")) return;
+
+                    setValue(input);
                     setShowSuggestions(true);
                   }}
                   onKeyDown={(e) => {
@@ -315,7 +319,11 @@ const Navbar = () => {
                   placeholder="Search the desired product ....."
                   value={value}
                   onChange={(e) => {
-                    setValue(e.target.value);
+                    const input = e.target.value;
+
+                    if (input.startsWith(" ")) return;
+
+                    setValue(input);
                     setShowSuggestions(true);
                   }}
                   onKeyDown={(e) => {

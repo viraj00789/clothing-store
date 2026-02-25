@@ -94,28 +94,25 @@
 }
 
 @media screen and (max-width: 1399px) {
-
-
   .offer-triple-slider {
     margin-right: 0;
     margin-left: 0;
   }
+}
 
+@media screen and (max-width: 1440px) {
 
-
-
+  .offer-triple-slider .swiper-button-prev,
+  .offer-triple-slider .swiper-button-next {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 1400px) {
-
-
   .offer-triple-slider {
     margin-right: 50px;
     margin-left: 50px;
   }
-
-
-
 
 }
 

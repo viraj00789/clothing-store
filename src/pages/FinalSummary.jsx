@@ -15,6 +15,7 @@ import { nanoid } from "@reduxjs/toolkit";
 import { FaAngleRight } from "react-icons/fa6";
 import Timeline from "../components/ui/TimeLine";
 import { checkoutSteps } from "../../data/TimeLineData";
+import delTruck from "../assets/del-truck.svg";
 
 const iconMap = {
   card: <IoCardOutline size={20} />,
@@ -122,14 +123,21 @@ const FinalSummary = () => {
               Final Summary
             </h1>
           </div>
+          {/* Delliverty Estimation */}
+          <div className="bg-white py-4 border-b border-light-blue lg:border-gray-300 flex items-center gap-2">
+            <img src={delTruck} alt="delivery truck" loading="lazy" />
+            <p className="font-normal text-sm lg:text-lg">
+              Estimated Delivery by Thursday, 07 Oct
+            </p>
+          </div>
           {/* ===== Items ===== */}
-          <div className="bg-white rounded-lg p-4 space-y-4 border border-gray-300">
+          <div className="bg-white lg:rounded-lg lg:p-4 space-y-4 lg:border lg:border-gray-300">
             <h2 className="font-bold text-lg">Order Items</h2>
 
             {items.map((item) => (
               <div
                 key={item.id}
-                className="flex justify-between items-center border-b pb-3 last:border-0"
+                className="flex justify-between items-center border-b border-light-blue lg:border-gray-300 pb-3 last:border-0"
               >
                 <div className="flex items-center gap-3">
                   <div>
@@ -149,7 +157,7 @@ const FinalSummary = () => {
                     </p>
                   </div>
                 </div>
-                <p className="font-bold text-lg text-dark-button-blue">
+                <p className="font-bold text-lg text-dark-button-blue cursor-pointer">
                   <FaAngleRight
                     className="text-light-black"
                     onClick={() => navigate("/cart")}
@@ -161,23 +169,23 @@ const FinalSummary = () => {
           {/* ===== Address ===== */}
           <div
             onClick={() => navigate("/address")}
-            className="bg-white rounded-lg p-4 border border-gray-300 cursor-pointer"
+            className="bg-white lg:rounded-lg py-4 lg:p-4 border-t lg:border border-light-blue lg:border-gray-300 cursor-pointer"
           >
             <h2 className="font-bold text-lg mb-4.5">Delivery Address</h2>
 
             {selectedAddress ? (
               <div className="flex justify-between w-full items-center">
                 <div className="text-sm text-gray-700">
-                  <p className="text-light-black text-sm lg:text-lg">
+                  <p className="text-light-black text-sm lg:text-lg font-medium">
                     {selectedAddress.street}
                   </p>
-                  <p className="text-light-black text-sm lg:text-lg">
+                  <p className="text-light-black text-sm lg:text-lg font-medium">
                     {selectedAddress.city}, {selectedAddress.country}
                   </p>
-                  <p className="text-light-black text-sm lg:text-lg">
+                  <p className="text-light-black text-sm lg:text-lg font-medium">
                     ZIP: {selectedAddress.zip}
                   </p>
-                  <p className="text-light-black text-sm lg:text-lg">
+                  <p className="text-light-black text-sm lg:text-lg font-medium">
                     Phone: {selectedAddress.phone}
                   </p>
                 </div>
@@ -195,7 +203,7 @@ const FinalSummary = () => {
           {/* ===== Payment Method ===== */}
           <div
             onClick={() => navigate("/payment")}
-            className="bg-white rounded-lg p-4 border border-gray-300 cursor-pointer"
+            className="bg-white lg:rounded-lg py-4 lg:p-4 border-t lg:border border-light-blue lg:border-gray-300 cursor-pointer"
           >
             <h2 className="font-bold text-sm lg:text-lg text-light-black mb-4.5">
               Payment Method
@@ -225,7 +233,7 @@ const FinalSummary = () => {
             </div>
           </div>
           {/* ===== Price Breakdown ===== */}
-          <div className="bg-white rounded-lg p-4 border border-gray-300 space-y-2">
+          <div className="bg-white rounded-lg p-4 border border-gray-300 space-y-2 space-y-2">
             <div className="flex justify-between">
               <span className="text-dark-blue font-normal text-sm sm:text-lg">
                 Items ({items.length})

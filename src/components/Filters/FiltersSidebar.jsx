@@ -4,10 +4,13 @@ import { FiChevronDown } from "react-icons/fi";
 import CustomCheckbox from "../ui/CheckBox";
 import { useWindow } from "../../hooks/useWidth";
 import { useNavigate } from "react-router";
+import cross from "../../assets/cross.svg";
 
 const STEP = 100;
 const MIN = 0;
 const MAX = 5000;
+const MIN_DISTANCE = 100;
+const MAX_DISTANCE = 5000;
 
 const FiltersSidebar = ({
   products,
@@ -56,14 +59,24 @@ const FiltersSidebar = ({
 
   return (
     <div
-      className="w-full lg:w-78 xl:w-115 px-0 sm:px-5 py-5 lg:py-8 rounded-xl
+      className="w-full lg:w-78 xl:w-115 px-0 sm:px-5 pb-8 rounded-xl
   h-full lg:h-[calc(100vh-122px)] overflow-auto sticky lg:top-30 bg-white shadow-[0px_0px_30px_0px_#00000012]"
     >
       {/* HEADER */}
-      <div className="flex justify-between items-center mb-6 px-4 sm:px-0">
-        <h3 className="text-xl xl:text-4xl font-semibold text-light-black">
-          Filters
-        </h3>
+      <div className="flex justify-between items-center px-4 sm:px-0 py-7.5 sticky top-0 bg-white z-10">
+        <div className="flex items-center gap-4">
+          {width < 768 && (
+            <img
+              src={cross}
+              className="w-[14px] h-[14px] cursor-pointer"
+              loading="lazy"
+              onClick={onClose}
+            />
+          )}
+          <h3 className="text-xl xl:text-4xl font-medium text-light-black">
+            Filters {width < 768 && "search"}
+          </h3>
+        </div>
 
         <div className="flex items-center gap-4">
           <button
@@ -77,7 +90,7 @@ const FiltersSidebar = ({
           </button>
 
           {/* CLOSE BUTTON - ONLY FOR MOBILE/FULLSCREEN */}
-          {onClose && (
+          {onClose && width >= 768 && (
             <button onClick={onClose} className="text-2xl font-bold lg:hidden">
               ✕
             </button>
@@ -89,13 +102,15 @@ const FiltersSidebar = ({
       <div className="">
         <button
           onClick={() => toggleSection("price")}
-          className={`flex justify-between items-center w-full cursor-pointer px-6 sm:px-0 ${
+          className={`flex justify-between items-center w-full cursor-pointer px-4.75 sm:px-0 ${
             !openSections.price
-              ? "border-b border-light-blue md:border-dark-gray/50 pb-6 transition-all duration-300"
+              ? "border-b border-light-blue md:border-dark-gray/50 pb-4 md:pb-6 transition-all duration-300"
               : ""
           }`}
         >
-          <h4 className="text-lg xl:text-2xl font-bold text-black">Price</h4>
+          <h4 className="text-lg xl:text-2xl font-medium md:font-bold text-light-blue-dark md:text-black">
+            Price
+          </h4>
           <FiChevronDown
             size={width > 768 ? 30 : 20}
             className={`transition-transform duration-300 ${
@@ -117,7 +132,27 @@ const FiltersSidebar = ({
               step={STEP}
               min={MIN}
               max={MAX}
-              onChange={(values) => setPriceRange(values)}
+              onChange={(values) => {
+                let [minVal, maxVal] = values;
+
+                if (maxVal - minVal < MIN_DISTANCE) {
+                  if (values[0] !== priceRange[0]) {
+                    minVal = maxVal - MIN_DISTANCE;
+                  } else {
+                    maxVal = minVal + MIN_DISTANCE;
+                  }
+                }
+
+                if (maxVal - minVal > MAX_DISTANCE) {
+                  if (values[0] !== priceRange[0]) {
+                    minVal = maxVal - MAX_DISTANCE;
+                  } else {
+                    maxVal = minVal + MAX_DISTANCE;
+                  }
+                }
+
+                setPriceRange([minVal, maxVal]);
+              }}
               renderTrack={({ props, children }) => {
                 const { key, ...rest } = props;
 
@@ -186,7 +221,7 @@ const FiltersSidebar = ({
             </div>
           </div>
 
-          <div className="flex justify-between mt-[29px] text-gray-800 font-medium max-w-full md:max-w-82">
+          <div className="flex justify-between mt-[29px] text-gray-800 font-medium max-w-full md:max-w-82 px-2 sm:px-0">
             <div>
               <p className="text-lg font-normal text-mid-gray-2">Min</p>
               <p>Rs. {priceRange[0]}</p>
@@ -201,16 +236,18 @@ const FiltersSidebar = ({
       </div>
 
       {/* BRAND FILTER */}
-      <div className="my-6">
+      <div className="my-4 md:my-6">
         <button
           onClick={() => toggleSection("brand")}
-          className={`flex justify-between items-center w-full cursor-pointer px-6 sm:px-0 ${
+          className={`flex justify-between items-center w-full cursor-pointer px-4.75 sm:px-0 ${
             !openSections.brand
-              ? "border-b border-light-blue md:border-dark-gray/50 pb-6 transition-all duration-300"
+              ? "border-b border-light-blue md:border-dark-gray/50 pb-4 md:pb-6 transition-all duration-300"
               : ""
           }`}
         >
-          <h4 className="text-lg xl:text-2xl font-bold text-black">Brand</h4>
+          <h4 className="text-lg xl:text-2xl font-medium md:font-bold text-light-blue-dark md:text-black">
+            Brand
+          </h4>
           <FiChevronDown
             size={width > 768 ? 30 : 20}
             className={`transition-transform duration-300 ${
@@ -219,7 +256,7 @@ const FiltersSidebar = ({
           />
         </button>
         <div
-          className={`overflow-hidden transition-all duration-300 border-b border-light-blue md:border-dark-gray/50 px-4 sm:px-0 ${
+          className={`overflow-hidden transition-all duration-300 border-b border-light-blue md:border-dark-gray/50 px-4.75 sm:px-0 ${
             openSections.brand
               ? "max-h-250 opacity-100 my-6 pb-6 border-b border-light-blue md:border-dark-gray/50"
               : "max-h-0 opacity-0"
@@ -269,7 +306,7 @@ const FiltersSidebar = ({
                       }
                       className={`p-4 border rounded-5 cursor-pointer text-sm ${
                         isSelected
-                          ? "text-light-blue-dark bg-light-gray-4 border-none"
+                          ? "text-light-blue-dark bg-light-gray-4 border-light-gray-4"
                           : "text-light-blue-1 bg-white border-light-blue"
                       }`}
                     >
@@ -298,16 +335,18 @@ const FiltersSidebar = ({
       </div>
 
       {/* COLOR FILTER */}
-      <div className="my-6">
+      <div className="my-4 md:my-6">
         <button
           onClick={() => toggleSection("color")}
-          className={`flex justify-between items-center w-full cursor-pointer px-6 sm:px-0 ${
+          className={`flex justify-between items-center w-full cursor-pointer px-4.75 sm:px-0 ${
             !openSections.color
-              ? "border-b border-light-blue md:border-dark-gray/50 pb-6 transition-all duration-300"
+              ? "border-b border-light-blue md:border-dark-gray/50 pb-4 md:pb-6 transition-all duration-300"
               : ""
           }`}
         >
-          <h4 className="text-lg xl:text-2xl font-bold text-black">Color</h4>
+          <h4 className="text-lg xl:text-2xl font-medium md:font-bold text-light-blue-dark md:text-black">
+            Color
+          </h4>
           <FiChevronDown
             size={width > 768 ? 30 : 20}
             className={`transition-transform duration-300 ${
@@ -317,7 +356,7 @@ const FiltersSidebar = ({
         </button>
 
         <div
-          className={`overflow-hidden transition-all duration-300 px-3.75 sm:px-0 ${
+          className={`overflow-hidden transition-all duration-300 px-4.75 sm:px-0 ${
             openSections.color
               ? "max-h-250 opacity-100 mt-6 pb-6 border-b border-light-blue md:border-dark-gray/50"
               : "max-h-0 opacity-0"
@@ -367,7 +406,7 @@ const FiltersSidebar = ({
                       }
                       className={`p-4 border rounded-5 cursor-pointer text-sm ${
                         isSelected
-                          ? "text-light-blue-dark bg-light-gray-4 border-none"
+                          ? "text-light-blue-dark bg-light-gray-4 border-light-gray-4"
                           : "text-light-blue-1 bg-white border-light-blue"
                       }`}
                     >
@@ -399,13 +438,15 @@ const FiltersSidebar = ({
       <div>
         <button
           onClick={() => toggleSection("discount")}
-          className={`flex justify-between items-center w-full cursor-pointer px-6 sm:px-0 ${
+          className={`flex justify-between items-center w-full cursor-pointer px-4.75 sm:px-0 ${
             !openSections.discount
-              ? "border-b border-light-blue md:border-dark-gray/50 pb-6 transition-all duration-300"
+              ? "border-b border-light-blue md:border-dark-gray/50 pb-4 md:pb-6 transition-all duration-300"
               : ""
           }`}
         >
-          <h4 className="text-lg xl:text-2xl font-bold text-black">Discount</h4>
+          <h4 className="text-lg xl:text-2xl font-medium md:font-bold text-light-blue-dark md:text-black">
+            Discount
+          </h4>
           <FiChevronDown
             size={width > 768 ? 30 : 20}
             className={`transition-transform duration-300 ${
@@ -414,7 +455,7 @@ const FiltersSidebar = ({
           />
         </button>
         <div
-          className={`overflow-hidden transition-all duration-300 px-3.75 sm:px-0 ${
+          className={`overflow-hidden transition-all duration-300 px-4.75 sm:px-0 ${
             openSections.discount
               ? "max-h-[500px] opacity-100 mt-6 pb-6 border-b border-light-blue md:border-dark-gray/50"
               : "max-h-0 opacity-0"
@@ -458,7 +499,7 @@ const FiltersSidebar = ({
                     }
                     className={`p-4 border rounded-5 cursor-pointer text-sm ${
                       isSelected
-                        ? "text-light-blue-dark bg-light-gray-4 border-none"
+                        ? "text-light-blue-dark bg-light-gray-4 border-light-gray-4"
                         : "text-light-blue-1 bg-white border-light-blue"
                     }`}
                   >
