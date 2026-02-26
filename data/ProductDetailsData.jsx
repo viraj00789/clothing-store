@@ -20,6 +20,7 @@ export const products = [
     link: "/product/1",
     soldBy: "Levi's Pvt. Ltd.",
     categories: ["Women"],
+    spinValue: "20% Discount",
   },
   {
     id: 2,
@@ -42,6 +43,7 @@ export const products = [
     link: "/product/2",
     soldBy: "Zara India Pvt. Ltd.",
     categories: ["Men"],
+    spinValue: "20% Discount",
   },
   {
     id: 3,
@@ -64,6 +66,7 @@ export const products = [
     link: "/product/3",
     soldBy: "H&M India Pvt. Ltd.",
     categories: ["Women"],
+    spinValue: "40% Discount",
   },
   {
     id: 4,
@@ -86,6 +89,7 @@ export const products = [
     link: "/product/4",
     soldBy: "Nike India Pvt. Ltd.",
     categories: ["Men"],
+    spinValue: "40% Discount",
   },
   {
     id: 5,
@@ -108,6 +112,7 @@ export const products = [
     link: "/product/5",
     soldBy: "Adidas India Pvt. Ltd.",
     categories: ["Men"],
+    spinValue: "50% Discount",
   },
   {
     id: 6,
@@ -129,7 +134,9 @@ export const products = [
     link: "/product/6",
     soldBy: "Puma India Pvt. Ltd.",
     categories: ["Men"],
+    spinValue: "50% Discount",
   },
+
   {
     id: 7,
     image:
@@ -149,6 +156,7 @@ export const products = [
     link: "/product/7",
     soldBy: "Marks & Spencer India",
     categories: ["Women"],
+    spinValue: "90% Discount",
   },
   {
     id: 8,
@@ -170,6 +178,7 @@ export const products = [
     link: "/product/8",
     soldBy: "Roadster Pvt. Ltd.",
     categories: ["Men"],
+    spinValue: "90% Discount",
   },
   {
     id: 9,
@@ -192,6 +201,7 @@ export const products = [
     link: "/product/9",
     soldBy: "Biba Apparels Pvt. Ltd.",
     categories: ["Women"],
+    spinValue: "Free Product",
   },
   {
     id: 10,
@@ -213,6 +223,7 @@ export const products = [
     link: "/product/10",
     soldBy: "Allen Solly India Pvt. Ltd.",
     categories: ["Men"],
+    spinValue: "Free Product",
   },
   {
     id: 11,
@@ -234,6 +245,7 @@ export const products = [
     link: "/product/11",
     soldBy: "Jack & Jones India",
     categories: ["Men"],
+    spinValue: "Free Shipping",
   },
   {
     id: 12,
@@ -256,6 +268,7 @@ export const products = [
     link: "/product/12",
     soldBy: "Marks & Spencer India",
     categories: ["Women"],
+    spinValue: "Free Shipping",
   },
   {
     id: 13,

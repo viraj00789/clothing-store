@@ -17,8 +17,10 @@ import Profile from "../pages/Profile";
 import Search from "../pages/Search";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
+import SpinWheel from "../pages/SpinWheel";
 import TermsAndConditions from "../pages/TermsAndConditions";
 import VerifyCode from "../pages/VerifyCode";
+import WheelOfSpin from "../pages/WheelOfSpin";
 import WishList from "../pages/WishList";
 
 export const publicRoutes = [
@@ -116,5 +118,13 @@ export const protectedRoutes = [
   {
     path: "/final-summary",
     element: <FinalSummary />,
+  },
+  {
+    path: "/wheelofspin",
+    element: <WheelOfSpin />,
+  },
+  {
+    path: "/spin",
+    element: <SpinWheel />,
   },
 ];

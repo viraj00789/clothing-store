@@ -12,12 +12,24 @@ import { useNavigate } from "react-router";
 const slides = [
   {
     image:
+      "https://img.freepik.com/premium-vector/casino-spinning-fortune-wheel-banner-roulette-jackpot-big-win_107988-526.jpg",
+    brand: prada,
+    title1: "Spin & Win Big Discounts",
+    title2: "50% - 80% off",
+    button: "Spin Now",
+    link: "/wheelofspin",
+    background:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSnuoKmuvpKII50YsNHfVbyChTlsXF09JaEw&s",
+  },
+  {
+    image:
       "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     brand: prada,
     title1: "Big Fashion Festival",
-    title2: "50% - 80% off",
+    title2: "Upto 50% - 100% off",
     button: "Explore",
     link: "/product/11",
+    background: background1,
   },
   {
     image:
@@ -27,6 +39,7 @@ const slides = [
     title2: "Up to 60% off",
     button: "Shop Now",
     link: "/product/1",
+    background: background1,
   },
   {
     image:
@@ -36,6 +49,7 @@ const slides = [
     title2: "Fresh Styles 2026",
     button: "Discover",
     link: "/product/13",
+    background: background1,
   },
   {
     image:
@@ -45,6 +59,7 @@ const slides = [
     title2: "Trending Now",
     button: "View Collection",
     link: "/product/15",
+    background: background1,
   },
   {
     image:
@@ -54,6 +69,7 @@ const slides = [
     title2: "Limited Time Only",
     button: "Grab Now",
     link: "/product/9",
+    background: background1,
   },
 ];
 
@@ -70,7 +86,7 @@ const HomePageSlider = () => {
           bulletActiveClass: "custom-bullet-active",
         }}
         speed={1000}
-        // autoplay={{ delay: 4000, disableOnInteraction: false }}
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
         loop={true}
         className="w-full h-[796px] home-slider"
       >
@@ -90,7 +106,7 @@ const HomePageSlider = () => {
               {/* Right side content */}
               <div
                 className="w-full lg:w-1/2 h-full bg-cover bg-center flex items-center justify-center"
-                style={{ backgroundImage: `url(${background1})` }}
+                style={{ backgroundImage: `url(${slide.background})` }}
               >
                 <div className="flex flex-col items-center gap-10 lg:gap-[66px]">
                   <div>

@@ -168,7 +168,32 @@ const Cart = () => {
                           {product.brand}
                         </p>
                         <p className="font-bold text-lg lg:text-xl text-dark-button-blue">
-                          <span className="text-lg">₹</span> {product.price}
+                          {product.spinApplied && product.spinValue ? (
+                            <>
+                              {product.spinValue.includes("%") ? (
+                                <>
+                                  <span className="line-through text-gray-400">
+                                    ₹{product.price.toFixed(2)}
+                                  </span>{" "}
+                                  <span className="text-green-500 font-semibold">
+                                    ₹
+                                    {(
+                                      product.price *
+                                      (1 - parseInt(product.spinValue) / 100)
+                                    ).toFixed(2)}
+                                  </span>
+                                </>
+                              ) : product.spinValue === "Free Product" ? (
+                                <span className="text-green-500 font-semibold">
+                                  Free
+                                </span>
+                              ) : (
+                                <>₹{product.price.toFixed(2)}</>
+                              )}
+                            </>
+                          ) : (
+                            <>₹{product.price.toFixed(2)}</>
+                          )}
                         </p>
                         <p className="font-normal text-md text-dark-gray hidden-lg-flex flex gap-2">
                           <span className="text-light-black">Order Date:</span>

@@ -33,7 +33,6 @@ const FinalSummary = () => {
   const { items, promoCode, promoDiscount } = useSelector(
     (state) => state.cart,
   );
-
   const { selectedMethod, methods, cards, selectedCard } = useSelector(
     (state) => state.payment,
   );
@@ -42,19 +41,37 @@ const FinalSummary = () => {
     state.address.addresses.find((a) => a.id === state.address.selectedId),
   );
 
-  // 🔢 Calculations
+  // 🔢 Helper: get discounted price including spin rewards
+  const getDiscountedPrice = (item) => {
+    let price = item.price;
+
+    if (item.spinApplied && item.spinValue) {
+      if (item.spinValue.includes("%")) {
+        const match = item.spinValue.match(/(\d+)%/);
+        if (match) price = price * (1 - parseInt(match[1], 10) / 100);
+      }
+      if (item.spinValue === "Free Product") price = 0;
+    }
+
+    return price;
+  };
+
+  // Totals
   const itemsTotal = items.reduce(
-    (sum, item) => sum + item.price * item.qty,
+    (sum, item) => sum + getDiscountedPrice(item) * item.qty,
     0,
   );
-
-  const baseShipping = items.length > 0 ? 40 : 0;
-  const shipping = promoDiscount > 0 ? 0 : baseShipping;
+  const isFreeShipping = items.some(
+    (item) => item.spinValue === "Free Shipping",
+  );
+  const shipping =
+    promoDiscount > 0 || isFreeShipping ? 0 : items.length > 0 ? 20 : 0;
+  const gst = itemsTotal * 0.025;
   const importCharges = 128;
-  const finalTotal = itemsTotal + shipping + importCharges - promoDiscount;
+  const finalTotal =
+    itemsTotal + shipping + importCharges - promoDiscount + gst;
 
   const selectedMethodData = methods.find((m) => m.id === selectedMethod);
-
   const selectedCardData = cards.find((c) => c.id === selectedCard);
 
   const handlePayment = () => {
@@ -62,14 +79,10 @@ const FinalSummary = () => {
       toast.error("Please select address.");
       return;
     }
-
     if (!selectedMethod) {
       toast.error("Please select payment method.");
       return;
     }
-
-    // navigate("/");
-
     toast.success("Payment Successful 🎉");
     setShowSuccessModal(true);
   };
@@ -104,7 +117,7 @@ const FinalSummary = () => {
       toast.error("Please review your cart.");
       navigate("/cart", { replace: true });
     }
-  }, [location.key, navigate]);
+  }, [navigate, items.length]);
 
   return (
     <ContainerLayout>
@@ -123,56 +136,74 @@ const FinalSummary = () => {
               Final Summary
             </h1>
           </div>
-          {/* Delliverty Estimation */}
+
+          {/* Delivery Estimation */}
           <div className="bg-white py-4 border-b border-light-blue lg:border-gray-300 flex items-center gap-2">
             <img src={delTruck} alt="delivery truck" loading="lazy" />
             <p className="font-normal text-sm lg:text-lg">
               Estimated Delivery by Thursday, 07 Oct
             </p>
           </div>
-          {/* ===== Items ===== */}
+
+          {/* Order Items */}
           <div className="bg-white lg:rounded-lg lg:p-4 space-y-4 lg:border lg:border-gray-300">
             <h2 className="font-bold text-lg">Order Items</h2>
 
-            {items.map((item) => (
-              <div
-                key={item.id}
-                className="flex justify-between items-center border-b border-light-blue lg:border-gray-300 pb-3 last:border-0"
-              >
-                <div className="flex items-center gap-3">
-                  <div>
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-22 h-22 object-cover rounded-5"
+            {items.map((item) => {
+              const discountedPrice = getDiscountedPrice(item);
+              const isDiscounted = discountedPrice < item.price;
+
+              return (
+                <div
+                  key={item.id}
+                  className="flex justify-between items-center border-b border-light-blue lg:border-gray-300 pb-3 last:border-0"
+                >
+                  <div className="flex items-center gap-3">
+                    <div>
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-22 h-22 object-cover rounded-5"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-bold text-light-black text-sm">
+                        {item.title}
+                      </p>
+                      <p className="text-sm text-gray-500">Qty: {item.qty}</p>
+                      <p className="font-bold text-lg text-dark-button-blue">
+                        {isDiscounted ? (
+                          <>
+                            <span className="line-through text-gray-400">
+                              ₹{(item.price * item.qty).toFixed(2)}
+                            </span>{" "}
+                            <span className="text-green-500 font-semibold">
+                              ₹{(discountedPrice * item.qty).toFixed(2)}
+                            </span>
+                          </>
+                        ) : (
+                          <>₹{(discountedPrice * item.qty).toFixed(2)}</>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="font-bold text-lg text-dark-button-blue cursor-pointer">
+                    <FaAngleRight
+                      className="text-light-black"
+                      onClick={() => navigate("/cart")}
                     />
-                  </div>
-                  <div>
-                    <p className="font-bold text-light-black text-sm">
-                      {item.title}
-                    </p>
-                    <p className="text-sm text-gray-500">Qty: {item.qty}</p>
-                    <p className="font-bold text-lg text-dark-button-blue">
-                      ₹{item.price * item.qty}
-                    </p>
-                  </div>
+                  </p>
                 </div>
-                <p className="font-bold text-lg text-dark-button-blue cursor-pointer">
-                  <FaAngleRight
-                    className="text-light-black"
-                    onClick={() => navigate("/cart")}
-                  />
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
-          {/* ===== Address ===== */}
+
+          {/* Delivery Address */}
           <div
             onClick={() => navigate("/address")}
             className="bg-white lg:rounded-lg py-4 lg:p-4 border-t lg:border border-light-blue lg:border-gray-300 cursor-pointer"
           >
             <h2 className="font-bold text-lg mb-4.5">Delivery Address</h2>
-
             {selectedAddress ? (
               <div className="flex justify-between w-full items-center">
                 <div className="text-sm text-gray-700">
@@ -200,7 +231,8 @@ const FinalSummary = () => {
               <p className="text-red-500">No address selected</p>
             )}
           </div>
-          {/* ===== Payment Method ===== */}
+
+          {/* Payment Method */}
           <div
             onClick={() => navigate("/payment")}
             className="bg-white lg:rounded-lg py-4 lg:p-4 border-t lg:border border-light-blue lg:border-gray-300 cursor-pointer"
@@ -208,7 +240,6 @@ const FinalSummary = () => {
             <h2 className="font-bold text-sm lg:text-lg text-light-black mb-4.5">
               Payment Method
             </h2>
-
             <div className="flex justify-between items-center">
               <div>
                 {selectedMethodData && (
@@ -217,7 +248,6 @@ const FinalSummary = () => {
                     <span>{selectedMethodData.label}</span>
                   </div>
                 )}
-
                 {selectedMethod === "card" && selectedCardData && (
                   <p className="text-sm text-gray-500 mt-1">
                     **** **** **** {selectedCardData.cardNumber.slice(-4)}
@@ -232,8 +262,9 @@ const FinalSummary = () => {
               </p>
             </div>
           </div>
-          {/* ===== Price Breakdown ===== */}
-          <div className="bg-white rounded-lg p-4 border border-gray-300 space-y-2 space-y-2">
+
+          {/* Price Breakdown */}
+          <div className="bg-white rounded-lg p-4 border border-gray-300 space-y-2">
             <div className="flex justify-between">
               <span className="text-dark-blue font-normal text-sm sm:text-lg">
                 Items ({items.length})
@@ -247,8 +278,8 @@ const FinalSummary = () => {
               <span className="text-dark-blue font-normal text-sm sm:text-lg">
                 Shipping
               </span>
-              {promoDiscount > 0 ? (
-                <span className="text-green-600 font-medium">-₹0.00</span>
+              {shipping === 0 ? (
+                <span className="text-green-600 font-medium">Free</span>
               ) : (
                 <span className="text-dark-button-blue font-normal text-sm sm:text-lg">
                   ₹{shipping.toFixed(2)}
@@ -258,15 +289,23 @@ const FinalSummary = () => {
 
             <div className="flex justify-between">
               <span className="text-dark-blue font-normal text-sm sm:text-lg">
+                GST
+              </span>
+              <span className="text-dark-button-blue font-normal text-sm sm:text-lg">
+                +₹{gst.toFixed(2)}
+              </span>
+            </div>
+
+            <div className="flex justify-between">
+              <span className="text-dark-blue font-normal text-sm sm:text-lg">
                 Import Charges
               </span>
               <span className="text-dark-button-blue font-normal text-sm sm:text-lg">
-                {" "}
                 +₹{importCharges.toFixed(2)}
               </span>
             </div>
 
-            {promoCode && promoDiscount > 0 && (
+            {promoDiscount > 0 && (
               <div className="flex justify-between text-green-600 font-medium mb-3">
                 <span>Promo ({promoCode})</span>
                 <span>- ₹{promoDiscount.toFixed(2)}</span>
@@ -284,7 +323,8 @@ const FinalSummary = () => {
               </span>
             </div>
           </div>
-          {/* ===== Pay Button ===== */}
+
+          {/* Pay Button */}
           {width >= 1024 && (
             <div className="flex justify-between items-center bg-gray-100 p-4 rounded-lg">
               <div>
@@ -307,10 +347,8 @@ const FinalSummary = () => {
               </button>
             </div>
           )}
-          <div
-            className="fixed bottom-0 left-0 right-0 z-13 h-[65px] bg-gray-100 border-t border-gray-200 flex lg:hidden justify-between items-center gap-2 px-3 w-full shadow-[0_-1px_6px_rgba(0,0,0,0.06)]
-        "
-          >
+
+          <div className="fixed bottom-0 left-0 right-0 z-13 h-[65px] bg-gray-100 border-t border-gray-200 flex lg:hidden justify-between items-center gap-2 px-3 w-full shadow-[0_-1px_6px_rgba(0,0,0,0.06)]">
             <div>
               <span className="text-xl font-bold text-dark-button-blue">
                 ₹{finalTotal.toFixed(2)}
@@ -330,13 +368,14 @@ const FinalSummary = () => {
               Pay Now
             </button>
           </div>
+
           <OrderSuccessModal
             isOpen={showSuccessModal}
             onClose={() => setShowSuccessModal(false)}
             orderId={"ORD"}
             amount={finalTotal.toFixed(2)}
             onOrder={handleOrder}
-          />{" "}
+          />
         </div>
       )}
     </ContainerLayout>
