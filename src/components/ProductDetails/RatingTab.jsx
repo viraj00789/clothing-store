@@ -144,7 +144,11 @@ const RatingTab = () => {
                       key={idx}
                       src={img}
                       alt=""
-                      className="w-35 h-35 object-cover rounded-md"
+                      className="w-35 h-35 object-cover rounded-md cursor-pointer"
+                      onClick={() => {
+                        setPreviewImages(review.images);
+                        setIsPreviewOpen(true);
+                      }}
                     />
                   ))}
 

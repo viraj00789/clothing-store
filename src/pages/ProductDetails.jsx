@@ -28,6 +28,7 @@ import {
 import { increaseQty, decreaseQty, addToCart } from "../store/slices/cartSlice";
 import { isAuthenticatedFromStorage } from "../utils/Auth";
 import { FiMinus, FiPlus } from "react-icons/fi";
+import { flyToCart } from "../utils/FlyToCart";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -82,6 +83,62 @@ const ProductDetails = () => {
     }
   }, [id, product]);
 
+  // Need for the the future
+
+  // const flyToCart = (event, product) => {
+  //   if (!product) return;
+
+  //   const cart = document.getElementById("cart-icon");
+  //   if (!cart) return;
+
+  //   const cartRect = cart.getBoundingClientRect();
+  //   const buttonRect = event.currentTarget.getBoundingClientRect();
+
+  //   // start at center of button
+  //   const startX = buttonRect.left + buttonRect.width / 2 - 150;
+  //   const startY = buttonRect.top + buttonRect.height / 2 + 30;
+
+  //   // end at center of cart
+  //   const endX = cartRect.left + cartRect.width / 2 - 60;
+  //   const endY = cartRect.top + cartRect.height / 2 - 60;
+
+  //   // create flying image
+  //   const img = document.createElement("img");
+  //   img.src = product.allImages[0];
+  //   img.className = "fly-item";
+  //   img.style.width = "200px";
+  //   img.style.height = "200px";
+  //   img.style.borderRadius = "20px";
+  //   img.style.left = startX + "px";
+  //   img.style.top = startY + "px";
+  //   img.style.objectFit= "cover"
+  //   img.style.opacity = "0.77";
+  //   document.body.appendChild(img);
+
+  //   // force reflow so initial position registers
+  //   img.getBoundingClientRect();
+
+  //   // calculate the "J-shaped" curve:
+  //   // first go down & right, then up slightly into cart
+  //   const midX = startX + (endX - startX) / 4 ; // mid-point x
+  //   const midY = startY + 70; // go down first
+
+  //   // simulate J curve using multiple steps with setTimeout
+  //   setTimeout(() => {
+  //     img.style.transition = "transform 0.6s cubic-bezier(0.65, 0, 0.35, 1)";
+  //     img.style.transform = `translate(${midX - startX}px, ${midY - startY}px) scale(0.6)`;
+  //   }, 10);
+
+  //   setTimeout(() => {
+  //     img.style.transition =
+  //       "transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.6s ease";
+  //     img.style.transform = `translate(${endX - startX - 40}px, ${endY - startY - 40}px) scale(0.2)`;
+  //     img.style.opacity = "0.5";
+  //   }, 620);
+
+  //   // remove after animation
+  //   setTimeout(() => img.remove(), 1250);
+  // };
   if (!product) {
     return <div className="p-10 text-xl">Product not found ❌</div>;
   }
@@ -352,11 +409,12 @@ const ProductDetails = () => {
                   {qty === 0 ? (
                     <div
                       className="w-full max-w-full md:max-w-42 h-12 bg-dark-button-blue text-white rounded-10 cursor-pointer flex items-center justify-center hover:bg-blue-900 transition duration-100 ease-in-out"
-                      onClick={() => {
+                      onClick={(e) => {
                         if (!isAuthenticated) {
                           navigate("/sign-in");
                           return;
                         }
+                        flyToCart(e, product, "cart-icon"); // animate 1 image
                         dispatch(addToCart(product));
                       }}
                     >
@@ -381,7 +439,10 @@ const ProductDetails = () => {
 
                       {/* Plus */}
                       <button
-                        onClick={() => dispatch(increaseQty(product.id))}
+                        onClick={(e) => {
+                          flyToCart(e, product, "cart-icon"); // animate 1 image
+                          dispatch(increaseQty(product.id));
+                        }}
                         className="flex-1 h-full flex items-center justify-center text-light-blue-1 hover:bg-light-blue/30 transition cursor-pointer"
                       >
                         <FiPlus className="text-dark-blue bg-transparent" />
@@ -407,18 +468,19 @@ const ProductDetails = () => {
                   <div className="w-full h-12  text-white rounded-10 cursor-pointer flex items-center justify-center gap-3 sm:gap-[23.23px]">
                     {qty === 0 ? (
                       <div
-                        onClick={() => {
+                        onClick={(e) => {
                           if (!isAuthenticated) {
                             navigate("/sign-in");
                             return;
                           }
+                          flyToCart(e, product, "down-icon");
                           dispatch(addToCart(product));
                         }}
                         className="w-full h-10 flex items-center justify-center gap-3 sm:gap-[23.23px] bg-dark-button-blue rounded-10 cursor-pointer hover:bg-blue-900 transition duration-100 ease-in-out"
                       >
-                        <span className="font-normal text-lg text-white">
+                        <button className="font-normal text-lg text-white">
                           Add to bag
-                        </span>
+                        </button>
                         <img
                           src={WhiteBag}
                           alt="Bag"
@@ -444,7 +506,10 @@ const ProductDetails = () => {
 
                         {/* Plus */}
                         <button
-                          onClick={() => dispatch(increaseQty(product.id))}
+                          onClick={(e) => {
+                            flyToCart(e, product, "down-icon");
+                            dispatch(increaseQty(product.id));
+                          }}
                           className="h-full flex items-center justify-center text-dark-blue bg-white transition cursor-pointer text-center w-full"
                         >
                           <FiPlus size={20} />

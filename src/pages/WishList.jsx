@@ -9,6 +9,7 @@ import EmptyWishlist from "../assets/ProductDetails/wishlist.png";
 import { addManyToCart } from "../store/slices/cartSlice";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
+import { IoArrowBack, IoArrowBackSharp } from "react-icons/io5";
 
 const WishList = () => {
   const width = useWindow();
@@ -20,10 +21,23 @@ const WishList = () => {
   if (products.length === 0) {
     return (
       <ContainerLayout>
-        <div className="pb-30 pt-40 text-center text-xl text-gray-600 flex flex-col items-center justify-center gap-10">
-          <img src={EmptyWishlist} loading="lazy" width={200} height={200} />
-          <div className="font-bold text-2xl xl:text-3xl">
-            Your Wishlist is empty 💔
+        <div className="pb-30 pt-40">
+          {width >= 768 && (
+            <div className="flex flex-col items-start justify-center max-w-md mx-auto">
+              <div className="mb-4">
+                <IoArrowBack
+                  size={30}
+                  onClick={() => navigate(-1)}
+                  className="cursor-pointer"
+                />
+              </div>
+            </div>
+          )}
+          <div className="text-center text-xl text-gray-600 flex flex-col items-center justify-center  gap-10">
+            <img src={EmptyWishlist} loading="lazy" width={200} height={200} />
+            <div className="font-bold text-2xl xl:text-3xl">
+              Your Wishlist is empty 💔
+            </div>
           </div>
         </div>
       </ContainerLayout>
@@ -33,9 +47,18 @@ const WishList = () => {
   return (
     <ContainerLayout>
       <div className="pb-10 pt-20 lg:pt-30 px-3.75  md:px-25 lg:px-20 xl:px-10 2xl:px-12.5 space-y-4 lg:space-y-6 bg-light-gray-1 rounded-10">
-        <h1 className="text-xl md:text-2xl lg:text-4xl font-bold text-light-black">
-          My WishList
-        </h1>
+        <div className="flex items-center gap-3">
+          {width >= 768 && (
+            <IoArrowBackSharp
+              size={30}
+              className="cursor-pointer"
+              onClick={() => navigate(-1)}
+            />
+          )}
+          <h1 className="text-xl md:text-2xl lg:text-4xl font-bold text-light-black">
+            My WishList
+          </h1>
+        </div>
 
         {width > 1024 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 xl:gap-8 2xl:gap-15">

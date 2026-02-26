@@ -2,6 +2,7 @@ import SearchCategoryMobile from "../components/Search/SearchCategoryMobile";
 import AddAddress from "../pages/AddAddress";
 import AddPayment from "../pages/AddPayment";
 import Cart from "../pages/Cart";
+import Contact from "../pages/ContactUs";
 import DeliveryAddress from "../pages/DeliveryAddress";
 import Filters from "../pages/Filters";
 import FinalSummary from "../pages/FinalSummary";
@@ -34,10 +35,10 @@ export const publicRoutes = [
   //   path: "/filters/:category",
   //   element: <Filters />,
   // },
-  // {
-  //   path: "/searchcategory",
-  //   element: <SearchCategoryMobile />,
-  // },
+  {
+    path: "/searchcategory",
+    element: <SearchCategoryMobile />,
+  },
   {
     path: "/search/:category",
     element: <Search />,
@@ -49,6 +50,10 @@ export const publicRoutes = [
   {
     path: "/terms-and-conditions",
     element: <TermsAndConditions />,
+  },
+  {
+    path: "/contact-us",
+    element: <Contact />,
   },
 ];
 

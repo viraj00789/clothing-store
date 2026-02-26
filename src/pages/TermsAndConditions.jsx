@@ -1,10 +1,25 @@
+import { useNavigate } from "react-router";
+import { useWindow } from "../hooks/useWidth";
+import { IoArrowBackSharp } from "react-icons/io5";
+
 const TermsAndConditions = () => {
+  const width = useWindow();
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen px-3.75 lg:px-16 xl:px-32 pt-21 2xl:pt-30 2xl:pt-30 2xl:pb-10">
       <div className="max-w-5xl mx-auto rounded-2xl">
-        <h1 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
-          Terms & Conditions
-        </h1>
+        <div className="flex items-center gap-3 mb-6">
+          {width >= 768 && (
+            <IoArrowBackSharp
+              size={30}
+              className="cursor-pointer"
+              onClick={() => navigate(-1)}
+            />
+          )}
+          <h1 className="text-3xl md:text-4xl font-bold  text-gray-800">
+            Terms & Conditions
+          </h1>
+        </div>
 
         <p className="text-gray-600 mb-6 text-sm md:text-base leading-relaxed">
           Last Updated: February 2026
@@ -13,9 +28,9 @@ const TermsAndConditions = () => {
         <p className="text-gray-700 leading-relaxed mb-6 text-sm md:text-base">
           Welcome to Globex. These Terms and Conditions govern your access to
           and use of our website, products, and services. By accessing,
-          browsing, or purchasing from our website, you agree to comply with
-          and be legally bound by these terms. If you do not agree with any part
-          of these Terms, you should discontinue use of our website immediately.
+          browsing, or purchasing from our website, you agree to comply with and
+          be legally bound by these terms. If you do not agree with any part of
+          these Terms, you should discontinue use of our website immediately.
         </p>
 
         <h2 className="text-xl md:text-2xl font-semibold mt-8 mb-4 text-gray-800">
@@ -76,8 +91,8 @@ const TermsAndConditions = () => {
         </h2>
 
         <p className="text-gray-700 leading-relaxed mb-6 text-sm md:text-base">
-          All prices are displayed in the applicable currency and are subject
-          to change without notice. We strive to ensure pricing accuracy but
+          All prices are displayed in the applicable currency and are subject to
+          change without notice. We strive to ensure pricing accuracy but
           reserve the right to correct errors. You agree to provide current,
           complete, and accurate payment information for all purchases made on
           our website.
@@ -121,11 +136,10 @@ const TermsAndConditions = () => {
         </h2>
 
         <p className="text-gray-700 leading-relaxed mb-6 text-sm md:text-base">
-          To the fullest extent permitted by law, Globex shall not be liable
-          for any indirect, incidental, special, or consequential damages
-          arising out of or related to your use of the website or products.
-          Your sole remedy for dissatisfaction is to discontinue using our
-          services.
+          To the fullest extent permitted by law, Globex shall not be liable for
+          any indirect, incidental, special, or consequential damages arising
+          out of or related to your use of the website or products. Your sole
+          remedy for dissatisfaction is to discontinue using our services.
         </p>
 
         <h2 className="text-xl md:text-2xl font-semibold mt-8 mb-4 text-gray-800">
@@ -145,9 +159,9 @@ const TermsAndConditions = () => {
 
         <p className="text-gray-700 leading-relaxed mb-6 text-sm md:text-base">
           These Terms and Conditions shall be governed and interpreted in
-          accordance with the laws applicable in your jurisdiction. Any
-          disputes arising under these terms shall be resolved through
-          appropriate legal channels.
+          accordance with the laws applicable in your jurisdiction. Any disputes
+          arising under these terms shall be resolved through appropriate legal
+          channels.
         </p>
 
         <h2 className="text-xl md:text-2xl font-semibold mt-8 mb-4 text-gray-800">
@@ -156,9 +170,9 @@ const TermsAndConditions = () => {
 
         <p className="text-gray-700 leading-relaxed mb-6 text-sm md:text-base">
           We reserve the right to update or modify these Terms at any time.
-          Updates will be posted on this page with a revised date. Continued
-          use of our website after changes are posted constitutes acceptance of
-          the updated Terms.
+          Updates will be posted on this page with a revised date. Continued use
+          of our website after changes are posted constitutes acceptance of the
+          updated Terms.
         </p>
       </div>
     </div>

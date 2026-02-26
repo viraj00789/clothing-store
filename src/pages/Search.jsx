@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useState, useMemo, useEffect } from "react";
 import { products } from "../../data/ProductDetailsData";
 import FiltersSidebar from "../components/Filters/FiltersSidebar";
@@ -14,12 +14,14 @@ import { LiaFilterSolid } from "react-icons/lia";
 import NoClothesFound from "../components/Filters/NoClothesFound";
 import { useDebounce } from "../hooks/useDebounce";
 import { searchProducts } from "../utils/SearchProducts";
+import { IoArrowBackSharp } from "react-icons/io5";
 
 const Search = () => {
   const { category } = useParams();
   const location = useLocation();
   const query = new URLSearchParams(location.search).get("q") || "";
   const debouncedQuery = useDebounce(query, 400);
+  const navigate = useNavigate();
 
   const [priceRange, setPriceRange] = useState([0, 5000]);
   const [selectedBrands, setSelectedBrands] = useState([]);
@@ -140,9 +142,18 @@ const Search = () => {
         {/* MAIN CONTENT */}
         <div className="flex-1 w-full">
           <div className="flex w-full items-center justify-between mb-5 lg:mb-9.5">
-            <h2 className="text-lg xl:text-3xl font-semibold capitalize max-w-full truncate whitespace-nowrap">
-              {category} Products
-            </h2>
+            <div className="flex items-center gap-3">
+              {width >= 768 && (
+                <IoArrowBackSharp
+                  size={30}
+                  className="cursor-pointer"
+                  onClick={() => navigate(-1)}
+                />
+              )}
+              <h2 className="text-lg xl:text-3xl font-semibold capitalize max-w-full truncate whitespace-nowrap">
+                {category} Products
+              </h2>
+            </div>
 
             <div className="flex items-center gap-1.5 md:gap-4 lg:gap-11">
               {/* FILTER BUTTON (ALL SCREENS) */}

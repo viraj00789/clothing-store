@@ -22,7 +22,7 @@ import { useLocation, useNavigate } from "react-router";
 import { isAuthenticatedFromStorage } from "../utils/Auth";
 import EmptyCart from "../assets/Cart/empty-cart.webp";
 import ContainerLayout from "../layout/ContainerLayout";
-import { IoArrowBackSharp } from "react-icons/io5";
+import { IoArrowBack, IoArrowBackSharp } from "react-icons/io5";
 import Timeline from "../components/ui/TimeLine";
 import { checkoutSteps } from "../../data/TimeLineData";
 
@@ -70,29 +70,42 @@ const Cart = () => {
     }
   })();
 
-  const showBackButton = location.pathname !== "/cart";
+  // const showBackButton = location.pathname !== "/cart";
 
-  const handleBack = () => {
-    switch (location.pathname) {
-      case "/address":
-        navigate("/cart");
-        break;
-      case "/payment":
-        navigate("/address");
-        break;
-      default:
-        navigate("/cart");
-        break;
-    }
-  };
+  // const handleBack = () => {
+  //   switch (location.pathname) {
+  //     case "/address":
+  //       navigate("/cart");
+  //       break;
+  //     case "/payment":
+  //       navigate("/address");
+  //       break;
+  //     default:
+  //       navigate("/cart");
+  //       break;
+  //   }
+  // };
 
   if (cartItems?.length === 0) {
     return (
       <ContainerLayout>
-        <div className="pb-30 pt-40 text-center text-xl text-gray-600 flex flex-col items-center justify-center gap-10">
-          <img src={EmptyCart} loading="lazy" width={200} height={200} />
-          <div className="font-bold text-2xl xl:text-3xl">
-            Your Cart is empty 🛒
+        <div className="pb-30 pt-40">
+          {width >= 768 && (
+            <div className="flex flex-col items-start justify-center max-w-md mx-auto">
+              <div className="mb-4">
+                <IoArrowBack
+                  size={30}
+                  onClick={() => navigate(-1)}
+                  className="cursor-pointer"
+                />
+              </div>
+            </div>
+          )}
+          <div className="text-center text-xl text-gray-600 flex flex-col items-center justify-center gap-10">
+            <img src={EmptyCart} loading="lazy" width={200} height={200} />
+            <div className="font-bold text-2xl xl:text-3xl">
+              Your Cart is empty 🛒
+            </div>
           </div>
         </div>
       </ContainerLayout>
@@ -105,12 +118,12 @@ const Cart = () => {
         <div className="w-full flex flex-col px-3 md:px-25 lg:px-20 xl:px-45 2xl:px-85 pt-20 lg:pt-30 pb-15 lg:pb-20 space-y-6 xl:space-y-12">
           <Timeline steps={checkoutSteps} />
           <div className="flex items-center gap-3">
-            <div>
-              {showBackButton && (
+            <div className="flex items-center gap-3">
+              {width >= 768 && (
                 <IoArrowBackSharp
                   size={30}
                   className="cursor-pointer"
-                  onClick={handleBack}
+                  onClick={() => navigate(-1)}
                 />
               )}
               <h1 className="text-xl md:text-2xl lg:text-4xl font-bold ">

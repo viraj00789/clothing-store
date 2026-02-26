@@ -1,10 +1,25 @@
+import { useNavigate } from "react-router";
+import { useWindow } from "../hooks/useWidth";
+import { IoArrowBackSharp } from "react-icons/io5";
+
 const PrivacyPolicy = () => {
+  const width = useWindow();
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen px-3.75 lg:px-16 xl:px-32 pt-21 2xl:pt-30 2xl:pb-10">
       <div className="max-w-5xl mx-auto rounded-2xl">
-        <h1 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">
-          Privacy Policy
-        </h1>
+        <div className="flex items-center gap-3 mb-6">
+          {width >= 768 && (
+            <IoArrowBackSharp
+              size={30}
+              className="cursor-pointer"
+              onClick={() => navigate(-1)}
+            />
+          )}
+          <h1 className="text-3xl md:text-4xl font-bold  text-gray-800">
+            Privacy Policy
+          </h1>
+        </div>
 
         <p className="text-gray-600 mb-6 text-sm md:text-base leading-relaxed">
           Last Updated: February 2026

@@ -22,6 +22,7 @@ import {
   decreaseQty,
   increaseQty,
 } from "../../../store/slices/cartSlice";
+import { flyToCart } from "../../../utils/FlyToCart";
 
 const TrendingSection = () => {
   const width = useWindow();
@@ -171,7 +172,9 @@ const TrendingSection = () => {
                       <p className="text-dark-gray line-through text-lg font-normal">
                         Rs. {product.oldPrice}
                       </p>
-                      <p className="text-green text-lg font-bold">({product.discount})</p>
+                      <p className="text-green text-lg font-bold">
+                        ({product.discount})
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -281,7 +284,11 @@ const TrendingSection = () => {
                       </span>
 
                       <button
-                        onClick={(e) => handleIncrease(product.id, e)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          flyToCart(e, product, "down-icon");
+                          handleIncrease(product.id, e);
+                        }}
                         className="text-lg font-bold cursor-pointer w-full text-center bg-white text-dark-blue"
                       >
                         +
@@ -292,10 +299,12 @@ const TrendingSection = () => {
                       className="w-full h-10 bg-dark-button-blue text-white rounded-10 cursor-pointer flex items-center justify-center gap-3 sm:gap-[23.23px]"
                       onClick={(e) => {
                         e.stopPropagation();
+
                         if (!isAuthenticated) {
                           navigate("/sign-in");
                           return;
                         }
+                        flyToCart(e, product, "down-icon");
                         dispatch(addToCart(product));
                       }}
                     >

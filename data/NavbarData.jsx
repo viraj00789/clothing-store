@@ -13,7 +13,7 @@ export const navLinks = [
   { to: "/search/men", label: "Men" },
   { to: "/search/women", label: "Women" },
   { to: "/search/kids", label: "Kids" },
-  { to: "/product/5", label: "Contact us" },
+  { to: "/contact-us", label: "Contact us" },
 ];
 
 export const navItems = [
@@ -26,24 +26,24 @@ export const navItems = [
     topBar: { type: "title" },
     hidden: false,
   },
+  // {
+  //   id: "search",
+  //   href: "/search/all",
+  //   blue: BlueSearch,
+  //   gray: GraySearch,
+  //   label: "Search",
+  //   topBar: { type: "search" },
+  //   hidden: false,
+  // },
   {
     id: "search",
     href: "/search/all",
     blue: BlueSearch,
     gray: GraySearch,
-    label: "Search",
-    topBar: { type: "search" },
+    label: "Search Category",
+    topBar: { type: "title" },
     hidden: false,
   },
-  // {
-  //   id: "SearchCategory",
-  //   href: "/searchcategory",
-  //   blue: BlueSearch,
-  //   gray: GraySearch,
-  //   label: "Search Category",
-  //   topBar: { type: "title" },
-  //   hidden: false,
-  // },
   {
     id: "heart",
     href: "/wishlist",
@@ -131,6 +131,15 @@ export const navItems = [
     blue: BlueUser,
     gray: GrayUser,
     label: "Terms and Conditions",
+    topBar: { type: "title" },
+    hidden: true, // 👈 will not render
+  },
+  {
+    id: "contact-us",
+    href: "/contact-us",
+    blue: BlueUser,
+    gray: GrayUser,
+    label: "Contact Us",
     topBar: { type: "title" },
     hidden: true, // 👈 will not render
   },

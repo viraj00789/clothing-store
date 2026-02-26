@@ -454,6 +454,7 @@ const Navbar = () => {
                   alt="logo"
                   loading="lazy"
                   className="w-[29px] h-[29px] cursor-pointer"
+                  id="cart-icon"
                 />
 
                 {items.length > 0 && (
@@ -482,7 +483,7 @@ const Navbar = () => {
                     }
                     alt="logo"
                     loading="lazy"
-                    className="w-[29px] h-[29px] rounded-full object-cover cursor-pointer"
+                    className="w-10 h-10 rounded-full object-cover cursor-pointer"
                   />
                   <p className="font-normal text-lg truncate text-mid-dark-gray hidden xl:block">
                     {authUser?.name}
@@ -665,49 +666,43 @@ const Navbar = () => {
               const isCart = item.id === "cart";
 
               return (
-                <Link to={item.href} key={item.id}>
-                  <button className="flex flex-col items-center justify-center cursor-pointer relative">
-                    <img
-                      src={isActive ? item.blue : item.gray}
-                      alt={item.label}
-                      className="w-6 h-6"
-                      loading="lazy"
-                    />
+                <button
+                  key={item.id}
+                  id={isCart ? "down-icon" : undefined} // 👈 move ID here
+                  onClick={() => {
+                    if (item.id === "search") {
+                      if (window.innerWidth >= 500) {
+                        navigate("/search/all");
+                      } else {
+                        navigate("/searchcategory");
+                      }
+                    } else {
+                      navigate(item.href);
+                    }
+                  }}
+                  className="flex flex-col items-center justify-center cursor-pointer relative"
+                >
+                  <img
+                    src={isActive ? item.blue : item.gray}
+                    alt={item.label}
+                    className="w-6 h-6"
+                    loading="lazy"
+                  />
 
-                    {isHeart && wishlistCount > 0 && (
-                      <span
-                        key={wishlistCount}
-                        className="
-              absolute -top-1 -right-2
-              min-w-[16px] h-[16px]
-              px-1
-              bg-red-500 text-white text-[10px] font-bold
-              rounded-full
-              flex items-center justify-center
-              animate-[pop_0.3s_ease-out]
-            "
-                      >
-                        {wishlistCount}
-                      </span>
-                    )}
-                    {isCart && items.length > 0 && (
-                      <span
-                        key={items.length}
-                        className="
-              absolute -top-1 -right-2
-              min-w-[16px] h-[16px]
-              px-1
-              bg-red-500 text-white text-[10px] font-bold
-              rounded-full
-              flex items-center justify-center
-              animate-[pop_0.3s_ease-out]
-            "
-                      >
-                        {items.length}
-                      </span>
-                    )}
-                  </button>
-                </Link>
+                  {/* Wishlist badge */}
+                  {isHeart && wishlistCount > 0 && (
+                    <span className="absolute -top-1 -right-2 min-w-[16px] h-[16px] px-1 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                      {wishlistCount}
+                    </span>
+                  )}
+
+                  {/* Cart badge */}
+                  {isCart && items.length > 0 && (
+                    <span className="absolute -top-1 -right-2 min-w-[16px] h-[16px] px-1 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                      {items.length}
+                    </span>
+                  )}
+                </button>
               );
             })}
         </div>

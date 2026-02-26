@@ -284,3 +284,103 @@ input[type="number"] {
 .animate-scaleIn {
   animation: scaleIn 0.3s ease-out;
 }
+
+
+/* Fly to cart animation  */
+/* =============================== */
+/* Curved Fly To Cart Animation */
+/* =============================== */
+
+/* @keyframes flyCurve {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 1;
+  }
+
+  10% {
+    transform: translate(40px, -60px) scale(0.97);
+  }
+
+  20% {
+    transform: translate(80px, -130px) scale(0.94);
+  }
+
+  30% {
+    transform: translate(130px, -210px) scale(0.9);
+  }
+
+  40% {
+    transform: translate(190px, -290px) scale(0.85);
+  }
+
+  50% {
+    transform: translate(260px, -370px) scale(0.78);
+  }
+
+  60% {
+    transform: translate(340px, -460px) scale(0.7);
+  }
+
+  70% {
+    transform: translate(430px, -560px) scale(0.6);
+  }
+
+  80% {
+    transform: translate(510px, -640px) scale(0.5);
+  }
+
+  90% {
+    transform: translate(560px, -710px) scale(0.4);
+  }
+
+  100% {
+    transform: translate(600px, -760px) scale(0.3);
+    opacity: 0;
+  }
+} */
+
+
+/* @keyframes flyCurve {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 1;
+  }
+
+  20% {
+    transform: translate(90px, -150px) scale(0.92);
+  }
+
+  50% {
+    transform: translate(260px, -370px) scale(0.75);
+  }
+
+  65% {
+    transform: translate(380px, -520px) scale(0.65);
+  }
+
+  70% {
+    transform: translate(430px, -580px) scale(0.6);
+  }
+
+  85% {
+    transform: translate(540px, -690px) scale(0.45);
+  }
+
+  100% {
+    transform: translate(600px, -760px) scale(0.3);
+    opacity: 0;
+  }
+} */
+
+
+
+.fly-item {
+  position: fixed;
+  width: 120px;
+  height: 120px;
+  pointer-events: none;
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 1.2s ease, 
+              scale 1.2s ease;
+  z-index: 9999;
+}
