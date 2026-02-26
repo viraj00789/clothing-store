@@ -282,7 +282,7 @@ const FinalSummary = () => {
                 <span className="text-green-600 font-medium">Free</span>
               ) : (
                 <span className="text-dark-button-blue font-normal text-sm sm:text-lg">
-                  ₹{shipping.toFixed(2)}
+                  +₹{shipping.toFixed(2)}
                 </span>
               )}
             </div>
