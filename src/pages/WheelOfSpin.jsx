@@ -18,14 +18,12 @@ const WheelOfSpin = () => {
   const width = useWindow();
   const [spinning, setSpinning] = useState(false);
   const [winner, setWinner] = useState(null);
-  console.log("🚀 ~ WheelOfSpin ~ winner:", winner);
   const [showModal, setShowModal] = useState(false);
   const [spinCount, setSpinCount] = useState(0);
   const canvasRef = useRef(null);
   const currentRotation = useRef(0);
   const [eligibleProducts, setEligibleProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  console.log("🚀 ~ WheelOfSpin ~ selectedProduct:", selectedProduct);
   const [showEligible, setShowEligible] = useState(false);
   const isSpinValue = getItem("spinned");
   const [isClaimed, setIsClaimed] = useState(false);
