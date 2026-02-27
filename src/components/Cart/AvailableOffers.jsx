@@ -3,7 +3,7 @@ import { applyPromo } from "../../store/slices/cartSlice";
 
 const AvailableOffers = () => {
   const dispatch = useDispatch();
-  const { items } = useSelector((state) => state.cart);
+  const { items, promoCode } = useSelector((state) => state.cart);
 
   const itemsTotal = items.reduce(
     (sum, item) => sum + item.price * item.qty,
@@ -52,15 +52,17 @@ const AvailableOffers = () => {
               </div>
 
               <button
-                disabled={!eligible}
+                disabled={!eligible && promoCode !== offer.code}
                 onClick={() => dispatch(applyPromo(offer.code))}
-                className={`text-lg font-medium transition cursor-pointer ${
-                  eligible
-                    ? "text-dark-button-blue"
-                    : "text-gray-400 cursor-not-allowed"
+                className={`text-lg font-medium transition ${
+                  promoCode === offer.code
+                    ? "text-dark-gray cursor-not-allowed"
+                    : eligible
+                      ? "text-dark-button-blue cursor-pointer"
+                      : "text-gray-400 cursor-not-allowed"
                 }`}
               >
-                Apply
+                {promoCode === offer.code ? "Applied" : "Apply"}
               </button>
             </div>
 

@@ -31,7 +31,7 @@ const CustomerSay = () => {
         {[...Array(6)].map((_, i) => (
           <SwiperSlide key={i}>
             {/* YOUR CARD (unchanged) */}
-            <div className="flex justify-start lg:justify-center px-px lg:px-0 py-0.5 lg:py-5 lg:py-[27px] gap-5">
+            <div className="flex justify-start lg:justify-center px-1.5 md:px-0 py-0.5 lg:py-5 lg:py-[27px] gap-5">
               <div className="w-full lg:w-[946px] h-full xl:h-[476px] flex flex-col items-center justify-center rounded-10 shadow-[0_0_10px_0_rgba(0,0,0,0.1)] py-5 lg:py-[58px] px-4 lg:px-8 bg-white cursor-grab">
                 <div className="w-37.5 h-37.5">
                   <img

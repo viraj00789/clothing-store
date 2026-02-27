@@ -16,6 +16,7 @@ const RatingTab = () => {
   const [expanded, setExpanded] = useState({});
   const [previewImages, setPreviewImages] = useState([]);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const visibleReviews = showAll
     ? reviewsData.slice(0, 6)
@@ -147,6 +148,7 @@ const RatingTab = () => {
                       className="w-35 h-35 object-cover rounded-md cursor-pointer"
                       onClick={() => {
                         setPreviewImages(review.images);
+                        setActiveIndex(idx); // 👈 set clicked index
                         setIsPreviewOpen(true);
                       }}
                     />
@@ -158,6 +160,7 @@ const RatingTab = () => {
                       onClick={() => {
                         setPreviewImages(review.images);
                         setIsPreviewOpen(true);
+                        setActiveIndex(2); // 👈 set clicked index
                       }}
                     >
                       <img
@@ -188,14 +191,14 @@ const RatingTab = () => {
         {!showAll ? (
           <button
             onClick={() => setShowAll(true)}
-            className="text-dark-blue text-sm md:text-lg font-medium cursor-pointer"
+            className="text-dark-blue text-sm md:text-lg lg:text-2xl font-normal cursor-pointer"
           >
             View all Reviews
           </button>
         ) : (
           <button
             onClick={() => setShowAll(false)}
-            className="text-dark-blue text-sm md:text-lg font-medium cursor-pointer"
+            className="text-dark-blue text-sm md:text-lg lg:text-2xl font-normal cursor-pointer"
           >
             View Less
           </button>
@@ -236,6 +239,7 @@ const RatingTab = () => {
                   slidesPerView={1}
                   loop={true}
                   className="w-[280px] sm:w-[400px] max-w-lg"
+                  initialSlide={activeIndex}
                 >
                   {previewImages.map((img, idx) => (
                     <SwiperSlide key={idx}>

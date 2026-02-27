@@ -38,7 +38,15 @@ const cartSlice = createSlice({
     },
 
     applyPromo: (state, action) => {
-      const code = action.payload.trim().toUpperCase();
+      const code = action.payload?.trim().toUpperCase();
+
+      // If clicking already applied promo → remove it
+      if (state.promoCode === code) {
+        state.promoCode = "";
+        state.promoDiscount = 0;
+        state.promoError = null;
+        return;
+      }
 
       const PROMOS = {
         SAVE100: { discount: 100, minAmount: 1000 },
@@ -67,6 +75,7 @@ const cartSlice = createSlice({
         return;
       }
 
+      // Apply promo
       state.promoCode = code;
       state.promoDiscount = promo.discount;
       state.promoError = null;

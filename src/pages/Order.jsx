@@ -9,8 +9,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { isAuthenticatedFromStorage } from "../utils/Auth";
 import PinkHeart from "../assets/Icons/Home/pink-heart.svg";
 import Heart from "../assets/Icons/Home/GrayIcons/home-heart.svg";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { formattedDate, formattedTime } from "../utils/date";
+import { IoArrowBack } from "react-icons/io5";
+import { cancelOrderItem } from "../store/slices/orderSlice";
+import { RxCross2 } from "react-icons/rx";
 
 const Orders = () => {
   const width = useWindow();
@@ -18,6 +21,15 @@ const Orders = () => {
   const navigate = useNavigate();
   const { isAuthenticated = false } = isAuthenticatedFromStorage();
   const wishlistItems = useSelector((state) => state.wishlist.items);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedOrderId, setSelectedOrderId] = useState(null);
+  const [selectedItemId, setSelectedItemId] = useState(null);
+  const [reason, setReason] = useState("");
+  const [customReason, setCustomReason] = useState("");
+  const [errors, setErrors] = useState({
+    reason: "",
+    customReason: "",
+  });
   const isInWishlist = useCallback(
     (id) => wishlistItems.some((item) => item.id === id),
     [wishlistItems],
@@ -36,6 +48,12 @@ const Orders = () => {
     } else {
       dispatch(addToWishlist(product));
     }
+  };
+
+  const openCancelModal = (orderId, itemId) => {
+    setSelectedOrderId(orderId);
+    setSelectedItemId(itemId);
+    setShowModal(true);
   };
 
   if (orders.length === 0) {
@@ -60,13 +78,22 @@ const Orders = () => {
 
   return (
     <ContainerLayout>
-      <div className="w-full flex flex-col px-3 md:px-25 lg:px-20 xl:px-75 2xl:px-95 pt-20 lg:pt-30 pb-15 lg:pb-20 space-y-6 xl:space-y-12">
-        <h1 className="text-xl md:text-2xl lg:text-4xl font-bold ">
-          My Orders{" "}
-          {orders?.length > 0 && (
-            <span className="text-dark-blue">({orders?.length} items)</span>
+      <div className="w-full flex flex-col px-3 md:px-25 lg:px-20 xl:px-45 2xl:px-85 pt-20 lg:pt-30 pb-15 lg:pb-20 space-y-6 xl:space-y-12">
+        <div className="flex items-center gap-3">
+          {width >= 768 && (
+            <IoArrowBack
+              size={30}
+              onClick={() => navigate(-1)}
+              className="cursor-pointer"
+            />
           )}
-        </h1>
+          <h1 className="text-xl md:text-2xl lg:text-4xl font-bold ">
+            My Orders{" "}
+            {orders?.length > 0 && (
+              <span className="text-dark-blue">({orders?.length} items)</span>
+            )}
+          </h1>
+        </div>
         <div className="space-y-4">
           <div className="w-full space-y-0 lg:space-y-8 max-w-full">
             {orders?.map((order) =>
@@ -113,6 +140,11 @@ const Orders = () => {
                       <p className="font-bold text-lg lg:text-xl text-dark-button-blue">
                         <span className="text-lg">₹</span> {item.price}
                       </p>
+                      {item.cancelInfo && (
+                        <p className="text-red-500 font-semibold mt-2">
+                          {item.cancelInfo.refundStatus}
+                        </p>
+                      )}
 
                       <p className="font-semibold text-md text-dark-gray flex gap-2 items-center">
                         <span className="text-light-black">Ship To:</span>
@@ -143,23 +175,36 @@ const Orders = () => {
                         </p>
 
                         {/* WISHLIST */}
-                        <div
-                          onClick={() => handleWishlist(item)}
-                          className="w-35 h-10 sm:h-12 border border-dark-gray rounded-10 
+                        <div className="flex items-center gap-3">
+                          <div
+                            onClick={() => handleWishlist(item)}
+                            className="w-35 h-10 sm:h-12 border border-dark-gray rounded-10 
               cursor-pointer flex items-center justify-center gap-5 group"
-                        >
-                          <button className="font-normal text-lg text-light-black">
-                            WishList
-                          </button>
+                          >
+                            <button className="font-normal text-lg text-light-black">
+                              WishList
+                            </button>
 
-                          <img
-                            src={isInWishlist(item.id) ? PinkHeart : Heart}
-                            alt="WishList"
-                            width={20}
-                            height={20}
-                            className={`transition-all duration-200 
+                            <img
+                              src={isInWishlist(item.id) ? PinkHeart : Heart}
+                              alt="WishList"
+                              width={20}
+                              height={20}
+                              className={`transition-all duration-200 
                 ${isInWishlist(item.id) ? "scale-125" : "scale-100"}`}
-                          />
+                            />
+                          </div>
+                          {/* CANCEL BUTTON */}
+                          {!item.cancelInfo && (
+                            <div
+                              onClick={() => openCancelModal(order.id, item.id)}
+                              className="w-35 h-10 sm:h-12 border border-red-500 text-red-500 
+    rounded-10 cursor-pointer flex items-center justify-center 
+    font-semibold hover:bg-red-500 hover:text-white transition-all duration-300"
+                            >
+                              Cancel Order
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -173,6 +218,116 @@ const Orders = () => {
       {/* <div className="mb-20">
         <SimilarProduct products={products} title="Trending Products" />
       </div> */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white w-[90%] max-w-md p-6 rounded-2xl shadow-2xl">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-bold mb-4 text-left">Cancel Order</h2>
+              <RxCross2 size={22} onClick={() => setShowModal(false)} />
+            </div>
+
+            {/* Select Reason */}
+            <div className="mb-4">
+              <select
+                value={reason}
+                onChange={(e) => {
+                  setReason(e.target.value);
+                  setErrors((prev) => ({ ...prev, reason: "" }));
+                }}
+                className={`w-full border p-2 rounded-lg ${
+                  errors.reason ? "border-red-500" : "border-gray-300"
+                }`}
+              >
+                <option value="">Select Reason</option>
+                <option value="Ordered by mistake">Ordered by mistake</option>
+                <option value="Found cheaper">Found cheaper</option>
+                <option value="Delivery delay">Delivery delay</option>
+                <option value="Changed mind">Changed mind</option>
+                <option value="Other">Other Reason</option>
+              </select>
+
+              {errors.reason && (
+                <p className="text-red-500 text-sm mt-1">{errors.reason}</p>
+              )}
+            </div>
+
+            {/* Textarea */}
+            <div className="mb-4">
+              <textarea
+                placeholder="Write your reason here..."
+                value={customReason}
+                onChange={(e) => {
+                  setCustomReason(e.target.value);
+                  setErrors((prev) => ({ ...prev, customReason: "" }));
+                }}
+                rows={3}
+                className={`w-full border p-2 rounded-lg resize-none ${
+                  errors.customReason ? "border-red-500" : "border-gray-300"
+                }`}
+              />
+
+              {errors.customReason && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.customReason}
+                </p>
+              )}
+            </div>
+
+            {/* Buttons */}
+            <div className="flex gap-3">
+              <button
+                onClick={() => {
+                  setShowModal(false);
+                  setReason("");
+                  setCustomReason("");
+                  setErrors({ reason: "", customReason: "" });
+                }}
+                className="w-full border py-2 rounded-lg"
+              >
+                Close
+              </button>
+
+              <button
+                onClick={() => {
+                  let newErrors = {
+                    reason: "",
+                    customReason: "",
+                  };
+
+                  if (!reason) {
+                    newErrors.reason = "Please select a reason.";
+                  }
+
+                  if (!customReason.trim()) {
+                    newErrors.customReason =
+                      "Please write the cancellation reason.";
+                  }
+
+                  setErrors(newErrors);
+
+                  if (newErrors.reason || newErrors.customReason) return;
+
+                  dispatch(
+                    cancelOrderItem({
+                      orderId: selectedOrderId,
+                      itemId: selectedItemId,
+                      reason: customReason,
+                    }),
+                  );
+
+                  setShowModal(false);
+                  setReason("");
+                  setCustomReason("");
+                  setErrors({ reason: "", customReason: "" });
+                }}
+                className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </ContainerLayout>
   );
 };

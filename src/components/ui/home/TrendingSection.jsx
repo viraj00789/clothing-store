@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 import { useWindow } from "../../../hooks/useWidth";
 import { useEffect, useEffectEvent, useState } from "react";
 import Heart from "../../../assets/Icons/Home/GrayIcons/home-heart.svg";
+import BlackHeart from "../../../assets/heart.svg";
 import PinkHeart from "../../../assets/Icons/Home/pink-heart.svg";
 import WhiteBag from "../../../assets/Icons/Home/white-bag.svg";
 import { IoIosArrowBack } from "react-icons/io";
@@ -232,14 +233,14 @@ const TrendingSection = () => {
                     </p>
                   </div>
 
-                  <div className="flex gap-[17px] truncate">
-                    <p className="text-dark-gray line-through text-lg font-normal ">
+                  <div className="flex gap-[17px] truncate items-center">
+                    <p className="text-dark-gray line-through font-normal text-sm md:text-lg">
                       Rs. {product.oldPrice}
                     </p>
                     <p className="font-normal text-xl whitespace-nowrap text-light-black">
                       Rs. {product.price}
                     </p>
-                    <p className="text-lg text-green-off">
+                    <p className="font-normal text-sm md:text-lg text-green-off">
                       ({product.discount})
                     </p>
                   </div>
@@ -261,7 +262,7 @@ const TrendingSection = () => {
                     </button>
 
                     <img
-                      src={isInWishlist(product.id) ? PinkHeart : Heart}
+                      src={isInWishlist(product.id) ? PinkHeart : BlackHeart}
                       alt="WishList"
                       loading="lazy"
                       width={14.73}
@@ -309,7 +310,7 @@ const TrendingSection = () => {
                       }}
                     >
                       <button className="font-normal text-sm text-white cursor-pointer!">
-                        Add to Bag
+                        Add to cart
                       </button>
                       <img
                         src={WhiteBag}

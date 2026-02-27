@@ -272,7 +272,7 @@ const Navbar = () => {
                     to={link.to}
                     className={({ isActive }) =>
                       `
-          relative font-medium text-lg truncate
+          relative font-normal text-lg truncate
           transition-colors duration-300
           ${
             isActive

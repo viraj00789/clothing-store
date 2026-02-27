@@ -234,7 +234,7 @@ const OrderSummary = ({ checkOut }) => {
               </button>
             ) : (
               <button
-                className="bg-red-600 hover:bg-red-700 transition text-white font-semibold px-6 py-3"
+                className="bg-red-600 hover:bg-red-700 transition text-white font-semibold px-6 py-3 cursor-pointer"
                 onClick={() => dispatch(removePromo())}
               >
                 Remove

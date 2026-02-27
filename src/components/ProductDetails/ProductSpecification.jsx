@@ -142,10 +142,10 @@ const ProductSpecification = () => {
                     key={tab}
                     onClick={() => setActiveTab(tab)}
                     className={`
-  mb-5.5 relative cursor-pointer text-sm md:text-lg
-  transition duration-300 ease-in-out
-  ${isActive ? "text-dark-button-blue" : "text-gray-500 lg:hover:text-gray-700"}
-`}
+                 mb-5.5 relative cursor-pointer text-sm md:text-lg
+                 transition duration-300 ease-in-out font-normal
+                 ${isActive ? "text-dark-button-blue" : "text-dark-gray lg:hover:text-gray-700"}
+               `}
                   >
                     {tab}
 

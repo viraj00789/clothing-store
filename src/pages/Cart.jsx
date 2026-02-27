@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import PinkHeart from "../assets/Icons/Home/pink-heart.svg";
 import { formattedDate } from "../utils/date";
 import { getItem } from "../utils/localStorage";
@@ -40,7 +40,25 @@ const Cart = () => {
     [wishlistItems],
   );
   const { isAuthenticated = false } = isAuthenticatedFromStorage();
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedProductId, setSelectedProductId] = useState(null);
 
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === "Escape") {
+        setShowDeleteModal(false);
+        setSelectedProductId(null);
+      }
+    };
+
+    if (showDeleteModal) {
+      window.addEventListener("keydown", handleEsc);
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, [showDeleteModal]);
   const toggleLike = useCallback(
     (product) => {
       if (!isAuthenticated) {
@@ -270,7 +288,10 @@ const Cart = () => {
 
                           <div
                             className="cursor-pointer"
-                            onClick={() => dispatch(deleteFromCart(product.id))}
+                            onClick={() => {
+                              setSelectedProductId(product.id);
+                              setShowDeleteModal(true);
+                            }}
                           >
                             <img
                               src={Delete}
@@ -294,6 +315,53 @@ const Cart = () => {
             </div>
           </div>
         </div>
+        {showDeleteModal && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+            onClick={() => setShowDeleteModal(false)}
+          >
+            <div className="bg-white rounded-2xl p-6 w-[90%] max-w-sm shadow-2xl text-center">
+              {/* Delete Icon */}
+              <div className="flex justify-center mb-4">
+                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-red-100">
+                  <img src={Delete} alt="Delete Icon" className="w-8 h-8" />
+                </div>
+              </div>
+
+              {/* Text */}
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">
+                Are you sure?
+              </h3>
+              <p className="text-gray-500 mb-6">
+                Are you sure you want to delete this item?
+              </p>
+
+              {/* Buttons */}
+              <div className="flex gap-3">
+                <button
+                  onClick={() => {
+                    setShowDeleteModal(false);
+                    setSelectedProductId(null);
+                  }}
+                  className="w-full border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition cursor-pointer"
+                >
+                  Cancel
+                </button>
+
+                <button
+                  onClick={() => {
+                    dispatch(deleteFromCart(selectedProductId));
+                    setShowDeleteModal(false);
+                    setSelectedProductId(null);
+                  }}
+                  className="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition cursor-pointer"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </ContainerLayout>
     </>
   );

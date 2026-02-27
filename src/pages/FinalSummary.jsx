@@ -106,9 +106,9 @@ const FinalSummary = () => {
       createdAt: new Date().toISOString(),
     };
     dispatch(addOrder(newOrder));
-    dispatch(clearCart());
-    dispatch(resetPayment());
-    dispatch(resetAddress());
+    // dispatch(clearCart());
+    // dispatch(resetPayment());
+    // dispatch(resetAddress());
     navigate("/orders");
   };
 

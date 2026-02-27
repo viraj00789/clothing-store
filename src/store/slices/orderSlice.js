@@ -14,8 +14,25 @@ const ordersSlice = createSlice({
     clearOrders: (state) => {
       state.orders = [];
     },
+    cancelOrderItem: (state, action) => {
+      const { orderId, itemId, cancelType, reason } = action.payload;
+
+      const order = state.orders.find((o) => o.id === orderId);
+      if (!order) return;
+
+      const item = order.items.find((i) => i.id === itemId);
+      if (!item) return;
+
+      item.cancelInfo = {
+        cancelType,
+        reason,
+        refundStatus: "Refund Initiated",
+        cancelledAt: new Date().toISOString(),
+      };
+    },
   },
 });
 
-export const { addOrder, clearOrders } = ordersSlice.actions;
+export const { addOrder, clearOrders, cancelOrderItem } = ordersSlice.actions;
+
 export default ordersSlice.reducer;

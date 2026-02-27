@@ -217,7 +217,7 @@ const ProductDetails = () => {
                 <h1 className="text-xl md:text-2xl xl:text-4xl font-medium lg:font-bold text-light-black">
                   {product.title}
                 </h1>
-                <p className="text-light-black font-normal text-sm md:text-lg md:text-2xl">
+                <p className="text-light-black font-normal text-sm md:text-lg lg:text-2xl">
                   {product.brand}
                 </p>
                 <p className="text-light-black font-normal text-sm md:text-lg">
@@ -419,7 +419,7 @@ const ProductDetails = () => {
                       }}
                     >
                       <button className="font-normal text-lg text-white cursor-pointer ">
-                        Add to bag
+                        Add to cart
                       </button>
                     </div>
                   ) : (
@@ -479,7 +479,7 @@ const ProductDetails = () => {
                         className="w-full h-10 flex items-center justify-center gap-3 sm:gap-[23.23px] bg-dark-button-blue rounded-10 cursor-pointer hover:bg-blue-900 transition duration-100 ease-in-out"
                       >
                         <button className="font-normal text-lg text-white">
-                          Add to bag
+                          Add to cart
                         </button>
                         <img
                           src={WhiteBag}
