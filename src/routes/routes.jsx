@@ -4,7 +4,8 @@ import AddPayment from "../pages/AddPayment";
 import Cart from "../pages/Cart";
 import Contact from "../pages/ContactUs";
 import DeliveryAddress from "../pages/DeliveryAddress";
-import Filters from "../pages/Filters";
+import ExchangeFlow from "../pages/Exchange";
+// import Filters from "../pages/Filters";
 import FinalSummary from "../pages/FinalSummary";
 import ForgotPassword from "../pages/ForgotPassWord";
 import Home from "../pages/Home";
@@ -17,7 +18,6 @@ import Profile from "../pages/Profile";
 import Search from "../pages/Search";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
-import SpinWheel from "../pages/SpinWheel";
 import TermsAndConditions from "../pages/TermsAndConditions";
 import VerifyCode from "../pages/VerifyCode";
 import WheelOfSpin from "../pages/WheelOfSpin";
@@ -124,7 +124,7 @@ export const protectedRoutes = [
     element: <WheelOfSpin />,
   },
   {
-    path: "/spin",
-    element: <SpinWheel />,
+    path: "/exchange/:orderId/:itemId",
+    element: <ExchangeFlow />,
   },
 ];

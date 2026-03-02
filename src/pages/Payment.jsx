@@ -18,6 +18,7 @@ import { useWindow } from "../hooks/useWidth";
 import { IoArrowBackSharp } from "react-icons/io5";
 import { checkoutSteps } from "../../data/TimeLineData";
 import Timeline from "../components/ui/TimeLine";
+import ConfirmModal from "./ConfirmDeleteModal";
 
 const iconMap = {
   card: <IoCardOutline size={22} />,
@@ -36,6 +37,8 @@ const PaymentPage = () => {
   const [showForm, setShowForm] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedDeleteId, setSelectedDeleteId] = useState(null);
   const [form, setForm] = useState({
     cardNumber: "",
     expiry: "",
@@ -492,10 +495,10 @@ const PaymentPage = () => {
                           onClick={(e) => {
                             e.stopPropagation();
 
-                            if (editingId === card.id) return; // 🚫 Prevent delete while editing
+                            if (editingId === card.id) return;
 
-                            dispatch(deleteCard(card.id));
-                            toast.success("Card deleted successfully");
+                            setSelectedDeleteId(card.id);
+                            setShowDeleteModal(true);
                           }}
                         />
                       </div>
@@ -576,6 +579,23 @@ const PaymentPage = () => {
           </div>
         </div>
       )}
+      <ConfirmModal
+        isOpen={showDeleteModal}
+        onClose={() => {
+          setShowDeleteModal(false);
+          setSelectedDeleteId(null);
+        }}
+        title="Delete Card?"
+        description="Are you sure you want to delete this saved card?"
+        confirmText="Delete"
+        onConfirm={() => {
+          dispatch(deleteCard(selectedDeleteId));
+          toast.success("Card deleted successfully");
+
+          setShowDeleteModal(false);
+          setSelectedDeleteId(null);
+        }}
+      />
     </ContainerLayout>
   );
 };

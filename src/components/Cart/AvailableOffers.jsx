@@ -52,7 +52,7 @@ const AvailableOffers = () => {
               </div>
 
               <button
-                disabled={!eligible && promoCode !== offer.code}
+                disabled={!eligible || promoCode === offer.code}
                 onClick={() => dispatch(applyPromo(offer.code))}
                 className={`text-lg font-medium transition ${
                   promoCode === offer.code

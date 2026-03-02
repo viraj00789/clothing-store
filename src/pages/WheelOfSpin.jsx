@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import { products } from "../../data/ProductDetailsData";
 import { addToCart } from "../store/slices/cartSlice";
 import { useDispatch } from "react-redux";
+import { adjustColor } from "../utils/LightColor";
 
 const WheelOfSpin = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const WheelOfSpin = () => {
   const [spinning, setSpinning] = useState(false);
   const [winner, setWinner] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [spinCount, setSpinCount] = useState(0);
+  const [, setSpinCount] = useState(0);
   const canvasRef = useRef(null);
   const currentRotation = useRef(0);
   const [eligibleProducts, setEligibleProducts] = useState([]);
@@ -62,7 +63,31 @@ const WheelOfSpin = () => {
       ctx.moveTo(cx, cy);
       ctx.arc(cx, cy, radius, startAngle, endAngle);
       ctx.closePath();
-      ctx.fillStyle = COLORS[i];
+      //Before
+      // ctx.fillStyle = COLORS[i];
+      // ctx.fill();
+
+      // After
+      // Deep premium radial gradient
+      const grad = ctx.createRadialGradient(
+        cx,
+        cy,
+        radius * 0.15,
+        cx,
+        cy,
+        radius,
+      );
+
+      // Slight highlight near center
+      grad.addColorStop(0, adjustColor(COLORS[i], 20));
+
+      // Original color mid
+      grad.addColorStop(0.5, COLORS[i]);
+
+      // Darker outer edge
+      grad.addColorStop(1, adjustColor(COLORS[i], -60));
+
+      ctx.fillStyle = grad;
       ctx.fill();
 
       // Segment border
@@ -177,8 +202,8 @@ const WheelOfSpin = () => {
   useEffect(() => {
     if (getItem("spinned") === new Date().toISOString().split("T")[0]) {
       toast("You have already spin the wheel today! 🎉");
-      navigate("/"); // redirect to home or another page
-      // return; // stop rendering the wheel
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setIsClaimed(true);
     }
   }, [navigate]);
   const today = new Date().toISOString().split("T")[0];

@@ -427,11 +427,12 @@ const Navbar = () => {
                     key={wishlistCount}
                     className="
         absolute -top-1.5 -right-1.5
-        min-w-[18px] h-[18px]
+        min-w-[18px] h-[17px]
         px-1
         bg-red-500 text-white text-[11px] font-bold
         rounded-full
         flex items-center justify-center
+        text-center
         animate-[pop_0.3s_ease-out]
       "
                   >
@@ -462,12 +463,13 @@ const Navbar = () => {
                     key={items.length}
                     className="
         absolute -top-1.5 -right-1.5
-        min-w-[18px] h-[18px]
+        min-w-[18px] h-[17px]
         px-1
         bg-red-500 text-white text-[11px] font-bold
         rounded-full
         flex items-center justify-center
-        animate-[pop_0.3s_ease-out]
+        animate-[pop_0.3s_ease-out]         text-center
+
       "
                   >
                     {items.length}

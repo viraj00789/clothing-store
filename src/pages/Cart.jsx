@@ -25,6 +25,7 @@ import ContainerLayout from "../layout/ContainerLayout";
 import { IoArrowBack, IoArrowBackSharp } from "react-icons/io5";
 import Timeline from "../components/ui/TimeLine";
 import { checkoutSteps } from "../../data/TimeLineData";
+import CommonModal from "../components/ui/CommonModal";
 
 const Cart = () => {
   const width = useWindow();
@@ -219,7 +220,9 @@ const Cart = () => {
                         </p>
 
                         <p className="font-normal text-md text-dark-gray hidden-lg-flex flex gap-2">
-                          <span className="text-light-black">Ship To:</span>
+                          <span className="text-light-black whitespace-nowrap">
+                            Ship To:
+                          </span>
                           <span>{userName}</span>
                         </p>
 
@@ -315,53 +318,53 @@ const Cart = () => {
             </div>
           </div>
         </div>
-        {showDeleteModal && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
-            onClick={() => setShowDeleteModal(false)}
-          >
-            <div className="bg-white rounded-2xl p-6 w-[90%] max-w-sm shadow-2xl text-center">
-              {/* Delete Icon */}
-              <div className="flex justify-center mb-4">
-                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-red-100">
-                  <img src={Delete} alt="Delete Icon" className="w-8 h-8" />
-                </div>
-              </div>
-
-              {/* Text */}
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                Are you sure?
-              </h3>
-              <p className="text-gray-500 mb-6">
-                Are you sure you want to delete this item?
-              </p>
-
-              {/* Buttons */}
-              <div className="flex gap-3">
-                <button
-                  onClick={() => {
-                    setShowDeleteModal(false);
-                    setSelectedProductId(null);
-                  }}
-                  className="w-full border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition cursor-pointer"
-                >
-                  Cancel
-                </button>
-
-                <button
-                  onClick={() => {
-                    dispatch(deleteFromCart(selectedProductId));
-                    setShowDeleteModal(false);
-                    setSelectedProductId(null);
-                  }}
-                  className="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition cursor-pointer"
-                >
-                  Delete
-                </button>
-              </div>
+        <CommonModal
+          isOpen={showDeleteModal}
+          onClose={() => {
+            setShowDeleteModal(false);
+            setSelectedProductId(null);
+          }}
+          maxWidth="max-w-sm"
+        >
+          {/* Delete Icon */}
+          <div className="flex justify-center mb-4">
+            <div className="w-16 h-16 flex items-center justify-center rounded-full bg-red-100">
+              <img src={Delete} alt="Delete Icon" className="w-8 h-8" />
             </div>
           </div>
-        )}
+
+          {/* Text */}
+          <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center">
+            Are you sure?
+          </h3>
+          <p className="text-gray-500 mb-6 text-center">
+            Are you sure you want to delete this item?
+          </p>
+
+          {/* Buttons */}
+          <div className="flex gap-3">
+            <button
+              onClick={() => {
+                setShowDeleteModal(false);
+                setSelectedProductId(null);
+              }}
+              className="w-full border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition cursor-pointer"
+            >
+              Cancel
+            </button>
+
+            <button
+              onClick={() => {
+                dispatch(deleteFromCart(selectedProductId));
+                setShowDeleteModal(false);
+                setSelectedProductId(null);
+              }}
+              className="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition cursor-pointer"
+            >
+              Delete
+            </button>
+          </div>
+        </CommonModal>
       </ContainerLayout>
     </>
   );

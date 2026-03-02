@@ -143,6 +143,15 @@ export const navItems = [
     topBar: { type: "title" },
     hidden: true, // 👈 will not render
   },
+  {
+    id: "/exchange/:orderId/:itemId",
+    href: "/exchange/:orderId/:itemId",
+    blue: BlueUser,
+    gray: GrayUser,
+    label: "Excahange Product",
+    topBar: { type: "title" },
+    hidden: true, // 👈 will not render
+  },
 ];
 
 export const HideNavbarOn = [

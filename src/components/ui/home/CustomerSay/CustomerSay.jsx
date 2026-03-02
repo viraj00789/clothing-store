@@ -8,6 +8,7 @@ import blackStar from "../../../../assets/black-star.svg";
 import star from "../../../../assets/blank-star.svg";
 import "./CustomerSay.css";
 import { useWindow } from "../../../../hooks/useWidth";
+import { testimonials } from "../../../../../data/TestimonialData";
 
 const CustomerSay = () => {
   const width = useWindow();
@@ -28,21 +29,25 @@ const CustomerSay = () => {
         autoplay={{ delay: 1400 }}
         className="customer-say"
       >
-        {[...Array(6)].map((_, i) => (
-          <SwiperSlide key={i}>
+        {testimonials.map((item) => (
+          <SwiperSlide key={item.id}>
             {/* YOUR CARD (unchanged) */}
             <div className="flex justify-start lg:justify-center px-1.5 md:px-0 py-0.5 lg:py-5 lg:py-[27px] gap-5">
               <div className="w-full lg:w-[946px] h-full xl:h-[476px] flex flex-col items-center justify-center rounded-10 shadow-[0_0_10px_0_rgba(0,0,0,0.1)] py-5 lg:py-[58px] px-4 lg:px-8 bg-white cursor-grab">
                 <div className="w-37.5 h-37.5">
                   <img
-                    src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=60"
+                    src={item.image}
                     alt="Customer image"
                     className="rounded-full w-full h-full object-cover"
                     loading="lazy"
                   />
                 </div>
 
-                <div className="flex gap-2.75 items-center pt-3 lg:pt-7.25 pb-6.98">
+                <p className="font-bold text-xl lg:text-2xl text-center pt-4 text-light-black">
+                  {item.name}
+                </p>
+
+                <div className="flex gap-2.75 items-center pt-3 xl:pt-4 2xl:pt-7.25 pb-6.98">
                   <div className="flex gap-0.5">
                     {[...Array(4)].map((_, index) => (
                       <img
@@ -60,16 +65,13 @@ const CustomerSay = () => {
                       loading="lazy"
                     />
                   </div>
-                  <p className="font-normal text-lg text-black">4.4</p>
+                  <p className="font-normal text-lg text-black">
+                    {item.rating}
+                  </p>
                 </div>
 
                 <p className="font-normal text-base xl:text-2xl text-center pt-3 lg:pt-6 text-light-black">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui
-                  vel morbi cursus sed sodales molestie proin dictum gravida.
-                  Porttitor maecenas tincidunt ipsum semper malesuada. In sapien
-                  feugiat laoreet convallis eu sed. Sapien et montes, duis
-                  tempor euismod augue cras eu eget. Risus suspendisse mauris
-                  ullamcorper
+                  {item.review}
                 </p>
               </div>
             </div>

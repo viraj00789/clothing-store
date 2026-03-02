@@ -16,6 +16,8 @@ import { FaAngleDown } from "react-icons/fa";
 import { useWindow } from "../hooks/useWidth";
 import { MdEdit } from "react-icons/md";
 import { FaTrashAlt } from "react-icons/fa";
+import CommonModal from "../components/ui/CommonModal";
+import ConfirmModal from "./ConfirmDeleteModal";
 
 const countries = ["India", "USA", "Germany", "Canada", "Australia"];
 
@@ -30,6 +32,8 @@ const AddAddress = () => {
 
   const [editingId, setEditingId] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedDeleteId, setSelectedDeleteId] = useState(null);
 
   const [form, setForm] = useState({
     firstName: "",
@@ -234,9 +238,12 @@ const AddAddress = () => {
                         <FaTrashAlt
                           fontSize={20}
                           disabled={editingId === address.id}
-                          onClick={() => {
-                            dispatch(deleteAddress(address.id));
-                            if (editingId === address.id) resetForm();
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (editingId === address.id) return;
+
+                            setSelectedDeleteId(address.id);
+                            setShowDeleteModal(true);
                           }}
                           className={`text-red-600 ${
                             editingId === address.id
@@ -502,6 +509,26 @@ const AddAddress = () => {
           </button>
         </div>
       </div>
+      <ConfirmModal
+        isOpen={showDeleteModal}
+        onClose={() => {
+          setShowDeleteModal(false);
+          setSelectedDeleteId(null);
+        }}
+        title="Delete Address?"
+        description="Are you sure you want to delete this address?"
+        confirmText="Delete"
+        onConfirm={() => {
+          dispatch(deleteAddress(selectedDeleteId));
+
+          if (editingId === selectedDeleteId) {
+            resetForm();
+          }
+
+          setShowDeleteModal(false);
+          setSelectedDeleteId(null);
+        }}
+      />
     </ContainerLayout>
   );
 };

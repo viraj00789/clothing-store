@@ -76,6 +76,27 @@ const OrderSummary = ({ checkOut }) => {
   const originalShipping = itemsOriginalTotal > 0 ? 20 : 0;
   const shipping = isPromoApplied || isFreeShipping ? 0 : originalShipping;
   const total = itemsDiscountedTotal + gst + shipping - promoDiscount;
+  const itemsTotalAfterDiscount = items.reduce(
+    (sum, item) => sum + item.price * item.qty,
+    0,
+  );
+
+  useEffect(() => {
+    if (!promoCode) return;
+
+    const PROMOS = {
+      SAVE100: { discount: 100, minAmount: 1000 },
+      OFF500: { discount: 500, minAmount: 2000 },
+      VIRAJ1000: { discount: 1000, minAmount: 3000 },
+    };
+
+    const promo = PROMOS[promoCode];
+
+    if (promo && itemsTotalAfterDiscount < promo.minAmount) {
+      dispatch(removePromo());
+      toast.error("Coupon removed (minimum amount not satisfied).");
+    }
+  }, [items, promoCode, dispatch, itemsTotalAfterDiscount]);
 
   return (
     <>
@@ -113,8 +134,7 @@ const OrderSummary = ({ checkOut }) => {
                   <div className="flex flex-col">
                     <span className="text-lg">
                       {item.title} x {item.qty}
-                    </span>
-                    {" "}
+                    </span>{" "}
                     {item.spinApplied &&
                       item.spinValue &&
                       item.spinValue !== "Free Product" &&

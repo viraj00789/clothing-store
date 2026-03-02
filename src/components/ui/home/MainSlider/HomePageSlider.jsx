@@ -8,21 +8,18 @@ import background1 from "../../../../assets/HomeSliderImages/background1.svg";
 import prada from "../../../../assets/HomeSliderImages/prada1.svg";
 import "./HomeSlider.css";
 import { useNavigate } from "react-router";
-import { getItem } from "../../../../utils/localStorage";
-import toast from "react-hot-toast";
 import WheelImage from "../../../../assets/WheelOfSpin.png";
+import { useWindow } from "../../../../hooks/useWidth";
+import WheelOfSpin from "../../../../assets/Wheel_of_spin.png";
 
 const HomePageSlider = () => {
   const navigate = useNavigate();
+  const width = useWindow();
   const slides = [
     {
-      image: WheelImage,
+      image: `${width >= 768 ? WheelImage : WheelOfSpin}`,
       fullImage: true,
       onClick: () => {
-        if (getItem("spinned")) {
-          toast.success("You have already spin the wheel.");
-          return;
-        }
         navigate("/wheelofspin");
       },
       // brand: prada,
@@ -102,14 +99,14 @@ const HomePageSlider = () => {
         speed={1000}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
         loop={true}
-        className="w-full h-[900px] home-slider"
+        className="w-full h-120 sm:h-[500px] md:h-[600px] lg:h-[768px] home-slider"
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
             {slide.fullImage ? (
               // 🔥 FULL IMAGE SLIDE
               <div
-                className="w-full h-[900px] cursor-pointer"
+                className="w-full h-120 sm:h-[500px] md:h-[600px] lg:h-[768px] cursor-pointer"
                 onClick={() => {
                   if (slide.onClick) {
                     slide.onClick();
@@ -125,7 +122,7 @@ const HomePageSlider = () => {
               </div>
             ) : (
               // 🔥 NORMAL LEFT + RIGHT CONTENT SLIDE
-              <div className="flex w-full h-[900px] cursor-grab">
+              <div className="flex w-full h-120 sm:h-[500px] md:h-[600px] lg:h-[768px] cursor-grab">
                 {/* Left image */}
                 <div className="hidden lg:inline w-1/2 h-full">
                   <img
