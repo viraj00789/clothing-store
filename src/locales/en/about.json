@@ -1,5 +1,9 @@
 {
     "title": "About Us",
     "Business": "Business Name",
-    "desc":"Lorem ipsum dolor sit amet consectetur adipiscing elit Dui vel morbi cursus sed sodales molestie proin dictum gravida Porttitor maecenas tincidunt ipsum semper malesuada. In sapien feugiat laoreet convallis eu sed. Sapien et montes duis tempor euismod augue cras eu eget. Risus suspendisse mauris ullamcorper felis a quam. Lorem ipsum dolor sit amet consectetur adipiscing elit. Dui vel morbi cursus sed sodales molestie proin dictum gravida Porttitor maecenas tincidunt ipsum semper malesuada. In sapien feugiat laoreet convallis eu sed. Sapien et montes duis tempor euismod augue cras eu eget. Risus suspendisse mauris ullamcorper felis a quam.Lorem ipsum dolor sit amet consectetur adipiscing elit. Dui vel morbi cursus sed sodales molestie proin dictum gravida Porttitor maecenas"
+    "desc":"Lorem ipsum dolor sit amet consectetur adipiscing elit Dui vel morbi cursus sed sodales molestie proin dictum gravida Porttitor maecenas tincidunt ipsum semper malesuada. In sapien feugiat laoreet convallis eu sed. Sapien et montes duis tempor euismod augue cras eu eget. Risus suspendisse mauris ullamcorper felis a quam. Lorem ipsum dolor sit amet consectetur adipiscing elit. Dui vel morbi cursus sed sodales molestie proin dictum gravida Porttitor maecenas tincidunt ipsum semper malesuada. In sapien feugiat laoreet convallis eu sed. Sapien et montes duis tempor euismod augue cras eu eget. Risus suspendisse mauris ullamcorper felis a quam.Lorem ipsum dolor sit amet consectetur adipiscing elit. Dui vel morbi cursus sed sodales molestie proin dictum gravida Porttitor maecenas",
+    "Contact":"Contact Information",
+    "Number":"+91 1256378409",
+    "Email":"Something@random.com",
+    "Direction":"Directions"
 }
