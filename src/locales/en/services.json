@@ -1,0 +1,22 @@
+{
+  "1": {
+    "label": "Locally Owned",
+    "desc": "We have a local business and sell the best quality clothes."
+  },
+  "2": {
+    "label": "Fast Delivery",
+    "desc": "We provide fast delivery to our customers."
+  },
+  "3": {
+    "label": "Easy Return",
+    "desc": "We provide an easy return policy."
+  },
+  "4": {
+    "label": "Online Support",
+    "desc": "We provide 24/7 online support."
+  },
+  "5": {
+    "label": "Best Offers",
+    "desc": "We provide the best offers to our customers."
+  }
+}

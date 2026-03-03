@@ -1,0 +1,32 @@
+{
+  "1": {
+    "name": "Sarah Johnson",
+    "rating": "4.4",
+    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui vel morbi cursus sed sodales molestie proin dictum gravida."
+  },
+  "2": {
+    "name": "Michael Lee",
+    "rating": "4.0",
+    "review": "Porttitor maecenas tincidunt ipsum semper malesuada. In sapien feugiat laoreet convallis eu sed."
+  },
+  "3": {
+    "name": "Emily Carter",
+    "rating": "5.0",
+    "review": "Sapien et montes, duis tempor euismod augue cras eu eget. Risus suspendisse mauris ullamcorper."
+  },
+  "4": {
+    "name": "Daniel Smith",
+    "rating": "4.2",
+    "review": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui vel morbi cursus sed sodales."
+  },
+  "5": {
+    "name": "Sophia Brown",
+    "rating": "4.8",
+    "review": "Porttitor maecenas tincidunt ipsum semper malesuada. In sapien feugiat laoreet convallis."
+  },
+  "6": {
+    "name": "James Wilson",
+    "rating": "4.1",
+    "review": "Sapien et montes, duis tempor euismod augue cras eu eget. Risus suspendisse mauris."
+  }
+}

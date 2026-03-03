@@ -24,6 +24,7 @@ import {
   increaseQty,
 } from "../../../store/slices/cartSlice";
 import { flyToCart } from "../../../utils/FlyToCart";
+import { useTranslation } from "react-i18next";
 
 const TrendingSection = () => {
   const width = useWindow();
@@ -31,6 +32,7 @@ const TrendingSection = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const {t} = useTranslation("products")
   const wishlistItems = useSelector((state) => state.wishlist.items);
 
   const isInWishlist = (id) => wishlistItems.some((item) => item.id === id);
@@ -98,7 +100,7 @@ const TrendingSection = () => {
     <>
       <div className="px-3.75 xl:px-12.5 space-y-3 lg:space-y-[27px] mt-3 lg:mt-[80px]">
         <h3 className="text-light-black font-bold text-2xl lg:text-4xl">
-          Trending Now
+          {t("headers:TrendingNow")}
         </h3>
 
         {width > 768 ? (
@@ -146,16 +148,16 @@ const TrendingSection = () => {
 
                   <div className="px-5 py-2.5 space-y-1 rounded-b-2xl">
                     <div className="font-bold text-xl lg:text-[24px] text-light-black">
-                      {product.title}
+                      {t(`products:${product.id}:title`)}
                     </div>
 
                     <div className="flex gap-7.5 items-center">
                       <p className="text-lg font-normal text-light-black">
-                        {product.brand}
+                        {t(`products:${product.id}:brand`)}
                       </p>
                       <div className="flex items-center justify-center gap-2">
                         <p className="text-dark-gray text-lg">
-                          {product.rating}
+                          {t(`products:${product.id}:rating`)}
                         </p>
                         <img
                           src={star}
@@ -168,13 +170,13 @@ const TrendingSection = () => {
 
                     <div className="flex gap-3 truncate">
                       <p className="font-bold text-lg lg:text-2xl whitespace-nowrap text-light-black">
-                        Rs. {product.price}
+                        <span className="text-start">₹ </span>{t(`products:${product.id}:price`)}
                       </p>
                       <p className="text-dark-gray line-through text-lg font-normal">
-                        Rs. {product.oldPrice}
+                        <span className="text-start">₹ </span>{t(`products:${product.id}:oldPrice`)}
                       </p>
                       <p className="text-green text-lg font-bold">
-                        ({product.discount})
+                        ({t(`products:${product.id}:discount`)})
                       </p>
                     </div>
                   </div>
@@ -224,24 +226,24 @@ const TrendingSection = () => {
                 </div>
                 <div className="space-y-1 rounded-b-[10px]">
                   <div className="font-medium text-xl text-light-black">
-                    {product.title}
+                    {t(`products:${product.id}:title`)}
                   </div>
 
                   <div className="flex gap-7.5 items-center">
                     <p className="text-lg font-normal text-light-black">
-                      {product.brand}
+                      {t(`products:${product.id}:brand`)}
                     </p>
                   </div>
 
                   <div className="flex gap-[17px] truncate items-center">
                     <p className="text-dark-gray line-through font-normal text-sm md:text-lg">
-                      Rs. {product.oldPrice}
+                      ₹ {t(`products:${product.id}:oldPrice`)}
                     </p>
                     <p className="font-normal text-xl whitespace-nowrap text-light-black">
-                      Rs. {product.price}
+                      ₹ {t(`products:${product.id}:price`)}
                     </p>
                     <p className="font-normal text-sm md:text-lg text-green-off">
-                      ({product.discount})
+                      ({t(`products:${product.id}:discount`)})
                     </p>
                   </div>
                 </div>
@@ -258,7 +260,7 @@ const TrendingSection = () => {
                     className="w-full h-10 border border-dark-button-blue rounded-10 cursor-pointer flex items-center justify-center gap-3 sm:gap-[23.23px] group transition-all duration-150"
                   >
                     <button className="font-normal text-sm text-light-black">
-                      WishList
+                      {t("headers:Wishlist")}
                     </button>
 
                     <img
@@ -310,7 +312,7 @@ const TrendingSection = () => {
                       }}
                     >
                       <button className="font-normal text-sm text-white cursor-pointer!">
-                        Add to cart
+                        {t("headers:AddToCart")}
                       </button>
                       <img
                         src={WhiteBag}
@@ -336,7 +338,7 @@ const TrendingSection = () => {
               onClick={() => setOpen(false)}
               className="text-white text-2xl font-bold"
             />
-            <p className="text-white text-xl font-bold">Trending Now</p>
+            <p className="text-white text-xl font-bold">{t("headers:TrendingNow")}</p>
           </div>
 
           {/* Scrollable images */}

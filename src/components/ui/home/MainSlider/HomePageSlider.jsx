@@ -11,10 +11,13 @@ import { useNavigate } from "react-router";
 import WheelImage from "../../../../assets/WheelOfSpin.png";
 import { useWindow } from "../../../../hooks/useWidth";
 import WheelOfSpin from "../../../../assets/Wheel_of_spin.png";
+import { useTranslation } from "react-i18next";
+import i18n from "../../../../i18n";
 
 const HomePageSlider = () => {
   const navigate = useNavigate();
   const width = useWindow();
+  const { t } = useTranslation("fashion_slides");
   const slides = [
     {
       image: `${width >= 768 ? WheelImage : WheelOfSpin}`,
@@ -31,6 +34,7 @@ const HomePageSlider = () => {
       //   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSnuoKmuvpKII50YsNHfVbyChTlsXF09JaEw&s",
     },
     {
+      key: "slide1",
       image:
         "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       brand: prada,
@@ -42,6 +46,7 @@ const HomePageSlider = () => {
       fullImage: false,
     },
     {
+      key: "slide2",
       image:
         "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       brand: prada,
@@ -53,6 +58,7 @@ const HomePageSlider = () => {
       fullImage: false,
     },
     {
+      key: "slide3",
       image:
         "https://plus.unsplash.com/premium_photo-1664202526559-e21e9c0fb46a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       brand: prada,
@@ -64,6 +70,7 @@ const HomePageSlider = () => {
       fullImage: false,
     },
     {
+      key: "slide4",
       image:
         "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTEyfHxjbG90aGVzfGVufDB8fDB8fHww",
       brand: prada,
@@ -74,17 +81,18 @@ const HomePageSlider = () => {
       background: background1,
       fullImage: false,
     },
-    {
-      image:
-        "https://images.unsplash.com/photo-1507553532144-b9df5e38c8d1?q=80&w=1213&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      brand: prada,
-      title1: "Exclusive Deals",
-      title2: "Limited Time Only",
-      button: "Grab Now",
-      link: "/product/9",
-      background: background1,
-      fullImage: false,
-    },
+    // { 
+    //   key: "slide5",
+    //   image:
+    //     "https://images.unsplash.com/photo-1507553532144-b9df5e38c8d1?q=80&w=1213&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    //   brand: prada,
+    //   title1: "Exclusive Deals",
+    //   title2: "Limited Time Only",
+    //   button: "Grab Now",
+    //   link: "/product/9",
+    //   background: background1,
+    //   fullImage: false,
+    // },
   ];
   return (
     <div className="slider-wrapper">
@@ -151,18 +159,18 @@ const HomePageSlider = () => {
                     <div className="text-center flex flex-col gap-[34px] items-center justify-center">
                       <div className="gap-5 lg:space-y-[22px]">
                         <p className="text-2xl lg:text-5xl font-bold text-mid-gray">
-                          {slide.title1}
+                          {t(`fashion_slides:${slide.key}:title1`)}
                         </p>
                         <p className="text-2xl lg:text-5xl font-bold text-mid-gray">
-                          {slide.title2}
+                          {t(`fashion_slides:${slide.key}:title2`)}
                         </p>
                       </div>
 
                       <button
-                        className="border-2 border-mid-gray py-1.5 px-8.5 rounded-[10px] cursor-pointer font-normal text-xl lg:text-2xl w-fit"
+                        className={`border-2 border-mid-gray ${i18n.language === "gj" ? "pt-2.5 pb-1.5" : "py-2"} px-8.5 rounded-[10px] cursor-pointer font-normal text-xl lg:text-2xl w-fit `}
                         onClick={() => navigate(slide.link)}
                       >
-                        {slide.button}
+                        {t(`fashion_slides:${slide.key}:button`)}
                       </button>
                     </div>
                   </div>

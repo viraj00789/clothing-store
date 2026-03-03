@@ -12,10 +12,12 @@ import {
 } from "../../../../../data/FashionSlidesData";
 import { useWindow } from "../../../../hooks/useWidth";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 const FashionSlider = () => {
   const width = useWindow();
   const navigate = useNavigate();
+  const { t } = useTranslation("fashion_slides");
   return (
     <>
       <Swiper
@@ -66,17 +68,17 @@ const FashionSlider = () => {
                     <div className="flex flex-col items-center justify-center gap-[27px] xl:gap-[75px]">
                       <div className="text-center flex flex-col gap-4.5 xl:gap-9">
                         <p className="text-2xl xl:text-5xl font-bold text-white">
-                          {slide.title1}
+                          {t(`fashion_slides:${slide.key}:title1`)}
                         </p>
                         <p className="text-2xl xl:text-5xl font-bold text-white">
-                          {slide.title2}
+                          {t(`fashion_slides:${slide.key}:title2`)}
                         </p>
                       </div>
                       <button
                         className="border-2 border-white py-1.5 px-[31px] lg:py-2 lg:px-4.5 rounded-[5px] cursor-pointer font-normal text-base text-lg text-white"
                         onClick={() => navigate(slide.link)}
                       >
-                        {slide.button}
+                        {t(`fashion_slides:${slide.key}:button`)}
                       </button>
                     </div>
                   </div>

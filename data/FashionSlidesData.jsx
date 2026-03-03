@@ -1,6 +1,7 @@
 import forever from "../src/assets/forever.svg";
 export const FashionSides = [
   {
+    key: "slide1",
     image:
       "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     brand: forever,
@@ -11,6 +12,7 @@ export const FashionSides = [
     link: "/product/3",
   },
   {
+    key: "slide2",
     image:
       "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     brand: forever,
@@ -20,7 +22,8 @@ export const FashionSides = [
     backColor: "bg-rose-500",
     link: "/product/13",
   },
-  {
+  { 
+    key: "slide3",
     image:
       "https://plus.unsplash.com/premium_photo-1664202526559-e21e9c0fb46a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     brand: forever,
@@ -31,6 +34,7 @@ export const FashionSides = [
     link: "/product/12",
   },
   {
+    key: "slide4",
     image:
       "https://images.unsplash.com/photo-1507553532144-b9df5e38c8d1?q=80&w=1213&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     brand: forever,
@@ -44,6 +48,7 @@ export const FashionSides = [
 
 export const FashionSidesMobile = [
   {
+    key: "slide1",
     image:
       "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     brand: forever,
@@ -53,7 +58,8 @@ export const FashionSidesMobile = [
     backColor: "bg-dark-green",
     link: "/product/14",
   },
-  {
+  { 
+    key: "slide2",  
     image:
       "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     brand: forever,
@@ -64,6 +70,7 @@ export const FashionSidesMobile = [
     link: "/product/15",
   },
   {
+    key: "slide3",  
     image:
       "https://plus.unsplash.com/premium_photo-1664202526559-e21e9c0fb46a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     brand: forever,
@@ -74,6 +81,7 @@ export const FashionSidesMobile = [
     link: "/product/16",
   },
   {
+    key: "slide4",  
     image:
       "https://images.unsplash.com/photo-1507553532144-b9df5e38c8d1?q=80&w=1213&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     brand: forever,

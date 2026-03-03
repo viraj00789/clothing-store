@@ -6,12 +6,21 @@ import { ProfileMenuItems } from "../../data/profileMenuItems";
 import { IoArrowBack } from "react-icons/io5";
 import ContainerLayout from "../layout/ContainerLayout";
 import { useWindow } from "../hooks/useWidth";
+import { IoLanguage } from "react-icons/io5";
+import { useTranslation } from "react-i18next";
 
 const Profile = () => {
   const { name, email } = getItem("user") || {};
   const navigate = useNavigate();
   const logout = useLogout();
   const width = useWindow();
+  const { t, i18n } = useTranslation("profile");
+
+  const handleLanguage = () => {
+    const newLang = i18n.language === "en" ? "gj" : "en";
+    i18n.changeLanguage(newLang);
+    localStorage.setItem("lang", newLang);
+  };
 
   return (
     <ContainerLayout>
@@ -49,11 +58,11 @@ const Profile = () => {
                   className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 transition cursor-pointer"
                   onClick={() => navigate(item.href)}
                 >
-                  <div className="flex items-center gap-3 text-gray-700">
+                  <div className="flex items-center justify-center gap-3 text-gray-700 leading-1">
                     <img src={item.icon} className="w-5 h-5" alt={item.label} />
-                    <span className="text-sm font-medium text-light-black">
-                      {item.label}
-                    </span>
+                    <p className={`text-md font-medium text-light-black ${i18n.language === "gj" ? "mt-1" : "mt-0"}`}>
+                      {t(`profile:${item.label}`)}
+                    </p>
                   </div>
 
                   <FiChevronRight className="text-light-black-2" size={20} />
@@ -61,6 +70,57 @@ const Profile = () => {
               ))}
             </div>
 
+            {/* Toggle Language */}
+            <div className="mt-4">
+              <div className="flex items-center justify-between px-3 ">
+                <div className="flex items-center gap-3  rounded-lg ">
+                  <IoLanguage size={20} />
+                  <span className="text-md font-medium">
+                    {t("profile:ChangeLanguage")}
+                  </span>
+                </div>
+                {/* <FiChevronRight className="text-light-black-2" size={20} /> */}
+                {/* 🌍 Language Switch */}
+                <div className="flex justify-end">
+                  <button
+                    onClick={handleLanguage}
+                    className="relative w-24 h-10 bg-gray-100 rounded-full p-1 shadow-inner transition-all duration-300 cursor-pointer"
+                  >
+                    {/* Sliding Active Background */}
+                    <span
+                      className={`absolute top-1 left-1 w-11 h-8 rounded-full bg-white shadow-md transition-all duration-300 ${
+                        i18n.language === "gj"
+                          ? "translate-x-11"
+                          : "translate-x-px"
+                      }`}
+                    />
+
+                    {/* Labels */}
+                    <span className="relative z-10 flex items-center justify-between h-full px-3 text-sm font-semibold">
+                      <span
+                        className={`transition-colors duration-300 ${
+                          i18n.language === "en"
+                            ? "text-black"
+                            : "text-gray-400"
+                        }`}
+                      >
+                        EN
+                      </span>
+
+                      <span
+                        className={`transition-colors duration-300 ${
+                          i18n.language === "gj"
+                            ? "text-black"
+                            : "text-gray-400"
+                        }`}
+                      >
+                        GJ
+                      </span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
             {/* Logout */}
             <div className="mt-4">
               <div
@@ -68,15 +128,20 @@ const Profile = () => {
                 onClick={() => logout()}
               >
                 <FiLogOut />
-                <span className="text-sm font-medium">Log Out</span>
+                <span className="text-md font-medium">
+                  {t("profile:Logout")}
+                </span>
               </div>
             </div>
           </div>
 
           {/* Bottom */}
-          <div className="text-xs text-center text-gray-400 mt-6">
-            <Link to="/privacy-policy">Privacy Policy</Link> |{" "}
-            <Link to="/terms-and-conditions"> Terms and Conditions </Link>
+          <div className="text-md text-center text-gray-400 mt-6">
+            <Link to="/privacy-policy">{t("profile:PrivacyPolicy")}</Link> |
+            <Link to="/terms-and-conditions">
+              {" "}
+              {t("profile:TermsAndConditions")}{" "}
+            </Link>
           </div>
         </div>
       </div>

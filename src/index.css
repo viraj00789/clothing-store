@@ -1,49 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+Gujarati:wght@100..900&display=swap");
 
 @import "tailwindcss";
 
 :root {
-  --light-gray: #F0F0F0;
-  --light-gray-1: #F9FAFF;
-  --light-gray-2: #E1E2E7;
-  --light-gray-3: #F9FAFF;
+  --light-gray: #f0f0f0;
+  --light-gray-1: #f9faff;
+  --light-gray-2: #e1e2e7;
+  --light-gray-3: #f9faff;
   --light-gray-4: #e9ebf0;
-  --light-gray-5: #CACACA;
+  --light-gray-5: #cacaca;
   --mid-gray: #565656;
   --mid-dark-gray: #646464;
   --dark-gray: #848484;
-  --footer-input: #ABABAB;
-  --size-chart: #BABABA;
-  --mid-gray-1: #6D6D6D;
+  --footer-input: #ababab;
+  --size-chart: #bababa;
+  --mid-gray-1: #6d6d6d;
   --mid-gray-2: #636363;
   --mid-gray-3: #939393;
   --mid-gray-4: #898989;
   --light-blue-dark: #223263;
-  --dark-blue: #00398F;
+  --dark-blue: #00398f;
   --dark-button-blue: #002482;
   --light-black: #272727;
   --light-black-1: #323232;
   --light-black-2: #181725;
-  --green: #0A8200;
-  --dark-green: #1A4242;
-  --dark-cyan: #27363B;
-  --dark-footer: #00071B;
-  --font-baskerville: 'Libre Baskerville', serif;
-  --font-sf: 'SF Pro Display', system-ui, sans-serif;
+  --green: #0a8200;
+  --dark-green: #1a4242;
+  --dark-cyan: #27363b;
+  --dark-footer: #00071b;
+  --font-baskerville: "Libre Baskerville", serif;
+  --font-sf: "SF Pro Display", system-ui, sans-serif;
+  --font-gujarati: "Noto Serif Gujarati", serif;
   --small-mobile: 375px;
-  --green-off: #0EB000;
-  --product-green: #299E00;
-  --light-purple: #5C61F4;
+  --green-off: #0eb000;
+  --product-green: #299e00;
+  --light-purple: #5c61f4;
   /* Clothes Colors */
-  --cream: #FFCFB5;
-  --cyan: #96F9FF;
-  --pinkish: #FEC8FF;
-  --grayish: #F5F5F5;
-  --yellowish: #FEFFC1;
+  --cream: #ffcfb5;
+  --cyan: #96f9ff;
+  --pinkish: #fec8ff;
+  --grayish: #f5f5f5;
+  --yellowish: #feffc1;
   /* Clothes Colors */
-  --dark-white: #EAEAEA;
-  --light-blue: #EBF0FF;
-  --light-blue-1: #9098B1;
+  --dark-white: #eaeaea;
+  --light-blue: #ebf0ff;
+  --light-blue-1: #9098b1;
 }
 
 @theme inline {
@@ -93,7 +95,6 @@
   /* ≈320px */
   --breakpoint-xs: 23.4375rem;
   /* =375px  */
-
 }
 
 @font-face {
@@ -120,20 +121,34 @@
   font-display: swap;
 }
 
-body {
+/* body {
   font-family: var(--font-sf);
 }
-
 
 @media (min-width: 768px) {
   body {
     font-family: var(--font-baskerville);
   }
+} */
+
+/* English default */
+.lang-en {
+  font-family: var(--font-sf);
 }
 
+@media (min-width: 768px) {
+  .lang-en {
+    font-family: var(--font-baskerville);
+  }
+}
+
+/* Gujarati */
+.lang-gj {
+  font-family: var(--font-gujarati);
+  font-size: 16px;
+}
 
 /* ==================== Serch Bar ====================== */
-
 
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
@@ -147,39 +162,36 @@ input[type="search"]::-ms-clear {
 /* ================= Utilites ======================== */
 
 .text-respo {
-  @apply font-bold text-xl md:text-3xl lg:text-4xl
+  @apply font-bold text-xl md:text-3xl lg:text-4xl;
 }
 
 .text-respo-24 {
-  @apply font-bold text-lg lg:text-2xl
+  @apply font-bold text-lg lg:text-2xl;
 }
 
 .rounded-5 {
-  @apply rounded-[5px]
+  @apply rounded-[5px];
 }
 
-
 .rounded-10 {
-  @apply rounded-[10px]
+  @apply rounded-[10px];
 }
 
 .hidden-md-flex {
-  @apply hidden md:flex
+  @apply hidden md:flex;
 }
 
 .hidden-lg-flex {
-  @apply hidden lg:flex
+  @apply hidden lg:flex;
 }
 
 .flex-md-hidden {
-  @apply flex md:hidden
+  @apply flex md:hidden;
 }
 
 .flex-lg-hidden {
-  @apply flex lg:hidden
+  @apply flex lg:hidden;
 }
-
-
 
 /* ==================Scroll Bar==================== */
 .trending-scroll::-webkit-scrollbar {
@@ -218,8 +230,6 @@ input[type="search"]::-ms-clear {
   @apply bg-dark-button-blue w-[7px] h-[7px];
 }
 
-
-
 /* For the icon pops */
 @keyframes pop {
   0% {
@@ -237,8 +247,6 @@ input[type="search"]::-ms-clear {
   }
 }
 
-
-
 /* ==================== Remove the Spinners ===================== */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -249,7 +257,6 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
-
 
 /* ==================== Make the Animation Tab ===================== */
 @keyframes fadeIn {
@@ -284,7 +291,6 @@ input[type="number"] {
 .animate-scaleIn {
   animation: scaleIn 0.3s ease-out;
 }
-
 
 /* Fly to cart animation  */
 /* =============================== */
@@ -339,7 +345,6 @@ input[type="number"] {
   }
 } */
 
-
 /* @keyframes flyCurve {
   0% {
     transform: translate(0px, 0px) scale(1);
@@ -372,15 +377,14 @@ input[type="number"] {
   }
 } */
 
-
-
 .fly-item {
   position: fixed;
   width: 120px;
   height: 120px;
   pointer-events: none;
-  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), 
-              opacity 1.2s ease, 
-              scale 1.2s ease;
+  transition:
+    transform 1.2s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 1.2s ease,
+    scale 1.2s ease;
   z-index: 9999;
 }

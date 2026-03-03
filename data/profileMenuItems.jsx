@@ -11,13 +11,13 @@ export const ProfileMenuItems = [
   { href: "/cart", label: "Carts", icon: Order },
   {
     href: "/add-address",
-    label: "Delivery Address",
+    label: "DeliveryAddress",
     icon: DeliveryAddress,
   },
-  { href: "/orders", label: "My Orders", icon: Order },
+  { href: "/orders", label: "MyOrders", icon: Order },
   {
     href: "/add-payment",
-    label: "Payment Methods",
+    label: "PaymentMethods",
     icon: PaymentMethods,
   },
   { href: "/notifications", label: "Notifications", icon: Notification },

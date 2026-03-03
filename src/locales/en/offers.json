@@ -1,0 +1,14 @@
+{
+    "TrendingOffers": "Trending Offers",
+    "Min": "Min",
+    "Off": "Off",
+    "Explore": "Explore",
+    "subtitle":{
+        "Offer60": "Min 60% Off",
+        "Offer50": "Min 50% Off",
+        "Offer40": "Min 40% Off",
+        "Offer30": "Min 30% Off",
+        "Offer20": "Min 20% Off",
+        "Offer10": "Min 10% Off"
+    }
+}

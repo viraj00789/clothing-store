@@ -1,0 +1,22 @@
+{
+    "slide1": {
+        "title1": "Big Fashion Festival",
+        "title2": "50% - 80% off",
+        "button": "Explore Now"
+    },
+    "slide2": {
+        "title1": "Luxury Week Sale",
+        "title2": "Up to 60% off",
+        "button": "Shop Now"
+    },
+    "slide3": {
+        "title1": "New Season Arrivals",
+        "title2": "Fresh Styles 2026",
+        "button": "Discover"
+    },
+    "slide4": {
+        "title1": "Exclusive Deals",
+        "title2": "Limited Time Only",
+        "button": "Grab Now"
+    }  
+}

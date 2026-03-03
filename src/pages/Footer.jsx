@@ -10,6 +10,7 @@ import twitter from "../assets/footer/twitter.svg";
 import { IoSend } from "react-icons/io5";
 import toast from "react-hot-toast";
 import { Link } from "react-router";
+import { useTranslation } from "react-i18next";
 
 const images = [
   {

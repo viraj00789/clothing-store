@@ -7,47 +7,49 @@ import "swiper/css/navigation";
 import "./Offers.css";
 import { useNavigate } from "react-router";
 import { useWindow } from "../../../../hooks/useWidth";
+import { useTranslation } from "react-i18next";
+import i18n from "../../../../i18n";
 const slides = [
   {
     image:
       "https://images.unsplash.com/photo-1445205170230-053b83016050?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNsb3RoZXN8ZW58MHx8MHx8fDA%3D",
     brand: levis,
-    subtitle: "Min 60% Off",
+    subtitle: "Offer60",
     link: "/product/11",
   },
   {
     image:
       "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop",
     brand: levis,
-    subtitle: "Min 50% Off",
+    subtitle: "Offer50",
     link: "/product/14",
   },
   {
     image:
       "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     brand: levis,
-    subtitle: "Min 40% Off",
+    subtitle: "Offer40",
     link: "/product/15",
   },
   {
     image:
       "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     brand: levis,
-    subtitle: "Min 40% Off",
+    subtitle: "Offer30",
     link: "/product/15",
   },
   {
     image:
       "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     brand: levis,
-    subtitle: "Min 40% Off",
+    subtitle: "Offer20",
     link: "/product/15",
   },
   {
     image:
       "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     brand: levis,
-    subtitle: "Min 40% Off",
+    subtitle: "Offer10",
     link: "/product/15",
   },
 ];
@@ -55,10 +57,11 @@ const slides = [
 const OfferSlider = () => {
   const navigate = useNavigate();
   const width = useWindow();
+  const { t } = useTranslation("offers");
   return (
     <div className="px-0 pb-2 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[85px]">
       <h3 className="px-3.75 xl:px-12.5 text-light-black font-bold text-2xl lg:text-4xl">
-        Trending Offers
+        {t("TrendingOffers")}
       </h3>
 
       <Swiper
@@ -89,13 +92,13 @@ const OfferSlider = () => {
                 />
                 <div className="flex justify-center flex-col items-center gap-4 xl:gap-10">
                   <p className="font-bold text-lg md:text-2xl lg:text-3xl xl:text-5xl">
-                    {slide.subtitle}
+                    {t(`offers:subtitle:${slide.subtitle}`)}
                   </p>
                   <button
-                    className="border-2 border-mid-gray py-2 px-4 lg:px-9.5 rounded-[10px] cursor-pointer font-normal text-xl lg:text-2xl hover:bg-black hover:text-white transition ease-in-out duration-300 w-full lg:w-[172px]"
+                    className={`border-2 border-mid-gray ${i18n.language === "gj" ? "pt-3 pb-2" : "py-2"} px-4 lg:px-9.5 rounded-[10px] cursor-pointer font-normal text-xl lg:text-2xl hover:bg-black hover:text-white transition ease-in-out duration-300 w-full lg:w-[172px] whitespace-nowrap`}
                     onClick={() => navigate(slide.link)}
                   >
-                    Explore
+                    {t("offers:Explore")}
                   </button>
                 </div>
               </div>

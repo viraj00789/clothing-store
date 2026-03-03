@@ -9,13 +9,15 @@ import star from "../../../../assets/blank-star.svg";
 import "./CustomerSay.css";
 import { useWindow } from "../../../../hooks/useWidth";
 import { testimonials } from "../../../../../data/TestimonialData";
+import { useTranslation } from "react-i18next";
 
 const CustomerSay = () => {
   const width = useWindow();
+  const {t} = useTranslation('headers');
   return (
     <div className="space-y-3 xl:space-y-[27px] mt-6 lg:mt-[85px] px-3.5 lg:px-0">
       <h3 className="lg:px-3.75 xl:px-12.5 text-light-black font-bold text-2xl lg:text-4xl lg:mb-0">
-        What Our Customer Says
+        {t("headers:CustomerSay")}
       </h3>
 
       <Swiper
@@ -44,7 +46,7 @@ const CustomerSay = () => {
                 </div>
 
                 <p className="font-bold text-xl lg:text-2xl text-center pt-4 text-light-black">
-                  {item.name}
+                  {t(`testimonials:${item.id}:name`)}
                 </p>
 
                 <div className="flex gap-2.75 items-center pt-3 xl:pt-4 2xl:pt-7.25 pb-6.98">
@@ -66,12 +68,12 @@ const CustomerSay = () => {
                     />
                   </div>
                   <p className="font-normal text-lg text-black">
-                    {item.rating}
+                    {t(`testimonials:${item.id}:rating`)}
                   </p>
                 </div>
 
                 <p className="font-normal text-base xl:text-2xl text-center pt-3 lg:pt-6 text-light-black">
-                  {item.review}
+                  {t(`testimonials:${item.id}:review`)}
                 </p>
               </div>
             </div>

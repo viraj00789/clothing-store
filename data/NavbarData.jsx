@@ -13,7 +13,7 @@ export const navLinks = [
   { to: "/search/men", label: "Men" },
   { to: "/search/women", label: "Women" },
   { to: "/search/kids", label: "Kids" },
-  { to: "/contact-us", label: "Contact us" },
+  { to: "/contact-us", label: "ContactUs" },
 ];
 
 export const navItems = [

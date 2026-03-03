@@ -12,12 +12,13 @@ import FeaturedBlog from "../components/ui/home/FeaturedBlog";
 import Services from "../components/ui/home/Services";
 import AboutUs from "../components/ui/home/AboutUs";
 import CategoryRow from "../components/CategoryRow";
-// import OurCollection from "../components/OurCollection";
 import MobileDealsForDay from "../components/ui/home/MobileDealsForDay/MobileDealsForDay";
 import Cross from "../assets/cross.svg";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
   const [open, setOpen] = useState(true);
+  const {t} = useTranslation("navbar");
 
   return (
     <>
@@ -33,10 +34,10 @@ const Home = () => {
               <div />
               <div className="flex flex-col lg:flex-row items-center justify-center gap-[15px]">
                 <p className="text-sm lg:text-lg font-normal text-center text-light-black">
-                  Invite Friends and get 50% off on your next purchase
+                 {t("navbar:InviteFriends")}
                 </p>
                 <Link to="/" className="text-dark-blue">
-                  Invite Now
+                  {t("navbar:InviteNow")}
                 </Link>
               </div>
               <div className="mt-0.5 md:mt-0">

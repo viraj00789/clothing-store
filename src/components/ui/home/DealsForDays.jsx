@@ -5,6 +5,7 @@ import { useWindow } from "../../../hooks/useWidth";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 const products = [
   {
@@ -56,10 +57,11 @@ const products = [
 const DealsForDays = () => {
   const width = useWindow();
   const navigate = useNavigate();
+  const { t } = useTranslation(["headers", "products"]);
   return (
     <div className="px-3.75 xl:px-12.5 space-y-3 lg:space-y-[27px] mt-6 lg:mt-[69px] rounded-[10px]">
       <h3 className="text-light-black font-bold text-2xl lg:text-4xl">
-        Deals of the Day
+        {t("headers:DealsOfTheDay")}
       </h3>
 
       <Swiper spaceBetween={width > 1025 ? 61.5 : 18} slidesPerView="auto">
@@ -73,7 +75,7 @@ const DealsForDays = () => {
               <img
                 className="h-[227px] md:h-[298px] w-full object-cover rounded-t-[10px]"
                 src={product.image}
-                alt={product.title}
+                alt={t(`products:${product.id}:title`)}
                 loading="lazy"
               />
 
@@ -81,14 +83,14 @@ const DealsForDays = () => {
                 <img
                   className="max-w-[151.26px] w-full object-cover hidden-md-flex"
                   src={levis}
-                  alt={product.title}
+                  alt={t(`products:${product.id}:title`)}
                   loading="lazy"
                 />
                 <div className="space-y-3 xl:space-y-5.75 text-light-black text-center">
                   <p className="font-bold text-xl lg:text-4xl">
-                    Best of Styles
+                    {t("headers:BestOfStyles")}
                   </p>
-                  <p className="font-bold text-lg lg:text-2xl">Under Rs. 700</p>
+                  <p className="font-bold text-lg lg:text-2xl">{t("headers:Under")} ₹ {t(`products:${product.id}:price`)}</p>
                 </div>
               </div>
             </div>

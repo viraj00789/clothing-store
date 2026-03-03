@@ -1,0 +1,12 @@
+{ 
+    "WomenPants": "મહિલા પેન્ટ",
+    "RightSection":{
+        "MensJacket": "મેનસ જેકેટ",
+        "Sweater": "સ્વેટર"
+    },
+    "WomensTops": "સ્ત્રીની ટોપ્સ",
+    "BottomSection":{
+        "Pants": "પાન્સ",
+        "WomensJackets": "સ્ત્રીની જેકેટ્સ"
+    }
+}

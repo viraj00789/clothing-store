@@ -1,0 +1,14 @@
+{ 
+    "Wishlist": "Wishlist",
+    "Carts": "Carts",
+    "DeliveryAddress": "Delivery Address",
+    "MyOrders": "My Orders",
+    "PaymentMethods": "Payment Methods",
+    "Notifications": "Notifications",
+    "Help": "Help",
+    "About": "About",
+    "ChangeLanguage": "Change Language",
+    "Logout": "Logout",
+    "PrivacyPolicy": "Privacy Policy",
+    "TermsAndConditions": "Terms and Conditions"
+}

@@ -1,6 +1,8 @@
 import { CategoryImages } from "../../data/CategoryRowData";
+import { useTranslation } from "react-i18next";
 
 export default function CategoryRow() {
+  const { t } = useTranslation();
   return (
     <div className="flex items-center gap-4 overflow-x-auto px-3.5 xs:px-[21px] py-[22px] trending-scroll">
       {CategoryImages.map((item) => (
@@ -16,8 +18,8 @@ export default function CategoryRow() {
           </div>
 
           {/* Label */}
-          <span className="text-sm mt-2.5 font-normal text-gray-700">
-            {item.label}
+          <span className="text-sm md:text-md mt-2.5 font-normal text-gray-700">
+            {t(`category_row:${item.label}`)}
           </span>
         </div>
       ))}

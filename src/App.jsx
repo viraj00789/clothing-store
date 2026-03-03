@@ -6,8 +6,21 @@ import AuthLayout from "./layout/AuthLayout";
 import ScrollToTop from "./hooks/scrollToTop";
 import { Toaster } from "react-hot-toast";
 import NotFound from "./pages/NotFoundPage";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 function App() {
+
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    document.body.classList.remove("lang-en", "lang-gj");
+    document.body.classList.add(
+      i18n.language === "gj" ? "lang-gj" : "lang-en"
+    );
+  }, [i18n.language]);
+
+
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />

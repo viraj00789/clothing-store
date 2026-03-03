@@ -1,18 +1,20 @@
 import { useNavigate } from "react-router";
 import catArrow from "../../../assets/cat-arrow.svg";
+import { useTranslation } from "react-i18next";
 
 const Categories = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation(['headers','shop_by_category']);
   return (
     <div className="px-3.75 xl:px-12.5 pb-0 lg:pb-2 space-y-3 xl:space-y-[27px] mt-6 lg:mt-[83px]">
       <h3 className="text-light-black font-bold text-2xl lg:text-4xl">
-        Shop by Categories
+        {t("headers:ShopByCategories")}
       </h3>
 
       {/* MAIN FLEX WRAPPER */}
       <div className="flex flex-col lg:flex-row gap-3 xl:gap-[25px] h-full 2xl:max-h-[686px]">
         {/* LEFT BIG ITEM */}
-        <div
+        <div  
           className="relative overflow-hidden rounded-[10px] group cursor-pointer w-full lg:max-w-147.5"
           onClick={() => navigate("/product/12")}
         >
@@ -27,10 +29,10 @@ const Categories = () => {
               className="font-bold text-lg xl:text-2xl truncate"
               title="Women Pants"
             >
-              Women Pants
+              {t("shop_by_category:WomenPants")}
             </p>
             <div className="flex items-center gap-2 mt-1">
-              <p className="font-bold text-md lg:text-xl">Explore</p>
+              <p className="font-bold text-md lg:text-xl">{t("headers:Explore")}</p>
               <img src={catArrow} alt="catArrow" loading="lazy" />
             </div>
           </div>
@@ -43,7 +45,7 @@ const Categories = () => {
             {[
               {
                 src: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop",
-                label: "Mens Jacket",
+                label: "MensJacket",
                 link: "/product/1",
               },
               {
@@ -69,10 +71,10 @@ const Categories = () => {
                     className="font-bold text-lg xl:text-2xl"
                     title={item.label}
                   >
-                    {item.label}
+                    {t(`shop_by_category:RightSection:${item.label}`)}
                   </p>
                   <div className="flex items-center gap-2 mt-1">
-                    <p className="font-bold text-xl">Explore</p>
+                    <p className="font-bold text-xl">{t("headers:Explore")}</p>
                     <img src={catArrow} alt="catArrow" loading="lazy" />
                   </div>
                 </div>
@@ -99,10 +101,10 @@ const Categories = () => {
                   className="font-bold text-lg xl:text-2xl truncate"
                   title="Womens Tops"
                 >
-                  Womens Tops
+                  {t("shop_by_category:WomensTops")}
                 </p>
                 <div className="flex items-center gap-2 mt-1">
-                  <p className="font-bold text-md lg:text-xl">Explore</p>
+                  <p className="font-bold text-md lg:text-xl">{t("headers:Explore")}</p>
                   <img src={catArrow} alt="catArrow" loading="lazy" />
                 </div>
               </div>
@@ -118,7 +120,7 @@ const Categories = () => {
                 },
                 {
                   src: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?q=80&w=1200&auto=format&fit=crop",
-                  label: "Womens Jackets",
+                  label: "WomensJackets",
                   link: "/product/9",
                 },
               ].map((item, i) => (
@@ -139,11 +141,11 @@ const Categories = () => {
                       className="font-bold text-lg xl:text-2xl truncate  md:max-w-[150px]"
                       title={item.label}
                     >
-                      {item.label}
+                      {t(`shop_by_category:BottomSection:${item.label}`)}
                     </p>
                     <div className="flex items-center gap-2 mt-1">
                       <p className="font-bold text-md lg:text-lg xl:text-xl">
-                        Explore
+                        {t("headers:Explore")}
                       </p>
                       <img src={catArrow} alt="catArrow" loading="lazy" />
                     </div>

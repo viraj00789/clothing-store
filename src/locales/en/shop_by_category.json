@@ -1,0 +1,12 @@
+{
+    "WomenPants": "Women Pants",
+    "RightSection":{
+        "MensJacket": "Mens Jacket",
+        "Sweater": "Sweater"
+    },
+    "WomensTops": "Womens Tops",
+    "BottomSection":{
+        "Pants": "Pants",
+        "WomensJackets": "Womens Jackets"
+    }
+}

@@ -1,0 +1,452 @@
+{
+    "1": {
+        "title": "Women's Denim Jacket",
+        "brand": "Levi's",
+        "rating": 4.4,
+        "price": 700,
+        "oldPrice": 1000,
+        "discount": "30% off",
+        "soldBy": "Levi's Pvt. Ltd."
+    },
+    "2": {
+        "title": "Men's Leather Jacket",
+        "brand": "Zara",
+        "rating": 4.6,
+        "price": 1200,
+        "oldPrice": 2000,
+        "discount": "40% off",
+        "soldBy": "Zara India Pvt. Ltd."
+    },
+    "3": {
+        "title": "Summer Dress",
+        "brand": "H&M",
+        "rating": 4.2,
+        "price": 900,
+        "oldPrice": 1500,
+        "discount": "40% off",
+        "soldBy": "H&M India Pvt. Ltd."
+    },
+    "4": {
+        "title": "Casual T-Shirt",
+        "brand": "Nike",
+        "rating": 4.7,
+        "price": 500,
+        "oldPrice": 800,
+        "discount": "37% off",
+        "soldBy": "Nike India Pvt. Ltd."
+    },
+    "5": {
+        "title": "Formal Shirt",
+        "brand": "Adidas",
+        "rating": 4.5,
+        "price": 650,
+        "oldPrice": 1000,
+        "discount": "35% off",
+        "soldBy": "Adidas India Pvt. Ltd."
+    },
+    "6": {
+        "title": "Men's Hoodie",
+        "brand": "Puma",
+        "rating": 4.5,
+        "price": 800,
+        "oldPrice": 1400,
+        "discount": "43% off",
+        "soldBy": "Puma India Pvt. Ltd."
+    },
+    "7": {
+        "title": "Women's Jumpsuit",
+        "brand": "Marks & Spencer",
+        "rating": 4.4,
+        "price": 1100,
+        "oldPrice": 1800,
+        "discount": "39% off",
+        "soldBy": "Marks & Spencer India"
+    },
+    "8": {
+        "title": "Men's Slim Fit Jeans",
+        "brand": "Roadster",
+        "rating": 4.6,
+        "price": 950,
+        "oldPrice": 1600,
+        "discount": "41% off",
+        "soldBy": "Roadster Pvt. Ltd."
+    },
+    "9": {
+        "title": "Women's Kurti",
+        "brand": "Biba",
+        "rating": 4.4,
+        "price": 750,
+        "oldPrice": 1200,
+        "discount": "38% off",
+        "soldBy": "Biba Apparels Pvt. Ltd."
+    },
+    "10": {
+        "title": "Men's Polo T-Shirt",
+        "brand": "Allen Solly",
+        "rating": 4.7,
+        "price": 600,
+        "oldPrice": 999,
+        "discount": "40% off",
+        "soldBy": "Allen Solly India Pvt. Ltd."
+    },
+    "11": {
+        "title": "Men's Bomber Jacket",
+        "brand": "Jack & Jones",
+        "rating": 4.5,
+        "price": 1100,
+        "oldPrice": 1800,
+        "discount": "39% off",
+        "soldBy": "Jack & Jones India"
+    },
+    "12": {
+        "title": "Women's Maxi Dress",
+        "brand": "Marks & Spencer",
+        "rating": 4.3,
+        "price": 999,
+        "oldPrice": 1800,
+        "discount": "44% off",
+        "soldBy": "Marks & Spencer India"
+    },
+    "13": {
+        "title": "Unisex Sweatshirt",
+        "brand": "Gap",
+        "rating": 4.4,
+        "price": 850,
+        "oldPrice": 1400,
+        "discount": "39% off",
+        "soldBy": "Gap India Pvt. Ltd."
+    },
+    "14": {
+        "title": "Men's Casual Shirt",
+        "brand": "Van Heusen",
+        "rating": 4.6,
+        "price": 700,
+        "oldPrice": 1200,
+        "discount": "42% off",
+        "soldBy": "Van Heusen India"
+    },
+    "15": {
+        "title": "Women's Blouse",
+        "brand": "Westside",
+        "rating": 4.2,
+        "price": 550,
+        "oldPrice": 900,
+        "discount": "39% off",
+        "soldBy": "Westside Pvt. Ltd."
+    },
+    "16": {
+        "title": "Blouse",
+        "brand": "Westside",
+        "rating": 4.2,
+        "price": 550,
+        "oldPrice": 900,
+        "discount": "39% off",
+        "soldBy": "Westside Pvt. Ltd."
+    },
+    "17": {
+        "title": "Women's Floral Top",
+        "brand": "H&M",
+        "rating": 4.4,
+        "price": 550,
+        "oldPrice": 900,
+        "discount": "39% off",
+        "soldBy": "H&M India Pvt. Ltd."
+    },
+    "18": {
+        "title": "Men's Grey T-Shirt",
+        "brand": "Tommy Hilfiger",
+        "rating": 4.6,
+        "price": 480,
+        "oldPrice": 800,
+        "discount": "40% off",
+        "soldBy": "Tommy Hilfiger India Pvt. Ltd."
+    },
+    "19": {
+        "title": "Women's Black Leggings",
+        "brand": "Nike",
+        "rating": 4.5,
+        "price": 600,
+        "oldPrice": 950,
+        "discount": "37% off",
+        "soldBy": "Nike India Pvt. Ltd."
+    },
+    "20": {
+        "title": "Women's Floral Jumpsuit",
+        "brand": "Marks & Spencer",
+        "rating": 4.4,
+        "price": 1100,
+        "oldPrice": 1800,
+        "discount": "39% off",
+        "soldBy": "Marks & Spencer India"
+    },
+    "21": {
+        "title": "Men's Sports Shorts",
+        "brand": "Adidas",
+        "rating": 4.5,
+        "price": 950,
+        "oldPrice": 1500,
+        "discount": "37% off",
+        "soldBy": "Adidas India Pvt. Ltd."
+    },
+    "22": {
+        "title": "Women's Cotton Kurta",
+        "brand": "Biba",
+        "rating": 4.3,
+        "price": 1250,
+        "oldPrice": 1900,
+        "discount": "34% off",
+        "soldBy": "Biba Apparels Pvt. Ltd."
+    },
+    "23": {
+        "title": "Kids Printed T-Shirt",
+        "brand": "H&M",
+        "rating": 4.4,
+        "price": 650,
+        "oldPrice": 1100,
+        "discount": "41% off",
+        "soldBy": "H&M India Pvt. Ltd."
+    },
+    "24": {
+        "title": "Men's Slim Fit Shirt",
+        "brand": "Van Heusen",
+        "rating": 4.6,
+        "price": 1400,
+        "oldPrice": 2200,
+        "discount": "36% off",
+        "soldBy": "Van Heusen India"
+    },
+    "25": {
+        "title": "Women's Party Gown",
+        "brand": "Zara",
+        "rating": 4.5,
+        "price": 2800,
+        "oldPrice": 4500,
+        "discount": "38% off",
+        "soldBy": "Zara India Pvt. Ltd."
+    },
+    "26": {
+        "title": "Kids Denim Shorts",
+        "brand": "Gap",
+        "rating": 4.2,
+        "price": 800,
+        "oldPrice": 1400,
+        "discount": "43% off",
+        "soldBy": "Gap India Pvt. Ltd."
+    },
+    "27": {
+        "title": "Men's Hoodie Jacket",
+        "brand": "Puma",
+        "rating": 4.4,
+        "price": 1800,
+        "oldPrice": 2800,
+        "discount": "36% off",
+        "soldBy": "Puma India Pvt. Ltd."
+    },
+    "28": {
+        "title": "Women's Casual Top",
+        "brand": "Westside",
+        "rating": 4.3,
+        "price": 950,
+        "oldPrice": 1500,
+        "discount": "37% off",
+        "soldBy": "Westside Pvt. Ltd."
+    },
+    "29": {
+        "title": "Kids Hoodie",
+        "brand": "Nike",
+        "rating": 4.5,
+        "price": 1100,
+        "oldPrice": 1800,
+        "discount": "39% off",
+        "soldBy": "Nike India Pvt. Ltd."
+    },
+    "30": {
+        "title": "Men's Polo T-Shirt",
+        "brand": "Allen Solly",
+        "rating": 4.6,
+        "price": 1150,
+        "oldPrice": 1800,
+        "discount": "36% off",
+        "soldBy": "Allen Solly India Pvt. Ltd."
+    },
+    "31": {
+        "title": "Women's Maxi Skirt",
+        "brand": "Marks & Spencer",
+        "rating": 4.4,
+        "price": 1450,
+        "oldPrice": 2400,
+        "discount": "40% off",
+        "soldBy": "Marks & Spencer India"
+    },
+    "32": {
+        "title": "Kids Party Dress",
+        "brand": "H&M",
+        "rating": 4.5,
+        "price": 1400,
+        "oldPrice": 2200,
+        "discount": "36% off",
+        "soldBy": "H&M India Pvt. Ltd."
+    },
+    "33": {
+        "title": "Men's Track Pants",
+        "brand": "Nike",
+        "rating": 4.6,
+        "price": 1350,
+        "oldPrice": 2100,
+        "discount": "36% off",
+        "soldBy": "Nike India Pvt. Ltd."
+    },
+    "34": {
+        "title": "Women's Denim Skirt",
+        "brand": "Levi's",
+        "rating": 4.3,
+        "price": 1650,
+        "oldPrice": 2600,
+        "discount": "37% off",
+        "soldBy": "Levi's Pvt. Ltd."
+    },
+    "35": {
+        "title": "Kids Casual Shirt",
+        "brand": "Roadster",
+        "rating": 4.2,
+        "price": 800,
+        "oldPrice": 1300,
+        "discount": "38% off",
+        "soldBy": "Roadster Pvt. Ltd."
+    },
+    "36": {
+        "title": "Men's Winter Jacket",
+        "brand": "Jack & Jones",
+        "rating": 4.7,
+        "price": 3200,
+        "oldPrice": 5000,
+        "discount": "36% off",
+        "soldBy": "Jack & Jones India"
+    },
+    "37": {
+        "title": "Women's Blazer",
+        "brand": "Zara",
+        "rating": 4.5,
+        "price": 3200,
+        "oldPrice": 5200,
+        "discount": "38% off",
+        "soldBy": "Zara India Pvt. Ltd."
+    },
+    "38": {
+        "title": "Kids Joggers",
+        "brand": "Puma",
+        "rating": 4.4,
+        "price": 950,
+        "oldPrice": 1500,
+        "discount": "37% off",
+        "soldBy": "Puma India Pvt. Ltd."
+    },
+    "39": {
+        "title": "Men's Casual T-Shirt",
+        "brand": "Gap",
+        "rating": 4.5,
+        "price": 850,
+        "oldPrice": 1400,
+        "discount": "39% off",
+        "soldBy": "Gap India Pvt. Ltd."
+    },
+    "40": {
+        "title": "Women's Summer Dress",
+        "brand": "H&M",
+        "rating": 4.6,
+        "price": 1550,
+        "oldPrice": 2500,
+        "discount": "38% off",
+        "soldBy": "H&M India Pvt. Ltd."
+    },
+    "41": {
+        "title": "Kids Cartoon T-Shirt",
+        "brand": "H&M",
+        "rating": 4.5,
+        "price": 700,
+        "oldPrice": 1200,
+        "discount": "42% off",
+        "soldBy": "H&M India Pvt. Ltd."
+    },
+    "42": {
+        "title": "Kids Hoodie Jacket",
+        "brand": "Puma",
+        "rating": 4.6,
+        "price": 1400,
+        "oldPrice": 2200,
+        "discount": "36% off",
+        "soldBy": "Puma India Pvt. Ltd."
+    },
+    "43": {
+        "title": "Kids Party Dress",
+        "brand": "Zara",
+        "rating": 4.4,
+        "price": 1700,
+        "oldPrice": 2700,
+        "discount": "37% off",
+        "soldBy": "Zara India Pvt. Ltd."
+    },
+    "44": {
+        "title": "Kids Denim Jeans",
+        "brand": "Gap",
+        "rating": 4.3,
+        "price": 1100,
+        "oldPrice": 1800,
+        "discount": "39% off",
+        "soldBy": "Gap India Pvt. Ltd."
+    },
+    "45": {
+        "title": "Kids Princess Gown",
+        "brand": "Marks & Spencer",
+        "rating": 4.7,
+        "price": 2300,
+        "oldPrice": 3800,
+        "discount": "39% off",
+        "soldBy": "Marks & Spencer India"
+    },
+    "46": {
+        "title": "Kids Casual Shirt",
+        "brand": "Roadster",
+        "rating": 4.2,
+        "price": 850,
+        "oldPrice": 1400,
+        "discount": "39% off",
+        "soldBy": "Roadster Pvt. Ltd."
+    },
+    "47": {
+        "title": "Kids Joggers Pant",
+        "brand": "Nike",
+        "rating": 4.5,
+        "price": 950,
+        "oldPrice": 1500,
+        "discount": "37% off",
+        "soldBy": "Nike India Pvt. Ltd."
+    },
+    "48": {
+        "title": "Kids Polo T-Shirt",
+        "brand": "Allen Solly",
+        "rating": 4.4,
+        "price": 800,
+        "oldPrice": 1300,
+        "discount": "38% off",
+        "soldBy": "Allen Solly India Pvt. Ltd."
+    },
+    "49": {
+        "title": "Kids Skirt",
+        "brand": "Westside",
+        "rating": 4.3,
+        "price": 1000,
+        "oldPrice": 1700,
+        "discount": "41% off",
+        "soldBy": "Westside Pvt. Ltd."
+    },
+    "50": {
+        "title": "Kids Summer Dress",
+        "brand": "H&M",
+        "rating": 4.6,
+        "price": 1250,
+        "oldPrice": 2000,
+        "discount": "38% off",
+        "soldBy": "H&M India Pvt. Ltd."
+    }
+}

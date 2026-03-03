@@ -3,6 +3,7 @@ import box from "../../../assets/Services/box.svg";
 import headphone from "../../../assets/Services/headphone.svg";
 import offer from "../../../assets/Services/offer.svg";
 import trucks from "../../../assets/Services/truck.svg";
+import { useTranslation } from "react-i18next";
 
 const ServiceesArray = [
   {
@@ -38,6 +39,7 @@ const ServiceesArray = [
 ];
 
 export default function Services() {
+  const {t} = useTranslation('services');
   return (
     <div
       className="px-3.75 xl:px-12.5 pb-2 mt-3 md:mt-6 lg:mt-[85px] lg:py-5 flex items-center justify-between gap-3 overflow-auto
@@ -52,8 +54,8 @@ export default function Services() {
             <img src={item.image} loading="lazy" />
           </div>
           <div className="text-center space-y-3 lg:space-y-4">
-            <p className="font-bold text-xl lg:text-2xl">{item.label}</p>
-            <p className="text-light-black text-lg leading-3.45">{item.desc}</p>
+            <p className="font-bold text-xl lg:text-2xl">{t(`services:${item.id}:label`)}</p>
+            <p className="text-light-black text-lg leading-3.45">{t(`services:${item.id}:desc`)}</p>
           </div>
         </div>
       ))}

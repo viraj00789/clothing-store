@@ -19,6 +19,7 @@ import { isAuthenticatedFromStorage } from "../utils/Auth";
 import { HideNavbarOn, navItems, navLinks } from "../../data/NavbarData";
 import { clearCart } from "../store/slices/cartSlice";
 import { products } from "../../data/ProductDetailsData";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -48,6 +49,7 @@ const Navbar = () => {
   const closeSlider = useEffectEvent(() => {
     setOpen(false);
   });
+  const {t} = useTranslation("navbar");
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1024px)"); // Tailwind lg = 1024px
@@ -76,7 +78,7 @@ const Navbar = () => {
       show: (authUser) => !!authUser,
     },
     {
-      label: "Forgot Password",
+      label: "ForgotPassword",
       to: "/forgot-password",
       show: (authUser) => !!authUser, // or true if you want always visible
     },
@@ -297,7 +299,7 @@ const Navbar = () => {
         `
                     }
                   >
-                    {link.label}
+                    {t(`navbar:${link.label}`)}
                   </NavLink>
                 </li>
               ))}
@@ -316,7 +318,7 @@ const Navbar = () => {
                 />
                 <input
                   type="search"
-                  placeholder="Search the desired product....."
+                  placeholder={t("navbar:SearchDesiredProduct")}
                   value={value}
                   onChange={(e) => {
                     const input = e.target.value;
@@ -335,7 +337,7 @@ const Navbar = () => {
                   className="w-full h-12 bg-light-gray focus:outline-none rounded-lg px-6 pr-18 appearance-none text-gray-600
                    [&::-webkit-search-cancel-button]:hidden
                    [&::-webkit-search-decoration]:hidden
-                   [&::-ms-clear]:hidden"
+                   [&::-ms-clear]:hidden placeholder:text-md"
                 />
 
                 {value && (
@@ -499,7 +501,7 @@ const Navbar = () => {
         group-hover:opacity-100 group-hover:visible
         transition-all duration-200
         bg-white border border-gray-200 shadow-md
-        text-sm font-semibold
+        text-md font-normal
         px-2 py-2 rounded-md
         z-50
         whitespace-nowrap
@@ -526,7 +528,7 @@ const Navbar = () => {
               ${item.danger ? "text-red-600" : "text-gray-700"}
             `}
                         >
-                          {item.label}
+                          {t(`navbar:${item.label}`)}
                         </button>
                       ))}
                   </div>
@@ -610,7 +612,7 @@ const Navbar = () => {
                     className="text-gray-700 text-lg"
                     onClick={() => setOpen(false)}
                   >
-                    {link.label}
+                    {t(`navbar:${link.label}`)}
                   </Link>
                 </li>
               ))}
@@ -646,7 +648,7 @@ const Navbar = () => {
                         }
                       }}
                     >
-                      {item.label}
+                      {t(`navbar:${item.label}`)}
                     </p>
                   ))}
               </div>
