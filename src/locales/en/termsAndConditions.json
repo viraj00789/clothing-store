@@ -1,0 +1,55 @@
+{
+  "Title": "Terms & Conditions",
+  "LastUpdated": "Last Updated: February 2026",
+  "Introduction": "Welcome to Globex. These Terms and Conditions govern your access to and use of our website, products, and services. By accessing, browsing, or purchasing from our website, you agree to comply with and be legally bound by these terms. If you do not agree with any part of these Terms, you should discontinue use of our website immediately.",
+  "Sections": [
+    {
+      "title": "1. Eligibility",
+      "content": "By using this website, you represent that you are at least 18 years old or accessing the website under the supervision of a parent or legal guardian. You agree to provide accurate, current, and complete information when creating an account or placing an order."
+    },
+    {
+      "title": "2. Use of Our Website",
+      "content": "You agree to use our website only for lawful purposes. You must not use the website in any way that may cause damage, interruption, unauthorized access, or impairment of the website or its services. Attempting to hack, copy, distribute malicious software, or exploit vulnerabilities is strictly prohibited and may result in legal action."
+    },
+    {
+      "title": "3. Account Responsibility",
+      "content": "If you create an account, you are responsible for maintaining the confidentiality of your login credentials and restricting access to your account. You agree to accept responsibility for all activities that occur under your account. We reserve the right to suspend or terminate accounts that violate these Terms."
+    },
+    {
+      "title": "4. Orders and Acceptance",
+      "content": "All orders placed through our website are subject to availability and acceptance. We reserve the right to refuse, cancel, or limit any order at our sole discretion, including orders that appear to be fraudulent or placed by resellers. Once you place an order, you will receive a confirmation email. However, this does not guarantee acceptance of your order. We may cancel orders due to pricing errors, stock issues, or payment verification problems."
+    },
+    {
+      "title": "5. Pricing and Payments",
+      "content": "All prices are displayed in the applicable currency and are subject to change without notice. We strive to ensure pricing accuracy but reserve the right to correct errors. You agree to provide current, complete, and accurate payment information for all purchases made on our website."
+    },
+    {
+      "title": "6. Shipping and Delivery",
+      "content": "Shipping times are estimates and may vary depending on your location, product availability, and external courier services. We are not responsible for delays caused by shipping carriers, customs processing, or unforeseen circumstances beyond our control."
+    },
+    {
+      "title": "7. Returns and Refund Policy",
+      "content": "If you are not satisfied with your purchase, you may request a return within the applicable return window. Items must be unused, in original condition, and in original packaging. Refunds will be processed using the original payment method after inspection of the returned item."
+    },
+    {
+      "title": "8. Intellectual Property",
+      "content": "All website content including text, images, logos, graphics, product designs, and layout are the intellectual property of Globex and are protected under applicable copyright and trademark laws. Unauthorized reproduction or distribution is strictly prohibited."
+    },
+    {
+      "title": "9. Limitation of Liability",
+      "content": "To the fullest extent permitted by law, Globex shall not be liable for any indirect, incidental, special, or consequential damages arising out of or related to your use of the website or products. Your sole remedy for dissatisfaction is to discontinue using our services."
+    },
+    {
+      "title": "10. Indemnification",
+      "content": "You agree to indemnify and hold harmless Globex, its affiliates, employees, and partners from any claims, damages, losses, or legal fees resulting from your violation of these Terms or misuse of the website."
+    },
+    {
+      "title": "11. Governing Law",
+      "content": "These Terms and Conditions shall be governed and interpreted in accordance with the laws applicable in your jurisdiction. Any disputes arising under these terms shall be resolved through appropriate legal channels."
+    },
+    {
+      "title": "12. Changes to These Terms",
+      "content": "We reserve the right to update or modify these Terms at any time. Updates will be posted on this page with a revised date. Continued use of our website after changes are posted constitutes acceptance of the updated Terms."
+    }
+  ]
+}

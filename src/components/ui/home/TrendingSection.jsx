@@ -220,7 +220,7 @@ const TrendingSection = () => {
                     {product.allImages.length - 3 > 0 && (
                       <div className="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer">
                         <span className="text-white text-4xl font-bold">
-                          + {product.allImages.length - 3}
+                          + {formatNumber(product.allImages.length - 3)}
                         </span>
                       </div>
                     )}

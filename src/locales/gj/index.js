@@ -12,6 +12,8 @@ import about from "../gj/about.json";
 import footer from "../gj/footer.json";
 import productSpecification from "../gj/productSpecification.json";
 import similarProducts from "../gj/similarProducts.json";
+import termsAndConditions from "../gj/termsAndConditions.json";
+import pPolicy from "../gj/p-policy.json";
 
 export default {
   profile,
@@ -27,5 +29,7 @@ export default {
   about,
   footer,
   productSpecification,
-  similarProducts
+  similarProducts,
+  termsAndConditions,
+  pPolicy
 };
