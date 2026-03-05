@@ -1,0 +1,30 @@
+{
+  "DefaultTitle": "Similar Products",
+  "List": [
+    {
+      "title": "Women's Denim Jacket",
+      "brand": "Levi's",
+      "discount": "30% off"
+    },
+    {
+      "title": "Men's Leather Jacket",
+      "brand": "Zara",
+      "discount": "40% off"
+    },
+    {
+      "title": "Summer Dress",
+      "brand": "H&M",
+      "discount": "40% off"
+    },
+    {
+      "title": "Casual T-Shirt",
+      "brand": "Nike",
+      "discount": "37% off"
+    },
+    {
+      "title": "Formal Shirt",
+      "brand": "Adidas",
+      "discount": "35% off"
+    }
+  ]
+}

@@ -5,6 +5,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { useWindow } from "../../../hooks/useWidth";
 import { Link } from "react-router";
+import { useTranslation } from "react-i18next";
+import useNumberInGujarati from "../../../hooks/useNumberInGujarati";
 
 const products = [
   {
@@ -69,12 +71,15 @@ const products = [
   },
 ];
 
-const SimilarProduct = ({ title = "Similar Products" }) => {
+const SimilarProduct = ({ title }) => {
+  const { t } = useTranslation();
+  const { formatNumber } = useNumberInGujarati();
+  const displayTitle = title || t("similarProducts:DefaultTitle");
   const width = useWindow();
   return (
     <div className="px-3.75 xl:px-12.5 space-y-3 lg:space-y-[27px]">
       <h3 className="text-light-black font-bold text-2xl lg:text-4xl">
-        {title}
+        {displayTitle}
       </h3>
 
       <Swiper
@@ -82,7 +87,7 @@ const SimilarProduct = ({ title = "Similar Products" }) => {
         slidesPerView="auto"
         className="overflow-visible"
       >
-        {products.map((product) => (
+        {products.map((product, index) => (
           <SwiperSlide
             key={product.id}
             className="!w-70 lg:!w-[410px] min-h-[317px] lg:!min-h-[423px] my-3 cursor-pointer rounded-[10px] shadow-[0px_0px_30px_0px_#0000000D]"
@@ -101,14 +106,14 @@ const SimilarProduct = ({ title = "Similar Products" }) => {
               <div className="px-5 py-2.5 space-y-1 rounded-b-[10px] min-h-full sm:min-h-[150px] lg:min-h-full">
                 <div
                   className="font-bold text-xl lg:text-[24px] text-light-black truncate"
-                  title={product.title}
+                  title={t("similarProducts:List:" + index + ":title")}
                 >
-                  {product.title}
+                  {t("similarProducts:List:" + index + ":title")}
                 </div>
 
                 <div className="flex gap-7.5 items-center">
                   <p className="text-lg font-normal text-light-black">
-                    {product.brand}
+                    {t("similarProducts:List:" + index + ":brand")}
                   </p>
                   {/* <div className="flex items-center justify-center gap-2">
                     <p className="text-dark-gray text-lg">{product.rating}</p>
@@ -121,14 +126,14 @@ const SimilarProduct = ({ title = "Similar Products" }) => {
                   </div> */}
                 </div>
 
-                <div className="flex gap-1 flex-wrap">
+                <div className="flex items-center gap-1 flex-wrap">
                   <p className="font-bold text-lg lg:text-2xl whitespace-nowrap text-light-black">
-                    Rs. {product.price}
+                    ₹ {formatNumber(product.price)}
                   </p>
                   <p className="text-dark-gray line-through text-lg font-normal">
-                    Rs. {product.oldPrice}
+                    ₹ {formatNumber(product.oldPrice)}
                   </p>
-                  <p className="text-green text-lg">({product.discount})</p>
+                  <p className="text-green text-lg">({t("similarProducts:List:" + index + ":discount")})</p>
                 </div>
               </div>
             </Link>

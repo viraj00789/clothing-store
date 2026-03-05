@@ -11,6 +11,7 @@ import services from "../gj/services.json";
 import about from "../gj/about.json";
 import footer from "../gj/footer.json";
 import productSpecification from "../gj/productSpecification.json";
+import similarProducts from "../gj/similarProducts.json";
 
 export default {
   profile,
@@ -25,5 +26,6 @@ export default {
   services,
   about,
   footer,
-  productSpecification
+  productSpecification,
+  similarProducts
 };
