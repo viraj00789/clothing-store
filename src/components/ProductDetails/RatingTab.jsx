@@ -177,7 +177,7 @@ const RatingTab = () => {
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-black/50 flex items-center justify-center text-white font-normal text-lg 2xl:text-5xl">
-                        +{review.images.length - 2}
+                        +{formatNumber(review.images.length - 2)}
                       </div>
                     </div>
                   )}
