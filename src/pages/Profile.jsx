@@ -110,11 +110,11 @@ const Profile = () => {
                       <span
                         className={`transition-colors duration-300 ${
                           i18n.language === "gj"
-                            ? "text-black"
-                            : "text-gray-400"
+                            ? "text-black text-md"
+                            : "text-gray-400 text-lg leading-2 mb-1.5"
                         }`}
                       >
-                        GJ
+                        ગુજ
                       </span>
                     </span>
                   </button>
