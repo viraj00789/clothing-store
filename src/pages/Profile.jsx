@@ -81,7 +81,7 @@ const Profile = () => {
                 </div>
                 {/* <FiChevronRight className="text-light-black-2" size={20} /> */}
                 {/* 🌍 Language Switch */}
-                <div className="flex justify-end">
+                <div className="flex justify-end z-1">
                   <button
                     onClick={handleLanguage}
                     className="relative w-24 h-10 bg-gray-100 rounded-full p-1 shadow-inner transition-all duration-300 cursor-pointer"
