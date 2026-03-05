@@ -25,6 +25,7 @@ import {
 } from "../../../store/slices/cartSlice";
 import { flyToCart } from "../../../utils/FlyToCart";
 import { useTranslation } from "react-i18next";
+import useNumberInGujrati from "../../../hooks/useNumberInGujarati";
 
 const TrendingSection = () => {
   const width = useWindow();
@@ -32,7 +33,8 @@ const TrendingSection = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {t} = useTranslation("products")
+  const {t,i18n} = useTranslation("products");
+  const { formatNumber } = useNumberInGujrati();
   const wishlistItems = useSelector((state) => state.wishlist.items);
 
   const isInWishlist = (id) => wishlistItems.some((item) => item.id === id);
@@ -283,7 +285,7 @@ const TrendingSection = () => {
                       </button>
 
                       <span className="text-sm font-medium p-2.5 border-l border-r w-full text-center bg-dark-blue text-white">
-                        {getCartItem(product.id).qty}
+                        {formatNumber(getCartItem(product.id).qty)}
                       </span>
 
                       <button
@@ -311,7 +313,7 @@ const TrendingSection = () => {
                         dispatch(addToCart(product));
                       }}
                     >
-                      <button className="font-normal text-sm text-white cursor-pointer!">
+                      <button className={`font-normal text-sm text-white cursor-pointer ${i18n.language === "gj" ? "mt-1" : "mt-0"}`}>
                         {t("headers:AddToCart")}
                       </button>
                       <img
@@ -333,12 +335,11 @@ const TrendingSection = () => {
       {open && (
         <div className="fixed inset-0 z-100 bg-black flex flex-col">
           {/* Close button */}
-          <div className="px-2 py-6 flex justify-start items-center">
+          <div className="px-2 py-6 flex justify-start items-center cursor-pointer" onClick={() => setOpen(false)}>
             <IoIosArrowBack
-              onClick={() => setOpen(false)}
               className="text-white text-2xl font-bold"
             />
-            <p className="text-white text-xl font-bold">{t("headers:TrendingNow")}</p>
+            <p className={`text-white text-xl font-bold ${i18n.language === "gj" ? "mt-1.5" : "mt-0"}`}>{t("headers:TrendingNow")}</p>
           </div>
 
           {/* Scrollable images */}

@@ -43,9 +43,9 @@ const sections = [
   {
     title: "Women",
     items: [
-      { label: "All Women", link: "/search/all?q=women" },
+      { label: "AllWomen", link: "/search/all?q=women" },
       { label: "Skirts", link: "/search/all?q=kurti" },
-      { label: "T-Shirts", link: "/search/all?q=shirt" },
+      { label: "TShirts", link: "/search/all?q=shirt" },
       { label: "Tops", link: "/search/all?q=top" },
       { label: "Jackets", link: "/search/all?q=jacket" },
     ],
@@ -53,9 +53,9 @@ const sections = [
   {
     title: "Men",
     items: [
-      { label: "All Men", link: "/search/all?q=men" },
+      { label: "AllMen", link: "/search/all?q=men" },
       { label: "Shirts", link: "/search/all?q=shirt" },
-      { label: "T-Shirts", link: "/search/all?q=tshirt" },
+      { label: "TShirts", link: "/search/all?q=tshirt" },
       { label: "Shorts", link: "/search/all?q=shorts" },
       { label: "Jackets", link: "/search/all?q=men" },
     ],
@@ -63,9 +63,9 @@ const sections = [
   {
     title: "Kids",
     items: [
-      { label: "All Kids", link: "/search/all?q=kid" },
+      { label: "AllKids", link: "/search/all?q=kid" },
       { label: "Shirts", link: "/search/all?q=shirt" },
-      { label: "T-Shirts", link: "/search/all?q=shirt" },
+      { label: "TShirts", link: "/search/all?q=shirt" },
       { label: "Shorts", link: "/search/all?q=shorts" },
       { label: "Jackets", link: "/search/all?q=jacket" },
     ],
@@ -73,20 +73,20 @@ const sections = [
   {
     title: "Shopping",
     items: [
-      { label: "Your cart", link: "/cart" },
-      { label: "Your orders", link: "/orders" },
-      { label: "Compared items", link: "/" },
+      { label: "YourCart", link: "/cart" },
+      { label: "YourOrders", link: "/orders" },
+      { label: "ComparedItems", link: "/" },
       { label: "Wishlist", link: "/wishlist" },
-      { label: "Shipping Details", link: "/" },
+      { label: "ShippingDetails", link: "/" },
     ],
   },
   {
     title: "More links",
     items: [
       { label: "Blogs", link: "/" },
-      { label: "Gift center", link: "/" },
-      { label: "Buying guides", link: "/" },
-      { label: "New arrivals", link: "/" },
+      { label: "GiftCenter", link: "/" },
+      { label: "BuyingGuides", link: "/" },
+      { label: "NewArrivals", link: "/" },
       { label: "Clearance", link: "/" },
     ],
   },
@@ -95,6 +95,7 @@ const sections = [
 const Footer = () => {
   const [open, setOpen] = useState(null);
   const [emailData, setEmailData] = useState("");
+  const { t } = useTranslation();
 
   const toggle = (i) => {
     setOpen(open === i ? null : i);
@@ -126,7 +127,7 @@ const Footer = () => {
                     open === i ? "text-white" : ""
                   }`}
                 >
-                  {sec.title}
+                 {t(`footer:title${i + 1}`)}
 
                   {/* React Icon Arrow */}
                   <FiChevronDown
@@ -150,9 +151,9 @@ const Footer = () => {
                         to={item.link}
                         className="font-normal text-lg cursor-pointer"
                       >
-                        {item.label}
+                      {t(`footer:items${i + 1}:${item.label}`)}                      
                       </Link>
-                    ))}
+                      ))}
                   </div>
                 </div>
               </div>
@@ -160,16 +161,15 @@ const Footer = () => {
 
             {/* Stay in Touch */}
             <div className="flex flex-col items-center lg:items-start gap-4 w-full lg:max-w-[445px] bg-dark-footer">
-              <h3 className="text-respo-24">Stay In Touch</h3>
+              <h3 className="text-respo-24">{t(`footer:StayInTouch`)}</h3>
               <p className="font-normal text-lg max-w-[445px] text-center lg:text-left">
-                Stay in touch to get special offers, free giveaways and once in
-                a lifetime deals
+                {t(`footer:StayInTouchText`)}
               </p>
               <div className="relative w-full  max-w-[445px] flex flex-col items-center justify-center">
                 <input
-                  className="border border-white h-11 w-full px-15 placeholder:text-footer-input focus:outline-none placeholder:text-lg"
+                  className="border border-white h-11 w-full px-15 placeholder:text-footer-input focus:outline-none placeholder:text-lg placeholder:mb-2"
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder={t(`footer:EnterYourEmail`)}
                   value={emailData}
                   onChange={(e) => setEmailData(e.target.value)}
                 />
@@ -201,13 +201,13 @@ const Footer = () => {
             to="/terms-and-conditions"
             className="cursor-pointer font-normal text-lg"
           >
-            Terms & Conditions
+            {t(`footer:TermsAndConditions`)}
           </Link>
           <Link
             to="/privacy-policy"
             className="cursor-pointer font-normal text-lg"
           >
-            Privacy Policy
+           {t(`footer:PrivacyPolicy`)}
           </Link>
           <div className="flex justify-center gap-8.5">
             {images.map((image) => (

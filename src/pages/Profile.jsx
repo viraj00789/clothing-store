@@ -139,8 +139,7 @@ const Profile = () => {
           <div className="text-md text-center text-gray-400 mt-6">
             <Link to="/privacy-policy">{t("profile:PrivacyPolicy")}</Link> |
             <Link to="/terms-and-conditions">
-              {" "}
-              {t("profile:TermsAndConditions")}{" "}
+              {t("footer:TermsAndConditions")}
             </Link>
           </div>
         </div>

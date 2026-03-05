@@ -4,7 +4,6 @@ import Search from "../assets/search.svg";
 import ClothingLogo from "../assets/clothing.png";
 import Heart from "../assets/heart.svg";
 import Cart from "../assets/cart.svg";
-import Girl from "../assets/logged-girl.svg";
 import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 import { useEffect, useEffectEvent, useState } from "react";
 import { IoClose, IoArrowBack } from "react-icons/io5";
@@ -20,6 +19,7 @@ import { HideNavbarOn, navItems, navLinks } from "../../data/NavbarData";
 import { clearCart } from "../store/slices/cartSlice";
 import { products } from "../../data/ProductDetailsData";
 import { useTranslation } from "react-i18next";
+import useNumberInGujarati from "../hooks/useNumberInGujarati";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -34,6 +34,7 @@ const Navbar = () => {
   const isHome = currentPath === "/";
   const isSearch = currentPath.startsWith("/search");
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const { formatNumber } = useNumberInGujarati();
 
   const queryFromURL = new URLSearchParams(location.search).get("q") || "";
 
@@ -49,7 +50,7 @@ const Navbar = () => {
   const closeSlider = useEffectEvent(() => {
     setOpen(false);
   });
-  const {t} = useTranslation("navbar");
+  const {t, i18n} = useTranslation("navbar");
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1024px)"); // Tailwind lg = 1024px
@@ -438,7 +439,7 @@ const Navbar = () => {
         animate-[pop_0.3s_ease-out]
       "
                   >
-                    {wishlistCount}
+                    {formatNumber(wishlistCount)}
                   </span>
                 )}
               </div>
@@ -474,7 +475,7 @@ const Navbar = () => {
 
       "
                   >
-                    {items.length}
+                    {formatNumber(items.length)}
                   </span>
                 )}
               </div>
@@ -695,15 +696,15 @@ const Navbar = () => {
 
                   {/* Wishlist badge */}
                   {isHeart && wishlistCount > 0 && (
-                    <span className="absolute -top-1 -right-2 min-w-[16px] h-[16px] px-1 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
-                      {wishlistCount}
+                    <span className={`absolute -top-1 -right-2 min-w-[16px] h-[16px] px-1 bg-red-500 text-white  font-bold rounded-full flex items-center justify-center ${i18n.language === "gj" ? "text-sm" : "text-[10px]"}`}>
+                      {formatNumber(wishlistCount)}
                     </span>
                   )}
 
                   {/* Cart badge */}
                   {isCart && items.length > 0 && (
-                    <span className="absolute -top-1 -right-2 min-w-[16px] h-[16px] px-1 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
-                      {items.length}
+                    <span className={`absolute -top-1 -right-2 min-w-[16px] h-[16px] px-1 bg-red-500 text-white font-bold rounded-full flex items-center justify-center ${i18n.language === "gj" ? "text-sm" : "text-[10px]"}`}>
+                      {formatNumber(items.length)}
                     </span>
                   )}
                 </button>

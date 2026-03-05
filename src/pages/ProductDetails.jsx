@@ -29,6 +29,8 @@ import { increaseQty, decreaseQty, addToCart } from "../store/slices/cartSlice";
 import { isAuthenticatedFromStorage } from "../utils/Auth";
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { flyToCart } from "../utils/FlyToCart";
+import { useTranslation } from "react-i18next";
+import useNumberInGujarati from "../hooks/useNumberInGujarati";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -44,6 +46,8 @@ const ProductDetails = () => {
   const isInWishlist = wishlistItems.some((p) => p.id === product.id);
   const { isAuthenticated = false } = isAuthenticatedFromStorage();
   const navigate = useNavigate();
+  const { t ,i18n} = useTranslation("productDetails");
+  const { formatNumber } = useNumberInGujarati();
   // Cart States
   //
   const cartItems = useSelector((state) => state.cart.items);
@@ -83,62 +87,7 @@ const ProductDetails = () => {
     }
   }, [id, product]);
 
-  // Need for the the future
-
-  // const flyToCart = (event, product) => {
-  //   if (!product) return;
-
-  //   const cart = document.getElementById("cart-icon");
-  //   if (!cart) return;
-
-  //   const cartRect = cart.getBoundingClientRect();
-  //   const buttonRect = event.currentTarget.getBoundingClientRect();
-
-  //   // start at center of button
-  //   const startX = buttonRect.left + buttonRect.width / 2 - 150;
-  //   const startY = buttonRect.top + buttonRect.height / 2 + 30;
-
-  //   // end at center of cart
-  //   const endX = cartRect.left + cartRect.width / 2 - 60;
-  //   const endY = cartRect.top + cartRect.height / 2 - 60;
-
-  //   // create flying image
-  //   const img = document.createElement("img");
-  //   img.src = product.allImages[0];
-  //   img.className = "fly-item";
-  //   img.style.width = "200px";
-  //   img.style.height = "200px";
-  //   img.style.borderRadius = "20px";
-  //   img.style.left = startX + "px";
-  //   img.style.top = startY + "px";
-  //   img.style.objectFit= "cover"
-  //   img.style.opacity = "0.77";
-  //   document.body.appendChild(img);
-
-  //   // force reflow so initial position registers
-  //   img.getBoundingClientRect();
-
-  //   // calculate the "J-shaped" curve:
-  //   // first go down & right, then up slightly into cart
-  //   const midX = startX + (endX - startX) / 4 ; // mid-point x
-  //   const midY = startY + 70; // go down first
-
-  //   // simulate J curve using multiple steps with setTimeout
-  //   setTimeout(() => {
-  //     img.style.transition = "transform 0.6s cubic-bezier(0.65, 0, 0.35, 1)";
-  //     img.style.transform = `translate(${midX - startX}px, ${midY - startY}px) scale(0.6)`;
-  //   }, 10);
-
-  //   setTimeout(() => {
-  //     img.style.transition =
-  //       "transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.6s ease";
-  //     img.style.transform = `translate(${endX - startX - 40}px, ${endY - startY - 40}px) scale(0.2)`;
-  //     img.style.opacity = "0.5";
-  //   }, 620);
-
-  //   // remove after animation
-  //   setTimeout(() => img.remove(), 1250);
-  // };
+  
   if (!product) {
     return <div className="p-10 text-xl">Product not found ❌</div>;
   }
@@ -215,14 +164,15 @@ const ProductDetails = () => {
             <div className="flex justify-between">
               <div className="flex flex-col gap-[5px] sm:gap-2.5 xl:gap-4.5">
                 <h1 className="text-xl md:text-2xl xl:text-4xl font-medium lg:font-bold text-light-black">
-                  {product.title}
+                  {t(`products:${id}:title`)}
                 </h1>
                 <p className="text-light-black font-normal text-sm md:text-lg lg:text-2xl">
-                  {product.brand}
+                  {t(`products:${id}:brand`)}
                 </p>
-                <p className="text-light-black font-normal text-sm md:text-lg">
-                  Sold By: {product.soldBy}
-                </p>
+                {i18n.language === "en" ? <p className="text-light-black font-normal text-sm md:text-lg">
+                 Sold By: {t(`products:${id}:brand`)} </p>: <p className="text-light-black font-normal text-sm md:text-lg">
+               {t(`products:${id}:soldBy`)} {t(`products:SoldBy`)}
+                </p>}
               </div>
               <div>
                 <img
@@ -246,23 +196,23 @@ const ProductDetails = () => {
                   <img src={WhiteStar} loading="lazy" />
                 </div>
                 <span className="font-normal text-lg text-light-black">
-                  {product.rating}
+                  {formatNumber(product.rating)}
                 </span>
               </div>
-              <p clasname="font-normal text-lg text-light-black">36 Reviews</p>
+              <p clasname="font-normal text-lg text-light-black">{formatNumber(36)} {t(`products:Reviews`)}</p>
             </div>
 
             {/* ================= Price: DETAILS ================= */}
 
             <div className="flex items-center gap-4">
               <span className="text-2xl font-bold text-light-black">
-                Rs. {product.price}
+                ₹ {formatNumber(product.price)}
               </span>
               <span className="line-through text-mid-dark-gray text-lg font-normal">
-                Rs. {product.oldPrice}
+                ₹ {formatNumber(product.oldPrice)}
               </span>
               <span className="font-normal text-lg xl:text-2xl text-product-green">
-                ({product.discount})
+                {t(`products:${id}:discount`)}
               </span>
             </div>
 
@@ -271,14 +221,14 @@ const ProductDetails = () => {
             <div className="flex flex-col justify-center gap-1.5 lg:gap-3 xl:gap-4 md:py-0 ">
               <div className="gap-4 flex flex-row xl:flex-col justify-between xl:justify-start ">
                 <p className="font-medium lg:font-bold text-lg xl:text-2xl text-light-black">
-                  Select Size
+                  {t(`products:SelectSize`)}
                 </p>
                 <div
                   className="flex items-center gap-2.5 cursor-pointer"
                   onClick={() => setIsSizePopupOpen(true)}
                 >
                   <p className="font-normal text-md xl:text-lg text-dark-blue hover:text-blue-700 whitespace-nowrap">
-                    Size Chart
+                    {t(`products:SizeChart`)}
                   </p>
                   <img
                     src={BlueArrow}
@@ -328,7 +278,7 @@ const ProductDetails = () => {
 
             <div className="flex flex-col justify-center gap-4 lg:py-0">
               <p className="font-medium lg:font-bold text-lg xl:text-2xl text-light-black">
-                Select Color
+                {t(`products:SelectColor`)}
               </p>
 
               <div className="flex items-center gap-5">
@@ -360,13 +310,13 @@ const ProductDetails = () => {
                       </div>
 
                       <p
-                        className={`text-xs font-normal ${
+                        className={`${i18n.language === "en" ? "text-xs" : "text-md"} font-normal ${
                           isSelected
                             ? "text-black/90 ring-light-gray-1 font-semibold"
                             : "text-gray-700"
                         }`}
                       >
-                        {color.label}
+                        {t(`products:ProductColors:${color.label}`)}
                       </p>
                     </div>
                   );
@@ -379,27 +329,25 @@ const ProductDetails = () => {
             {/* ================= Best Offer: ================= */}
             <div className="flex flex-col justify-center gap-3">
               <p className="font-medium lg:font-bold text-lg xl:text-2xl text-light-black">
-                Best Offers
+                {t("products:BestOffers")}
               </p>
-              {OfferDetails.map((item, index) => (
-                <>
-                  <div className="space-y-3.75 text-light-black" key={index}>
-                    <p>
-                      <span className="font-normal lg:font-bold text-sm md:text-lg">
-                        {item.offerName}{" "}
-                      </span>
-                      <span className="font-normal text-sm md:text-lg">
-                        {item.offPercent}{" "}
-                      </span>
-                      <span className="font-normal text-sm md:text-lg">
-                        {item.onOffer}
-                      </span>{" "}
-                      <span className="font-normal text-sm md:text-lg text-dark-blue">
-                        {item.terms}
-                      </span>
-                    </p>
-                  </div>
-                </>
+              {(t("products:Offers", { returnObjects: true }) || []).map((item, index) => (
+                <div className="space-y-3.75 text-light-black" key={index}>
+                  <p>
+                    <span className="font-normal lg:font-bold text-sm md:text-lg">
+                      {item.offerName}{" "}
+                    </span>
+                    <span className="font-normal text-sm md:text-lg">
+                      {item.offPercent}{" "}
+                    </span>
+                    <span className="font-normal text-sm md:text-lg">
+                      {item.onOffer}
+                    </span>{" "}
+                    <span className="font-normal text-sm md:text-lg text-dark-blue">
+                      {item.terms}
+                    </span>
+                  </p>
+                </div>
               ))}
             </div>
 
@@ -418,8 +366,8 @@ const ProductDetails = () => {
                         dispatch(addToCart(product));
                       }}
                     >
-                      <button className="font-normal text-lg text-white cursor-pointer ">
-                        Add to cart
+                      <button className={`font-normal text-lg text-white cursor-pointer ${i18n.language === "gj" ? "mt-1" : "mt-0"}`}>
+                        {t("products:AddToCart")}
                       </button>
                     </div>
                   ) : (
@@ -434,7 +382,7 @@ const ProductDetails = () => {
 
                       {/* Value */}
                       <div className="flex-1 h-full flex items-center justify-center text-white font-medium border-l border-r border-light-blue bg-dark-button-blue">
-                        {qty}
+                        {formatNumber(qty)}
                       </div>
 
                       {/* Plus */}
@@ -478,8 +426,8 @@ const ProductDetails = () => {
                         }}
                         className="w-full h-10 flex items-center justify-center gap-3 sm:gap-[23.23px] bg-dark-button-blue rounded-10 cursor-pointer hover:bg-blue-900 transition duration-100 ease-in-out"
                       >
-                        <button className="font-normal text-lg text-white">
-                          Add to cart
+                        <button className={`font-normal text-lg text-white ${i18n.language === "gj" ? "mt-1" : "mt-0"}`}>
+                          {t("products:AddToCart")}
                         </button>
                         <img
                           src={WhiteBag}
@@ -501,7 +449,7 @@ const ProductDetails = () => {
 
                         {/* Value */}
                         <div className="h-full flex items-center justify-center text-light-blue font-medium text-center border-l border-r w-full">
-                          {qty}
+                          {formatNumber(qty)}
                         </div>
 
                         {/* Plus */}
@@ -521,8 +469,8 @@ const ProductDetails = () => {
                     onClick={handleWishlist}
                     className="w-full h-10 border border-dark-button-blue rounded-10 cursor-pointer flex items-center justify-center gap-3 sm:gap-[23.23px] group transition-all duration-15"
                   >
-                    <button className="font-normal text-lg text-light-black">
-                      WishList
+                    <button className={`font-normal text-lg text-light-black ${i18n.language === "gj" ? "mt-1.5" : "mt-0"}`}>
+                      {t("products:Wishlist")}
                     </button>
 
                     <img
@@ -543,15 +491,15 @@ const ProductDetails = () => {
       <ProductSpecification />
       <div className="bg-light-gray-3 pb-6 lg:pb-29 space-y-6">
         <SimilarProduct />
-        <SimilarProduct title="Customer also like" />
+        <SimilarProduct title={t("products:CustomersAlsoLike")} />
       </div>
       {/* ================= Pop Up ================= */}
       <PopUp
         isOpen={isSizePopupOpen}
         onClose={() => setIsSizePopupOpen(false)}
-        buttonTitle="Done"
+        buttonTitle={t("products:Done")}
       >
-        <h2 className="text-xl font-bold mb-4">Size Guide</h2>
+        <h2 className={`text-xl font-bold mb-4 ${i18n.language === "gj" ? "mt-1.5" : "mt-0"}`}>{t("products:SizeGuide")}</h2>
         <div className="flex gap-3 flex-wrap min-h-100">
           <img src={sizeChart} alt="Size chart" loading="lazy" />
         </div>

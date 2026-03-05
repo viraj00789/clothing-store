@@ -9,6 +9,7 @@ import shop_by_category from "../gj/shop_by_category.json";
 import testimonials from "../gj/testimonials.json";
 import services from "../gj/services.json";
 import about from "../gj/about.json";
+import footer from "../gj/footer.json";
 
 export default {
   profile,
@@ -21,5 +22,6 @@ export default {
   shop_by_category,
   testimonials,
   services,
-  about
+  about,
+  footer
 };

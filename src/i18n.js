@@ -15,7 +15,7 @@ i18n
     },
     lng: localStorage.getItem("lang") || "en",
     fallbackLng: "en",
-    ns: ["profile", "navbar", "category_row", "fashion_slides", "products", "headers", "offers", "services","about"],
+    ns: ["profile", "navbar", "category_row", "fashion_slides", "products", "headers", "offers", "services","about","footer"],
     keySeparator: false,
     interpolation: { escapeValue: false },
   });

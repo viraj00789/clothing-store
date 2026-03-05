@@ -1,0 +1,50 @@
+{
+  "title1": "મહિલાઓ",
+  "items1": {
+    "AllWomen": "બધી મહિલાઓ",
+    "Skirts": "સ્કર્ટ્સ",
+    "TShirts": "ટી-શર્ટ્સ",
+    "Tops": "ટોપ્સ",
+    "Jackets": "જેકેટ્સ"
+  },
+  "title2": "પુરુષો",
+  "items2": {
+    "AllMen": "બધા પુરુષો",
+    "Shirts": "શર્ટ્સ",
+    "TShirts": "ટી-શર્ટ્સ",
+    "Shorts": "શોર્ટ્સ",
+    "Jackets": "જેકેટ્સ"
+  },
+  "title3": "બાળકો",
+  "items3": {
+    "AllKids": "બધા બાળકો",
+    "Shirts": "શર્ટ્સ",
+    "TShirts": "ટી-શર્ટ્સ",
+    "Shorts": "શોર્ટ્સ",
+    "Jackets": "જેકેટ્સ"
+  },
+  "title4": "ખરીદી",
+  "items4": {
+    "YourCart": "તમારું કાર્ટ",
+    "YourOrders": "તમારા ઓર્ડર્સ",
+    "ComparedItems": "તુલના કરેલ વસ્તુઓ",
+    "Wishlist": "ઇચ્છાસૂચિ",
+    "ShippingDetails": "શિપિંગ વિગતો"
+  },
+  "title5": "વધુ લિંક્સ",
+  "items5": {
+    "Blogs": "બ્લોગ્સ",
+    "GiftCenter": "ગિફ્ટ સેન્ટર",
+    "BuyingGuides": "ખરીદી માર્ગદર્શિકા",
+    "NewArrivals": "નવા આગમન",
+    "Clearance": "ક્લિયરન્સ"
+  },
+  "StayInTouch": "સંબંધિત રાખો",
+  "StayInTouchText": "ખાસ ઑફર્સ, મફત ભેટ અને જીવનમાં એકવાર મળતી ડીલ્સ મેળવવા માટે સંપર્કમાં રહો.",
+  "TermsAndConditions": "નિયમો અને શરતો",
+  "PrivacyPolicy": "ગોપનીયતા નીતિ",
+  "ReturnPolicy": "રીટર્ન પોલિસી",
+  "ContactUs": "અમારો સંપર્ક કરો",
+  "Copyright": "કોપીરાઈટ",
+  "EnterYourEmail": "તમારો ઈમેલ દાખલ કરો"
+}

@@ -1,0 +1,50 @@
+{
+  "title1": "Women",
+  "items1": {
+    "AllWomen": "All Women",
+    "Skirts": "Skirts",
+    "TShirts": "T-Shirts",
+    "Tops": "Tops",
+    "Jackets": "Jackets"
+  },
+  "title2": "Men",
+  "items2": {
+    "AllMen": "All Men",
+    "Shirts": "Shirts",
+    "TShirts": "T-Shirts",
+    "Shorts": "Shorts",
+    "Jackets": "Jackets"
+  },
+  "title3": "Kids",
+  "items3": {
+    "AllKids": "All Kids",
+    "Shirts": "Shirts",
+    "TShirts": "T-Shirts",
+    "Shorts": "Shorts",
+    "Jackets": "Jackets"
+  },
+  "title4": "Shopping",
+  "items4": {
+    "YourCart": "Your Cart",
+    "YourOrders": "Your Orders",
+    "ComparedItems": "Compared Items",
+    "Wishlist": "Wishlist",
+    "ShippingDetails": "Shipping Details"
+  },
+  "title5": "MoreLinks",
+  "items5": {
+    "Blogs": "Blogs",
+    "GiftCenter": "Gift Center",
+    "BuyingGuides": "Buying Guides",
+    "NewArrivals": "New Arrivals",
+    "Clearance": "Clearance"
+  },
+  "StayInTouch": "Stay In Touch",
+  "StayInTouchText": "Stay in touch to get special offers, free giveaways and once in a lifetime deals",
+  "TermsAndConditions": "Terms & Conditions",
+  "PrivacyPolicy": "Privacy Policy",
+  "ReturnPolicy": "Return Policy",
+  "ContactUs": "Contact Us",
+  "Copyright": "Copyright",
+  "EnterYourEmail": "Enter your email"
+}

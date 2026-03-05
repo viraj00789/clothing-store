@@ -9,6 +9,7 @@ import shop_by_category from "../en/shop_by_category.json";
 import testimonials from "../en/testimonials.json";
 import services from "../en/services.json";
 import about from "../en/about.json";
+import footer from "../en/footer.json";
 
 export default {
   profile,
@@ -21,5 +22,6 @@ export default {
   shop_by_category,
   testimonials,
   services,
-  about
+  about,
+  footer
 };
