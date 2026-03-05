@@ -3,17 +3,19 @@ import { specifications } from "../../../data/ProductSpectification";
 import RatingTab from "./RatingTab";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useWindow } from "../../hooks/useWidth";
+import { useTranslation } from "react-i18next";
 
 const ProductSpecification = () => {
   const tabs = [
-    "Product Details",
+    "ProductDetails",
     "Specification",
-    "Ratings & Reviews",
-    "How this was made",
-    "Manufacturing Information",
+    "RatingsReviews",
+    "HowMade",
+    "ManufacturingInfo",
   ];
-  const [activeTab, setActiveTab] = useState("Product Details");
+  const [activeTab, setActiveTab] = useState("ProductDetails");
   const width = useWindow();
+  const { t } = useTranslation();
 
   const isMobile = width <= 768;
 
@@ -30,34 +32,37 @@ const ProductSpecification = () => {
   }, [isMobile]);
 
   const renderContent = (tab) => {
-    if (tab === "Product Details") {
+    if (tab === "ProductDetails") {
       return (
         <div className="space-y-3 md:space-y-4 lg:space-y-[27px] py-4">
           <div>
             <h3 className="font-bold text-2xl mb-2 text-light-black hidden lg:flex">
-              Product Details
+              {t("productSpecification:ProductDetails:Title")}
             </h3>
             <p className="text-sm md:text-lg font-normal text-light-black">
-              Blue washed jacket, has a spread collar, 4 pockets, button
-              closure, long sleeves, straight hem
+              {t("productSpecification:ProductDetails:Description")}
             </p>
           </div>
 
           <div>
             <h3 className="font-bold text-2xl mb-2 text-light-black hidden lg:flex">
-              Size & Fit
+              {t("productSpecification:ProductDetails:SizeFitTitle")}
             </h3>
             <p className="text-sm md:text-lg text-light-black">
-              The model (height 5'8") is wearing a size S
+              {t("productSpecification:ProductDetails:SizeFitDescription")}
             </p>
           </div>
 
           <div>
             <h3 className="font-bold text-2xl mb-2 text-light-black hidden lg:flex">
-              Material & Care
+              {t("productSpecification:ProductDetails:MaterialCareTitle")}
             </h3>
-            <p className="text-sm md:text-lg text-light-black">100% cotton</p>
-            <p className="text-sm md:text-lg text-light-black">Machine Wash</p>
+            <p className="text-sm md:text-lg text-light-black">
+              {t("productSpecification:ProductDetails:MaterialCareDescription1")}
+            </p>
+            <p className="text-sm md:text-lg text-light-black">
+              {t("productSpecification:ProductDetails:MaterialCareDescription2")}
+            </p>
           </div>
         </div>
       );
@@ -67,7 +72,7 @@ const ProductSpecification = () => {
       return (
         <div className="py-4 lg:mt-[11px]">
           <h2 className="text-2xl font-bold text-light-black mb-3 hidden-lg-flex">
-            Specifications
+            {t("productSpecification:Specifications:Title")}
           </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-2 gap-x-13 2xl:gap-x-[98px] gap-y-[13px] w-full lg:max-w-lg">
@@ -78,10 +83,10 @@ const ProductSpecification = () => {
               >
                 <div className="space-y-2.25">
                   <p className="text-sm md:text-lg text-dark-gray">
-                    {item.label}
+                    {t("productSpecification:Specifications:List:" + index + ":label")}
                   </p>
                   <p className="text-sm md:text-lg text-light-black">
-                    {item.value}
+                    {t("productSpecification:Specifications:List:" + index + ":value")}
                   </p>
                 </div>
                 <div className="h-px w-full bg-dark-white lg:bg-dark-gray" />
@@ -92,34 +97,22 @@ const ProductSpecification = () => {
       );
     }
 
-    if (tab === "Ratings & Reviews") {
+    if (tab === "RatingsReviews") {
       return <RatingTab />;
     }
 
-    if (tab === "How this was made") {
+    if (tab === "HowMade") {
       return (
         <p className="py-4 font-normal text-sm lg:text-lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          {t("productSpecification:HowMade:Description")}
         </p>
       );
     }
 
-    if (tab === "Manufacturing Information") {
+    if (tab === "ManufacturingInfo") {
       return (
         <p className="py-4 font-normal text-sm lg:text-lg">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+         {t("productSpecification:ManufacturingInfo:Description")}
         </p>
       );
     }
@@ -147,7 +140,7 @@ const ProductSpecification = () => {
                  ${isActive ? "text-dark-button-blue" : "text-dark-gray lg:hover:text-gray-700"}
                `}
                   >
-                    {tab}
+                    {t(`productSpecification:SpecTabs:${tab}`)}
 
                     {isActive && (
                       <span className="absolute left-0 -bottom-[3px] w-full h-[3px] bg-dark-button-blue rounded-full" />

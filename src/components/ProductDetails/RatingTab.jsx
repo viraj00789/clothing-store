@@ -10,8 +10,12 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import { useTranslation } from "react-i18next";
+import useNumberInGujarati from "../../hooks/useNumberInGujarati";
 
 const RatingTab = () => {
+  const { t } = useTranslation(["headers", "productSpecification"]);
+  const { formatNumber } = useNumberInGujarati();
   const [showAll, setShowAll] = useState(false);
   const [expanded, setExpanded] = useState({});
   const [previewImages, setPreviewImages] = useState([]);
@@ -56,13 +60,13 @@ const RatingTab = () => {
 
   return (
     <div className="py-3 mt-0">
-      <h2 className="text-2xl font-bold text-light-black pb-[29px]  hidden-lg-flex">
-        Ratings
+      <h2 className="text-2xl font-bold text-light-black pb-[29px] hidden-lg-flex">
+        {t("productSpecification:Ratings:Title")}
       </h2>
 
       <div className="flex flex-col gap-1.5 md:gap-4">
         <div className="flex gap-4 md:gap-1.5">
-          <p className="text-xl 2xl:text-5xl">4.4</p>
+          <p className="text-xl 2xl:text-5xl">{formatNumber(4.4)}</p>
           <div className="flex items-center gap-3">
             {[...Array(4)].map((_, i) => (
               <img
@@ -77,20 +81,19 @@ const RatingTab = () => {
           </div>
         </div>
         <p className="text-sm md:text-lg font-normal text-dark-gray lg:text-light-black">
-          40 Verified Buyers
+          {formatNumber(40)} {t("productSpecification:Ratings:VerifiedBuyers")}
         </p>
       </div>
 
       <div className="mt-6 lg:mt-12 space-y-6 lg:space-y-[45px]">
         {visibleReviews.map((review) => {
           const isExpanded = expanded[review.id];
-          const shortText = review.text.slice(0, 280);
 
           return (
             <div key={review.id} className="space-y-2.5 lg:space-y-4">
               {/* Rating */}
               <p className="text-xl font-normal text-light-black">
-                {review.review}
+                {t("productSpecification:Ratings:List:" + (review.id - 1) + ":review")}
               </p>
 
               <div className="flex items-center gap-4 flex-wrap">
@@ -112,27 +115,31 @@ const RatingTab = () => {
                       height={19.02}
                     />
                   </div>
-                  <p className="font-normal text-lg">{review.rating}</p>
+                  <p className="font-normal text-lg">{formatNumber(review.rating)}</p>
                 </div>
                 <div className="flex-lg-hidden gap-4">
                   <p className="text-sm md:text-lg text-dark-gray font-normal ">
                     {review.name}
                   </p>
                   <p className="text-sm md:text-lg text-dark-gray font-normal">
-                    {review.date}
+                    {t("productSpecification:Ratings:List:" + (review.id - 1) + ":date")}
                   </p>
                 </div>
               </div>
 
               {/* Text */}
               <p className="text-sm md:text-lg text-light-black font-normal max-w-[908px] cursor-pointer leading-5.5">
-                {isExpanded ? review.text : shortText}
-                {review.text.length > 160 && (
+                {isExpanded
+                  ? t("productSpecification:Ratings:List:" + (review.id - 1) + ":text")
+                  : t("productSpecification:Ratings:List:" + (review.id - 1) + ":text").slice(0, 280)}
+                {t("productSpecification:Ratings:List:" + (review.id - 1) + ":text").length > 160 && (
                   <button
                     onClick={() => toggleReadMore(review.id)}
                     className="text-dark-blue ml-2 text-sm md:text-lg cursor-pointer"
                   >
-                    {isExpanded ? "Read Less" : "Read More"}
+                    {isExpanded
+                      ? t("productSpecification:Ratings:ReadLess")
+                      : t("productSpecification:Ratings:ReadMore")}
                   </button>
                 )}
               </p>
@@ -179,9 +186,9 @@ const RatingTab = () => {
 
               {/* Author */}
               <p className="text-lg text-light-black font-normal hidden lg:flex items-center">
-                {review.name}{" "}
+                 {t("headers:VirajKoradia")}
                 <span className="bg-dark-gray w-px h-4.5 mx-1.5"></span>
-                {review.date}
+                {t("productSpecification:Ratings:List:" + (review.id - 1) + ":date")}
               </p>
             </div>
           );
@@ -193,14 +200,14 @@ const RatingTab = () => {
             onClick={() => setShowAll(true)}
             className="text-dark-blue text-sm md:text-lg lg:text-2xl font-normal cursor-pointer"
           >
-            View all Reviews
+            {t("productSpecification:Ratings:ViewAll")}
           </button>
         ) : (
           <button
             onClick={() => setShowAll(false)}
             className="text-dark-blue text-sm md:text-lg lg:text-2xl font-normal cursor-pointer"
           >
-            View Less
+            {t("productSpecification:Ratings:ViewLess")}
           </button>
         )}
         <AnimatePresence>
@@ -229,7 +236,7 @@ const RatingTab = () => {
                 transition={{ duration: 0.25, ease: "easeInOut" }}
               >
                 <p className="font-bold text-base md:text-xl text-light-black mb-3 px-2">
-                  Preview Image
+                  {t("productSpecification:Ratings:PreviewImage")}
                 </p>
 
                 <Swiper
@@ -257,7 +264,7 @@ const RatingTab = () => {
                   onClick={() => setIsPreviewOpen(false)}
                   className="mt-4 w-full px-4 py-2 bg-blue-600 text-white rounded cursor-pointer"
                 >
-                  Close
+                  {t("productSpecification:Ratings:Close")}
                 </button>
               </motion.div>
             </motion.div>

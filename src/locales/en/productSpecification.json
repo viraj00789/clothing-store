@@ -1,0 +1,81 @@
+{
+  "SpecTabs": {
+    "ProductDetails": "Product Details",
+    "Specification": "Specification",
+    "RatingsReviews": "Ratings & Reviews",
+    "HowMade": "How this was made",
+    "ManufacturingInfo": "Manufacturing Information"
+  },
+  "ProductDetails": {
+    "Title": "Product Details",
+    "Description": "Blue washed jacket, has a spread collar, 4 pockets, button closure, long sleeves, straight hem",
+    "SizeFitTitle": "Size & Fit",
+    "SizeFitDescription": "The model (height 5'8\") is wearing a size S",
+    "MaterialCareTitle": "Material & Care",
+    "MaterialCareDescription1": "100% cotton",
+    "MaterialCareDescription2": "Machine Wash"
+  },
+  "Specifications": {
+    "Title": "Specifications",
+    "List": [
+      { "label": "Sleeve Length", "value": "Long Sleeves" },
+      { "label": "Type", "value": "Denim Jacket" },
+      { "label": "Print or Pattern Type", "value": "Washed" },
+      { "label": "Collor", "value": "Spread collar" },
+      { "label": "Length", "value": "Regular" },
+      { "label": "Closure", "value": "Button" },
+      { "label": "Lining Fabric", "value": "Unlined" },
+      { "label": "Number of Pockets", "value": "4" },
+      { "label": "Hemline", "value": "Straight" },
+      { "label": "Occasion", "value": "Casual" }
+    ]
+  },
+  "HowMade": {
+    "Description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  "ManufacturingInfo": {
+    "Description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  },
+  "Ratings": {
+    "Title": "Ratings",
+    "VerifiedBuyers": "Verified Buyers",
+    "ReadMore": "Read More",
+    "ReadLess": "Read Less",
+    "ViewAll": "View all Reviews",
+    "ViewLess": "View Less",
+    "PreviewImage": "Preview Image",
+    "Close": "Close",
+    "List": [
+      {
+        "review": "Good Fit",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus tristique in tellus diam, metus sit. Quis venenatis, neque arcu accumsan sollicitudin aliquet nunc. Enim, arcu non in aenean tristique felis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. neque arcu accumsan sollicitudin Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus tristique in tellus diam, metus sit. Quis venenatis, neque arcu accumsan sollicitudin aliquet nunc. Enim, arcu non in aenean tristique felis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. neque arcu accumsan sollicitudinLorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus tristique in tellus diam, metus sit. Quis venenatis, neque arcu accumsan sollicitudin aliquet nunc. Enim, arcu non in aenean tristique felis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. neque arcu accumsan sollicitudinLorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus tristique in tellus diam, metus sit. Quis venenatis, neque arcu accumsan sollicitudin aliquet nunc. Enim, arcu non in aenean tristique felis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. neque arcu accumsan sollicitudin",
+        "date": "28 September"
+      },
+      {
+        "review": "Perfect Fit",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus tristique in tellus diam, metus sit. Quis venenatis, neque arcu accumsan sollicitudin aliquet nuncLorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus tristique in tellus diam, metus sit. Quis venenatis, neque arcu accumsan sollicitudin aliquet nuncLorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus tristique in tellus diam, metus sit. Quis venenatis, neque arcu accumsan sollicitudin aliquet nuncLorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus tristique in tellus diam, metus sit. Quis venenatis, neque arcu accumsan sollicitudin aliquet nunc.",
+        "date": "28 September"
+      },
+      {
+        "review": "Perfect Fit",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus tristique in tellus diam, metus sit. Quis venenatis, neque arcu accumsan sollicitudin aliquet nuncLorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus tristique in tellus diam, metus sit. Quis venenatis, neque arcu accumsan sollicitudin aliquet nuncLorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus tristique in tellus diam, metus sit. Quis venenatis, neque arcu accumsan sollicitudin aliquet nunc.",
+        "date": "28 September"
+      },
+      {
+        "review": "Bad Fit",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus tristique in tellus diam, metus sit. Quis venenatis, neque arcu accumsan sollicitudin aliquet nunc. Enim, arcu non in aenean tristique felis.",
+        "date": "28 September"
+      },
+      {
+        "review": "Perfect Fit",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus tristique in tellus diam, metus sit.",
+        "date": "28 September"
+      },
+      {
+        "review": "Perfect Fit",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus tristique in tellus diam, metus sit.",
+        "date": "28 September"
+      }
+    ]
+  }
+}
